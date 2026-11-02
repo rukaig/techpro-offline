@@ -33,7 +33,7 @@ When a learner signs in at `/account`, the plan syncs to their private Firestore
 
 ## TechPro assistant
 
-Open `/assistant` and sign in to ask questions grounded in the curated TechPro module knowledge. Responses stream from the server and link to relevant lessons. Conversation history and feedback are stored in Firestore under the signed-in user's `techpro_assistant/{uid}` namespace; client access to that collection is denied by the rules. Requests require a Firebase ID token verified by Firebase Admin, and the server limits generation requests to 10 per minute per account.
+Open `/assistant` and sign in to ask questions grounded in the curated TechPro module knowledge. Responses stream from the server and link to relevant lessons. Conversation history and feedback are stored in Firestore under the signed-in user's `techpro_assistant/{uid}` namespace; client access to that collection is denied by the rules. Requests require a Firebase ID token verified by Firebase Admin. Limits default to 20 messages per learner per 10 minutes plus a global cap of 300 per minute, all configurable in `.env` (`ASSISTANT_RATE_LIMIT`, `ASSISTANT_RATE_WINDOW_MINUTES`, `ASSISTANT_GLOBAL_LIMIT`). Requests time out after 30 seconds (`ASSISTANT_TIMEOUT_MS`). `GET /api/assistant/health` reports `{ configured, model }` without exposing the key.
 
 The knowledge builder chunks the supplied lesson text in `content/module.md` before its answer-key section and combines those passages with curated notes in `knowledge/computers.md`. It writes `knowledge/index.json` and runs automatically before start, development, and test commands. To rebuild it explicitly:
 
@@ -41,7 +41,7 @@ The knowledge builder chunks the supplied lesson text in `content/module.md` bef
 npm run build:knowledge
 ```
 
-Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.8-flash`, verified against the [official model catalog](https://ai.google.dev/gemini-api/docs/models); override it with `GEMINI_MODEL` if needed. Add the values from `.env.example` to a local `.env` file or configure them in Render. For Firebase Admin, set either `FIREBASE_SERVICE_ACCOUNT_JSON` to the service-account JSON value or `GOOGLE_APPLICATION_CREDENTIALS` to a private credential-file path, along with `FIREBASE_PROJECT_ID`. Never commit service-account credentials or the Gemini key. The public Firebase web config is not a server secret.
+Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, chosen from the [official model catalog](https://ai.google.dev/gemini-api/docs/models) as the fastest, lowest-cost option recommended for new projects; override it with `GEMINI_MODEL` (for example `gemini-3.8-flash`) if needed. Add the values from `.env.example` to a local `.env` file or configure them in Render. For Firebase Admin, set either `FIREBASE_SERVICE_ACCOUNT_JSON` to the service-account JSON value or `GOOGLE_APPLICATION_CREDENTIALS` to a private credential-file path, along with `FIREBASE_PROJECT_ID`. Never commit service-account credentials or the Gemini key. The public Firebase web config is not a server secret.
 
 ## Environment
 

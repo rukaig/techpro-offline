@@ -67,6 +67,116 @@ function sanitizeAssistantText(value) {
   return text.replace(/\uE000(\d+)\uE001/g, (_, index) => protectedParts[Number(index)] || "");
 }
 
+// Stateful sanitizer for streamed model output. Chunks can split anywhere --
+// including in the middle of a code fence, a bold marker, or a URL -- so the
+// sanitizer buffers the unfinished tail and only emits text that is safe.
+function createStreamSanitizer() {
+  let buffer = "";
+  let codeLines = null;
+  const MAX_TAIL_RELEASE = 120;
+
+  const sanitizeFence = (lines) => sanitizeAssistantText(`\`\`\`\n${lines.join("\n")}\n\`\`\``);
+
+  const handleLine = (line) => {
+    if (codeLines) {
+      if (/^\s*```/.test(line)) {
+        const code = sanitizeFence(codeLines);
+        codeLines = null;
+        return code ? `${code}\n` : "";
+      }
+      codeLines.push(line);
+      return "";
+    }
+    if (/^\s*```/.test(line)) {
+      codeLines = [];
+      return "";
+    }
+    return `${sanitizeAssistantText(line)}\n`;
+  };
+
+  const drain = () => {
+    let output = "";
+    let index = buffer.indexOf("\n");
+    while (index >= 0) {
+      output += handleLine(buffer.slice(0, index));
+      buffer = buffer.slice(index + 1);
+      index = buffer.indexOf("\n");
+    }
+    // Keep a long paragraph moving: release up to the last word boundary.
+    if (!codeLines && buffer.length > MAX_TAIL_RELEASE) {
+      const cut = buffer.lastIndexOf(" ");
+      if (cut > MAX_TAIL_RELEASE / 2) {
+        const released = sanitizeAssistantText(buffer.slice(0, cut + 1));
+        buffer = buffer.slice(cut + 1);
+        if (released) output += `${released} `;
+      }
+    }
+    return output;
+  };
+
+  return {
+    push(chunk) {
+      if (typeof chunk !== "string" || !chunk) return "";
+      // Normalize CRLF without mangling a "\r" that ends the current chunk.
+      let text = chunk.replace(/\r\n/g, "\n");
+      if (text.endsWith("\r")) {
+        text = `${text.slice(0, -1)}\n`;
+      } else {
+        text = text.replace(/\r/g, "\n");
+      }
+      buffer += text;
+      return drain();
+    },
+    end() {
+      let output = drain();
+      if (buffer) {
+        output += codeLines ? "" : `${sanitizeAssistantText(buffer)}\n`;
+        buffer = "";
+      }
+      if (codeLines) {
+        const code = sanitizeFence(codeLines);
+        if (code) output += `${code}\n`;
+        codeLines = null;
+      }
+      return output;
+    }
+  };
+}
+
+// Fixed-window limiter with an explicit clock so it is unit-testable.
+function createRateLimiter({ limit = 20, windowMs = 10 * 60 * 1000, maxKeys = 10_000, now = Date.now } = {}) {
+  const buckets = new Map();
+  return {
+    consume(key, cost = 1) {
+      const timestamp = now();
+      const existing = buckets.get(key);
+      const bucket = !existing || timestamp - existing.startedAt >= windowMs
+        ? { startedAt: timestamp, count: 0 }
+        : existing;
+      if (bucket.count + cost > limit) {
+        buckets.set(key, bucket);
+        return {
+          allowed: false,
+          remaining: 0,
+          retryAfterSeconds: Math.max(1, Math.ceil((windowMs - (timestamp - bucket.startedAt)) / 1000))
+        };
+      }
+      bucket.count += cost;
+      buckets.set(key, bucket);
+      if (buckets.size > maxKeys) {
+        for (const [itemKey, item] of buckets) {
+          if (timestamp - item.startedAt >= windowMs) buckets.delete(itemKey);
+        }
+      }
+      return { allowed: true, remaining: limit - bucket.count, retryAfterSeconds: 0 };
+    },
+    size() {
+      return buckets.size;
+    }
+  };
+}
+
 module.exports = {
-  sanitizePrompt, sanitizeAssistantText, isValidConversationId, retrieveKnowledge, MAX_PROMPT_LENGTH
+  sanitizePrompt, sanitizeAssistantText, isValidConversationId, retrieveKnowledge, MAX_PROMPT_LENGTH,
+  createStreamSanitizer, createRateLimiter
 };

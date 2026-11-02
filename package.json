@@ -2,7 +2,7 @@
   "name": "techpro-coc1",
   "version": "1.0.0",
   "private": true,
-  "description": "TechPro CSS NC II — COC 1 interactive learning site for Assemble Computer Hardware",
+  "description": "TechPro CSS NC II \u2014 COC 1 interactive learning site for Assemble Computer Hardware",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -16,7 +16,8 @@
     "build:games": "node scripts/build-games.mjs",
     "audit": "node scripts/ui-audit.mjs",
     "audit:routes": "node scripts/route-check.mjs",
-    "test:pclab": "node tests/pc-lab-regression.mjs"
+    "test:pclab": "node tests/pc-lab-regression.mjs",
+    "assistant:smoke": "node scripts/assistant-smoke.mjs"
   },
   "engines": {
     "node": ">=20.0.0"
