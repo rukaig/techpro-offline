@@ -1,0 +1,233 @@
+.hero-home {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+
+.hero-copy h1 {
+  margin-top: 0.6rem;
+}
+
+.hero-accent {
+  color: var(--accent);
+}
+
+.hero-proof {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.hero-proof span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.hero-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+}
+
+.hero-art-frame {
+  width: min(100%, 460px);
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-stamp {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.76);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.hero-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.float-a { top: 0.5rem; left: 0.5rem; }
+.float-b { bottom: 2.2rem; left: 0.4rem; }
+
+.daily-wrap {
+  padding-top: 1rem;
+}
+
+.daily-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.1rem;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 1.3rem;
+}
+
+.daily-mark {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 1rem;
+  background: var(--accent-soft);
+}
+
+.daily-options {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.daily-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  text-align: left;
+}
+
+.option-letter {
+  display: inline-grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-weight: 700;
+}
+
+.bench-grid {
+  grid-template-columns: 1.1fr 1.6fr 1.3fr;
+  align-items: stretch;
+}
+
+.bench-level,
+.bench-goals,
+.stat,
+.card {
+  border-radius: 1.1rem;
+}
+
+.level-orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) 0 var(--ring, 0%), var(--surface-2) 0% 100%);
+}
+
+.level-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.level-number,
+.level-caption {
+  position: relative;
+  z-index: 1;
+}
+
+.level-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.level-caption {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bench-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 118px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.stat-value {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.goal-row {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.goal-row-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.84rem;
+}
+
+@media (max-width: 900px) {
+  .hero-home,
+  .bench-grid,
+  .daily-card {
+    grid-template-columns: 1fr;
+  }
+  .hero-art { order: -1; }
+}

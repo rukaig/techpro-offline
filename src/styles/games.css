@@ -1,0 +1,111 @@
+.activity-grid,
+.related-grid,
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.activity-card,
+.related-card {
+  display: grid;
+  gap: 0.9rem;
+  min-height: 180px;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.activity-card-top,
+.activity-card-foot,
+.related-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.activity-card-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.activity-card-copy strong,
+.related-card strong {
+  font-size: 1.05rem;
+}
+
+.activity-card-copy span,
+.related-card small {
+  color: var(--text-muted);
+}
+
+.activity-card .activity-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 0.8rem;
+  background: var(--surface-2);
+}
+
+.play-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.flagship-banner {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.2rem 1.3rem;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  border: 1px solid var(--line);
+  border-radius: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.big-score {
+  display: block;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.option-button {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  text-align: left;
+}
+
+.option-button.is-selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.input,
+.textarea {
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--surface);
+  padding: 0.8rem 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .flagship-banner,
+  .play-progress-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+}

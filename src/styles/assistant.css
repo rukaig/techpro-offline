@@ -1,0 +1,249 @@
+.assistant-page {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.assistant-intro {
+  max-width: 54rem;
+}
+
+.assistant-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.assistant-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.assistant-signed-in {
+  display: block;
+  max-width: 100%;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.assistant-status {
+  min-height: 1.4em;
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.assistant-status.is-error {
+  color: var(--danger);
+}
+
+.assistant-log {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  min-height: 12rem;
+  max-height: min(60vh, 42rem);
+  overflow-y: auto;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  overscroll-behavior: contain;
+}
+
+.assistant-message {
+  width: min(100%, 48rem);
+  min-width: 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface-2);
+}
+
+.assistant-message.is-user {
+  justify-self: end;
+  background: var(--accent-soft);
+}
+
+.assistant-message-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.assistant-avatar,
+.assistant-avatar svg {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.assistant-context {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+}
+
+.assistant-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.2rem 0;
+}
+
+.assistant-suggestions > span {
+  width: 100%;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.assistant-suggestions button,
+.assistant-copy {
+  max-width: 100%;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.assistant-copy {
+  margin-top: 0.75rem;
+}
+
+.assistant-message-text {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.assistant-sources,
+.assistant-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+}
+
+.assistant-sources span,
+.assistant-feedback span {
+  color: var(--text-muted);
+}
+
+.assistant-sources a {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  overflow-wrap: anywhere;
+}
+
+.assistant-feedback button {
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+}
+
+.assistant-form {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.assistant-form label {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.assistant-form textarea {
+  width: 100%;
+  min-width: 0;
+  resize: vertical;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.5;
+}
+
+.assistant-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.assistant-form-actions span,
+.assistant-disclaimer {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.assistant-disclaimer {
+  margin: 0;
+  padding: 0 1.2rem 1rem;
+}
+
+.assistant-locked {
+  min-height: 16rem;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.6rem;
+}
+
+.assistant-locked h2,
+.assistant-locked p {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .assistant-toolbar {
+    align-items: flex-start;
+    padding: 0.85rem;
+  }
+
+  .assistant-log {
+    max-height: 55vh;
+    padding: 0.8rem;
+  }
+
+  .assistant-form {
+    padding: 0.85rem;
+  }
+
+  .assistant-form-actions {
+    align-items: flex-end;
+  }
+
+  .assistant-form-actions span {
+    max-width: 65%;
+  }
+}

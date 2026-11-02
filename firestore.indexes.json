@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "techpro_scores",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "activity", "order": "ASCENDING" },
+        { "fieldPath": "score", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "techpro_scores",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "activity", "order": "ASCENDING" },
+        { "fieldPath": "timeMs", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

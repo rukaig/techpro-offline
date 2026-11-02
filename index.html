@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="editorial" data-mode="light" data-motion="full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="TechPro Computer Systems Servicing NC II — an interactive learning space for Assemble Computer Hardware. Read the module, build a PC, and practise safe disassembly.">
+  <meta name="theme-color" content="#2b1d16">
+  <meta name="color-scheme" content="light dark">
+  <title>TechPro · Assemble Computer Hardware</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/assets/techpro-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icon-192.png">
+  <link rel="preload" href="/assets/fonts/roboto-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+  <link rel="stylesheet" href="/src/styles/shell.css">
+  <link rel="stylesheet" href="/src/styles/home.css">
+  <link rel="stylesheet" href="/src/styles/library.css">
+  <link rel="stylesheet" href="/src/styles/games.css">
+  <link rel="stylesheet" href="/src/styles/pclab.css">
+  <link rel="stylesheet" href="/src/styles/profile.css">
+  <link rel="stylesheet" href="/src/styles/plan.css">
+  <link rel="stylesheet" href="/src/styles/account.css">
+  <link rel="stylesheet" href="/src/styles/assistant.css">
+  <script src="/src/app/theme-boot.js"></script>
+  <script src="/firebase-config.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="ambientLayer" class="ambient-layer" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="offlineBanner" class="offline-banner" hidden>You are offline. The library and saved work still open.</div>
+  <div id="app">
+    <div class="boot-screen" aria-label="Loading TechPro">
+      <span class="boot-chip" aria-hidden="true"></span>
+      <p>Warming up the workbench…</p>
+      <noscript><p class="boot-noscript">TechPro needs JavaScript. Please enable it, or ask your teacher for help.</p></noscript>
+    </div>
+  </div>
+  <script>
+    if (location.protocol === "file:") {
+      document.getElementById("app").innerHTML = `
+        <main role="alert" style="max-width:42rem;margin:10vh auto;padding:2rem;font:16px/1.6 system-ui,sans-serif;color:#241d17;background:#fffdf8;border:1px solid #d8cebe;border-radius:12px">
+          <p style="margin:0 0 .5rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a1a14">TechPro needs a local server</p>
+          <h1 style="margin:0 0 1rem;font-size:clamp(1.8rem,6vw,2.5rem);line-height:1.1">Run TechPro with npm start</h1>
+          <p style="margin:0 0 1rem">This page was opened directly from the file manager, so its scripts and assets cannot load. Open a terminal in the TechPro folder and run:</p>
+          <p style="margin:0 0 1rem;padding:1rem;background:#f8f2e8;border-radius:6px"><code>npm start</code></p>
+          <p style="margin:0">Then visit <strong>http://localhost:3000/</strong> in your browser.</p>
+        </main>`;
+    } else {
+      const bootstrap = document.createElement("script");
+      bootstrap.src = "/src/app/bootstrap.js";
+      bootstrap.defer = true;
+      document.body.append(bootstrap);
+    }
+  </script>
+</body>
+</html>

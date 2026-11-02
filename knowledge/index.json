@@ -1,0 +1,178 @@
+[
+  {
+    "id": "computer-system",
+    "title": "Computer system: hardware and software",
+    "lessonId": "computer-system",
+    "route": "/library/computer-system",
+    "text": "A computer system is hardware and software working together to receive input, process data, store information, and produce output. Hardware is the physical equipment. System software manages hardware and provides a platform for applications. Application software helps people do specific tasks. A computer part works as part of a compatible system; a missing, incorrectly installed, or incompatible component can prevent normal operation.",
+    "source": "curated"
+  },
+  {
+    "id": "types-of-computers",
+    "title": "Types of computers",
+    "lessonId": "types-of-computers",
+    "route": "/library/types-of-computers",
+    "text": "Desktop computers are designed for a fixed location and commonly have a system unit, monitor, keyboard, and mouse. Internal components are generally accessible, making desktops suitable for hardware servicing and upgrades. Laptops combine components in a portable unit. Servers provide services or resources to other computers.",
+    "source": "curated"
+  },
+  {
+    "id": "computer-components",
+    "title": "Computer parts and their functions",
+    "lessonId": "internal-hardware",
+    "route": "/library/internal-hardware",
+    "text": "The motherboard connects and supports computer components. The central processing unit (CPU) executes instructions and performs calculations. Random-access memory (RAM) temporarily holds data and instructions used by running programs; its contents are lost when power is removed. Storage devices such as hard disk drives and solid-state drives retain files when power is off. The power supply unit converts outlet electricity into power for internal components. Input devices send data to the computer; output devices present results.",
+    "source": "curated"
+  },
+  {
+    "id": "compatibility",
+    "title": "Component compatibility",
+    "lessonId": "internal-hardware",
+    "route": "/library/internal-hardware",
+    "text": "Before assembly or an upgrade, check that parts are compatible. A processor must match the motherboard socket and supported platform. Memory must be supported by the motherboard. The power supply must provide suitable connections and enough power for the system. Consult manufacturer specifications rather than forcing a part into place. If compatibility is uncertain, stop and ask a qualified instructor or technician.",
+    "source": "curated"
+  },
+  {
+    "id": "system-software",
+    "title": "System software",
+    "lessonId": "system-software",
+    "route": "/library/system-software",
+    "text": "System software manages computer hardware and provides a platform for application software. An operating system coordinates resources and provides the environment applications use. Device drivers help the operating system communicate with particular hardware. Utility software supports maintenance and protection tasks.",
+    "source": "curated"
+  },
+  {
+    "id": "application-software",
+    "title": "Application software",
+    "lessonId": "application-software",
+    "route": "/library/application-software",
+    "text": "Application software helps a user perform a particular task. Examples include word processors for documents, spreadsheet programs for calculations and tables, presentation software for slides, and image-editing software for graphics. Application software depends on system software to access the computer's hardware.",
+    "source": "curated"
+  },
+  {
+    "id": "safety",
+    "title": "Electrical and electrostatic-discharge safety",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Before opening a desktop computer, shut it down properly and disconnect it from the power source. Follow instructor and manufacturer safety instructions. Use an antistatic wrist strap or another approved electrostatic-discharge precaution to protect components from static electricity. Handle circuit boards by their edges, keep liquids away, and do not work on energized equipment. Stop and seek qualified help if a task is unfamiliar or unsafe.",
+    "source": "curated"
+  },
+  {
+    "id": "disassembly",
+    "title": "Organized computer disassembly",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Prepare the work area and appropriate tools before disassembly. Document or label cable connections before removing them. Disconnect cables by their connectors rather than pulling on the wires. Keep screws and small parts in labeled containers, and note the order and location of components. Follow the service procedure for the specific computer.",
+    "source": "curated"
+  },
+  {
+    "id": "assembly",
+    "title": "Assembly and pre-start checks",
+    "lessonId": "assembly",
+    "route": "/library/assembly",
+    "text": "Follow the assembly sequence and the manufacturer instructions for the specific components. Place parts in compatible sockets and slots without forcing them. Connect power and data cables to their correct connectors, secure components, and keep cables clear of fans. Before connecting power, check that components and cables are secure, no tools or loose screws remain inside, and fans can turn freely. Do not remove cooling parts while the computer is operating.",
+    "source": "curated"
+  },
+  {
+    "id": "basic-troubleshooting",
+    "title": "Careful first troubleshooting checks",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Start with safe, observable checks: confirm the computer is connected to a working outlet, check external cable connections, and note any error messages or indicator lights. Shut down and disconnect power before inspecting internal parts. Change one thing at a time and record what you observe. Do not guess at electrical repairs or continue if you notice heat, smoke, liquid, damaged wiring, or another hazard; disconnect power if safe and get qualified assistance.",
+    "source": "curated"
+  },
+  {
+    "id": "module-001",
+    "title": "Module source passage 1",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Are you aware that computers are used almost everywhere? You may see computers in schools, homes, offices, stores, hospitals, and service centers. You may also use a desktop computer, laptop, tablet, or smartphone to prepare schoolwork, communicate with others, access information, and complete different tasks.\n\nBut have you ever wondered how a computer works? A computer system consists of physical components called hardware and sets of instructions called software. System software manages the computer’s resources and allows application software to work with the hardware, while application software helps users perform specific tasks such as creating documents, browsing the internet, and editing images.\n\nUnderstanding the types and parts of a computer will help you determine each component's function and how they work together. As a future computer technician, you must also know how to safely disassemble and assemble a computer system. Following the correct sequence, using appropriate tools, disconnecting the computer from its power source, and protecting components from electrostatic discharge can help prevent injury and equipment damage.\n\nDirections: Imagine that you are preparing a computer workstation for a new computer laboratory. Classify each item in the box by writing it under the correct category: Hardware, System Software, or Application Software. After classifying the items, answer the processing questions.\n\nMotherboard Windows 11 Keyboard Microsoft Word Processor Device Driver Monitor Google Chrome Random-Access Memory Antivirus Utility Mouse\n\nDirections: A learner is preparing to disassemble a desktop computer, but the steps below are not arranged correctly. Write numbers 1 to 6 in the blanks to show the proper sequence.",
+    "source": "module"
+  },
+  {
+    "id": "module-002",
+    "title": "Module source passage 2",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "- Why should the computer be disconnected from the power source before opening the case?\n\nDirections: Read each situation. Choose the most appropriate software from the box. Write the letter of your answer on the blank before each number. Each answer may be used only once.\n\n_____ 2. Lea wants to create visual aids for a classroom presentation about computer safety.\n\n_____ 3. A newly installed printer cannot communicate properly with the computer.\n\n_____ 4. The computer needs software that manages its hardware, files, memory, and other programs.\n\n_____ 6. The computer laboratory needs protection against malicious files and programs.\n\nDirections: Read the situation below. Identify five unsafe or incorrect practices committed during computer disassembly. Write each mistake and suggest the correct action.\n\nAlex is preparing to disassemble a desktop computer. The computer is still connected to the electrical outlet. Alex immediately opens the computer case without shutting down the system and places all the removed screws on the edge of the table. Alex is wearing a metal bracelet and handles the memory module by touching its gold contacts. Before removing the cables and components, Alex does not take a picture, create a diagram, or label any connection.\n\n- Which mistake in the situation may cause electric shock or serious equipment damage?\n\nHave you ever opened a computer program to prepare a document, browse the internet, or create a presentation? These tasks are possible because a computer's physical parts and software work together.",
+    "source": "module"
+  },
+  {
+    "id": "module-003",
+    "title": "Module source passage 3",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "The physical components you can see and touch are called hardware. These include the keyboard, monitor, motherboard, processor, memory, and storage drive. Meanwhile, software refers to the programs and instructions that tell the computer what to do.\n\nA computer cannot function properly using hardware alone. It needs system software to manage its components and application software to help users perform specific tasks. Understanding how hardware and software work together is important before learning how to disassemble and assemble a computer system.\n\nA computer system consists of hardware and software that work together to receive data, process it, store information, and produce output.\n\nFor example, when you type a school report, the keyboard accepts your input, the processor handles the instructions, memory temporarily holds the working data, the operating system manages the computer’s resources, and the word processor lets you create and edit the document.\n\nIn this process, each hardware and software component performs a particular function. If one important component is missing, incorrectly installed, or incompatible, the computer may not operate properly.\n\nComputers are designed in different forms depending on the tasks they need to perform. Some computers are intended for individual users, while others provide services to many users or handle large amounts of information.\n\nA desktop computer is designed for use in a fixed location. It commonly consists of a system unit, monitor, keyboard, and mouse.\n\nDesktop computers are often used in computer laboratories, offices, homes, and service centers. Their internal components are generally accessible, making them suitable for hardware disassembly, assembly, repair, maintenance, and upgrading.",
+    "source": "module"
+  },
+  {
+    "id": "module-004",
+    "title": "Module source passage 4",
+    "lessonId": "types-of-computers",
+    "route": "/library/types-of-computers",
+    "text": "A laptop computer is a portable personal computer. The screen, keyboard, touchpad, battery, processor, memory, and storage device are contained in one compact unit.\n\nA laptop can perform many of the same tasks as a desktop computer. However, its compact construction may make its internal components more difficult to access, repair, or replace.\n\nA tablet is a portable computer that mainly uses a touchscreen for input. People commonly use it to view learning materials, browse the internet, communicate, and run mobile applications.\n\nUnlike a desktop computer, most tablet components are integrated into a thin enclosure and are not intended for regular user upgrades.\n\nA server is a computer that provides services, information, or shared resources to other computers on a network. It may store user files, host applications, manage accounts, or provide network services.\n\nServers are usually designed to operate continuously and support several users or devices.\n\nExternal hardware refers to the devices attached to or used outside the system unit.\n\nThe keyboard is an input device used to enter letters, numbers, symbols, and commands into the computer.\n\nThe mouse is a pointing device used to move the pointer, select items, open files, and interact with objects displayed on the screen.\n\nThe monitor is an output device that displays text, images, videos, and other information produced by the computer.\n\nA printer is an output device that produces a physical copy of a document or image.\n\nThe motherboard is the main circuit board of a computer. It provides connections for the processor, memory, storage devices, expansion cards, power supply, and other components.\n\nThe motherboard allows the different hardware components to communicate with one another.",
+    "source": "module"
+  },
+  {
+    "id": "module-005",
+    "title": "Module source passage 5",
+    "lessonId": "application-software",
+    "route": "/library/application-software",
+    "text": "The Central Processing Unit, commonly called the CPU or processor, executes instructions and performs calculations. The CPU processes data and controls many of the computer’s operations.\n\nRandom-Access Memory, or RAM, temporarily stores data and instructions the processor is currently using. RAM clears when you turn off the computer.\n\nA storage device keeps files, programs, and the operating system even when the computer is turned off.\n\nThe Power Supply Unit, or PSU, converts electricity from the outlet into the electrical power required by the internal computer components.\n\nThe power supply must provide the appropriate connectors and sufficient power for the installed hardware.\n\nThe cooling system helps control the operating temperature of computer components. It may include heat sinks, case fans, and a processor fan.\n\nImproper cooling may cause overheating, system instability, or damage to computer components.\n\nAn expansion card adds or improves a computer function. Examples include graphics cards, sound cards, and network interface cards.\n\nSoftware consists of programs and instructions that direct the computer to perform tasks. Software is commonly divided into system software and application software.\n\nSystem software manages the computer’s hardware and basic operations. It connects computer hardware and the programs users run.\n\nExamples of system software include operating systems, device drivers, utility programs, and firmware.\n\nAn operating system manages the computer's major resources, including the processor, memory, storage devices, input devices, and output devices.\n\nThe operating system also provides an interface that lets users open files, run programs, manage folders, and change computer settings.",
+    "source": "module"
+  },
+  {
+    "id": "module-006",
+    "title": "Module source passage 6",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "A device driver allows the operating system to communicate with a specific hardware device.\n\nFor example, a printer driver helps the operating system send the correct instructions to a printer. Without an appropriate driver, the device may not be recognized or may not function correctly.\n\nUtility software helps maintain, protect, configure, or improve the computer system.\n\nFirmware is software stored in a hardware device. It provides the basic instructions required to control or start the device.\n\nThe Basic Input/Output System, or BIOS, and the Unified Extensible Firmware Interface, or UEFI, are examples of firmware used during computer startup.\n\nApplication software helps users accomplish tasks. Software operates with the assistance of the operating system.\n\nSystem software and application software perform different but connected functions.\n\nManages hardware and basic computer operations | Helps the user perform a specific task\n\nIncludes operating systems and drivers | Includes word processors and web browsers\n\nFor example, when a learner creates a report, the word processor is the application software. The word processor uses the operating system to access the keyboard, monitor, memory, and storage device.\n\nComputer disassembly is the systematic removal of computer components from the system unit. It may be performed for cleaning, inspection, repair, replacement, upgrading, or troubleshooting.\n\nDisassembly should not be performed by removing components randomly. A technician must observe safety precautions, document connections, organize removed parts, and follow the correct sequence.\n\n- Wear an antistatic wrist strap or apply appropriate electrostatic discharge precautions.",
+    "source": "module"
+  },
+  {
+    "id": "module-007",
+    "title": "Module source passage 7",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "These procedures reduce the risk of electric shock, lost parts, incorrect connections, and damage to electronic components.\n\nThe exact procedure may vary depending on the computer case and installed components. Always check the manufacturer’s instructions when available.\n\nShut down the operating system properly. Remove the power cable and disconnect all peripheral devices.\n\nUse a clean, well-lit, dry, and organized work area. Prepare the tools, antistatic equipment, labels, and parts containers.\n\nTake clear pictures, draw a connection diagram, or label the cables before removing them. This information will guide you during reassembly.\n\nRemove the screws or release the fasteners that secure the side panel. Place the screws in a labeled container.\n\nCarefully disconnect the power and data cables. Hold each connector instead of pulling directly on the wires.\n\nRelease each card from its expansion slot and hold the card by its edges. Avoid touching the gold contacts or electronic components.\n\nDisconnect the storage device cables. Release the mounting screws or brackets before removing each drive.\n\nOpen the retaining clips and lift the memory module by its edges. Do not touch its contact pins.\n\nDisconnect the cooling fan, release the heat sink, and remove the processor carefully. This procedure requires special care because processor socket pins and contact points may be easily damaged.\n\nSupport each component while removing its mounting screws. Store the screws and parts in properly labeled containers.\n\nComputer assembly is the proper installation and connection of the components that make up a functional computer system.",
+    "source": "module"
+  },
+  {
+    "id": "module-008",
+    "title": "Module source passage 8",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "In general, computer assembly follows the reverse order of disassembly. However, the technician must still follow the manufacturer’s instructions and confirm component compatibility.\n\nCheck the components for physical damage. Confirm that the processor, motherboard, memory, storage device, power supply, and other components are compatible.\n\nAlign the processor correctly with the motherboard socket. Gently place the processor into the socket and secure it with the locking mechanism.\n\nApply thermal interface material when required. Install the heat sink and cooling fan securely, then connect the fan cable to the correct motherboard header.\n\nAlign the memory module with the slot. Press it evenly until the retaining clips lock into place.\n\nPosition the motherboard over the correct case standoffs. Secure the motherboard with the appropriate screws, but don't overtighten them.\n\nPosition and secure the power supply. Make sure its ventilation openings are not blocked.\n\nSecure the storage devices inside the appropriate drive bays or mounting locations.\n\nInsert each expansion card into the correct slot and secure the card to the computer case.\n\nConnect the power cables, data cables, front-panel connectors, cooling fans, and peripheral cables. Use the documentation prepared during disassembly as a guide.\n\n- Why should a technician inspect the completed computer before connecting it to the power source?\n\n- Which computer assembly procedure requires the greatest care? Explain your answer.\n\nDirections: Read and analyze each situation. Apply the step-by-step approach below to determine the correct solution.",
+    "source": "module"
+  },
+  {
+    "id": "module-009",
+    "title": "Module source passage 9",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Andrea is assembling a desktop computer for basic schoolwork. The computer will be used to create documents, prepare presentations, browse the internet, and attend online classes. Andrea has the following components:\n\nHowever, Andrea is unsure whether the computer already has everything needed to perform the required tasks.\n\nStep 1: Identify what is needed. What hardware or software does the computer need?\n\nStep 3: Recommend a solution. What system software and application software should Andrea install?\n\nCarlo finished cleaning the internal components of a desktop computer. During reassembly, Carlo immediately connected the power cable before checking the installed components. When the computer was turned on, the cooling fan did not operate, and the monitor displayed no image.\n\nStep 2: Identify the possible causes. Which components or connections should Carlo inspect?\n\nStep 3: Apply the safety procedure. What should Carlo do before opening the computer case?\n\nStep 4: Recommend the correct action. What should Carlo check before turning on the computer again?\n\nWhat conclusion can you draw about the importance of understanding computer hardware, software, and proper assembly procedures?\n\nDirections: Complete the concept map using the words and phrases in the box. Write each answer in the appropriate blank. Use each answer only once.\n\nApplication Software Assembly Hardware Operating System Physical Components Safety Procedures Software System Software\n\nThese are the programs and instructions used by the computer. These may be classified into:\n\n- 4. __________________________, which manages the hardware and basic operations of the computer; and",
+    "source": "module"
+  },
+  {
+    "id": "module-010",
+    "title": "Module source passage 10",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "When working with computer components, learners must observe 7. __________________________ during disassembly and 8. __________________________.\n\nA computer system is composed of hardware and software that work together to process data and perform tasks.\n\nHardware refers to the physical parts of a computer you can see and touch. These include the motherboard, processor, RAM, storage drive, power supply unit, monitor, keyboard, and mouse.\n\nSoftware refers to the programs and instructions that direct the computer’s operations. Software may be classified into:\n\n- Application software, which helps users perform specific tasks such as creating documents, browsing websites, and preparing presentations.\n\nDuring assembly, install each compatible component in the correct position and reconnect the cables securely. Before turning on the computer, inspect the completed assembly to ensure that no component is loose, no connection is missing, and no cable is blocking a cooling fan.\n\nUnderstanding computer hardware and software helps you determine whether a computer system is complete, functional, and suitable for its intended purpose.\n\nDirections: Observe a desktop or laptop computer available at home, in school, or in the computer laboratory. Complete the checklist by placing a check mark (✓) under Present or Not Present. If no computer is available, base your answers on the computer shown by your teacher.\n\nType of computer: ☐ Desktop computer ☐ Laptop computer ☐ Other: _______________\n\nMain purpose of the computer: ☐ Schoolwork ☐ Office work ☐ Communication ☐ Entertainment ☐ Computer servicing ☐ Other: _______________\n\nBased on the observation, which hardware component or software should be installed, replaced, or upgraded?",
+    "source": "module"
+  },
+  {
+    "id": "module-011",
+    "title": "Module source passage 11",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "Directions: Read each question carefully. Choose the letter of the best answer and write it on a separate sheet of paper.\n\n- Which type of computer is designed for use in a fixed location and generally allows easier replacement of internal components?\n\n- Which component connects the processor, memory, storage devices, and expansion cards?\n\n- A learner opens several programs at the same time, but the computer becomes slow. Which component may need to be upgraded to improve temporary data handling?\n\n- Which component executes instructions and performs calculations in a computer?\n\n- A newly installed printer is connected correctly but is not recognized by the computer. Which software should be installed?\n\n- Which application software is most appropriate for creating a written school report?\n\n- Why should a technician document cable connections before removing the components?\n\n- During assembly, a processor does not fit easily into its socket. What should the technician do?\n\n- What should be done before connecting an assembled computer to the power source?\n\nDirections: Complete each information chain by choosing the correct term from the word bank. Write the answer on the blank. Use each term only once.\n\nApplication Software Assembly Device Driver Hardware Motherboard Operating System Safety Procedures Software RAM ProcessorApplication Software Assembly Device Driver Hardware Motherboard Operating System Safety Procedures Software RAM Processor\n\n- __________________________ refers to the physical components of a computer that can be seen and touched.\n\n- __________________________ refers to the programs and instructions that direct the computer to perform tasks.\n\n- The __________________________ is the main circuit board that connects and supports the internal components.",
+    "source": "module"
+  },
+  {
+    "id": "module-012",
+    "title": "Module source passage 12",
+    "lessonId": "disassembly",
+    "route": "/library/disassembly",
+    "text": "- The __________________________ executes instructions and performs calculations.\n\n- __________________________ temporarily stores the data and instructions currently being used by the computer.\n\n- The __________________________ manages the computer’s hardware, files, memory, and other programs.\n\n- A __________________________ allows the operating system to communicate with a specific hardware device.\n\n- __________________________ helps users perform tasks such as creating documents, preparing presentations, and browsing the internet.\n\n- Disconnecting the computer from the power source and observing electrostatic discharge precautions are examples of __________________________.\n\n- __________________________ is the process of installing and connecting components to create a functional computer system.\n\nDirections: Complete the following statements based on what you learned from the module.",
+    "source": "module"
+  }
+]
