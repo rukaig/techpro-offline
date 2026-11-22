@@ -55,9 +55,19 @@ test("assistant stays offline and accepts lesson context", () => {
   assert.match(assistantSource, /query\.get\(["']lesson["']\)/);
 });
 
-test("PC Lab is a self-contained simulation with no dead 3D controls", () => {
-  assert.doesNotMatch(pcLabSource, /BUNDLE_URL|right-drag|3D bench|check the connection|three\.js/i);
-  assert.match(pcLabSource, /pc-lab-workbench/);
+test("PC Lab loads the offline 3D bundle for both modes", () => {
+  assert.match(pcLabSource, /BUNDLE_URL = "\.\/assets\/games\/pc-lab\.js"/);
+  assert.match(pcLabSource, /mode=disassembly/);
+  assert.doesNotMatch(pcLabSource, /https?:\/\//);
+
+  const gameSource = read("src/games/pc-lab/index.js");
+  const sceneSource = read("src/games/pc-lab/scene.js");
+  assert.match(gameSource, /PcScene/);
+  assert.match(gameSource, /REVERSE_LEVELS/);
+  assert.match(gameSource, /remove-psu/);
+  assert.match(gameSource, /data-step-action/);
+  assert.match(sceneSource, /class PcScene/);
+  assert.match(sceneSource, /removeCasePanel/);
 });
 
 test("both module exam banks are routed and stay hash-safe", () => {

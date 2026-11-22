@@ -10,7 +10,7 @@ All 26 catalogue activities in `src/data/activities.js` now resolve to a real, p
 - Module 1 drills: Pre-test, Post-test, Sort Station, Order Rush, Software Mission, Spot the Mistake, Which Computer?, Software Sorter, Word Chain, Word Hunt, Tech Wordle, PC Anatomy Explorer, Tech Check-Up, Case Files, Flashcards + Quick Recap, Reflection Journal, and PC Lab.
 - Module 2 activities (`src/games/module2-activities.js`): Startup Relay, BIOS Setup Lab, Boot Order Builder, Hardware or Setting?, BIOS Flashcards, and Carlo's Boot Case.
 - Module 2 exams: `bios-pretest` and `bios-final` use their own 15-item banks, answer keys, XP, and badges.
-- PC Lab (`src/games/pc-lab-workbench.js`): a self-contained 2D workbench with a 10-step guided build and a real 10-step disassembly drill. The old dead 3D/camera/quality controls are gone; feedback explains every correct and incorrect action.
+- PC Lab (`src/pages/pc-lab.js`, `src/games/pc-lab/index.js`, `scene.js`): a local 3D workbench bundle for both catalogue routes. Build mode keeps the four guided benches; `/play/pc-lab?mode=disassembly` opens a real 10-step reverse drill with power-down, documentation, removal, and ESD safety. The self-contained 2D workbench remains in source but is no longer mounted on either PC Lab route.
 - Shared game shell styling (`.game-head`, `.best-card`, `.game-bar`, result panel, `.study-*`, and `.setup-*`) now lives in `games.css`, so every interactive has the same spacing, back bar, and result layout.
 - Navigation: Library, Play, and Exams have module selectors; lesson Previous/Next stays inside its module; result-panel next steps and exam links stay module-aware; hash navigation no longer mounts a view twice.
 
@@ -24,9 +24,9 @@ All 26 catalogue activities in `src/data/activities.js` now resolve to a real, p
 | `npm run check` | **PASS** | 15 required files, assets, and both modules' terms verified |
 | `npm run check:offline` | **PASS** | 0 remote URLs, 0 cloud keywords, 0 ES modules in dist, 0 runtime fetches |
 | `npm run test:offline` | **PASS (8/8)** | Playwright suite covering file:// and http://localhost at 375x667 touch & 1280x800 mouse; 0 console errors, 0 non-local requests |
-| `npm run test:pclab` | **PASS** | PC Lab build + disassembly regression at 375px touch and 1280px mouse, including 44px action targets, local result state, and no horizontal overflow |
+| `npm run test:pclab` | **PASS** | PC Lab 3D build + disassembly regression at 375px touch and 1280px mouse under both `http://localhost` and `file://`, including renderer mount, step completion, back-to-hub navigation, local result state, and no horizontal overflow |
 | `npm run audit:routes` | **PASS (98/98)** | Every route opens at 375px touch and 1280px mouse with no runtime errors |
-| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.25 MB total) with `README.txt` |
+| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.41 MB total) with `README.txt` |
 | `npm run audit` | **PASS** | 1,872 route states: 0 horizontal scroll, 0 overflow, 0 bounds, 0 spacing/contrast/alignment findings, 0 browser errors |
 
 ---
@@ -80,7 +80,7 @@ The following online/cloud dependencies were completely removed:
 
 ## 5. Final Continuation Status
 
-- PC Lab regression passes at 375px touch and 1280px mouse for both the 10-step build and 10-step disassembly modes.
+- PC Lab regression passes at 375px touch and 1280px mouse for the 3D build benches and the 10-step 3D disassembly drill.
 - All 26 Play activities are playable; route integrity tests reject missing handlers, duplicate hub cards, and self-looping start buttons.
 - Legacy path URLs redirect to hash routes so relative assets and file:// operation remain intact.
 - Offline Playwright suite passes in file:// and localhost modes at 375x667 touch and 1280x800 mouse.

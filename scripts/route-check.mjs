@@ -139,7 +139,9 @@ async function run() {
         await page.locator("#main > *").first().waitFor({ state: "attached", timeout: 15000 });
         if (route.includes("pc-lab")) {
           await page.waitForTimeout(2600);
-          await page.waitForFunction(() => Boolean(window.__pcLab?.scene?.renderer), null, { timeout: 15000 }).catch(() => {});
+          await page.waitForFunction(() => Boolean(
+            document.querySelector("[data-pclab] canvas") || document.querySelector("[data-pclab] .fb2d")
+          ), null, { timeout: 15000 }).catch(() => {});
         } else {
           await page.waitForTimeout(500);
         }

@@ -6,7 +6,10 @@
 
 import { readTheme, observeTheme, applyCssThemeVars, THEME_IDS } from "../engine/theme.js";
 import { GameAudio, vibrate } from "../engine/audio.js";
-import { Bench2D } from "./fallback2d.js";
+import { Particles } from "../engine/particles.js";
+import { supportsWebGL } from "../engine/quality.js";
+import { PcScene } from "./scene.js";
+import { Fallback2D } from "./fallback2d.js";
 import { PART_BY_ID } from "../../data/parts.js";
 
 const MAX_MISTAKES = 30;
@@ -367,6 +370,104 @@ const LEVELS = [
   }
 ];
 
+
+const REVERSE_LEVELS = [
+  {
+    id: "reverse",
+    tab: "Reverse · Disassembly",
+    short: "Reverse",
+    title: "Take the PC apart safely",
+    subtitle: "Isolate, document, remove, record",
+    camera: "safety",
+    par: 150,
+    intro: "Work in reverse: make the machine dead, record its connections, then remove parts in a safe order.",
+    steps: [
+      {
+        id: "power-down",
+        title: "Power the system down",
+        action: "power",
+        target: "power",
+        hint: "Click the round power button on the front of the computer case.",
+        why: "Shut the operating system down before touching any internal part or cable."
+      },
+      {
+        id: "document",
+        title: "Record the cable connections",
+        action: "camera",
+        target: "camera",
+        hint: "Click the camera on the bench to photograph the cable routing.",
+        why: "A photo makes reassembly reliable and prevents a cable going back on the wrong port."
+      },
+      {
+        id: "peripherals",
+        title: "Disconnect the peripherals",
+        action: "peripheral",
+        target: "peripheral",
+        hint: "Click the monitor cable to disconnect the external devices.",
+        why: "Loose external cables can snag a port or carry a charge while you move the case."
+      },
+      {
+        id: "unplug",
+        title: "Disconnect the mains plug",
+        action: "plug",
+        target: "plug",
+        hint: "Click the power plug beside the strip to disconnect mains power.",
+        why: "Removing the mains plug is the only reliable way to make the case electrically dead."
+      },
+      {
+        id: "jewelry",
+        title: "Remove metal jewelry",
+        action: "bracelet",
+        target: "bracelet",
+        hint: "Click the bracelet on the technician's wrist to remove it.",
+        why: "Metal jewelry can bridge a live circuit and short the board."
+      },
+      {
+        id: "strap",
+        title: "Put on the antistatic strap",
+        action: "strap",
+        target: "strap",
+        hint: "Drag the blue wrist strap from the bench onto the technician's wrist.",
+        why: "The strap drains static electricity from your body before it can damage a component."
+      },
+      {
+        id: "remove-panel",
+        title: "Remove the side panel",
+        action: "remove-panel",
+        target: "case-screw",
+        hint: "Drag all four case screws into the parts tray, then lift the panel away.",
+        why: "Keep the small screws together in the tray so none are lost during the reverse drill."
+      },
+      {
+        id: "remove-ram",
+        title: "Release and remove the memory",
+        action: "remove-ram",
+        target: "ram",
+        hint: "Click the RAM module to release its clips and lift it from the slot.",
+        why: "Open both clips before removing memory so the slot and module edge are not damaged."
+      },
+      {
+        id: "remove-cooler",
+        title: "Remove the CPU cooler",
+        action: "remove-cooler",
+        target: "cooler",
+        hint: "Click the cooler above the processor to lift it away.",
+        why: "Remove the cooler before the processor so the heatsink does not twist the socket."
+      },
+      {
+        id: "remove-psu",
+        title: "Remove the power supply",
+        action: "remove-psu",
+        target: "psu",
+        hint: "Click the power supply to remove it after every cable is free.",
+        why: "The PSU is removed last, once every connector has been released and documented."
+      }
+    ]
+  }
+];
+
+const LEVELS_BY_MODE = { build: LEVELS, disassembly: REVERSE_LEVELS };
+
 const THEME_ORDER = THEME_IDS;
 
 function esc(value) {
@@ -405,7 +506,8 @@ export class PcLabGame {
     this.theme = readTheme();
     this.audio = new GameAudio({ theme: this.theme.id, enabled: this.settings.sound !== false });
     this.companion = this.options.companion || {};
-    this.mode = this.options.mode || "build";
+    this.mode = this.options.mode === "disassembly" ? "disassembly" : "build";
+    this.levels = LEVELS_BY_MODE[this.mode] || LEVELS;
     this.levelIndex = 0;
     this.stepIndex = 0;
     this.strikes = 0;
@@ -435,7 +537,7 @@ export class PcLabGame {
 
   renderShell() {
     const saved = this.completed;
-    const tabs = LEVELS.map((level, index) => {
+    const tabs = this.levels.map((level, index) => {
       const done = saved[level.id];
       return `<button class="pclab-tab ${done ? "is-done" : ""}" type="button" data-level="${index}">
         <span>${esc(level.tab)}</span>
@@ -460,11 +562,11 @@ export class PcLabGame {
           <div class="pclab-hud">
             <div class="pclab-hud-item">
               <span class="pclab-label">Level</span>
-              <strong data-hud-level>${esc(LEVELS[0].tab)}</strong>
+              <strong data-hud-level>${esc(this.levels[0].tab)}</strong>
             </div>
             <div class="pclab-hud-item">
               <span class="pclab-label">Step</span>
-              <strong data-hud-step>1 / ${LEVELS[0].steps.length}</strong>
+              <strong data-hud-step>1 / ${this.levels[0].steps.length}</strong>
             </div>
             <div class="pclab-hud-item">
               <span class="pclab-label">Time</span>
@@ -501,6 +603,7 @@ export class PcLabGame {
             <div class="pclab-meter-labels"><span>Too light</span><span>Click</span><span>Too hard</span></div>
           </div>
           <div class="pclab-controls">
+            <button class="btn btn-accent btn-sm" type="button" data-action="pclab-step" data-step-action>Perform step</button>
             <button class="btn btn-ghost btn-sm" type="button" data-hint>Hint</button>
             <button class="btn btn-ghost btn-sm" type="button" data-why>Why?</button>
             <button class="btn btn-ghost btn-sm" type="button" data-voice-toggle aria-pressed="true">Voice guidance on</button>
@@ -611,6 +714,7 @@ export class PcLabGame {
         this.startLevel(Number(levelButton.dataset.level));
         return;
       }
+      if (event.target.closest("[data-step-action]")) { this.performStepFromControl(); return; }
       if (event.target.closest("[data-hint]")) { this.showHint(); return; }
       if (event.target.closest("[data-why]")) { this.toggleWhy(); return; }
       if (event.target.closest("[data-rotate]")) { this.view?.rotateSelected?.(); return; }
@@ -724,25 +828,44 @@ export class PcLabGame {
       onLeverDragIncomplete: () => this.toast("Keep dragging the lever until it reaches its raised or locked position.", "info", 2400)
     };
 
-    this.view = new Bench2D({
-      container: this.canvasHost,
-      theme: this.theme,
-      settings: this.settings,
-      audio: this.audio,
-      callbacks: {
-        ...callbacks,
-        debugStep: () => this.currentStep()?.id || null,
-        currentStep: () => this.currentStep()
-      }
-    });
-    this.qualityEl.hidden = false;
-    this.qualityEl.textContent = "2D flat-lay bench";
+    this.useWebGL = supportsWebGL();
+    if (this.useWebGL) {
+      this.scene = new PcScene({
+        container: this.canvasHost,
+        theme: this.theme,
+        settings: this.settings,
+        audio: this.audio,
+        callbacks,
+        onQuality: (quality) => this.onQuality(quality)
+      });
+      this.particles = new Particles(this.scene.scene, {
+        scale: this.scene.quality.particles,
+        palette: this.theme.palette
+      });
+      this.scene.particles = this.particles;
+      this.view = this.scene;
+    } else {
+      this.view = new Fallback2D({
+        container: this.canvasHost,
+        theme: this.theme,
+        settings: this.settings,
+        audio: this.audio,
+        callbacks: {
+          ...callbacks,
+          debugStep: () => this.currentStep()?.id || null,
+          currentStep: () => this.currentStep()
+        }
+      });
+      this.qualityEl.hidden = false;
+      this.qualityEl.textContent = "2D compatibility bench";
+    }
   }
 
   observeTheme() {
     this.stopTheme = observeTheme((theme) => {
       this.theme = theme;
       this.audio.setTheme(theme.id);
+      this.particles?.setPalette(theme.palette);
       this.view?.setTheme?.(theme);
       applyCssThemeVars(this.root);
     });
@@ -765,12 +888,12 @@ export class PcLabGame {
   /* ------------------------------------------------------------------ levels */
 
   firstPlayableIndex() {
-    const index = LEVELS.findIndex((level) => !this.completed[level.id]);
+    const index = this.levels.findIndex((level) => !this.completed[level.id]);
     return index < 0 ? 0 : index;
   }
 
   currentLevel() {
-    return LEVELS[this.levelIndex];
+    return this.levels[this.levelIndex];
   }
 
   currentStep() {
@@ -780,7 +903,7 @@ export class PcLabGame {
   startLevel(index, { instant = false, silent = false } = {}) {
     if (this.destroyed) return;
     if (!silent && this.overlayOpen) this.closeOverlay();
-    this.levelIndex = clamp(Number(index) || 0, 0, LEVELS.length - 1);
+    this.levelIndex = clamp(Number(index) || 0, 0, this.levels.length - 1);
     this.stepIndex = 0;
     this.strikes = 0;
     this.hintsUsed = 0;
@@ -1090,11 +1213,11 @@ export class PcLabGame {
       tab?.insertAdjacentHTML("beforeend", '<span class="pclab-tab-star" aria-label="completed">★</span>');
     }
 
-    if (this.levelIndex < LEVELS.length - 1) {
-      const nextLevel = LEVELS[this.levelIndex + 1];
+    if (this.levelIndex < this.levels.length - 1) {
+      const nextLevel = this.levels[this.levelIndex + 1];
       this.renderCompanion(stars >= 2 ? "celebrating" : "happy", `Bench clean. Next is ${nextLevel.tab}.`);
       this.showOverlay(`
-        <div class="pclab-result">
+        <div class="pclab-result" data-result>
           <p class="pclab-eyebrow">Level complete · ${esc(level.tab)}</p>
           <h2>${esc(level.title)}</h2>
           ${starsMarkup(stars)}
@@ -1105,9 +1228,10 @@ export class PcLabGame {
             <div><strong>${this.hintsUsed}</strong><span>hints</span></div>
           </div>
           <p class="pclab-result-copy">${esc(level.subtitle)}. ${stars >= 2 ? "That order will keep the machine serviceable." : "Clean enough to continue. Replay for a higher score."}</p>
+          <p class="pclab-result-copy">Stars: ${stars} · Correct steps: ${level.steps.length} of ${level.steps.length}</p>
           <div class="pclab-result-actions">
             <button class="btn btn-primary" type="button" data-overlay-action="next">Next: ${esc(nextLevel.tab)}</button>
-            <button class="btn btn-ghost" type="button" data-overlay-action="retry">Retry level</button>
+            <button class="btn btn-ghost" type="button" data-overlay-action="retry" data-retry>Retry level</button>
             <button class="btn btn-ghost" type="button" data-overlay-action="select">Level select</button>
           </div>
         </div>
@@ -1118,18 +1242,18 @@ export class PcLabGame {
   }
 
   finishCampaign() {
-    const results = LEVELS.map((level) => this.completed[level.id]).filter(Boolean);
-    const allDone = results.length === LEVELS.length;
+    const results = this.levels.map((level) => this.completed[level.id]).filter(Boolean);
+    const allDone = results.length === this.levels.length;
     const totalScore = results.reduce((sum, item) => sum + item.score, 0);
     const totalStars = results.reduce((sum, item) => sum + item.stars, 0);
     const totalTime = results.reduce((sum, item) => sum + item.time, 0);
-    const accuracy = allDone ? Math.round((totalScore / (LEVELS.length * 1000)) * 100) : null;
-    const stars = allDone ? Math.max(1, Math.round(totalStars / LEVELS.length)) : 1;
+    const accuracy = allDone ? Math.round((totalScore / (this.levels.length * 1000)) * 100) : null;
+    const stars = allDone ? Math.max(1, Math.round(totalStars / this.levels.length)) : 1;
     let campaign = null;
     if (allDone) {
       campaign = this.options.onCampaignComplete?.({
         score: totalScore,
-        total: LEVELS.length * 1000,
+        total: this.levels.length * 1000,
         accuracy,
         stars,
         timeSeconds: totalTime,
@@ -1139,28 +1263,31 @@ export class PcLabGame {
     }
     this.audio.success();
     this.renderCompanion(allDone ? "celebrating" : "thinking", allDone
-      ? "Four benches, one clean build. That is the whole COC 1 workflow."
+      ? (this.mode === "disassembly"
+        ? "Reverse drill complete. The machine is apart, documented, and ready to rebuild."
+        : "Four benches, one clean build. That is the whole COC 1 workflow.")
       : "One more level to finish the campaign. Open level select to see what is missing.");
 
     const xpLine = campaign
-      ? `<p class="pclab-result-copy">+${campaign.earnedXp ?? 0} XP recorded${campaign.newBadges?.length ? ` · ${campaign.newBadges.map((badge) => esc(badge.name)).join(", ")}` : ""}.</p>`
-      : `<p class="pclab-result-copy">Campaign recorded only when all four benches are complete. You have ${results.length} of ${LEVELS.length}.</p>`;
+      ? `<p class="pclab-result-copy">XP earned: ${campaign.earnedXp ?? 0}${campaign.newBadges?.length ? ` · ${campaign.newBadges.map((badge) => esc(badge.name)).join(", ")}` : ""}.</p>`
+      : `<p class="pclab-result-copy">Campaign recorded when this drill is complete. You have ${results.length} of ${this.levels.length}.</p>`;
 
     this.showOverlay(`
-      <div class="pclab-result">
+      <div class="pclab-result" data-result>
         <p class="pclab-eyebrow">Campaign ${allDone ? "complete" : "in progress"}</p>
-        <h2>${allDone ? "The build is alive." : "Keep the bench moving."}</h2>
+        <h2>${allDone ? (this.mode === "disassembly" ? "The teardown is complete." : "The build is alive.") : "Keep the bench moving."}</h2>
         ${allDone ? starsMarkup(stars) : ""}
         <div class="pclab-result-grid">
-          <div><strong>${allDone ? accuracy : results.length}</strong><span>${allDone ? "% accuracy" : "of 4 levels"}</span></div>
+          <div><strong>${allDone ? accuracy : results.length}</strong><span>${allDone ? "% accuracy" : `of ${this.levels.length} levels`}</span></div>
           <div><strong>${totalScore}</strong><span>total score</span></div>
           <div><strong>${formatTime(totalTime)}</strong><span>bench time</span></div>
           <div><strong>${totalStars}</strong><span>stars</span></div>
         </div>
         ${xpLine}
+        <p class="pclab-result-copy">Stars: ${stars} · Correct steps: ${this.levels.reduce((sum, level) => sum + level.steps.length, 0)} of ${this.levels.reduce((sum, level) => sum + level.steps.length, 0)}</p>
         <div class="pclab-result-actions">
           <button class="btn btn-primary" type="button" data-overlay-action="select">Play a level</button>
-          <button class="btn btn-ghost" type="button" data-overlay-action="retry">Retry fault level</button>
+          <button class="btn btn-ghost" type="button" data-overlay-action="retry" data-retry>${this.mode === "disassembly" ? "Retry reverse drill" : "Retry fault level"}</button>
           <a class="btn btn-ghost" href="/play">Back to interactives</a>
         </div>
       </div>
@@ -1175,12 +1302,12 @@ export class PcLabGame {
     vibrate([30, 50, 30], this.settings.haptics !== false);
     this.renderCompanion("oops", reason);
     this.showOverlay(`
-      <div class="pclab-result is-fail">
+      <div class="pclab-result is-fail" data-result>
         <p class="pclab-eyebrow">Bench reset</p>
         <h2>Pause and reset the bench.</h2>
         <p class="pclab-result-copy">${esc(reason)} Nothing was saved for this attempt.</p>
         <div class="pclab-result-actions">
-          <button class="btn btn-primary" type="button" data-overlay-action="retry">Restart level</button>
+          <button class="btn btn-primary" type="button" data-overlay-action="retry" data-retry>Restart level</button>
           <button class="btn btn-ghost" type="button" data-overlay-action="select">Level select</button>
           <a class="btn btn-ghost" href="/play">Back to interactives</a>
         </div>
@@ -1195,13 +1322,20 @@ export class PcLabGame {
     const step = this.currentStep();
     if (!step) return;
     if (action === "rotate") return;
+    const reverseAliases = {
+      ram: "remove-ram",
+      cooler: "remove-cooler",
+      psu: "remove-psu"
+    };
     const mapped = action === "lever" && step.action.startsWith("lever")
       ? step.action
       : action === "tools" && step.action === "arrange-bench"
         ? step.action
         : action === "clips" && step.action.startsWith("clips")
           ? step.action
-          : action;
+          : this.currentLevel().id === "reverse" && reverseAliases[action]
+            ? reverseAliases[action]
+            : action;
     if (mapped === step.action) {
       this.runStep(step);
       return;
@@ -1269,6 +1403,24 @@ export class PcLabGame {
       return;
     }
 
+    if (level.id === "reverse") {
+      switch (step.action) {
+        case "power": this.view.shutdownSafety(); break;
+        case "camera": this.view.documentConnections(); break;
+        case "peripheral": this.view.disconnectPeripheral(); break;
+        case "plug": this.view.unplugPower(); break;
+        case "bracelet": this.view.removeBracelet(); break;
+        case "strap": this.view.wearStrap(); break;
+        case "remove-panel": this.view.removeCasePanel(); break;
+        case "remove-ram": this.view.removeRam(); break;
+        case "remove-cooler": this.view.removeCooler(); break;
+        case "remove-psu": this.view.removePsu(); break;
+        default: break;
+      }
+      this.completeStep();
+      return;
+    }
+
     if (level.id === "power") {
       if (step.action === "power" && step.id === "power-on") {
         this.view.powerOn();
@@ -1323,6 +1475,10 @@ export class PcLabGame {
   canDrag(part) {
     const step = this.currentStep();
     if (!step) return false;
+    if (this.currentLevel().id === "reverse") {
+      return (part === "strap" && step.action === "strap")
+        || (part === "case-screw" && step.action === "remove-panel");
+    }
     if (this.currentLevel().id === "safety") {
       return (part === "strap" && step.action === "strap")
         || (part === "camera" && step.action === "camera")
@@ -1359,15 +1515,19 @@ export class PcLabGame {
     if (this.overlayOpen || this.failed) return;
     const step = this.currentStep();
     if (!step) return;
-    if (result.part === "case-screw" && step.action === "remove-screws") {
+    if (result.part === "case-screw" && ["remove-screws", "remove-panel"].includes(step.action)) {
       if (!result.valid) {
         this.toast("No problem—drop the screw anywhere inside the parts tray beside the motherboard.", "info", 2800);
         return;
       }
       this.removedCaseScrews += 1;
       if (this.removedCaseScrews === 4) {
-        this.view?.openCasePanel();
-        this.view?.focus("cpu");
+        if (step.action === "remove-panel") {
+          this.view?.removeCasePanel?.();
+        } else {
+          this.view?.openCasePanel();
+          this.view?.focus("cpu");
+        }
         this.completeStep();
       } else {
         this.objectiveHint.textContent = `${this.removedCaseScrews} of 4 screws in the parts tray. Keep going.`;
@@ -1508,6 +1668,57 @@ export class PcLabGame {
     else if (this.overlayOpen) this.closeOverlay();
   }
 
+  /* ------------------------------------------------------------ step control */
+
+  performStepFromControl() {
+    if (this.overlayOpen || this.failed) return;
+    const step = this.currentStep();
+    if (!step) return;
+    const level = this.currentLevel();
+
+    if (step.control === "rotate" && this.view?.rotateSelected) {
+      if (this.view.cpuOrientationValid && this.view.ramOrientationValid) {
+        let guard = 0;
+        while (guard < 4) {
+          const aligned = level.id === "cpu" ? this.view.cpuOrientationValid() : this.view.ramOrientationValid();
+          if (aligned) break;
+          this.view.rotateSelected();
+          guard += 1;
+        }
+      } else {
+        this.view.rotateSelected();
+      }
+      return;
+    }
+    if (step.action === "remove-screws") {
+      if (this.view?.removeCasePanel) this.view.removeCasePanel();
+      else this.view?.openCasePanel?.();
+      this.completeStep();
+      return;
+    }
+    if (step.action === "drop" && level.id === "cpu" && this.view?.seatCpu) {
+      this.view.seatCpu({ gentle: true });
+      this.completeStep();
+      return;
+    }
+    if (step.action === "drop" && level.id === "ram" && this.view?.seatRamReady) {
+      this.view.seatRamReady();
+      this.completeStep();
+      return;
+    }
+    if (step.control === "hold" && this.view?.startSeat && this.view?.finishSeat) {
+      this.view.startSeat();
+      if (this.view.seat) {
+        this.view.seat.pressure = 0.78;
+        this.view.seat.balance = 0;
+        this.view.seat.tiltTime = 0;
+      }
+      this.view.finishSeat();
+      return;
+    }
+    this.runStep(step);
+  }
+
   /* ------------------------------------------------------------------- hints */
 
   showHint() {
@@ -1577,7 +1788,7 @@ export class PcLabGame {
   }
 
   showLevelSelect() {
-    const rows = LEVELS.map((level, index) => {
+    const rows = this.levels.map((level, index) => {
       const result = this.completed[level.id];
       return `<button class="pclab-select-row" type="button" data-level="${index}">
         <span><strong>${esc(level.tab)}</strong><small>${esc(level.subtitle)}</small></span>
@@ -1585,7 +1796,7 @@ export class PcLabGame {
       </button>`;
     }).join("");
     this.showOverlay(`
-      <div class="pclab-result">
+      <div class="pclab-result" data-result>
         <p class="pclab-eyebrow">Bench select</p>
         <h2>Pick up a level</h2>
         <div class="pclab-select-list">${rows}</div>

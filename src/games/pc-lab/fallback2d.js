@@ -13,7 +13,7 @@
    `?debug=1` outlines every hit area and prints the live input state.
    ========================================================================== */
 
-const BENCH_LEVELS = ["safety", "cpu", "ram", "power"];
+const BENCH_LEVELS = ["safety", "reverse", "cpu", "ram", "power"];
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => ({
@@ -99,53 +99,53 @@ export class Bench2D {
   build() {
     const railPart = (part, label, parts, extra = "") => `
       <button class="bench2d-part bench2d-${part}" type="button" data-part="${part}"
-        data-parts="${parts}" ${extra} aria-label="${esc(label)}"><span>${esc(label)}</span></button>`;
+        data-parts="reverse ${parts}" ${extra} aria-label="${esc(label)}"><span>${esc(label)}</span></button>`;
 
     this.container.innerHTML = `
       <div class="bench2d" data-bench2d data-debug="${this.debug ? "1" : "0"}">
         <div class="bench2d-bench" data-bench role="application" aria-label="Top-down workbench">
-          <div class="bench2d-zone bench2d-monitor" data-part="monitor" data-drop="monitor" data-parts="safety cpu ram power">
+          <div class="bench2d-zone bench2d-monitor" data-part="monitor" data-drop="monitor" data-parts="reverse safety cpu ram power">
             <span class="bench2d-screen" data-screen>Bench session ready</span>
             <span class="bench2d-tag">Monitor</span>
-            <button class="bench2d-hit bench2d-port" type="button" data-part="peripheral" data-parts="safety power" aria-label="Monitor cable">CABLE</button>
+            <button class="bench2d-hit bench2d-port" type="button" data-part="peripheral" data-parts="reverse safety power" aria-label="Monitor cable">CABLE</button>
           </div>
 
-          <div class="bench2d-zone bench2d-case" data-part="case" data-parts="safety cpu ram power">
+          <div class="bench2d-zone bench2d-case" data-part="case" data-parts="reverse safety cpu ram power">
             <span class="bench2d-tag">Case</span>
             <span class="bench2d-fan" data-fan aria-hidden="true"></span>
-            <button class="bench2d-hit bench2d-power" type="button" data-part="power" data-parts="safety power" aria-label="Case power button"></button>
-            <button class="bench2d-hit bench2d-fancable" type="button" data-part="fan-cable" data-parts="power" aria-label="CPU fan connector">FAN</button>
+            <button class="bench2d-hit bench2d-power" type="button" data-part="power" data-parts="reverse safety power" aria-label="Case power button"></button>
+            <button class="bench2d-hit bench2d-fancable" type="button" data-part="fan-cable" data-parts="reverse power" aria-label="CPU fan connector">FAN</button>
             <div class="bench2d-screws" data-screws>
-              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="cpu" aria-label="Case-panel screw 1"></button>
-              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="cpu" aria-label="Case-panel screw 2"></button>
-              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="cpu" aria-label="Case-panel screw 3"></button>
-              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="cpu" aria-label="Case-panel screw 4"></button>
+              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="reverse cpu" aria-label="Case-panel screw 1"></button>
+              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="reverse cpu" aria-label="Case-panel screw 2"></button>
+              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="reverse cpu" aria-label="Case-panel screw 3"></button>
+              <button class="bench2d-hit bench2d-screw" type="button" data-part="case-screw" data-drag="case-screw" data-parts="reverse cpu" aria-label="Case-panel screw 4"></button>
             </div>
           </div>
 
           <div class="bench2d-zone bench2d-board" data-part="board">
             <span class="bench2d-tag">Motherboard</span>
-            <button class="bench2d-hit bench2d-socket" type="button" data-part="socket" data-drop="socket" data-parts="cpu" aria-label="CPU socket">
+            <button class="bench2d-hit bench2d-socket" type="button" data-part="socket" data-drop="socket" data-parts="reverse cpu" aria-label="CPU socket">
               <span class="bench2d-tri" aria-hidden="true">▴</span>
               <span class="bench2d-paste" data-paste aria-hidden="true"></span>
             </button>
-            <button class="bench2d-hit bench2d-clips" type="button" data-part="clips" data-drop="ram-slot" data-parts="ram" aria-label="RAM slots and clips">
+            <button class="bench2d-hit bench2d-clips" type="button" data-part="clips" data-drop="ram-slot" data-parts="reverse ram" aria-label="RAM slots and clips">
               <i></i><i></i><i></i><i></i>
             </button>
-            <button class="bench2d-hit bench2d-lever" type="button" data-part="lever" data-drag="lever" data-parts="cpu" aria-label="CPU socket lever"></button>
-            <button class="bench2d-hit bench2d-cooler" type="button" data-part="cooler" data-parts="cpu" aria-label="CPU cooler">COOLER</button>
+            <button class="bench2d-hit bench2d-lever" type="button" data-part="lever" data-drag="lever" data-parts="reverse cpu" aria-label="CPU socket lever"></button>
+            <button class="bench2d-hit bench2d-cooler" type="button" data-part="cooler" data-parts="reverse cpu" aria-label="CPU cooler">COOLER</button>
           </div>
 
-          <button class="bench2d-zone bench2d-psu" type="button" data-part="psu" data-parts="power" aria-label="Power supply">PSU</button>
+          <button class="bench2d-zone bench2d-psu" type="button" data-part="psu" data-parts="reverse power" aria-label="Power supply">PSU</button>
 
-          <div class="bench2d-zone bench2d-wrist" data-part="wrist" data-drop="wrist" data-parts="safety" aria-label="Technician's wrist">
+          <div class="bench2d-zone bench2d-wrist" data-part="wrist" data-drop="wrist" data-parts="reverse safety" aria-label="Technician's wrist">
             <span class="bench2d-head" aria-hidden="true"></span>
             <span class="bench2d-body" aria-hidden="true"></span>
-            <button class="bench2d-hit bench2d-bracelet" type="button" data-part="bracelet" data-parts="safety" aria-label="Metal bracelet"></button>
+            <button class="bench2d-hit bench2d-bracelet" type="button" data-part="bracelet" data-parts="reverse safety" aria-label="Metal bracelet"></button>
             <span class="bench2d-strap-worn" data-worn aria-hidden="true"></span>
           </div>
 
-          <div class="bench2d-zone bench2d-tray" data-part="parts-tray" data-drop="parts-tray" data-parts="cpu" aria-label="Parts tray">
+          <div class="bench2d-zone bench2d-tray" data-part="parts-tray" data-drop="parts-tray" data-parts="reverse cpu" aria-label="Parts tray">
             <span class="bench2d-tag">Parts tray</span>
           </div>
 
@@ -482,6 +482,29 @@ export class Bench2D {
 
   openCasePanel() {
     this.root.querySelector(".bench2d-case")?.classList.add("is-open");
+  }
+
+  removeCasePanel() {
+    this.root.querySelector(".bench2d-case")?.classList.add("is-open");
+    this.root.querySelectorAll('[data-part="case-screw"]').forEach((node) => this.markDone("case-screw"));
+    this.audio?.clickSnap?.();
+  }
+
+  removeRam() {
+    this.markDone("ram");
+    this.root.querySelector('[data-part="ram"]')?.classList.add("is-gone");
+    this.audio?.drop?.();
+  }
+
+  removeCooler() {
+    this.markDone("cooler");
+    this.audio?.drop?.();
+  }
+
+  removePsu() {
+    this.markDone("psu");
+    this.root.querySelector('[data-part="psu"]')?.classList.add("is-gone");
+    this.audio?.drop?.();
   }
 
   applyPaste() {

@@ -1051,6 +1051,47 @@ export class PcScene {
     this.tweens.to(this.case.userData.panel.position, { x: -1.95 }, { duration: 420, easing: "outCubic" });
   }
 
+  removeCasePanel() {
+    this.caseScrews.forEach((screw, index) => {
+      const target = this.screwTraySlots[index];
+      if (target) this.tweens.to(screw.position, { x: target.x, y: target.y, z: target.z }, { duration: 360, easing: "outCubic" });
+      screw.userData.interactive = null;
+      screw.traverse((child) => { child.userData.interactive = null; });
+    });
+    this.openCasePanel();
+    this.audio.clickSnap();
+    this.particles.sparkBurst(this.case.userData.panel.getWorldPosition(new THREE.Vector3()), this.theme.palette.metal);
+    this.callbacks.onPanelRemoved?.();
+  }
+
+  removePartToTray(object, target, part) {
+    this.tweens.stop(object.position);
+    this.tweens.to(object.position, { x: target.x, y: target.y, z: target.z }, {
+      duration: 460,
+      easing: "outCubic",
+      onComplete: () => { object.visible = false; }
+    });
+    this.tweens.to(object.scale, { x: 0.72, y: 0.72, z: 0.72 }, { duration: 360, easing: "inQuad" });
+    object.userData.interactive = null;
+    object.traverse((child) => { child.userData.interactive = null; });
+    this.audio.drop();
+    this.particles.dustBurst(object.getWorldPosition(new THREE.Vector3()), this.theme.palette.metal);
+    this.callbacks.onPartRemoved?.(part);
+  }
+
+  removeRam() {
+    const target = this.tray.localToWorld(new THREE.Vector3(0.45, 0.22, 0.15));
+    this.removePartToTray(this.ram, target, "ram");
+  }
+
+  removeCooler() {
+    this.removePartToTray(this.cooler, new THREE.Vector3(-0.58, 0.92, -0.38), "cooler");
+  }
+
+  removePsu() {
+    this.removePartToTray(this.psu, new THREE.Vector3(4.1, 1.2, -0.6), "psu");
+  }
+
   shutdownSafety() {
     this.safetyPoweredOff = true;
     this.powerState = "off";
@@ -1420,6 +1461,7 @@ export class PcScene {
     this.fanCable.visible = false;
     this.fanCable.position.copy(this.fanCableHome);
     this.psu.visible = false;
+    this.psu.position.set(2.4, 1.53, -0.6);
     this.psu.scale.set(1, 1, 1);
     this.keyboard.visible = false;
     this.mouse.visible = false;
@@ -1436,6 +1478,15 @@ export class PcScene {
     this.ram.visible = true;
     this.ram.position.copy(this.home.ram);
     this.ram.rotation.set(0, Math.PI, 0);
+    const ramInteractive = { kind: "part", part: "ram" };
+    this.ram.userData.interactive = ramInteractive;
+    this.ram.traverse((child) => { child.userData.interactive = ramInteractive; });
+    const coolerInteractive = { kind: "click", action: "cooler" };
+    this.cooler.userData.interactive = coolerInteractive;
+    this.cooler.traverse((child) => { child.userData.interactive = coolerInteractive; });
+    const psuInteractive = { kind: "click", action: "psu" };
+    this.psu.userData.interactive = psuInteractive;
+    this.psu.traverse((child) => { child.userData.interactive = psuInteractive; });
     this.strap.visible = true;
     this.strap.position.copy(this.home.strap);
     this.strap.scale.set(1, 1, 1);
@@ -1467,7 +1518,7 @@ export class PcScene {
       screw.position.set(x, y, 1.77);
       screw.rotation.set(0, 0, 0);
       screw.scale.set(1, 1, 1);
-      screw.visible = level === "cpu";
+      screw.visible = level === "cpu" || level === "reverse";
       screw.userData.interactive = { kind: "part", part: "case-screw" };
       screw.traverse((child) => { child.userData.interactive = screw.userData.interactive; });
     });
@@ -1504,6 +1555,35 @@ export class PcScene {
       this.monitor.userData.screenMat.color.setHex(0xffffff);
       this.monitor.userData.screenMat.needsUpdate = true;
       this.monitor.userData.led.material.color.setHex(this.theme.palette.accent);
+      this.focus("safety", instant);
+    } else if (level === "reverse") {
+      this.character.userData.wornStrap.visible = false;
+      this.character.userData.bracelet.visible = true;
+      this.bins.visible = true;
+      this.bins.position.set(0.2, 1.07, 1.55);
+      this.bins.rotation.set(0, 0, 0);
+      this.tray.visible = true;
+      this.cpu.visible = true;
+      this.ram.visible = true;
+      this.cooler.visible = true;
+      this.psu.visible = true;
+      this.keyboard.visible = true;
+      this.mouse.visible = true;
+      this.peripheralCable.visible = true;
+      this.powerStrip.visible = true;
+      this.plug.visible = true;
+      this.strap.visible = true;
+      this.cameraProp.visible = true;
+      this.case.userData.panel.position.x = -1.95;
+      this.powerState = "on";
+      this.case.userData.rgb.material.emissiveIntensity = 1.4;
+      this.setMonitorDesktop();
+      this.monitor.userData.screenMat.color.setHex(0xffffff);
+      this.monitor.userData.screenMat.needsUpdate = true;
+      this.monitor.userData.led.material.color.setHex(this.theme.palette.accent);
+      const removeRamInteractive = { kind: "click", action: "remove-ram", part: "ram" };
+      this.ram.userData.interactive = removeRamInteractive;
+      this.ram.traverse((child) => { child.userData.interactive = removeRamInteractive; });
       this.focus("safety", instant);
     } else if (level === "cpu") {
       this.character.userData.wornStrap.visible = true;
