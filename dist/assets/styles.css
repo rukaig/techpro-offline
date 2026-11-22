@@ -3517,6 +3517,132 @@ input:not([type]) {
   }
 }
 
+.customer-card {
+  min-height: 170px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.2rem;
+  background: linear-gradient(145deg, var(--accent-soft), var(--surface));
+}
+
+.patience {
+  height: 8px;
+  width: min(280px, 100%);
+  margin: 0.8rem auto 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.patience span {
+  display: block;
+  height: 100%;
+  background: var(--success);
+  transition: width 200ms linear;
+}
+
+.tool-badges,
+.term-bank {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.tool-badge,
+.term-token {
+  min-height: 56px;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 800;
+  padding: 0.65rem;
+}
+
+.tool-badge.is-served {
+  border-color: var(--success);
+  background: var(--accent-soft);
+  transform: scale(1.03);
+}
+
+.chain-board {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.chain-link {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) minmax(120px, 180px);
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface);
+}
+
+.chain-link.is-locked {
+  border-color: var(--success);
+  background: var(--accent-soft);
+}
+
+.chain-link.is-wrong {
+  animation: gentle-shake 280ms ease;
+  border-color: var(--danger);
+}
+
+.chain-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-weight: 900;
+}
+
+.chain-link p {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.chain-slot {
+  min-height: 44px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 0.75rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 800;
+}
+
+.chain-slot.is-selected {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.term-bank {
+  margin-top: 0.8rem;
+}
+
+@media (max-width: 480px) {
+  .tool-badges,
+  .term-bank {
+    grid-template-columns: 1fr;
+  }
+  .chain-link {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .chain-slot {
+    grid-column: 1 / -1;
+  }
+}
+
 /* src/styles/exam.css */
 /* ==========================================================================
    Exam hub, quiz runner, and item review.

@@ -20,4 +20,9 @@ for (const item of facts) {
   if (!item.source || item.source !== "content/module.md") throw new Error("Fact missing source");
 }
 
+const activityData = JSON.parse(fs.readFileSync(path.join(dataDir, "activity-data.json"), "utf8"));
+for (const item of [...activityData.sortItems, ...activityData.softwareSituations]) {
+  if (!item.source || item.source !== "content/module.md") throw new Error(`Activity data missing source: ${item.name || item.need}`);
+}
+
 console.log(`Built game data: ${vocab.length} vocab terms, ${facts.length} facts`);

@@ -3,19 +3,9 @@ import { activityHero, finishGame, bindResultPanel } from "../app/game-kit.js";
 import { sound, vibrate } from "../app/audio.js";
 import { esc } from "../app/ui.js";
 import { seededShuffle, difficultySettings } from "./engine/kit.js";
+import ACTIVITY_DATA from "./data/activity-data.json";
 
-const ITEMS = [
-  { name: "Motherboard", category: "Hardware", reason: "The motherboard is a physical internal component." },
-  { name: "Windows 11", category: "System Software", reason: "Windows 11 is an operating system." },
-  { name: "Keyboard", category: "Hardware", reason: "A keyboard is a physical input device." },
-  { name: "Microsoft Word Processor", category: "Application Software", reason: "A word processor is application software." },
-  { name: "Device Driver", category: "System Software", reason: "A device driver helps the operating system communicate with hardware." },
-  { name: "Monitor", category: "Hardware", reason: "A monitor is physical output equipment." },
-  { name: "Google Chrome", category: "Application Software", reason: "A web browser is application software." },
-  { name: "Random-Access Memory", category: "Hardware", reason: "RAM is a physical internal component." },
-  { name: "Antivirus Utility", category: "System Software", reason: "Antivirus software is utility or system software." },
-  { name: "Mouse", category: "Hardware", reason: "A mouse is a physical input peripheral." }
-];
+const ITEMS = ACTIVITY_DATA.sortItems;
 
 export function sortStationPage() {
   const activity = ACTIVITY_BY_ID["sort-station"];

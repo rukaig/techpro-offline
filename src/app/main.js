@@ -13,6 +13,8 @@ import { teacherPage, mountTeacher } from "../pages/teacher.js";
 import { sharingPage, mountSharing } from "../pages/sharing.js";
 import { sortStationPage, mountSortStation } from "../games/sort-station.js";
 import { whichComputerPage, mountWhichComputer } from "../games/which-computer.js";
+import { softwareMissionPage, mountSoftwareMission } from "../games/software-mission.js";
+import { wordChainPage, mountWordChain } from "../games/word-chain.js";
 import { PRETEST, POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
 
@@ -82,6 +84,20 @@ route("/play/:activity", ({ params }) => {
       title: "Which Computer? · TechPro",
       html: whichComputerPage(),
       mount: mountWhichComputer
+    };
+  }
+  if (params.activity === "software-mission") {
+    return {
+      title: "Software Mission · TechPro",
+      html: softwareMissionPage(),
+      mount: mountSoftwareMission
+    };
+  }
+  if (params.activity === "word-chain") {
+    return {
+      title: "Word Bank Chain · TechPro",
+      html: wordChainPage(),
+      mount: mountWordChain
     };
   }
   if (!activity) {

@@ -1,0 +1,23 @@
+{
+  "sortItems": [
+    {"name":"Motherboard","category":"Hardware","reason":"The motherboard is a physical internal component.","source":"content/module.md"},
+    {"name":"Windows 11","category":"System Software","reason":"Windows 11 is an operating system.","source":"content/module.md"},
+    {"name":"Keyboard","category":"Hardware","reason":"A keyboard is a physical input device.","source":"content/module.md"},
+    {"name":"Microsoft Word Processor","category":"Application Software","reason":"A word processor is application software.","source":"content/module.md"},
+    {"name":"Device Driver","category":"System Software","reason":"A device driver helps the operating system communicate with hardware.","source":"content/module.md"},
+    {"name":"Monitor","category":"Hardware","reason":"A monitor is physical output equipment.","source":"content/module.md"},
+    {"name":"Google Chrome","category":"Application Software","reason":"A web browser is application software.","source":"content/module.md"},
+    {"name":"Random-Access Memory","category":"Hardware","reason":"RAM is a physical internal component.","source":"content/module.md"},
+    {"name":"Antivirus Utility","category":"System Software","reason":"Antivirus software is utility or system software.","source":"content/module.md"},
+    {"name":"Mouse","category":"Hardware","reason":"A mouse is a physical input peripheral.","source":"content/module.md"}
+  ],
+  "softwareSituations": [
+    {"customer":"Marco","need":"Prepare a written report about the parts of a computer.","answer":"Word Processor","reason":"A word processor creates and formats typed documents.","source":"content/module.md"},
+    {"customer":"Lea","need":"Create visual aids for a classroom presentation about computer safety.","answer":"Presentation Software","reason":"Presentation software creates visual slides for a presentation.","source":"content/module.md"},
+    {"customer":"New printer","need":"Let a newly installed printer communicate properly with the computer.","answer":"Device Driver","reason":"A device driver lets the operating system communicate with hardware.","source":"content/module.md"},
+    {"customer":"Computer","need":"Manage hardware, files, memory, and other programs.","answer":"Operating System","reason":"The operating system manages hardware and provides a platform for software.","source":"content/module.md"},
+    {"customer":"Learner","need":"Access an online tutorial about computer assembly.","answer":"Web Browser","reason":"A web browser gives access to pages and online tutorials.","source":"content/module.md"},
+    {"customer":"Computer laboratory","need":"Protect the computers against malicious files and programs.","answer":"Antivirus","reason":"Antivirus software protects against harmful or malicious files and programs.","source":"content/module.md"}
+  ],
+  "computerTypes": ["Desktop","Laptop","Tablet","Server"]
+}

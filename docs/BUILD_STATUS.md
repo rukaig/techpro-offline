@@ -3,7 +3,7 @@
 Last updated: 2026-11-22.
 Status: **Offline conversion complete; engaging game redesign in progress** (Branch `offline-only`).
 
-## RESUME HERE: Software Mission and Word Bank Chain
+## RESUME HERE: Word Hunt and Tech Wordle
 
 Completed:
 - Sort Station: conveyor sorting arcade with five difficulty waves, combo, jam meter, hint, and local progress.
@@ -11,6 +11,9 @@ Completed:
 - Shared module game data: 24 vocabulary terms and 10 sourced facts.
 - Shared seeded shuffle, normalization, difficulty, star, and seed-code helpers.
 - Phone smoke tests reached results screens for both games with zero console errors.
+- Software Mission: customer help-desk service arcade with patience, tips, tool badges, hints, and local XP.
+- Word Bank Chain: ten-link puzzle with term bank, wrong-link feedback, hint, and local XP.
+- Module accuracy tests verify 10 Sort items, six unique Software Mission tools, and four computer types.
 
 Next:
 - Software Mission
