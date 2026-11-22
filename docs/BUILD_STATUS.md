@@ -3,7 +3,7 @@
 Last updated: 2026-11-22.
 Status: **Offline conversion complete; engaging game redesign in progress** (Branch `offline-only`).
 
-## RESUME HERE: Software Sorter
+## RESUME HERE: Case Files and remaining engagement games
 
 Completed:
 - Sort Station: conveyor sorting arcade with five difficulty waves, combo, jam meter, hint, and local progress.
@@ -13,12 +13,19 @@ Completed:
 - Phone smoke tests reached results screens for both games with zero console errors.
 - Software Mission: customer help-desk service arcade with patience, tips, tool badges, hints, and local XP.
 - Word Bank Chain: ten-link puzzle with term bank, wrong-link feedback, hint, and local XP.
-- Module accuracy tests verify 10 Sort items, six unique Software Mission tools, and four computer types.
+- Word Hunt: seeded word search with straight-line placement, found-word tracking, and local XP.
+- Tech Wordle: daily seeded guess-the-term game with scored keyboard, clue, and local XP.
+- Software Sorter: 18 module-grounded programs dropped into System software, Utility, or Application columns with animated stacking, hints, and local XP.
+- Order Rush: six-door escape sequence in the module's safe preparation order with a 90-second clock and local XP.
+- Spot the Mistake: six hidden unsafe practices with exact corrections, misclick penalties, hint pulse, and local XP.
+- All three interrupted games are now routed in `src/app/main.js`, styled at 375px touch and 1280px mouse, and covered by Playwright tests that play them to their results screens in both `file://` and `http://localhost` modes.
+- Fixed a route-cleanup leak in Software Mission: its `setInterval` kept writing to removed DOM after navigation. All timed games now return cleanup functions to the router.
 
 Next:
-- Software Mission
-- Word Bank Chain
-- Word Hunt and Tech Wordle
+- Case Files
+- Flashcards + Quick Recap
+- Tech Check-Up and Reflection Journal
+- PC Anatomy Explorer and Disassembly Mode engagement passes
 
 ---
 
@@ -31,7 +38,8 @@ Next:
 | `npm run check:offline` | **PASS** | 0 remote URLs, 0 cloud keywords, 0 ES modules in dist, 0 runtime fetches |
 | `npm run test:offline` | **PASS (8/8)** | Playwright suite covering file:// and http://localhost at 375x667 touch & 1280x800 mouse; 0 console errors, 0 non-local requests |
 | `npm run test:pclab` | **PASS** | PC Lab regression gate (L0 safety, L2 CPU, L4 RAM with tap, tap-tap, drag, rotate, hold) |
-| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.20 MB total) with `README.txt` |
+| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.21 MB total) with `README.txt` |
+| `npm run audit` | **No runtime errors** | 0 browser errors, 0 contrast failures. The three new games add no overflow, bounds, or horizontal-scroll findings; all game routes still report the same pre-existing `textPadding` notices from the shared game header. |
 
 ---
 

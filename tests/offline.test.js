@@ -16,6 +16,12 @@ const VIEWPORTS = [
   { label: "desktop-mouse", width: 1280, height: 800, isMobile: false, hasTouch: false }
 ];
 
+const ENGAGEMENT_GAMES = [
+  { id: "software-sorter", route: "#/play/software-sorter", trigger: "[data-lane]", clicks: 18 },
+  { id: "order-rush", route: "#/play/order-rush", trigger: "[data-step]", clicks: 6 },
+  { id: "spot-mistake", route: "#/play/spot-mistake", trigger: "[data-practice]", clicks: 6 }
+];
+
 const ROUTES = [
   "",
   "#/library",
@@ -112,14 +118,17 @@ test("Full Offline Playwright Suite: file:// and http://localhost", async (t) =>
               }
             });
 
-            const page = await context.newPage();
             const errors = [];
-            page.on("pageerror", (err) => errors.push(`PageError on ${page.url()}: ${err.message}`));
-            page.on("console", (msg) => {
-              if (msg.type() === "error") {
-                errors.push(`ConsoleError on ${page.url()}: ${msg.text()}`);
-              }
-            });
+            const watchErrors = (watched) => {
+              watched.on("pageerror", (err) => errors.push(`PageError on ${watched.url()}: ${err.message}`));
+              watched.on("console", (msg) => {
+                if (msg.type() === "error") {
+                  errors.push(`ConsoleError on ${watched.url()}: ${msg.text()}`);
+                }
+              });
+            };
+            const page = await context.newPage();
+            watchErrors(page);
 
             // 1. Visit every route and confirm it loads without errors
             for (const r of ROUTES) {
@@ -152,6 +161,28 @@ test("Full Offline Playwright Suite: file:// and http://localhost", async (t) =>
             await page.goto(`${mode.base}#/account`, { waitUntil: "domcontentloaded" });
             const initialProfiles = await page.evaluate(() => document.querySelectorAll(".device-profile-item").length);
             assert.ok(initialProfiles >= 1, "Must list at least 1 local profile");
+
+            // 5. Play the three newly wired engagement games to their results screens.
+            // Each game gets a fresh page so timers from earlier routes cannot leak in.
+            for (const game of ENGAGEMENT_GAMES) {
+              const gamePage = await context.newPage();
+              watchErrors(gamePage);
+              await gamePage.goto(`${mode.base}${game.route}`, { waitUntil: "domcontentloaded" });
+              await gamePage.waitForTimeout(200);
+              const controls = await gamePage.$$(game.trigger);
+              assert.ok(controls.length > 0, `${game.route} must render its game controls`);
+              for (let i = 0; i < game.clicks; i += 1) await controls[i % controls.length].click();
+              await gamePage.waitForTimeout(500);
+              const resultText = await gamePage.evaluate(() => document.querySelector("[data-result]")?.innerText || "");
+              assert.match(resultText, /xp earned/i, `${game.route} must reach a results screen`);
+              assert.match(resultText, /\/3/, `${game.route} must award stars`);
+              const persisted = await gamePage.evaluate((id) => Object.entries(localStorage)
+                .filter(([key]) => key.startsWith("tp:offline:profile:v2:"))
+                .map(([, value]) => JSON.parse(value))
+                .some((state) => (state?.progress?.activities?.[id]?.attempts || 0) >= 1), game.id);
+              assert.ok(persisted, `${game.id} progress must be saved locally`);
+              await gamePage.close();
+            }
 
             // Assert zero non-local origin requests and zero console errors
             assert.equal(nonLocalBlocked, 0, `Zero external requests allowed. Blocked: ${nonLocalBlocked}`);

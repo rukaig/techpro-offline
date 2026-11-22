@@ -17,6 +17,9 @@ import { softwareMissionPage, mountSoftwareMission } from "../games/software-mis
 import { wordChainPage, mountWordChain } from "../games/word-chain.js";
 import { wordHuntPage, mountWordHunt } from "../games/word-hunt.js";
 import { techWordlePage, mountTechWordle } from "../games/tech-wordle.js";
+import { softwareSorterPage, mountSoftwareSorter } from "../games/software-sorter.js";
+import { orderRushPage, mountOrderRush } from "../games/order-rush.js";
+import { spotMistakePage, mountSpotMistake } from "../games/spot-mistake.js";
 import { PRETEST, POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
 
@@ -114,6 +117,27 @@ route("/play/:activity", ({ params }) => {
       title: "Tech Wordle · TechPro",
       html: techWordlePage(),
       mount: mountTechWordle
+    };
+  }
+  if (params.activity === "software-sorter") {
+    return {
+      title: "Software Sorter · TechPro",
+      html: softwareSorterPage(),
+      mount: mountSoftwareSorter
+    };
+  }
+  if (params.activity === "order-rush") {
+    return {
+      title: "Order Rush · TechPro",
+      html: orderRushPage(),
+      mount: mountOrderRush
+    };
+  }
+  if (params.activity === "spot-mistake") {
+    return {
+      title: "Spot the Mistake · TechPro",
+      html: spotMistakePage(),
+      mount: mountSpotMistake
     };
   }
   if (!activity) {

@@ -36,6 +36,7 @@ export function mountSoftwareMission(root) {
   let mistakes = 0;
   let patience = 100;
   let timer = null;
+  let pending = null;
   const queue = seededShuffle(SITUATIONS, 4821);
   const game = root.querySelector("[data-mission-game]");
   const feedback = root.querySelector("[data-feedback]");
@@ -43,6 +44,7 @@ export function mountSoftwareMission(root) {
 
   function show() {
     clearInterval(timer);
+    clearTimeout(pending);
     patience = 100;
     const current = queue[index];
     root.querySelector("[data-customer]").textContent = current.customer;
@@ -59,13 +61,14 @@ export function mountSoftwareMission(root) {
         sound.wrong();
         index += 1;
         if (index >= queue.length) finish();
-        else setTimeout(show, 450);
+        else pending = setTimeout(show, 450);
       }
     }, 250);
   }
 
   function finish() {
     clearInterval(timer);
+    clearTimeout(pending);
     const percent = Math.round(((queue.length - mistakes) / queue.length) * 100);
     game.innerHTML = finishGame({
       activity: ACTIVITY_BY_ID["software-mission"],
@@ -97,7 +100,7 @@ export function mountSoftwareMission(root) {
       root.querySelector("[data-tips]").textContent = String(tips);
       index += 1;
       if (index >= queue.length) finish();
-      else setTimeout(show, 350);
+      else pending = setTimeout(show, 350);
     });
   });
 
@@ -105,4 +108,9 @@ export function mountSoftwareMission(root) {
     feedback.textContent = `Hint: ${queue[index].reason}`;
   });
   show();
+
+  return () => {
+    clearInterval(timer);
+    clearTimeout(pending);
+  };
 }
