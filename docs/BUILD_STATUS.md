@@ -20,13 +20,14 @@ All 26 catalogue activities in `src/data/activities.js` now resolve to a real, p
 
 | Gate / Test Suite | Result | Details |
 |---|---|---|
-| `npm test` | **PASS (38/38)** | Store, module accuracy, assistant retrieval, route integrity, and all game unit tests |
-| `npm run check` | **PASS** | 14 core source files, assets, and module terms verified |
+| `npm test` | **PASS (42/42)** | Store, module accuracy, assistant retrieval, route integrity, offline browser suite, and all game unit tests |
+| `npm run check` | **PASS** | 15 required files, assets, and both modules' terms verified |
 | `npm run check:offline` | **PASS** | 0 remote URLs, 0 cloud keywords, 0 ES modules in dist, 0 runtime fetches |
 | `npm run test:offline` | **PASS (8/8)** | Playwright suite covering file:// and http://localhost at 375x667 touch & 1280x800 mouse; 0 console errors, 0 non-local requests |
 | `npm run test:pclab` | **PASS** | PC Lab build + disassembly regression at 375px touch and 1280px mouse, including 44px action targets, local result state, and no horizontal overflow |
-| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.23 MB total) with `README.txt` |
-| `npm run audit` | **PASS** | 1,404 route states: 0 horizontal scroll, 0 overflow, 0 bounds, 0 spacing/contrast/alignment findings, 0 browser errors |
+| `npm run audit:routes` | **PASS (98/98)** | Every route opens at 375px touch and 1280px mouse with no runtime errors |
+| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.25 MB total) with `README.txt` |
+| `npm run audit` | **PASS** | 1,872 route states: 0 horizontal scroll, 0 overflow, 0 bounds, 0 spacing/contrast/alignment findings, 0 browser errors |
 
 ---
 
@@ -72,7 +73,7 @@ The following online/cloud dependencies were completely removed:
 
 ## 4. Packaging & Artifacts
 
-- Output zip: `TechPro-offline.zip` (~1.20 MB).
+- Output zip: `TechPro-offline.zip` (~1.25 MB).
 - Includes complete `dist/` directory and plain-text `README.txt` with instructions for Option 1 (file://), Option 2 (localhost), and Option 3 (PWA).
 
 ---
@@ -80,9 +81,9 @@ The following online/cloud dependencies were completely removed:
 ## 5. Final Continuation Status
 
 - PC Lab regression passes at 375px touch and 1280px mouse for both the 10-step build and 10-step disassembly modes.
-- All 18 Play activities are playable; route integrity tests reject missing handlers, duplicate hub cards, and self-looping start buttons.
+- All 26 Play activities are playable; route integrity tests reject missing handlers, duplicate hub cards, and self-looping start buttons.
 - Legacy path URLs redirect to hash routes so relative assets and file:// operation remain intact.
 - Offline Playwright suite passes in file:// and localhost modes at 375x667 touch and 1280x800 mouse.
-- UI audit passes all 1,404 route states with zero overflow, spacing, contrast, alignment, or browser-error findings.
+- UI audit passes all 1,872 route states with zero overflow, spacing, contrast, alignment, or browser-error findings.
 - `npm run check:offline` passes with zero remote resources and forbidden dependency mentions in shipped source.
-- Current package size is approximately 1.23 MB.
+- Current package size is approximately 1.25 MB.
