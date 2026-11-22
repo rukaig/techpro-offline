@@ -53,3 +53,49 @@ export function todaySeed(date = new Date()) {
 export function seedCode(seed) {
   return `TP-${String(seed % 10000).padStart(4, "0")}`;
 }
+
+export function generateWordSearch({ words, size = 12, seed = 4821 }) {
+  const grid = Array.from({ length: size }, () => Array(size).fill(""));
+  const random = mulberry32(typeof seed === "number" ? seed : hashSeed(seed));
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const directions = [
+    [1, 0], [0, 1], [-1, 0], [0, -1],
+    [1, 1], [-1, -1], [1, -1], [-1, 1]
+  ];
+
+  const placed = [];
+  const normalized = words.map(normalizeWord).filter((word, index, list) => word && list.indexOf(word) === index);
+  for (const word of normalized.sort((a, b) => b.length - a.length)) {
+    let placedWord = false;
+    for (let attempt = 0; attempt < 500 && !placedWord; attempt += 1) {
+      const [dx, dy] = directions[Math.floor(random() * directions.length)];
+      const x = Math.floor(random() * size);
+      const y = Math.floor(random() * size);
+      const endX = x + dx * (word.length - 1);
+      const endY = y + dy * (word.length - 1);
+      if (endX < 0 || endX >= size || endY < 0 || endY >= size) continue;
+      let fits = true;
+      for (let i = 0; i < word.length; i += 1) {
+        const cell = grid[y + dy * i]?.[x + dx * i];
+        if (cell && cell !== word[i]) fits = false;
+      }
+      if (!fits) continue;
+      const positions = [];
+      for (let i = 0; i < word.length; i += 1) {
+        const px = x + dx * i;
+        const py = y + dy * i;
+        grid[py][px] = word[i];
+        positions.push(`${px}:${py}`);
+      }
+      placed.push({ word, positions });
+      placedWord = true;
+    }
+  }
+
+  for (let y = 0; y < size; y += 1) {
+    for (let x = 0; x < size; x += 1) {
+      if (!grid[y][x]) grid[y][x] = alphabet[Math.floor(random() * alphabet.length)];
+    }
+  }
+  return { grid, placed };
+}

@@ -3643,6 +3643,89 @@ input:not([type]) {
   }
 }
 
+.hunt-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.8rem 0;
+}
+
+.seed-code {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  padding: 0.35rem 0.65rem;
+  font: 800 0.78rem/1 var(--font-ui);
+  letter-spacing: 0.08em;
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(24px, 1fr));
+  width: min(100%, 560px);
+  margin-inline: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.hunt-cell {
+  min-width: 24px;
+  aspect-ratio: 1;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  font: 800 clamp(0.62rem, 2.5vw, 0.9rem)/1 var(--font-ui);
+  padding: 0;
+}
+
+.hunt-cell.is-start {
+  background: var(--accent-soft);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.hunt-cell.is-found {
+  background: var(--success);
+  color: var(--on-accent);
+}
+
+.hunt-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+}
+
+.hunt-words span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.35rem 0.55rem;
+  font-size: var(--text-xs);
+}
+
+.hunt-words span.is-found {
+  border-color: var(--success);
+  background: var(--accent-soft);
+  text-decoration: line-through;
+}
+
+@media (max-width: 480px) {
+  .word-grid {
+    grid-template-columns: repeat(11, minmax(24px, 1fr));
+  }
+  .hunt-cell {
+    min-width: 24px;
+  }
+}
+
 /* src/styles/exam.css */
 /* ==========================================================================
    Exam hub, quiz runner, and item review.

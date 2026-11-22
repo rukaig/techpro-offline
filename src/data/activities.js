@@ -18,6 +18,21 @@ export const ACTIVITIES = [
     lesson: "computer-system"
   },
   {
+    id: "word-hunt",
+    title: "Word Hunt",
+    tagline: "Search the module vocabulary",
+    description: "Find hidden hardware, software, safety, and procedure terms in a seeded word grid.",
+    route: "/play/word-hunt",
+    icon: "grid",
+    kind: "word",
+    genre: "Hunt",
+    minutes: 4,
+    goal: "identify",
+    xp: 50,
+    color: "mint",
+    lesson: "review"
+  },
+  {
     id: "sort-station",
     title: "Sort Station",
     tagline: "Hardware, system, or application?",
