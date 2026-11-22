@@ -1690,7 +1690,7 @@ export class PcLabGame {
       window.dispatchEvent(new CustomEvent("techpro:game", {
         detail: { game: "pc-lab", name, ...detail, at: Date.now() }
       }));
-    } catch { /* analytics is optional */ }
+    } catch { /* event dispatch is optional */ }
   }
 
   /* ------------------------------------------------------------------ destroy */

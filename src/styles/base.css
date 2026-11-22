@@ -83,6 +83,35 @@ details > summary { list-style-position: outside; }
 .reading { width: min(100%, var(--reading)); }
 .section { padding-block: clamp(34px, 5vw, 78px); }
 .section-tight { padding-block: clamp(20px, 3vw, 42px); }
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 480px) {
+  .ranks-table th,
+  .ranks-table td {
+    padding: 0.55rem 0.65rem !important;
+  }
+  .ranks-table th:nth-child(5),
+  .ranks-table td:nth-child(5),
+  .teacher-table th:nth-child(2),
+  .teacher-table td:nth-child(2),
+  .teacher-table th:nth-child(5),
+  .teacher-table td:nth-child(5),
+  .teacher-table th:nth-child(7),
+  .teacher-table td:nth-child(7),
+  .teacher-table th:nth-child(8),
+  .teacher-table td:nth-child(8) {
+    display: none;
+  }
+  .teacher-table th,
+  .teacher-table td {
+    padding: 0.55rem 0.65rem !important;
+  }
+}
 .stack { display: grid; gap: var(--space-4); }
 .stack-sm { display: grid; gap: var(--space-2); }
 .stack-lg { display: grid; gap: var(--space-6); }

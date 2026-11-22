@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="editorial" data-mode="light" data-motion="full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="description" content="TechPro Computer Systems Servicing NC II — an interactive learning space for Assemble Computer Hardware. Read the module, build a PC, and practise safe disassembly.">
+  <meta name="theme-color" content="#2b1d16">
+  <meta name="color-scheme" content="light dark">
+  <title>TechPro · Assemble Computer Hardware</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/techpro-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script>/* Runs before first paint so a saved theme never flashes. */
+(function () {
+  var darkFirst = ["neon", "blueprint", "pixel", "lofi", "contrast"];
+  var themes = ["editorial", "marshmallow", "candy", "neon", "blueprint", "pixel", "lofi", "mint", "contrast"];
+  var darkColors = {
+    editorial: "#2b1d16", marshmallow: "#ffe1e9", candy: "#8a0a58",
+    neon: "#040a17", blueprint: "#0d3358", pixel: "#141625", lofi: "#211b17",
+    mint: "#0f3d39", contrast: "#000000"
+  };
+  var lightColors = {
+    editorial: "#f2eee5", marshmallow: "#fdf1f4", candy: "#fff2fa",
+    neon: "#eefbff", blueprint: "#eef6fd", pixel: "#f7f0dc", lofi: "#f8f0e4",
+    mint: "#f5fcfa", contrast: "#ffffff"
+  };
+  function read(key, fallback) {
+    try { return localStorage.getItem(key) || fallback; } catch (error) { return fallback; }
+  }
+  function resolve(choice) {
+    if (choice === "system") {
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return choice === "dark" ? "dark" : "light";
+  }
+  try {
+    var theme = read("tp:theme", "editorial");
+    if (themes.indexOf(theme) < 0) theme = "editorial";
+    var choice = read("tp:mode", darkFirst.indexOf(theme) >= 0 ? "dark" : "light");
+    var mode = resolve(choice);
+    var root = document.documentElement;
+    root.dataset.theme = theme;
+    root.dataset.mode = mode;
+    root.dataset.modeChoice = choice;
+    root.dataset.motion = read("tp:motion", "full") === "reduced" ? "reduced" : "full";
+    root.dataset.fontscale = read("tp:fontscale", "1");
+    var color = (mode === "dark" ? darkColors[theme] : lightColors[theme]) || lightColors[theme];
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", color);
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", function () {
+        if ((localStorage.getItem("tp:mode") || "light") === "system") {
+          var next = resolve("system");
+          root.dataset.mode = next;
+          var nextColor = (next === "dark" ? darkColors[theme] : lightColors[theme]) || lightColors[theme];
+          if (meta) meta.setAttribute("content", nextColor);
+        }
+      });
+    }
+  } catch (error) {
+    document.documentElement.dataset.theme = "editorial";
+    document.documentElement.dataset.mode = "light";
+  }
+})();
+</script>
+</head>
+<body>
+  <div id="ambientLayer" class="ambient-layer" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="offlineBanner" class="offline-banner" hidden>Offline mode: everything is on this device.</div>
+  <div id="app">
+    <div class="boot-screen" aria-label="Loading TechPro">
+      <span class="boot-chip" aria-hidden="true"></span>
+      <p>Warming up the workbench…</p>
+      <noscript><p class="boot-noscript">TechPro needs JavaScript. Please enable it, or ask your teacher for help.</p></noscript>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+  <script>
+    if (location.protocol.startsWith("http") && "serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

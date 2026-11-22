@@ -10,8 +10,8 @@ import { applySettings } from "../services/settings.js";
 const AVATAR_OPTIONS = [
   { id: "chip", label: "Chip", color: "var(--accent)" },
   { id: "wrench", label: "Wrench", color: "#2563eb" },
-  { id: "bolt", label: "Bolt", color: "#d97706" },
-  { id: "cpu", label: "CPU", color: "#059669" },
+  { id: "bolt", label: "Bolt", color: "#9a4f00" },
+  { id: "cpu", label: "CPU", color: "#047857" },
   { id: "screen", label: "Monitor", color: "#7c3aed" },
   { id: "spark", label: "Spark", color: "#db2777" }
 ];

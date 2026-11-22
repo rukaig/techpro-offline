@@ -1,58 +1,79 @@
-# TechPro
+# TechPro (100% Offline)
 
-TechPro is a local-first learning site for Computer Systems Servicing NC II, COC 1: Assemble Computer Hardware.
+TechPro is a 100% offline, zero-network interactive learning application for DepEd Computer Systems Servicing NC II, COC 1: Assemble Computer Hardware.
 
-## Run locally
+Every page, lesson, quiz, and all 14 interactive activities run anytime with zero internet, including directly from a USB stick on school computers.
 
-Use Node.js 20 or newer. From the project folder:
+---
 
+## Three Ways to Run TechPro
+
+### 1. Instant Run (Double-Click index.html)
+No server, installation, or internet required:
+1. Open the `dist/` directory (or extract `TechPro-offline.zip`).
+2. Double-click `index.html`.
+3. It opens directly in your web browser (`file://`) and works completely offline!
+
+### 2. Local Server (npm start)
+Run a local static server with Node.js built-in `http` module:
 ```sh
 npm install
 npm start
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Open [http://localhost:3000](http://localhost:3000). Do not open `index.html` from the file manager; the page needs to be served over HTTP. Set `PORT` to use a different port.
+#### Classroom Wi-Fi Hotspot Mode
+To share across a classroom Wi-Fi router or hotspot with NO internet:
+```sh
+npm start -- --lan
+```
+Prints the local network address (e.g. `http://192.168.1.50:3000`) so classmates on the same Wi-Fi can open and use TechPro simultaneously.
 
-For automatic server restarts during development, run `npm run dev`.
+### 3. Install as a Desktop App (PWA)
+When running locally via `http://localhost:3000`, click **Install TechPro** in your browser's address bar or navigate to **Offline sharing & setup** to install it as a standalone desktop application.
 
-## Validate
+---
+
+## Features
+
+- **The Module Library:** DepEd Cavite COC 1 Module 1 lessons, illustrated figures, and key notes.
+- **14 Interactive Games & Simulators:**
+  1. PC Lab (Build a desktop step-by-step)
+  2. Disassembly Mode (Safe tear-down sequence)
+  3. Sort Station (Hardware, system, application sorting)
+  4. Order Rush (Disassembly preparations under time)
+  5. Software Mission (Scenario software matching)
+  6. Spot the Mistake (Unsafe workstation hazards)
+  7. Which Computer? (Device matching scenarios)
+  8. PC Anatomy Explorer (Component explorer and pinouts)
+  9. Software Sorter (Program categorization)
+  10. Tech Check-Up (Inspection form and checklist)
+  11. Case Files (Troubleshooting repair stories)
+  12. Flashcards + Quick Recap (Spaced review)
+  13. Word Bank Chain (Vocabulary definitions)
+  14. Reflection Journal (Technician takeaways)
+- **Two Exams:** Pre-Test baseline (15 items) and Final Exam (15 items) with scoring, timers, and explanations.
+- **Local Multi-Profile System:** Supports multiple students on shared school PCs with independent XP, stars, badges, and saves.
+- **Backup & Restore:** Export clean JSON progress backups to USB and restore on any computer.
+- **Teacher View (`#/teacher`):** Import multiple student backup files to view class records and export grade sheets as CSV (with anti-injection sanitization).
+- **Ask TechPro (Offline Helper):** Instant local search across module passages, glossary, and common hardware questions with zero API keys and no models.
+
+---
+
+## Build & Verify
 
 ```sh
-npm test
-npm run check
-npm run audit
+npm run build              # Builds knowledge, games, and outputs dist/
+npm run build:offline      # Creates dist/ and TechPro-offline.zip
+npm test                   # Unit tests (store, module accuracy)
+npm run check              # Content checks
+npm run check:offline      # Strict offline gate (zero remote URLs/keywords)
+npm run test:offline       # Full Playwright offline test suite
+npm run test:pclab         # PC Lab regression test
 ```
 
-The UI audit starts its own temporary server, crawls linked routes, and checks the requested viewport, theme, and light/dark combinations. It writes screenshots and a detailed JSON report to `audit/`. The command needs Chromium. Set `CHROMIUM_PATH` if it is not installed at a standard system location. `AUDIT_FAST=1 npm run audit` runs a single 320px Editorial-light sample for quick checks.
+---
 
-## Study plan
+## Packaging
 
-Open `/plan` from the home page or footer to create a dated study schedule. Tasks, manual completion, focus sessions, and review tasks are saved locally and remain available offline. The planner supports printable views, `.ics` calendar export, and optional browser notifications when the site is open. After signing in, plan changes sync through the Firebase client SDK and Firestore owner rules; Firebase Admin credentials are not required for plan sync.
-
-When a learner signs in at `/account`, the plan syncs to their private Firestore document at `techpro_users/{uid}/plan/current`. Signing up uses Firebase Email/Password; enable that provider in Firebase Console under Authentication. The existing public Firebase web-app configuration is in `firebase-config.js`. Deploy the rules in `firestore.rules` so each learner can access only their own profile, progress, and plan.
-
-## TechPro assistant
-
-Open `/assistant` and sign in to ask questions grounded in the curated TechPro module knowledge. Responses stream from the server and link to relevant lessons. Conversation history and feedback are stored in Firestore under the signed-in user's `techpro_assistant/{uid}` namespace; client access to that collection is denied by the rules. Requests require a Firebase ID token verified by Firebase Admin. Limits default to 20 messages per learner per 10 minutes plus a global cap of 300 per minute, all configurable in `.env` (`ASSISTANT_RATE_LIMIT`, `ASSISTANT_RATE_WINDOW_MINUTES`, `ASSISTANT_GLOBAL_LIMIT`). Requests time out after 30 seconds (`ASSISTANT_TIMEOUT_MS`). `GET /api/assistant/health` reports `{ configured, model }` without exposing the key.
-
-The knowledge builder chunks the supplied lesson text in `content/module.md` before its answer-key section and combines those passages with curated notes in `knowledge/computers.md`. It writes `knowledge/index.json` and runs automatically before start, development, and test commands. To rebuild it explicitly:
-
-```sh
-npm run build:knowledge
-```
-
-Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, chosen from the [official model catalog](https://ai.google.dev/gemini-api/docs/models) as the fastest, lowest-cost option recommended for new projects; override it with `GEMINI_MODEL` (for example `gemini-3.8-flash`) if needed. Add the values from `.env.example` to a local `.env` file or configure them in Render. For Firebase Admin, set either `FIREBASE_SERVICE_ACCOUNT_JSON` to the service-account JSON value or `GOOGLE_APPLICATION_CREDENTIALS` to a private credential-file path, along with `FIREBASE_PROJECT_ID`. Never commit service-account credentials or the Gemini key. The public Firebase web config is not a server secret.
-
-## Environment
-
-The server reads `PORT`; Render supplies this automatically. See `.env.example` for server configuration. Firebase web configuration lives in `firebase-config.js` and is public client configuration, not a server secret. Keep private keys and credentials in environment variables and out of client-side files.
-
-## Deploy
-
-Deploy the project to Render as a Node web service with `npm install` as the build command and `npm start` as the start command. Render provides the listening port through `PORT`.
-
-For Firebase Hosting, install the Firebase CLI, authenticate, then deploy the configured hosting and Firestore resources:
-
-```sh
-firebase deploy --only hosting,firestore:rules,firestore:indexes
-```
+Running `npm run build:offline` packages `dist/` and `README.txt` into a standalone `TechPro-offline.zip` (~1.2 MB), ready to be loaded onto USB drives for school use.

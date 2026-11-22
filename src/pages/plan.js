@@ -360,8 +360,8 @@ export function mountPlan(root) {
       const current = get().plan;
       const due = current.tasks.filter((task) => task.date === dateKey() && !task.completed);
       if (due.length && current.reminderDay !== dateKey()) {
-        new Notification("Your TechPro study plan", { body: `${due.length} small task${due.length === 1 ? "" : "s"} are ready when you are.`, icon: "/assets/icon-192.png" });
-        (await import("../services/store.js")).update((draft) => { draft.plan.reminderDay = dateKey(); }, { type: "plan-reminder" });
+        new Notification("Your TechPro study plan", { body: `${due.length} small task${due.length === 1 ? "" : "s"} are ready when you are.`, icon: "./assets/icon-192.png" });
+        update((draft) => { draft.plan.reminderDay = dateKey(); }, { type: "plan-reminder" });
       }
       toast(due.length ? "Reminder enabled for today's tasks." : "Reminders are enabled. No task is due today.", "success");
     });

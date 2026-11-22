@@ -1,0 +1,28 @@
+{
+  "id": "./",
+  "name": "TechPro — Assemble Computer Hardware",
+  "short_name": "TechPro",
+  "description": "An interactive CSS NC II learning space: module lessons, a build-a-PC simulator, safety drills, quizzes, and a friendly chip companion.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f3efe6",
+  "theme_color": "#2b1d16",
+  "categories": ["education", "productivity"],
+  "lang": "en-PH",
+  "icons": [
+    { "src": "./assets/techpro-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "./assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "PC Lab", "short_name": "PC Lab", "url": "/play/pc-lab", "description": "Build a desktop computer step by step." },
+    { "name": "Library", "short_name": "Library", "url": "/library", "description": "Read the module lessons." },
+    { "name": "Final Exam", "short_name": "Exam", "url": "/exam/final", "description": "Take the 15-item assessment." },
+    { "name": "Leaderboard", "short_name": "Ranks", "url": "/leaderboard", "description": "See the class rankings." }
+  ]
+}

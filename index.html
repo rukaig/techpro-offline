@@ -27,21 +27,11 @@
   <link rel="stylesheet" href="/src/styles/account.css">
   <link rel="stylesheet" href="/src/styles/assistant.css">
   <script src="/src/app/theme-boot.js"></script>
-  <script src="/firebase-config.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "firebase/app": "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js",
-        "firebase/auth": "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js",
-        "firebase/firestore": "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js"
-      }
-    }
-  </script>
 </head>
 <body>
   <div id="ambientLayer" class="ambient-layer" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to main content</a>
-  <div id="offlineBanner" class="offline-banner" hidden>You are offline. The library and saved work still open.</div>
+  <div id="offlineBanner" class="offline-banner" hidden>Offline mode: everything is on this device.</div>
   <div id="app">
     <div class="boot-screen" aria-label="Loading TechPro">
       <span class="boot-chip" aria-hidden="true"></span>

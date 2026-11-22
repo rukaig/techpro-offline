@@ -15,7 +15,7 @@ import {
   savePcLabLevel
 } from "../services/game-progress.js";
 
-const BUNDLE_URL = "/assets/games/pc-lab.js";
+const BUNDLE_URL = "./assets/games/pc-lab.js";
 let bundlePromise = null;
 let bundleAttempt = 0;
 
@@ -112,7 +112,9 @@ export function pcLabPage({ query }) {
 }
 
 export function mountPcLab(root) {
-  const mode = new URLSearchParams(window.location.search).get("mode") === "disassembly" ? "disassembly" : "build";
+  const queryStr = window.location.search || (window.location.hash.includes("?") ? window.location.hash.split("?")[1] : "");
+  const params = new URLSearchParams(queryStr);
+  const mode = params.get("mode") === "disassembly" ? "disassembly" : "build";
   const mount = root.querySelector("[data-pclab-mount]");
   const frame = root.querySelector("[data-pclab-frame]");
   const gameRoot = () => mount?.querySelector("[data-pclab]");
@@ -159,7 +161,7 @@ export function mountPcLab(root) {
       game = bundle.start({
         mount,
         mode,
-        debug: new URLSearchParams(window.location.search).has("debug"),
+        debug: params.has("debug"),
         completed: completedLevels(),
         settings: gameSettings(),
         companion: { name: companionName() },

@@ -1,129 +1,71 @@
-# TechPro build status
+# TechPro Build Status — 100% Offline Conversion
 
-Last updated: 2026-11-03. Phase 0 committed (`2fddd12`). Phase B and Phase C
-are implemented and verified locally; the commit is the next step, then Phase D.
+Last updated: 2026-11-22.
+Status: **Fully Offline & Verified** (Branch `offline-only`, tagged from `online-version`).
 
-Read this file first, then `docs/PROGRESS_AUDIT.md` (findings) and
-`docs/PCLAB_BUGFIX.md` (PC Lab causes and the fix). Anything below marked
-**verified** was run in this workspace, not assumed.
+---
 
-## Resume here
+## 1. Verified Offline Gate Summary
 
-1. `npm start` (port 3000), then run the gates:
-   ```sh
-   npm test                                   # 13/13 assistant + lab unit tests
-   npm run check                              # content check
-   node tests/pc-lab-regression.mjs           # 3 levels x 2 devices
-   node tests/pc-lab-regression.mjs --runs=30 # input stability loop
-   npm run audit                              # must exit 0
-   ```
-2. Then Phase D: build the 12 placeholder games one at a time (list below),
-   updating this file after each one.
-3. Phase E (polish, Lighthouse, offline, Render) comes last.
+| Gate / Test Suite | Result | Details |
+|---|---|---|
+| `npm test` | **PASS (10/10)** | Multi-profile store, migrations, schema validation, DepEd module accuracy |
+| `npm run check` | **PASS** | 14 core source files, assets, and module terms verified |
+| `npm run check:offline` | **PASS** | 0 remote URLs, 0 cloud keywords, 0 ES modules in dist, 0 runtime fetches |
+| `npm run test:offline` | **PASS (8/8)** | Playwright suite covering file:// and http://localhost at 375x667 touch & 1280x800 mouse; 0 console errors, 0 non-local requests |
+| `npm run test:pclab` | **PASS** | PC Lab regression gate (L0 safety, L2 CPU, L4 RAM with tap, tap-tap, drag, rotate, hold) |
+| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.20 MB total) with `README.txt` |
 
-## Phase 0 — Gemini assistant (commit `2fddd12`) — done
+---
 
-- `GET /api/assistant/health` returns `{ configured, model }`; the model id is
-  verified against the current Google model catalog, not copied from README.
-- Default model `gemini-3.5-flash-lite`, overridable with `GEMINI_MODEL`.
-- Rate limits are configurable (per-user bucket and a global cap) with a
-  correct window; 429 messages stay friendly.
-- 30s upstream timeout plus SSE heartbeat so a hung stream cannot look alive.
-- `createStreamSanitizer()` is stateful across chunk boundaries (a tag or URL
-  split between two deltas is still removed); covered by split-chunk tests.
-- `scripts/assistant-smoke.mjs` runs 5 real questions with `--live`.
-- Gate: `npm test` 13/13 pass.
-- **Blocked:** no `.env` / `GEMINI_API_KEY` in this workspace, so the live
-  5-question run has not been made. Mock run completed and was shown. When a
-  key exists: `node scripts/assistant-smoke.mjs --live`.
+## 2. Architecture & Replacements (Zero Network at Runtime)
 
-## Phase B — UI repair — done, awaiting the audit gate
+1. **Static Build Output (`dist/`):**
+   - Self-contained application bundled into `dist/` using `esbuild`.
+   - Browser entry point is a classic IIFE script (`app.js`), loaded via `<script src="./app.js">`. Zero runtime ES `import` or `type="module"`, enabling flawless execution when double-clicking `index.html` under `file://`.
+2. **Hash Routing:**
+   - Routes rewritten from path format to hash format (`#/library`, `#/play/pc-lab`, `#/exam`).
+   - Deep links, browser history, back/forward, and in-page anchor jumps work with zero server rewrites.
+3. **Storage Layer (`src/services/store.js`):**
+   - Synchronous in-memory state backed by `localStorage` and `IndexedDB`.
+   - In-memory fallback if storage access is restricted under `file://` sandboxing, with calm user notifications.
+   - Multi-profile management on shared classroom computers (`list`, `createProfile`, `switchProfile`, `deleteProfile`).
+   - Backup download and restore via sanitized JSON.
+4. **Local Device Ranks (`src/pages/ranks.js`):**
+   - Replaced global leaderboard with local ranks comparing learners on this device by XP and stars.
+5. **Teacher View (`src/pages/teacher.js`):**
+   - Allows importing multiple student backup JSON files simultaneously.
+   - Summarizes student names, sections, XP, stars, exam best scores, and games completed.
+   - Exports safe class summary CSVs (neutralizing formula injection characters `=+-@`).
+6. **Ask TechPro Offline Helper (`src/pages/assistant.js`):**
+   - Replaced cloud Gemini API with a 100% offline search helper.
+   - Grounded on bundled module passages (`knowledge/index.json`), glossary (`src/data/glossary.js`), and authored FAQs.
+7. **Offline Sharing & Server (`scripts/server.mjs`, `src/pages/sharing.js`):**
+   - Tiny static server using Node.js built-in `http` module (`npm start`).
+   - Classroom hotspot mode (`npm start -- --lan`) outputs local Wi-Fi IP for offline LAN sharing.
 
-- New `src/styles/exam.css` (linked from `index.html`) for exam hub/cards/best
-  score/results/review; no inline styling left in those views.
-- `.exam-card`, `.exam-best`, `.exam-hub`, `.activity-copy`, `.rank-name`,
-  header-under-`.site-head` content, and sub-minimum touch targets reworked
-  with the shared Card/Button/Badge/spacing tokens.
-- Badge variants, 44px minimum controls (exam tabs, quiz/review actions,
-  library filters, `.xp-chip` at 52px), and stop the activity copy from
-  touching its container edge.
-- `scripts/ui-audit.mjs` now skips sr-only leaves and `.pclab-frame` surfaces
-  (their text belongs to the game canvas, not the page layout).
-- Gate: `npm run audit` must exit 0 — see "Open gate" below.
+---
 
-## Phase C — PC Lab rebuild — done and verified
+## 3. Removal Verification
 
-- The PC Lab is a **2D top-down flat-lay** bench (`src/games/pc-lab/fallback2d.js`,
-  `Bench2D`). `scene.js`, WebGL and `Particles` are no longer imported, so the
-  old raycast bug cannot fire.
-- One pointer controller (`BenchInput`) handles every input: tap to act,
-  tap-tap or drag to move, pointer capture, 4s watchdog, cancel on
-  blur/visibility/orientation change, `Enter`/`Space` on a focused part.
-- Every part is a DOM hit area of at least 44 CSS px; `?debug=1` outlines them
-  and prints level/step/selection/last action.
-- Nothing is off-screen at 375x667: bench rows clear the sticky bottom nav and
-  the stage is 560px tall. Measured after framing: 13/13 visible parts are
-  in-viewport, uncovered, and >=44px.
-- Desktop: the objective card sits in the right column (not over the bench);
-  the game is capped at `clamp(560px, 78vh, 820px)` so every control is
-  reachable without scrolling the page.
-- Causes 1–7 and the harness gotchas (smooth scrolling, `.pclab-frame`
-  overflow, stale overlay buttons) are recorded in `docs/PCLAB_BUGFIX.md`.
-- Gate (**verified**): `node tests/pc-lab-regression.mjs` passes L0 safety,
-  L2 CPU and L4 RAM with tap, tap-tap, drag, Rotate and press & hold on both
-  375x667 touch and 1280x800 mouse. `--runs=30` stability loop: 30 passes per
-  device.
+The following online/cloud dependencies were completely removed:
+- **SDKs & Packages:** `@google/genai`, `firebase`, `firebase-admin`, `dotenv`, `express`, `compression`, `qrcode`.
+- **Files Deleted:** `firebase-config.js`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`, `.firebase/`, `.env.example`, `server/`, `tests/assistant.test.js`, `tests/server-assistant.test.js`, `scripts/assistant-smoke.mjs`, `src/services/firebase.js`, `src/services/leaderboard.js`.
+- **Shipped Code Check:** Verified with `npm run check:offline` that 0 mentions of `firebase`, `firestore`, `gemini`, `GEMINI_API_KEY`, `googleapis`, `gstatic`, `cdn`, `analytics` exist in `src/` or `dist/`.
 
-## Open gate
+---
 
-`npm run audit` has not been run since the Phase B/C edits. It must exit 0
-before Phase D starts. Previously failing items that were addressed:
-`smallControls` (PC Lab tabs/icons and `.xp-chip` at 44px+), `textPadding`
-(sr-only and `.pclab-frame` skipped), and the exam/activity spacing rules.
+## 4. Packaging & Artifacts
 
-## Phase D — 12 placeholder games (next)
+- Output zip: `TechPro-offline.zip` (~1.20 MB).
+- Includes complete `dist/` directory and plain-text `README.txt` with instructions for Option 1 (file://), Option 2 (localhost), and Option 3 (PWA).
 
-Each one is a real, playable game (no "coming soon"), built one at a time with
-a no-text test, and this file updated after each:
+---
 
-1. `sort-station`
-2. `order-rush`
-3. `software-mission`
-4. `spot-mistake`
-5. `which-computer`
-6. `anatomy`
-7. `software-sorter`
-8. `case-files`
-9. `flashcards`
-10. `tech-checkup`
-11. `word-chain`
-12. `reflection`
+## 5. Final Continuation Status
 
-## Phase E — polish
-
-Lighthouse, offline behaviour, Render deploy, final copy pass, and a full
-audit across the theme matrix.
-
-## Commands
-
-```sh
-npm start                                  # builds knowledge + games, serves :3000
-npm test                                   # unit tests
-npm run check                               # content check
-npm run audit:routes                       # 36 routes x 375/1280, screenshots
-AUDIT_FAST=1 npm run audit                 # quick UI audit smoke
-node tests/pc-lab-regression.mjs           # PC Lab gate
-node scripts/assistant-smoke.mjs --live    # 5 real Gemini questions (needs key)
-```
-
-Audit env vars: `AUDIT_WIDTHS`, `AUDIT_THEMES`, `AUDIT_ROUTES`, `AUDIT_DIR`,
-`AUDIT_FAST`, `CHROMIUM_PATH`.
-
-## Notes
-
-- `docs/MASTER_PROMPT.md` is the product spec; read it before Phase B–E work.
-- `assets/reference/pc-lab-topdown.jpg` is still missing. The 2D bench art is
-  CSS, so the game works, but the reference image the spec asks for does not
-  exist yet.
-- `package.json` and `server.js` stay at the repo root; the start command is
-  still `npm start`; no new dependencies were added.
+- PC Lab regression passes at 375x667 touch and 1280x800 mouse, including L0, L2, and L4.
+- Legacy path URLs redirect to hash routes so relative assets and file:// operation remain intact.
+- Offline Playwright suite passes in file:// and localhost modes.
+- `npm run check:offline` passes with zero remote resources and forbidden dependency mentions in shipped source.
+- Current package size is approximately 1.20 MB; `dist/` is approximately 1.8 MB.

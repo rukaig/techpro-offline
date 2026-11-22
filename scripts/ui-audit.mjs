@@ -382,8 +382,7 @@ async function navigateClientRoute(page, route) {
       reject(new Error(`Route did not render: ${url.pathname}`));
     }, 10000);
     observer.observe(main, { childList: true, subtree: true });
-    history.pushState({ audit: true }, "", `${url.pathname}${url.search}${url.hash}`);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    location.hash = `#${url.pathname}${url.search}`;
   }), route);
 }
 

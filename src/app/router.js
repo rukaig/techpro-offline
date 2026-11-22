@@ -1,9 +1,10 @@
 /* ==========================================================================
-   Tiny history-API router.
-   Routes look like "/library/:lesson" and render into #main.
-   Every render returns { html, mount?, title?, cleanup? } where mount receives
-   the rendered <main> element.
+   Offline Hash Router for TechPro.
+   Works seamlessly under file://, http://localhost, and PWA.
+   Routes are written like "/library/:lesson" and accessed as "#/library/:lesson".
+   Existing "/path" links are intercepted and mapped to "#/path".
    ========================================================================== */
+import { setPageTitle } from "./ui.js";
 
 const routes = [];
 let notFound = null;
@@ -33,8 +34,8 @@ export function setNotFound(render) {
 }
 
 export function to(path) {
-  const url = new URL(path, window.location.origin);
-  return `${url.pathname}${url.search}${url.hash}`;
+  if (path.startsWith("#")) return path;
+  return `#${path.startsWith("/") ? path : "/" + path}`;
 }
 
 export function match(pathname) {
@@ -44,18 +45,72 @@ export function match(pathname) {
     const found = item.regex.exec(clean);
     if (found) {
       const params = {};
-      item.keys.forEach((key, index) => { params[key] = decodeURIComponent(found[index + 1]); });
+      item.keys.forEach((key, index) => {
+        params[key] = decodeURIComponent(found[index + 1]);
+      });
       return { route: item, params };
     }
   }
   return null;
 }
 
+function parseCurrentLocation() {
+  const rawHash = window.location.hash || "";
+  let virtualPath = "/";
+  let inPageAnchor = "";
+
+  if (rawHash.startsWith("#/")) {
+    virtualPath = rawHash.slice(1);
+  } else if (rawHash.startsWith("#") && rawHash.length > 1) {
+    // Check if it looks like a path or an in-page anchor
+    if (rawHash.includes("/")) {
+      virtualPath = rawHash.slice(1);
+    } else {
+      inPageAnchor = rawHash.slice(1);
+    }
+  } else if (!rawHash && window.location.protocol.startsWith("http")) {
+    const p = window.location.pathname;
+    if (p !== "/" && !p.endsWith("index.html")) {
+      virtualPath = `${p}${window.location.search}`;
+      window.location.replace(`#${virtualPath}`);
+    }
+  }
+
+  // Parse path, query, and anchor
+  try {
+    const dummy = new URL(virtualPath.startsWith("/") ? virtualPath : `/${virtualPath}`, "https://techpro.local");
+    return {
+      pathname: dummy.pathname || "/",
+      query: dummy.searchParams,
+      anchor: inPageAnchor || (dummy.hash ? dummy.hash.slice(1) : "")
+    };
+  } catch {
+    return {
+      pathname: "/",
+      query: new URLSearchParams(),
+      anchor: ""
+    };
+  }
+}
+
 export function navigate(path, { replace = false, silent = false } = {}) {
-  const target = to(path);
-  if (target === `${window.location.pathname}${window.location.search}${window.location.hash}`) return;
-  if (replace) window.history.replaceState({ techpro: true }, "", target);
-  else window.history.pushState({ techpro: true }, "", target);
+  let clean = path;
+  if (clean.startsWith("#/")) clean = clean.slice(1);
+  else if (clean.startsWith("#")) clean = clean.slice(1);
+  if (!clean.startsWith("/")) clean = `/${clean}`;
+
+  const targetHash = `#${clean}`;
+  if (window.location.hash === targetHash) {
+    if (!silent) renderCurrent();
+    return;
+  }
+
+  if (replace) {
+    window.location.replace(targetHash);
+  } else {
+    window.location.hash = targetHash;
+  }
+
   if (!silent) renderCurrent();
 }
 
@@ -74,21 +129,22 @@ async function renderCurrent() {
     try { activeCleanup(); } catch (error) { console.warn("Route cleanup failed", error); }
     activeCleanup = null;
   }
-  const url = new URL(window.location.href);
-  const found = match(url.pathname);
-  const query = url.searchParams;
+
+  const { pathname, query, anchor } = parseCurrentLocation();
+  const found = match(pathname);
   current = {
-    path: url.pathname,
+    path: pathname,
     params: found?.params || {},
     query
   };
 
-  document.body.dataset.route = url.pathname;
+  document.body.dataset.route = pathname;
   try {
-    const view = found ? await found.route.render({ params: current.params, query, path: url.pathname }) : await renderNotFound();
+    const view = found
+      ? await found.route.render({ params: current.params, query, path: pathname })
+      : await renderNotFound();
     main.innerHTML = view?.html || "";
     if (view?.title) {
-      const { setPageTitle } = await import("./ui.js");
       setPageTitle(view.title);
     }
     if (typeof view?.mount === "function") {
@@ -96,32 +152,36 @@ async function renderCurrent() {
       if (typeof maybeCleanup === "function") activeCleanup = maybeCleanup;
     }
   } catch (error) {
-    console.error(`Could not render route: ${url.pathname}`, error);
+    console.error(`Could not render route: ${pathname}`, error);
     main.innerHTML = `
       <section class="page-shell section" role="alert">
         <p class="eyebrow">Page could not load</p>
         <h1>Something went wrong opening this page.</h1>
         <p class="lede">Refresh the page or return to the home page. The error was recorded in the browser console.</p>
         <div class="cluster mt-4">
-          <a class="btn btn-primary" href="${url.pathname}${url.search}">Refresh page</a>
-          <a class="btn btn-ghost" href="/">Home</a>
+          <button class="btn btn-primary" type="button" onclick="location.reload()">Refresh page</button>
+          <a class="btn btn-ghost" href="#/">Home</a>
         </div>
       </section>
     `;
   }
 
   window.dispatchEvent(new CustomEvent("techpro:routechange", {
-    detail: { pathname: url.pathname }
+    detail: { pathname }
   }));
 
-  // In-page anchors (library headings, glossary links) should still work.
-  if (url.hash) {
-    const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+  // In-page anchors (library headings, glossary links)
+  if (anchor) {
+    const target = document.getElementById(decodeURIComponent(anchor));
     if (target) {
-      target.scrollIntoView({ behavior: document.documentElement.dataset.motion === "reduced" ? "auto" : "smooth", block: "start" });
+      target.scrollIntoView({
+        behavior: document.documentElement.dataset.motion === "reduced" ? "auto" : "smooth",
+        block: "start"
+      });
       return;
     }
   }
+
   window.scrollTo({ top: 0, behavior: "auto" });
   const skip = document.querySelector(".skip-link");
   if (skip && document.activeElement !== skip) {
@@ -144,7 +204,7 @@ async function renderNotFound() {
       <p class="eyebrow">404</p>
       <h1>That bench is empty</h1>
       <p class="lede">The page you asked for does not exist. Head back to the library or the PC Lab.</p>
-      <div class="cluster mt-4"><a class="btn btn-primary" href="/library">Open the Library</a><a class="btn btn-ghost" href="/">Back home</a></div>
+      <div class="cluster mt-4"><a class="btn btn-primary" href="#/library">Open the Library</a><a class="btn btn-ghost" href="#/">Back home</a></div>
     </div>`
   };
 }
@@ -159,14 +219,42 @@ export function start() {
     if (!link) return;
     if (link.target && link.target !== "_self") return;
     if (link.hasAttribute("download")) return;
-    const url = new URL(link.href, window.location.origin);
-    if (url.origin !== window.location.origin) return;
-    if (url.pathname === window.location.pathname && url.hash) return;
-    if (url.pathname.startsWith("/api/")) return;
+
+    const href = link.getAttribute("href") || "";
+    if (!href || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+    if (/^https?:\/\//i.test(href)) {
+      // External link - let browser handle
+      return;
+    }
+
+    if (href.startsWith("#") && !href.startsWith("#/")) {
+      // In-page anchor on the current view
+      const target = document.getElementById(decodeURIComponent(href.slice(1)));
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: document.documentElement.dataset.motion === "reduced" ? "auto" : "smooth",
+          block: "start"
+        });
+      }
+      return;
+    }
+
     event.preventDefault();
-    navigate(`${url.pathname}${url.search}${url.hash}`);
+    navigate(href);
   });
 
+  window.addEventListener("hashchange", () => renderCurrent());
   window.addEventListener("popstate", () => renderCurrent());
+
+  // If accessed over http without hash, redirect to hash
+  if (window.location.protocol.startsWith("http")) {
+    const p = window.location.pathname;
+    if (p !== "/" && !p.endsWith("index.html") && !window.location.hash) {
+      window.location.replace(`#${p}${window.location.search}`);
+      return;
+    }
+  }
+
   renderCurrent();
 }

@@ -7,7 +7,7 @@
 
 const fig = (src, alt, caption = "", extra = false) => `
   <figure class="lesson-figure${extra ? " is-extra" : ""}">
-    <img src="/assets/module/${src}" alt="${alt}" loading="lazy" decoding="async">
+    <img src="./assets/module/${src}" alt="${alt}" loading="lazy" decoding="async">
     <figcaption>${extra ? '<span class="tag tag-extra">Extra</span> ' : ""}${caption}</figcaption>
   </figure>`;
 

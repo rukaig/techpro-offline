@@ -291,6 +291,15 @@
 .pclab-tab-star { color: #e0a400; }
 .pclab-tab.is-active .pclab-tab-star { color: #ffe9a8; }
 
+@media (max-width: 480px) {
+  .pclab-tab:not(.is-active) {
+    display: none;
+  }
+  .pclab-tab.is-active {
+    max-width: 100%;
+  }
+}
+
 .pclab-top-actions { display: flex; gap: 0.3rem; flex: 0 0 auto; }
 
 .pclab-icon-btn {

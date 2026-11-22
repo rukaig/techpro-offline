@@ -247,3 +247,41 @@
     max-width: 65%;
   }
 }
+
+.search-box-card {
+  width: min(100%, 48rem);
+}
+
+.input-with-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-button .input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.suggestions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.assistant-results-stage {
+  width: min(100%, 48rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.assistant-result-card.is-primary {
+  border-color: var(--accent);
+  background: var(--surface);
+}

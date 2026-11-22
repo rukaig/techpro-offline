@@ -12,7 +12,7 @@ import { companionName, say } from "../services/companion.js";
 import { icon, stars as starIcons } from "../app/icons.js";
 import { cardArt, companionArt, brandMark } from "../app/art.js";
 import { esc, toast, announce } from "../app/ui.js";
-import { showInstallCard } from "../app/chrome.js";
+import { showInstallCard, openCompanion } from "../app/chrome.js";
 import { sound } from "../app/audio.js";
 import { confetti } from "../app/confetti.js";
 import { activityBest } from "../app/game-kit.js";
@@ -291,8 +291,7 @@ export function mountHome(root) {
       }
     });
   });
-  root.querySelector("[data-open-companion]")?.addEventListener("click", async () => {
-    const { openCompanion } = await import("../app/chrome.js");
+  root.querySelector("[data-open-companion]")?.addEventListener("click", () => {
     openCompanion();
   });
 }

@@ -458,10 +458,7 @@ export function openSettings() {
         setMotion(event.target.checked ? "full" : "reduced");
       });
       root.querySelector("[data-sound-toggle]")?.addEventListener("change", (event) => {
-        const next = get();
-        import("../services/store.js").then(({ update }) => {
-          update((draft) => { draft.settings.sound = event.target.checked; }, { type: "settings" });
-        });
+        update((draft) => { draft.settings.sound = event.target.checked; }, { type: "settings" });
       });
       root.querySelector("[data-install-prompt]")?.addEventListener("click", () => promptInstall());
       root.querySelector("[data-export]")?.addEventListener("click", () => {

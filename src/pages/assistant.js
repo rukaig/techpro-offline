@@ -1,338 +1,276 @@
-import { observeAuth } from "../services/firebase.js";
+/* ==========================================================================
+   Ask TechPro (offline) — 100% local study helper.
+   No API key, no external models, no server, zero network.
+   Searches the bundled module knowledge index, glossary, and authored answers.
+   ========================================================================== */
 import { get } from "../services/store.js";
 import { companionArt } from "../app/art.js";
 import { companionName } from "../services/companion.js";
-import { LESSONS } from "../data/lessons.js";
+import { GLOSSARY } from "../data/glossary.js";
 import { esc } from "../app/ui.js";
+import knowledgeEntries from "../../knowledge/index.json";
 
-const MAX_QUESTION_LENGTH = 2000;
-const SUGGESTED_PROMPTS = [
-  { label: "Explain the CPU", prompt: "Explain the CPU like I am 10." },
-  { label: "Quiz me on RAM", prompt: "Quiz me on RAM with five practice questions.", action: "quiz" },
-  { label: "Driver or firmware?", prompt: "What is the difference between a device driver and firmware?" },
-  { label: "Why unplug first?", prompt: "Why should I unplug a computer before opening the case?" },
-  { label: "Check my study plan", prompt: "Check my study plan and suggest a few optional improvements.", action: "study-plan" }
+const COMMON_QUESTIONS = [
+  {
+    keywords: ["cpu", "processor", "explain", "brain"],
+    question: "Explain the CPU like I am 10.",
+    answer: "The CPU (Central Processing Unit) is the brain of the computer. It executes instructions and does all the math and decision-making. When installing a CPU, you must match the processor's alignment marks with the motherboard socket and never touch the pins or force the lever down.",
+    lessonId: "internal-hardware",
+    lessonTitle: "Internal Hardware Components",
+    route: "/library/internal-hardware"
+  },
+  {
+    keywords: ["ram", "memory", "quiz", "temporary"],
+    question: "What is RAM and how does it work?",
+    answer: "RAM (Random Access Memory) is fast, temporary working memory. It holds the programs and files you are actively using right now. When you turn off the computer, everything in RAM is wiped clean. RAM sticks must align with the notch in the DIMM slot and be pushed evenly until the side clips snap shut.",
+    lessonId: "internal-hardware",
+    lessonTitle: "Internal Hardware Components",
+    route: "/library/internal-hardware"
+  },
+  {
+    keywords: ["driver", "firmware", "difference", "bios", "uefi"],
+    question: "What is the difference between a device driver and firmware?",
+    answer: "Firmware is permanent software stored directly on a chip on the hardware (such as the motherboard BIOS or UEFI) that tells the device how to start up. A device driver is software installed inside the operating system (like Windows or Linux) that lets the OS communicate with specific hardware like a printer, graphics card, or sound card.",
+    lessonId: "system-software",
+    lessonTitle: "System Software & Firmware",
+    route: "/library/system-software"
+  },
+  {
+    keywords: ["unplug", "safety", "open", "case", "shock", "power"],
+    question: "Why should I unplug a computer before opening the case?",
+    answer: "Safety First: You must always power down and unplug the power cable from the wall before opening the case. This protects you from electrical shock and protects sensitive electronic parts from short-circuit damage. Press the power button once after unplugging to drain residual power from capacitors.",
+    lessonId: "disassembly",
+    lessonTitle: "Safe Disassembly Preparation",
+    route: "/library/disassembly"
+  },
+  {
+    keywords: ["types", "computer", "desktop", "laptop", "tablet", "server"],
+    question: "What are the four main types of computers?",
+    answer: "The module covers four main types: Desktops (designed for a fixed desk with separate components), Laptops (portable all-in-one with screen and keyboard), Tablets (handheld touchscreen devices), and Servers (powerful computers that provide services and resources to other computers over a network).",
+    lessonId: "types-of-computers",
+    lessonTitle: "Types of Computers",
+    route: "/library/types-of-computers"
+  },
+  {
+    keywords: ["thermal", "paste", "heatsink", "cooler"],
+    question: "What is thermal paste and why is it needed?",
+    answer: "Thermal paste (thermal interface material) fills microscopic air pockets between the top of the CPU and the metal heat sink. Air is a poor heat conductor; thermal paste ensures efficient heat transfer from the processor to the cooler so the CPU does not overheat.",
+    lessonId: "assembly",
+    lessonTitle: "Computer Assembly Procedures",
+    route: "/library/assembly"
+  },
+  {
+    keywords: ["standoff", "motherboard", "tray", "short"],
+    question: "What are motherboard standoffs?",
+    answer: "Standoffs are small brass or metal spacers screwed into the computer case tray. The motherboard rests on top of them so the solder points on the back of the motherboard never touch the bare metal case, preventing electrical short circuits.",
+    lessonId: "assembly",
+    lessonTitle: "Computer Assembly Procedures",
+    route: "/library/assembly"
+  },
+  {
+    keywords: ["order", "disassembly", "sequence", "steps"],
+    question: "What is the proper preparation sequence before disassembly?",
+    answer: "Before disassembly: 1) Unplug power and peripherals. 2) Clear and clean the workspace. 3) Put on your anti-static wrist strap. 4) Prepare screwdrivers and parts cups. 5) Document and photograph cable connections. 6) Remove the side panels carefully.",
+    lessonId: "disassembly",
+    lessonTitle: "Safe Disassembly Procedures",
+    route: "/library/disassembly"
+  }
 ];
+
+function scoreQuery(query, text) {
+  const words = String(query).toLowerCase().match(/[\p{L}\p{N}]{2,}/gu) || [];
+  const target = String(text).toLowerCase();
+  let score = 0;
+  for (const w of words) {
+    if (target.includes(w)) score += 1;
+  }
+  return score;
+}
+
+export function searchOfflineKnowledge(query) {
+  const clean = String(query || "").trim();
+  if (!clean) return null;
+
+  // 1. Check common authored questions
+  let bestCommon = null;
+  let bestCommonScore = 0;
+  for (const item of COMMON_QUESTIONS) {
+    const s = scoreQuery(clean, `${item.question} ${item.keywords.join(" ")} ${item.answer}`);
+    if (s > bestCommonScore) {
+      bestCommonScore = s;
+      bestCommon = item;
+    }
+  }
+
+  // 2. Check Glossary
+  let bestGlossary = null;
+  let bestGlossaryScore = 0;
+  for (const term of GLOSSARY) {
+    const s = scoreQuery(clean, `${term.term} ${term.definition}`);
+    if (s > bestGlossaryScore) {
+      bestGlossaryScore = s;
+      bestGlossary = term;
+    }
+  }
+
+  // 3. Search knowledge entries (module passages)
+  const matchedSources = [];
+  if (Array.isArray(knowledgeEntries)) {
+    const scored = knowledgeEntries.map((entry) => {
+      const s = scoreQuery(clean, `${entry.title} ${entry.text}`);
+      return { entry, score: s };
+    }).filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map((x) => x.entry);
+    matchedSources.push(...scored);
+  }
+
+  return {
+    common: bestCommonScore >= 1 ? bestCommon : null,
+    glossary: bestGlossaryScore >= 1 ? bestGlossary : null,
+    sources: matchedSources
+  };
+}
 
 export function assistantPage() {
   return `<div class="page-shell section assistant-page">
-    <div class="assistant-intro">
-      <p class="eyebrow">TechPro assistant</p>
-      <h1>Ask about your module</h1>
-      <p class="lede">A study helper grounded in the TechPro lessons. Answers stream as they are generated. Check the linked lesson and ask your instructor when a safety step is uncertain.</p>
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">Offline helper · No internet needed</p>
+        <h1>Ask TechPro</h1>
+        <p class="lede">Search module lessons, hardware definitions, and safety tips instantly from this computer. No server, no accounts, and no AI key.</p>
+      </div>
+      <div class="assistant-head-art" aria-hidden="true">${companionArt("thinking", { size: 90 })}</div>
+    </header>
+
+    <div class="card card-pad search-box-card">
+      <form class="assistant-search-form" data-search-form>
+        <label for="offlineQuery" class="visually-hidden">Ask a question or search a topic</label>
+        <div class="input-with-button">
+          <input class="input" id="offlineQuery" name="query" type="text" placeholder="e.g. What does RAM do? or Why use thermal paste?" autocomplete="off" autofocus>
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
+
+      <div class="suggestions-row mt-3">
+        <span class="tiny faint">Popular topics:</span>
+        ${COMMON_QUESTIONS.slice(0, 5).map((q) => `
+          <button class="chip chip-sm" type="button" data-prompt="${esc(q.question)}">${esc(q.question)}</button>
+        `).join("")}
+      </div>
     </div>
-    <section class="card assistant-card" data-assistant-root aria-live="polite"><p class="card-pad">Checking your sign-in…</p></section>
+
+    <section class="assistant-results-stage" data-results-stage aria-live="polite">
+      <!-- Default state: helpful hints -->
+      <div class="assistant-empty-prompt card card-pad">
+        <p class="eyebrow">Quick tips</p>
+        <p>Type any keyword or question above to find answers directly from the DepEd Computer Systems Servicing module. Everything runs locally on this device.</p>
+        <div class="cluster mt-2">
+          <a class="btn btn-ghost btn-sm" href="#/library">Browse Library</a>
+          <a class="btn btn-ghost btn-sm" href="#/play/pc-lab">Go to PC Lab</a>
+        </div>
+      </div>
+    </section>
   </div>`;
 }
 
-function createConversationId() {
-  return crypto.randomUUID().replaceAll("-", "");
-}
-
-function makeMessage(message, index, state, onFeedback) {
-  const article = document.createElement("article");
-  article.className = `assistant-message ${message.role === "user" ? "is-user" : "is-assistant"}`;
-  const who = document.createElement("p");
-  who.className = "assistant-message-label";
-  if (message.role === "user") {
-    who.textContent = "You";
-  } else {
-    const avatar = document.createElement("span");
-    avatar.className = "assistant-avatar";
-    avatar.setAttribute("aria-hidden", "true");
-    avatar.innerHTML = companionArt(message.pending ? "thinking" : "happy", { size: 28 });
-    const name = document.createElement("span");
-    name.textContent = companionName();
-    who.append(avatar, name);
-  }
-  const body = document.createElement("p");
-  body.className = "assistant-message-text";
-  body.textContent = message.text || "";
-  article.append(who, body);
-
-  if (message.role === "model" && Array.isArray(message.sources) && message.sources.length) {
-    const sources = document.createElement("div");
-    sources.className = "assistant-sources";
-    const label = document.createElement("span");
-    label.textContent = "From the module:";
-    sources.append(label);
-    message.sources.forEach((source) => {
-      if (!source || typeof source.title !== "string" || typeof source.route !== "string" || !source.route.startsWith("/library/")) return;
-      const link = document.createElement("a");
-      link.href = source.route;
-      link.textContent = source.title;
-      sources.append(link);
-    });
-    article.append(sources);
-  }
-
-  if (message.role === "model" && message.text) {
-    const copyButton = document.createElement("button");
-    copyButton.type = "button";
-    copyButton.className = "assistant-copy";
-    copyButton.textContent = "Copy response";
-    copyButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(message.text);
-        copyButton.textContent = "Copied";
-      } catch (error) {
-        console.warn("Could not copy the assistant response.", error);
-        copyButton.textContent = "Select text to copy";
-      }
-    });
-    article.append(copyButton);
-  }
-
-  if (message.role === "model" && Number.isInteger(index) && !state.streaming && !message.pending) {
-    const feedback = document.createElement("div");
-    feedback.className = "assistant-feedback";
-    const label = document.createElement("span");
-    label.textContent = message.feedback ? "Thanks for your feedback." : "Was this helpful?";
-    feedback.append(label);
-    if (!message.feedback) {
-      for (const [rating, text] of [["helpful", "Yes"], ["not-helpful", "Not yet"]]) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = text;
-        button.addEventListener("click", () => onFeedback(index, rating, button));
-        feedback.append(button);
-      }
-    }
-    article.append(feedback);
-  }
-  return article;
-}
-
 export function mountAssistant(root) {
-  const container = root.querySelector("[data-assistant-root]");
-  const requestedLesson = new URLSearchParams(location.search).get("lesson");
-  const contextLesson = LESSONS.find((lesson) => lesson.id === requestedLesson) || null;
-  const state = {
-    user: null, conversationId: "", messages: [], streaming: false, error: "", notice: "",
-    contextId: contextLesson?.id || "", pendingAction: ""
-  };
-  let mounted = true;
+  const form = root.querySelector("[data-search-form]");
+  const input = root.querySelector("#offlineQuery");
+  const stage = root.querySelector("[data-results-stage]");
 
-  const render = () => {
-    if (!mounted || !container) return;
-    if (!state.user) {
-      container.innerHTML = `
-        <div class="card-pad assistant-locked">
-          <h2>Sign in to start a conversation</h2>
-          <p>Sign-in keeps your chat history private to your TechPro account.</p>
-          ${state.error ? `<p class="assistant-status is-error" role="alert">${esc(state.error)}</p>` : ""}
-          <a class="btn btn-primary mt-3" href="/account">Sign in or create an account</a>
-        </div>`;
-      return;
+  const executeSearch = (query) => {
+    const q = String(query || "").trim();
+    if (!q) return;
+
+    if (input) input.value = q;
+    const res = searchOfflineKnowledge(q);
+    if (!stage) return;
+
+    let html = "";
+
+    // Primary answer if found
+    if (res.common) {
+      html += `
+        <article class="card card-pad assistant-result-card is-primary">
+          <p class="eyebrow">Answer from TechPro</p>
+          <h2 style="font-size:1.25rem;margin-top:0.25rem">${esc(res.common.question)}</h2>
+          <p class="assistant-answer-text mt-2" style="font-size:1.05rem;line-height:1.6">${esc(res.common.answer)}</p>
+          <div class="cluster mt-3">
+            <a class="btn btn-primary btn-sm" href="#${res.common.route}">Open ${esc(res.common.lessonTitle)}</a>
+            <button class="btn btn-ghost btn-sm" type="button" data-copy-btn>Copy answer</button>
+          </div>
+        </article>
+      `;
     }
-    container.innerHTML = `
-      <div class="assistant-toolbar">
-        <div><span class="assistant-signed-in">Signed in as ${esc(state.user.email || "TechPro learner")}</span>
-          ${contextLesson ? `<span class="assistant-context">Lesson context: ${esc(contextLesson.title)}</span>` : ""}
-          <p class="assistant-status${state.error ? " is-error" : ""}" data-assistant-status role="status" aria-live="polite">${esc(state.error || state.notice)}</p></div>
-        <button class="btn btn-ghost" type="button" data-new-chat ${state.streaming ? "disabled" : ""}>New chat</button>
-      </div>
-      <div class="assistant-log" data-assistant-log aria-label="Conversation"></div>
-      <div class="assistant-suggestions"><span>Try asking</span>${SUGGESTED_PROMPTS.map((item, index) => `<button type="button" data-suggestion="${index}" ${state.streaming ? "disabled" : ""}>${esc(item.label)}</button>`).join("")}</div>
-      <form class="assistant-form" data-assistant-form>
-        <label for="assistant-question">Your question</label>
-        <textarea id="assistant-question" name="question" maxlength="${MAX_QUESTION_LENGTH}" rows="3" placeholder="For example: Why should I label cables before disassembly?" required ${state.streaming ? "disabled" : ""}></textarea>
-        <div class="assistant-form-actions"><span>Up to ${MAX_QUESTION_LENGTH} characters · Do not include passwords or private information.</span>
-          <button class="btn btn-primary" type="submit" ${state.streaming ? "disabled" : ""}>${state.streaming ? "Thinking…" : "Ask"}</button></div>
-      </form>
-      <p class="assistant-disclaimer">AI can make mistakes. Use the linked lesson as your reference. Follow your instructor and manufacturer safety instructions.</p>
-    `;
-    const log = container.querySelector("[data-assistant-log]");
-    state.messages.forEach((message, index) => log.append(makeMessage(message, message.saved ? index : null, state, sendFeedback)));
-    log.scrollTop = log.scrollHeight;
-    container.querySelector("[data-new-chat]")?.addEventListener("click", newChat);
-    container.querySelector("[data-assistant-form]")?.addEventListener("submit", sendQuestion);
-    container.querySelectorAll("[data-suggestion]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const prompt = SUGGESTED_PROMPTS[Number(button.dataset.suggestion)];
-        const textarea = container.querySelector("[name='question']");
-        if (!prompt || !textarea) return;
-        textarea.value = prompt.prompt;
-        state.pendingAction = prompt.action || "";
-        textarea.focus();
-      });
-    });
-  };
 
-  const userToken = async () => {
-    if (!state.user) throw new Error("Sign in again to continue.");
-    return state.user.getIdToken();
-  };
-
-  const apiRequest = async (url, options = {}) => {
-    const token = await userToken();
-    const response = await fetch(url, {
-      ...options,
-      headers: { Authorization: `Bearer ${token}`, ...(options.body ? { "Content-Type": "application/json" } : {}), ...options.headers }
-    });
-    if (!response.ok) {
-      let payload = {};
-      try { payload = await response.json(); } catch { /* a streaming response may not be JSON */ }
-      throw new Error(payload.error || `The request failed (${response.status}).`);
+    // Glossary match
+    if (res.glossary && (!res.common || res.glossary.term.toLowerCase() !== res.common.question.toLowerCase())) {
+      html += `
+        <article class="card card-pad assistant-result-card">
+          <p class="eyebrow">Glossary definition</p>
+          <h3 style="font-size:1.15rem">${esc(res.glossary.term)}</h3>
+          <p class="mt-1">${esc(res.glossary.definition)}</p>
+          <div class="cluster mt-2">
+            <a class="btn btn-soft btn-sm" href="#/library/${res.glossary.lesson}">Read related lesson</a>
+          </div>
+        </article>
+      `;
     }
-    return response;
-  };
 
-  const loadHistory = async () => {
-    const response = await apiRequest(`/api/assistant/history?conversation=${encodeURIComponent(state.conversationId)}`);
-    const payload = await response.json();
-    state.messages = Array.isArray(payload.messages)
-      ? payload.messages.map((message) => ({ ...message, saved: true }))
-      : [];
-    state.error = "";
-    render();
-  };
-
-  async function sendFeedback(index, rating, button) {
-    button.disabled = true;
-    try {
-      await apiRequest("/api/assistant/feedback", {
-        method: "POST",
-        body: JSON.stringify({ conversationId: state.conversationId, messageIndex: index, rating })
-      });
-      if (state.messages[index]) state.messages[index].feedback = rating;
-      state.error = "";
-    } catch (error) {
-      state.error = error.message;
+    // Module source excerpts
+    if (res.sources && res.sources.length > 0) {
+      html += `
+        <div class="card card-pad mt-3">
+          <p class="eyebrow">Related module sections</p>
+          <div class="stack-sm mt-2">
+            ${res.sources.map((src) => `
+              <div class="module-source-item" style="padding:0.75rem 0;border-bottom:1px solid var(--line)">
+                <strong>${esc(src.title)}</strong>
+                <p class="tiny text-muted mt-1" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${esc(src.text)}</p>
+                <a class="btn btn-ghost btn-sm mt-2" href="#${src.route}">Go to lesson section</a>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
     }
-    render();
-  }
 
-  async function newChat() {
-    const oldId = state.conversationId;
-    try {
-      await apiRequest(`/api/assistant/history?conversation=${encodeURIComponent(oldId)}`, { method: "DELETE" });
-      state.conversationId = createConversationId();
-      localStorage.setItem(`tp:assistant:conversation:${state.user.uid}`, state.conversationId);
-      state.messages = [];
-      state.error = "";
-      state.notice = "Started a new conversation.";
-    } catch (error) {
-      state.error = error.message;
+    if (!res.common && !res.glossary && (!res.sources || res.sources.length === 0)) {
+      html = `
+        <div class="card card-pad" role="status">
+          <p class="eyebrow">No direct match</p>
+          <h2>No matching module topic found for "${esc(q)}"</h2>
+          <p class="mt-2">Try searching for core hardware terms like CPU, RAM, Power Supply, Motherboard, or Operating System.</p>
+          <div class="cluster mt-3">
+            <a class="btn btn-primary btn-sm" href="#/library">Explore all lessons</a>
+            <a class="btn btn-ghost btn-sm" href="#/play">Try a game</a>
+          </div>
+        </div>
+      `;
     }
-    render();
-  }
 
-  async function sendQuestion(event) {
-    event.preventDefault();
-    if (state.streaming || !navigator.onLine) {
-      state.error = navigator.onLine ? "" : "The assistant needs an internet connection. Your saved study plan remains available offline.";
-      render();
-      return;
-    }
-    const form = event.currentTarget;
-    const question = String(new FormData(form).get("question") || "").trim();
-    if (!question) return;
+    stage.innerHTML = html;
 
-    state.messages.push({ role: "user", text: question });
-    const responseMessage = { role: "model", text: "", sources: [], pending: true };
-    state.messages.push(responseMessage);
-    state.streaming = true;
-    state.error = "";
-    state.notice = "Generating a module-grounded answer…";
-    const action = state.pendingAction;
-    state.pendingAction = "";
-    const plan = get().plan;
-    const tasks = Array.isArray(plan.tasks) ? plan.tasks : [];
-    const planSummary = {
-      completed: tasks.filter((task) => task.completed).length,
-      total: tasks.length,
-      minutes: (Array.isArray(plan.sessions) ? plan.sessions : [])
-        .reduce((sum, session) => sum + (Number(session.minutes) || 0), 0)
-    };
-    render();
-
-    try {
-      const response = await apiRequest("/api/assistant", {
-        method: "POST",
-        body: JSON.stringify({
-          message: question,
-          conversationId: state.conversationId,
-          contextId: state.contextId,
-          action,
-          ...(action === "study-plan" ? { planSummary } : {})
-        })
-      });
-      if (!response.body) throw new Error("Streaming is unavailable in this browser.");
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-      let eventName = "";
-      let dataLines = [];
-      const handleEvent = async () => {
-        const data = dataLines.join("\n");
-        dataLines = [];
-        if (eventName === "sources") {
-          try { responseMessage.sources = JSON.parse(data); } catch { throw new Error("The assistant returned invalid source data."); }
-        } else if (eventName === "delta") {
-          try { responseMessage.text += JSON.parse(data); } catch { throw new Error("The assistant returned invalid response data."); }
-        } else if (eventName === "error") {
-          let payload = {};
-          try { payload = JSON.parse(data); } catch { /* the server provides a safe generic message */ }
-          throw new Error(payload.error || "The assistant could not finish that response.");
-        }
-        if (eventName !== "done") {
-          state.notice = responseMessage.text ? "Answer is streaming…" : "Finding the right lesson…";
-          render();
-        }
-        eventName = "";
-      };
-
-      while (true) {
-        const { value, done } = await reader.read();
-        buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
-        const blocks = buffer.split(/\r?\n\r?\n/);
-        buffer = blocks.pop() || "";
-        for (const block of blocks) {
-          for (const line of block.split(/\r?\n/)) {
-            if (line.startsWith("event:")) eventName = line.slice(6).trim();
-            else if (line.startsWith("data:")) dataLines.push(line.slice(5).trimStart());
-          }
-          await handleEvent();
-        }
-        if (done) break;
+    stage.querySelector("[data-copy-btn]")?.addEventListener("click", (e) => {
+      const textToCopy = res.common?.answer || "";
+      if (textToCopy) {
+        navigator.clipboard?.writeText(textToCopy);
+        e.target.textContent = "Copied!";
+        setTimeout(() => { e.target.textContent = "Copy answer"; }, 1500);
       }
-      responseMessage.pending = false;
-      await loadHistory();
-      state.notice = "";
-    } catch (error) {
-      responseMessage.pending = false;
-      state.error = error.message || "The assistant could not finish that response.";
-      state.notice = "";
-      render();
-    } finally {
-      state.streaming = false;
-      render();
-    }
-  }
-
-  const stop = observeAuth(async (user, error) => {
-    state.user = user;
-    state.error = error ? error.message : "";
-    if (!user) {
-      state.conversationId = "";
-      state.messages = [];
-      render();
-      return;
-    }
-    try {
-      const key = `tp:assistant:conversation:${user.uid}`;
-      state.conversationId = localStorage.getItem(key) || createConversationId();
-      localStorage.setItem(key, state.conversationId);
-      await loadHistory();
-    } catch (loadError) {
-      state.error = loadError.message || "Conversation history could not be loaded.";
-      render();
-    }
-  });
-  render();
-  return () => {
-    mounted = false;
-    stop();
+    });
   };
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    executeSearch(input?.value);
+  });
+
+  root.querySelectorAll("[data-prompt]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      executeSearch(btn.dataset.prompt);
+    });
+  });
 }

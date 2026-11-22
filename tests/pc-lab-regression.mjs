@@ -351,7 +351,10 @@ for (const run of cases) {
   page.on("console", (message) => { if (message.type() === "error") errors.push(`console: ${message.text()}`); });
 
   console.log(`\nRUN ${run.label} ${run.viewport.width}x${run.viewport.height} (${runs} pass${runs > 1 ? "es" : ""})`);
-  await page.goto(`${baseUrl}/play/pc-lab?debug=1`, { waitUntil: "domcontentloaded", timeout: 45000 });
+  const targetUrl = baseUrl.startsWith("file://")
+    ? (baseUrl.includes("#") ? baseUrl : `${baseUrl}#/play/pc-lab?debug=1`)
+    : (baseUrl.includes("#") ? baseUrl : `${baseUrl}/#/play/pc-lab?debug=1`);
+  await page.goto(targetUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
   await page.waitForFunction(() => Boolean(window.__pcLab?.view?.bench), null, { timeout: 25000 });
   await page.evaluate(() => document.querySelector(".pclab-stage")?.scrollIntoView({ block: "center" }));
   await page.waitForTimeout(400);

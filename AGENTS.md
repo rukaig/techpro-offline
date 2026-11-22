@@ -1,48 +1,54 @@
-# AGENTS.md — TechPro working rules
+# AGENTS.md — TechPro Working Rules (100% Offline)
 
-TechPro is a learning site for DepEd CSS NC II, COC 1, Module 1: Assemble Computer Hardware.
-It is a local-first static client (`index.html`, `src/`) served by `server.js` with optional Firebase and Gemini features.
-The full product spec lives in `docs/MASTER_PROMPT.md`; read it before any phase B–E work. If it is missing, stop and ask for it instead of guessing.
+TechPro is an offline-first learning application for DepEd CSS NC II, COC 1, Module 1: Assemble Computer Hardware.
+It runs completely standalone without internet, servers, accounts, or external APIs.
 
-## Scope lock
+---
 
-- Do not touch auth, server routes, the theme engine, or unrelated games unless a proven root cause lives there. State the evidence and get approval first.
-- Never claim something works unless you actually ran it and saw the result.
-- `npm start` and the Render deploy must keep working. Keep `package.json` and `server.js` at the repo root and do not change the start command.
-- Verify before trusting: previous session notes, README claims, and audit passes are claims, not facts.
-- Keep changes consistent with the existing structure, naming, and style. Prefer the smallest change that fixes the proven cause.
+## 1. Non-Negotiable Rule: Zero Network at Runtime
 
-## Secrets
+- **No external network calls:** The application must never make requests to non-local origins.
+- **No cloud dependencies:** No Firebase, no Firestore, no Gemini API, no Google APIs, no CDNs, no Google Fonts, no analytics.
+- **Three run modes must always work:**
+  1. `file://dist/index.html` (double-clicking from file manager / USB stick)
+  2. `http://localhost:3000` via `npm start` (local Node.js http server)
+  3. Installed PWA on desktop
+- **Build output:** Self-contained in `dist/`, packaged into `TechPro-offline.zip`.
+- **Classic scripts:** Shipped browser code in `dist/` is bundled as an IIFE classic script (`app.js`). No runtime ES `import` or `type="module"` in shipped files.
+- **Hash routing:** All routes use `#/<path>` so direct links and navigation work under `file://`.
+- **Secrets rule:** Never store, commit, or prompt for any API keys or `.env` files.
 
-- Never print, log, echo, commit, or paste any API key, service-account JSON, or `.env` value.
-- `.env` must stay in `.gitignore`. Only placeholders belong in `.env.example`.
-- The Gemini key is read only on the server from `process.env.GEMINI_API_KEY`.
-- Never ask the user to paste a key into chat. If one is pasted anyway, do not repeat it; tell the user to rotate it.
+---
 
-## Run and verify
+## 2. Removal List (Preserved Offline Replacements)
+
+- **Firebase Auth & Firestore:** Replaced by local multi-profile store (`src/services/store.js`) backed by `localStorage` + `IndexedDB` with fallback to in-memory mode.
+- **Gemini Assistant:** Replaced by local search helper (`src/pages/assistant.js`) searching bundled module passages (`knowledge/index.json`), glossary (`src/data/glossary.js`), and authored technical FAQs.
+- **Global Leaderboard:** Replaced by local device ranks (`src/pages/ranks.js`) comparing profiles on this device.
+- **Cloud Teacher Sync:** Replaced by offline Class Summary (`src/pages/teacher.js`) allowing teachers to import student backup JSONs and export sanitized CSVs.
+- **Server:** Express replaced by built-in Node `http` static server (`scripts/server.mjs`).
+
+---
+
+## 3. Run and Verify
 
 ```sh
-npm start                 # builds knowledge + games, serves on :3000
-npm test                  # node:test unit tests
-npm run check             # content checks
-npm run audit             # UI audit (Chromium required)
-npm run audit:routes      # every route at 375/1280 + screenshots
-AUDIT_FAST=1 npm run audit
-node tests/pc-lab-regression.mjs
+npm run build              # Builds knowledge, games, bundles app.js and CSS into dist/
+npm run build:offline      # Builds dist/ and packages TechPro-offline.zip with README.txt
+npm start                  # Starts lightweight local server on http://localhost:3000
+npm start -- --lan         # Starts classroom hotspot mode and prints local Wi-Fi IP
+npm test                   # Runs unit tests (store, module accuracy)
+npm run check              # Checks required content files and module terms
+npm run check:offline      # Verifies 0 remote URLs, 0 cloud keywords, 0 ES modules in dist
+npm run test:offline       # Playwright offline suite (file:// and localhost viewports)
+npm run test:pclab         # PC Lab regression test
 ```
 
-Playwright browsers are installed under `~/.cache/ms-playwright`; `/usr/bin/chromium` also exists.
-Every UI item must be checked at **375px touch** and **1280px mouse**, plus the relevant theme modes.
+---
 
-## Working protocol
+## 4. Working Protocol
 
-1. One item at a time. Reproduce the bug before fixing it.
-2. Run the relevant tests and the UI audit after each item. Fix regressions before moving on.
-3. Commit with a clear message (if the workspace is a git repo).
-4. Update `docs/BUILD_STATUS.md` after each item so another AI can resume from that file alone.
-5. Record confirmed causes in `docs/PCLAB_BUGFIX.md` and audit findings in `docs/PROGRESS_AUDIT.md`.
-6. Keep chat replies short; put detail in docs.
-
-## Current status source of truth
-
-`docs/BUILD_STATUS.md` is the resume point. Read it first, then verify its claims against the running app.
+1. Verify before trusting: Run tests and checks rather than assuming previous claims.
+2. Verify every UI item at **375px touch** and **1280px mouse**.
+3. Zero console errors and zero non-local origin requests across all routes.
+4. Keep chat replies concise; document architecture and technical details in `docs/OFFLINE.md` and `docs/BUILD_STATUS.md`.
