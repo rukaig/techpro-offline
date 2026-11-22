@@ -1,31 +1,16 @@
 # TechPro Build Status — 100% Offline Conversion
 
 Last updated: 2026-11-22.
-Status: **Offline conversion complete; engaging game redesign in progress** (Branch `offline-only`).
+Status: **Offline conversion and interactive rebuild complete** (Branch `offline-only`).
 
-## RESUME HERE: Case Files and remaining engagement games
+## Interactive coverage
 
-Completed:
-- Sort Station: conveyor sorting arcade with five difficulty waves, combo, jam meter, hint, and local progress.
-- Which Computer?: swipe-card strategy game for Desktop, Laptop, Tablet, and Server needs.
-- Shared module game data: 24 vocabulary terms and 10 sourced facts.
-- Shared seeded shuffle, normalization, difficulty, star, and seed-code helpers.
-- Phone smoke tests reached results screens for both games with zero console errors.
-- Software Mission: customer help-desk service arcade with patience, tips, tool badges, hints, and local XP.
-- Word Bank Chain: ten-link puzzle with term bank, wrong-link feedback, hint, and local XP.
-- Word Hunt: seeded word search with straight-line placement, found-word tracking, and local XP.
-- Tech Wordle: daily seeded guess-the-term game with scored keyboard, clue, and local XP.
-- Software Sorter: 18 module-grounded programs dropped into System software, Utility, or Application columns with animated stacking, hints, and local XP.
-- Order Rush: six-door escape sequence in the module's safe preparation order with a 90-second clock and local XP.
-- Spot the Mistake: six hidden unsafe practices with exact corrections, misclick penalties, hint pulse, and local XP.
-- All three interrupted games are now routed in `src/app/main.js`, styled at 375px touch and 1280px mouse, and covered by Playwright tests that play them to their results screens in both `file://` and `http://localhost` modes.
-- Fixed a route-cleanup leak in Software Mission: its `setInterval` kept writing to removed DOM after navigation. All timed games now return cleanup functions to the router.
+All 18 catalogue activities in `src/data/activities.js` now resolve to a real, playable interactive. The Play hub groups and counts come from that same catalogue, so no card can link to a placeholder or back to itself.
 
-Next:
-- Case Files
-- Flashcards + Quick Recap
-- Tech Check-Up and Reflection Journal
-- PC Anatomy Explorer and Disassembly Mode engagement passes
+- Existing drills: Pre-test, Post-test, Sort Station, Order Rush, Software Mission, Spot the Mistake, Which Computer?, Software Sorter, Word Chain, Word Hunt, and Tech Wordle.
+- New module activities (`src/games/module-activities.js`): PC Anatomy Explorer, Tech Check-Up, Case Files, Flashcards + Quick Recap, and Reflection Journal.
+- PC Lab (`src/games/pc-lab-workbench.js`): a self-contained 2D workbench with a 10-step guided build and a real 10-step disassembly drill. The old dead 3D/camera/quality controls are gone; feedback explains every correct and incorrect action.
+- Shared game shell styling (`.game-head`, `.best-card`, `.game-bar`, result panel, and `.study-*`) now lives in `games.css` instead of being scoped to one game, so every interactive has the same spacing, back bar, and result layout.
 
 ---
 
@@ -33,13 +18,13 @@ Next:
 
 | Gate / Test Suite | Result | Details |
 |---|---|---|
-| `npm test` | **PASS (10/10)** | Multi-profile store, migrations, schema validation, DepEd module accuracy |
+| `npm test` | **PASS (38/38)** | Store, module accuracy, assistant retrieval, route integrity, and all game unit tests |
 | `npm run check` | **PASS** | 14 core source files, assets, and module terms verified |
 | `npm run check:offline` | **PASS** | 0 remote URLs, 0 cloud keywords, 0 ES modules in dist, 0 runtime fetches |
 | `npm run test:offline` | **PASS (8/8)** | Playwright suite covering file:// and http://localhost at 375x667 touch & 1280x800 mouse; 0 console errors, 0 non-local requests |
-| `npm run test:pclab` | **PASS** | PC Lab regression gate (L0 safety, L2 CPU, L4 RAM with tap, tap-tap, drag, rotate, hold) |
-| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.21 MB total) with `README.txt` |
-| `npm run audit` | **No runtime errors** | 0 browser errors, 0 contrast failures. The three new games add no overflow, bounds, or horizontal-scroll findings; all game routes still report the same pre-existing `textPadding` notices from the shared game header. |
+| `npm run test:pclab` | **PASS** | PC Lab build + disassembly regression at 375px touch and 1280px mouse, including 44px action targets, local result state, and no horizontal overflow |
+| `npm run build:offline` | **PASS** | Produces `dist/` and `TechPro-offline.zip` (1.23 MB total) with `README.txt` |
+| `npm run audit` | **PASS** | 1,404 route states: 0 horizontal scroll, 0 overflow, 0 bounds, 0 spacing/contrast/alignment findings, 0 browser errors |
 
 ---
 
@@ -63,8 +48,10 @@ Next:
    - Summarizes student names, sections, XP, stars, exam best scores, and games completed.
    - Exports safe class summary CSVs (neutralizing formula injection characters `=+-@`).
 6. **Ask TechPro Offline Helper (`src/pages/assistant.js`):**
-   - Replaced cloud Gemini API with a 100% offline search helper.
+   - Replaced cloud Gemini API with a 100% offline search helper; no keys, no fetch, no cloud service.
    - Grounded on bundled module passages (`knowledge/index.json`), glossary (`src/data/glossary.js`), and authored FAQs.
+   - Uses tokenization, stopwords, synonyms, light stemming, and weighted scoring, then labels results by confidence instead of inventing an answer.
+   - `?lesson=<id>` opens a contextual explainer with lesson summary, glossary terms, key points, and links to related activities.
 7. **Offline Sharing & Server (`scripts/server.mjs`, `src/pages/sharing.js`):**
    - Tiny static server using Node.js built-in `http` module (`npm start`).
    - Classroom hotspot mode (`npm start -- --lan`) outputs local Wi-Fi IP for offline LAN sharing.
@@ -75,7 +62,8 @@ Next:
 
 The following online/cloud dependencies were completely removed:
 - **SDKs & Packages:** `@google/genai`, `firebase`, `firebase-admin`, `dotenv`, `express`, `compression`, `qrcode`.
-- **Files Deleted:** `firebase-config.js`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`, `.firebase/`, `.env.example`, `server/`, `tests/assistant.test.js`, `tests/server-assistant.test.js`, `scripts/assistant-smoke.mjs`, `src/services/firebase.js`, `src/services/leaderboard.js`.
+- **Files Deleted:** `firebase-config.js`, `firebase.json`, `firestore.rules`, `firestore.indexes.json`, `.firebase/`, `.env.example`, `server/`, `tests/server-assistant.test.js`, `scripts/assistant-smoke.mjs`, `src/services/firebase.js`, `src/services/leaderboard.js`.
+- `tests/assistant.test.js` was reintroduced as a pure-Node test for offline retrieval; it does not call a service or model.
 - **Shipped Code Check:** Verified with `npm run check:offline` that 0 mentions of `firebase`, `firestore`, `gemini`, `GEMINI_API_KEY`, `googleapis`, `gstatic`, `cdn`, `analytics` exist in `src/` or `dist/`.
 
 ---
@@ -89,8 +77,10 @@ The following online/cloud dependencies were completely removed:
 
 ## 5. Final Continuation Status
 
-- PC Lab regression passes at 375x667 touch and 1280x800 mouse, including L0, L2, and L4.
+- PC Lab regression passes at 375px touch and 1280px mouse for both the 10-step build and 10-step disassembly modes.
+- All 18 Play activities are playable; route integrity tests reject missing handlers, duplicate hub cards, and self-looping start buttons.
 - Legacy path URLs redirect to hash routes so relative assets and file:// operation remain intact.
-- Offline Playwright suite passes in file:// and localhost modes.
+- Offline Playwright suite passes in file:// and localhost modes at 375x667 touch and 1280x800 mouse.
+- UI audit passes all 1,404 route states with zero overflow, spacing, contrast, alignment, or browser-error findings.
 - `npm run check:offline` passes with zero remote resources and forbidden dependency mentions in shipped source.
-- Current package size is approximately 1.20 MB; `dist/` is approximately 1.8 MB.
+- Current package size is approximately 1.23 MB.

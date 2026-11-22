@@ -41,6 +41,8 @@ const ROUTES = [
   "#/play/software-mission",
   "#/play/spot-mistake",
   "#/play/which-computer",
+  "#/play/tech-wordle",
+  "#/play/word-hunt",
   "#/play/anatomy",
   "#/play/software-sorter",
   "#/play/case-files",
@@ -53,6 +55,7 @@ const ROUTES = [
   "#/exam/final",
   "#/leaderboard",
   "#/assistant",
+  "#/assistant?lesson=internal-hardware",
   "#/plan",
   "#/account",
   "#/teacher",
@@ -139,8 +142,22 @@ test("Full Offline Playwright Suite: file:// and http://localhost", async (t) =>
               await page.goto(fullUrl, { waitUntil: "domcontentloaded" });
               await page.waitForTimeout(100);
 
-              const hasHeading = await page.evaluate(() => Boolean(document.querySelector("h1")));
-              assert.ok(hasHeading, `Route ${r} must render an h1 heading`);
+              const routeState = await page.evaluate(() => ({
+                heading: Boolean(document.querySelector("h1")),
+                placeholder: Boolean(document.querySelector(".activity-page")),
+                cards: document.querySelectorAll("[data-activity-card]").length,
+                lessonContext: Boolean(document.querySelector(".assistant-lesson-card"))
+              }));
+              assert.ok(routeState.heading, `Route ${r} must render an h1 heading`);
+              if (r.startsWith("#/play/")) {
+                assert.ok(!routeState.placeholder, `Route ${r} must be a real interactive, not a placeholder`);
+              }
+              if (r === "#/play") {
+                assert.equal(routeState.cards, 18, "Play hub must show all 18 catalogue activities");
+              }
+              if (r === "#/assistant?lesson=internal-hardware") {
+                assert.ok(routeState.lessonContext, "Lesson query must open the contextual assistant explainer");
+              }
             }
 
             // 2. Play PC Lab and check bench presence

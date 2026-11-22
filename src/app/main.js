@@ -1,5 +1,6 @@
 import { mountChrome } from "./chrome.js";
 import { route, start, setNotFound } from "./router.js";
+import { esc } from "./ui.js";
 import { homePage, mountHome } from "../pages/home.js";
 import { libraryPage, lessonPage, mountLibrary } from "../pages/library.js";
 import { playPage, mountPlay } from "../pages/play.js";
@@ -20,6 +21,13 @@ import { techWordlePage, mountTechWordle } from "../games/tech-wordle.js";
 import { softwareSorterPage, mountSoftwareSorter } from "../games/software-sorter.js";
 import { orderRushPage, mountOrderRush } from "../games/order-rush.js";
 import { spotMistakePage, mountSpotMistake } from "../games/spot-mistake.js";
+import {
+  anatomyPage, mountAnatomy,
+  techCheckupPage, mountTechCheckup,
+  caseFilesPage, mountCaseFiles,
+  flashcardsPage, mountFlashcards,
+  reflectionPage, mountReflection
+} from "../games/module-activities.js";
 import { PRETEST, POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
 
@@ -69,10 +77,10 @@ route("/account", () => ({
   mount: mountAccount
 }));
 
-route("/assistant", () => ({
+route("/assistant", ({ query }) => ({
   title: "Ask TechPro · Offline helper",
-  html: assistantPage(),
-  mount: mountAssistant
+  html: assistantPage({ query }),
+  mount: (root) => mountAssistant(root, { query })
 }));
 
 route("/play/:activity", ({ params }) => {
@@ -140,6 +148,21 @@ route("/play/:activity", ({ params }) => {
       mount: mountSpotMistake
     };
   }
+  if (params.activity === "anatomy") {
+    return { title: "PC Anatomy Explorer · TechPro", html: anatomyPage(), mount: mountAnatomy };
+  }
+  if (params.activity === "tech-checkup") {
+    return { title: "Tech Check-Up · TechPro", html: techCheckupPage(), mount: mountTechCheckup };
+  }
+  if (params.activity === "case-files") {
+    return { title: "Case Files · TechPro", html: caseFilesPage(), mount: mountCaseFiles };
+  }
+  if (params.activity === "flashcards") {
+    return { title: "Flashcards + Quick Recap · TechPro", html: flashcardsPage(), mount: mountFlashcards };
+  }
+  if (params.activity === "reflection") {
+    return { title: "Reflection Journal · TechPro", html: reflectionPage(), mount: mountReflection };
+  }
   if (!activity) {
     return pageShell({
       title: "Activity not found",
@@ -155,16 +178,18 @@ route("/play/:activity", ({ params }) => {
     });
   }
 
+  // Defensive fallback only: every activity in the catalogue has a real
+  // implementation above. Never render a button that links back to itself.
   return pageShell({
-    title: `${activity.title} · TechPro`,
+    title: "Interactive not available",
     body: `
       <article class="card card-pad activity-page">
-        <p class="eyebrow">Interactive</p>
-        <h1>${activity.title}</h1>
-        <p class="lede">${activity.description}</p>
+        <p class="eyebrow">Not available on this device</p>
+        <h1>${esc(activity?.title || "This interactive")} is not ready yet</h1>
+        <p class="lede">Choose another activity from the play hub. All listed interactives work offline.</p>
         <div class="cluster mt-4">
-          <a class="btn btn-primary" href="#${activity.route}">Start ${activity.title}</a>
-          <a class="btn btn-ghost" href="#/play">Back to play</a>
+          <a class="btn btn-primary" href="#/play">Open all interactives</a>
+          <a class="btn btn-ghost" href="#/">Back home</a>
         </div>
       </article>
     `

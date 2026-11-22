@@ -57,9 +57,10 @@ Replaces cloud Firebase/Firestore with local-first, multi-tier durable storage:
 ## 3. Offline Helper (Ask TechPro)
 
 Replaces cloud Gemini AI assistant:
-- **Zero API Keys & Zero Network:** No models, no streaming server endpoints, no upstream timeouts.
+- **Zero API Keys & Zero Network:** No models, no streaming server endpoints, no upstream timeouts, and no `fetch()` in the assistant code.
 - **Knowledge Base:** Compiles module content passages (`knowledge/index.json`), complete glossary definitions (`src/data/glossary.js`), and pre-authored technical FAQs directly into the client bundle.
-- **Search Scoring:** Uses local tokenization and scoring (`retrieveKnowledge`) to match questions with relevant module sections and links learners directly to corresponding library lessons and practice benches.
+- **Search Scoring:** `searchOfflineKnowledge()` tokenizes the question, removes stopwords, canonicalizes synonyms, applies light stemming, and weights exact phrases and titles. It returns strong answers, glossary definitions, and clearly labelled "closest module sections" rather than inventing a response.
+- **Lesson Context:** `#/assistant?lesson=<id>` opens a bundled explainer for the lesson, including summary, key terms, "what to remember" points, and related offline activities.
 
 ---
 

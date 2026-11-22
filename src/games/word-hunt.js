@@ -5,11 +5,14 @@ import { esc } from "../app/ui.js";
 import vocab from "./data/vocab.json";
 import { generateWordSearch, todaySeed, seedCode } from "./engine/kit.js";
 
+// Terms are capped at nine letters so every word actually fits the 9×9 grid.
+// Longer module phrases are split into their key terms rather than silently
+// skipped by the placement engine.
 const CATEGORY_WORDS = {
-  Hardware: ["MOTHERBOARD", "PROCESSOR", "MEMORY", "KEYBOARD", "MONITOR", "MOUSE"],
-  Software: ["SOFTWARE", "OPERATING SYSTEM", "DEVICE DRIVER", "APPLICATION SOFTWARE", "FIRMWARE", "UTILITY SOFTWARE"],
-  Safety: ["ANTISTATICWRISTSTRAP", "LABELEDCONTAINER", "HEATSINK", "STANDOFFS", "RETAININGCLIPS"],
-  Procedures: ["ASSEMBLY", "DISASSEMBLY", "DOCUMENT", "SHUTDOWN", "UNPLUG", "LABEL"]
+  Hardware: ["PROCESSOR", "KEYBOARD", "MONITOR", "MOUSE", "MEMORY", "COOLER"],
+  Software: ["SOFTWARE", "FIRMWARE", "DRIVER", "UTILITY", "BROWSER", "BOOTING"],
+  Safety: ["STRAP", "UNPLUG", "SHUTDOWN", "HEATSINK", "STANDOFF", "CLIPS"],
+  Procedures: ["ASSEMBLY", "DOCUMENT", "SHUTDOWN", "UNPLUG", "LABEL", "CLEAN"]
 };
 
 export function wordHuntPage() {
@@ -50,7 +53,7 @@ export function mountWordHunt(root) {
   function build() {
     found = new Set();
     const words = CATEGORY_WORDS[theme];
-    puzzle = generateWordSearch({ words, size: 11, seed });
+    puzzle = generateWordSearch({ words, size: 9, seed });
     root.querySelector("[data-found]").textContent = "0";
     root.querySelector("[data-seed-code]").textContent = seedCode(seed);
     const grid = root.querySelector("[data-word-grid]");

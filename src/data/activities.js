@@ -234,7 +234,7 @@ export const ACTIVITIES = [
     id: "reflection",
     title: "Reflection Journal",
     tagline: "Make it yours",
-    description: "Finish the module's reflection prompts. Saved locally and synced when you sign in. Never auto-graded.",
+    description: "Finish the module's reflection prompts. Your writing stays on this device and is never graded.",
     route: "/play/reflection",
     icon: "edit",
     kind: "journal",

@@ -286,7 +286,7 @@ details > summary { list-style-position: outside; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 4px 11px;
+  padding: 8px 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   background: var(--surface);
