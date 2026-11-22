@@ -1,7 +1,21 @@
 # TechPro Build Status — 100% Offline Conversion
 
 Last updated: 2026-11-22.
-Status: **Fully Offline & Verified** (Branch `offline-only`, tagged from `online-version`).
+Status: **Offline conversion complete; engaging game redesign in progress** (Branch `offline-only`).
+
+## RESUME HERE: Software Mission and Word Bank Chain
+
+Completed:
+- Sort Station: conveyor sorting arcade with five difficulty waves, combo, jam meter, hint, and local progress.
+- Which Computer?: swipe-card strategy game for Desktop, Laptop, Tablet, and Server needs.
+- Shared module game data: 24 vocabulary terms and 10 sourced facts.
+- Shared seeded shuffle, normalization, difficulty, star, and seed-code helpers.
+- Phone smoke tests reached results screens for both games with zero console errors.
+
+Next:
+- Software Mission
+- Word Bank Chain
+- Word Hunt and Tech Wordle
 
 ---
 

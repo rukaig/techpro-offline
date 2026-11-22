@@ -18,6 +18,7 @@
     "audit": "node scripts/ui-audit.mjs",
     "audit:routes": "node scripts/route-check.mjs",
     "test:pclab": "node tests/pc-lab-regression.mjs",
+    "build:game-data": "node scripts/build-game-data.mjs",
     "test:offline": "node tests/offline.test.js"
   },
   "engines": {

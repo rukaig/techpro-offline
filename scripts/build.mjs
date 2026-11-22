@@ -15,6 +15,10 @@ console.log("Building TechPro 100% Offline...");
 console.log("-> Building knowledge index...");
 execSync("node scripts/build-knowledge.mjs", { cwd: root, stdio: "inherit" });
 
+// Step 1b: Verify shared game data
+console.log("-> Checking game data...");
+execSync("node scripts/build-game-data.mjs", { cwd: root, stdio: "inherit" });
+
 // Step 2: Build PC Lab game bundle
 console.log("-> Building games...");
 execSync("node scripts/build-games.mjs", { cwd: root, stdio: "inherit" });

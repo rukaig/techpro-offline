@@ -11,6 +11,8 @@ import { assistantPage, mountAssistant } from "../pages/assistant.js";
 import { ranksPage, mountRanks } from "../pages/ranks.js";
 import { teacherPage, mountTeacher } from "../pages/teacher.js";
 import { sharingPage, mountSharing } from "../pages/sharing.js";
+import { sortStationPage, mountSortStation } from "../games/sort-station.js";
+import { whichComputerPage, mountWhichComputer } from "../games/which-computer.js";
 import { PRETEST, POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
 
@@ -68,6 +70,20 @@ route("/assistant", () => ({
 
 route("/play/:activity", ({ params }) => {
   const activity = ACTIVITY_BY_ID[params.activity];
+  if (params.activity === "sort-station") {
+    return {
+      title: "Sort Station · TechPro",
+      html: sortStationPage(),
+      mount: mountSortStation
+    };
+  }
+  if (params.activity === "which-computer") {
+    return {
+      title: "Which Computer? · TechPro",
+      html: whichComputerPage(),
+      mount: mountWhichComputer
+    };
+  }
   if (!activity) {
     return pageShell({
       title: "Activity not found",

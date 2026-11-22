@@ -1,0 +1,12 @@
+[
+  {"fact":"Disconnect the computer from the power source before disassembling it.","source":"content/module.md","lesson":"disassembly"},
+  {"fact":"Use an antistatic wrist strap when handling internal components.","source":"content/module.md","lesson":"disassembly"},
+  {"fact":"Document and label cables before disconnecting them.","source":"content/module.md","lesson":"disassembly"},
+  {"fact":"Organize screws in a labeled container.","source":"content/module.md","lesson":"disassembly"},
+  {"fact":"Keep the work area clean and orderly.","source":"content/module.md","lesson":"disassembly"},
+  {"fact":"Random-access memory stores data temporarily while programs are running.","source":"content/module.md","lesson":"internal-hardware"},
+  {"fact":"The motherboard connects and supports internal computer components.","source":"content/module.md","lesson":"internal-hardware"},
+  {"fact":"The power supply provides electrical power to internal parts.","source":"content/module.md","lesson":"internal-hardware"},
+  {"fact":"The operating system manages hardware and provides a platform for other software.","source":"content/module.md","lesson":"system-software"},
+  {"fact":"A device driver lets the operating system communicate with hardware devices.","source":"content/module.md","lesson":"system-software"}
+]
