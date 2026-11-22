@@ -3,7 +3,7 @@
 Last updated: 2026-11-22.
 Status: **Offline conversion complete; engaging game redesign in progress** (Branch `offline-only`).
 
-## RESUME HERE: Tech Wordle
+## RESUME HERE: Software Sorter
 
 Completed:
 - Sort Station: conveyor sorting arcade with five difficulty waves, combo, jam meter, hint, and local progress.

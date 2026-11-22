@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { generateWordSearch, normalizeWord, seededShuffle, todaySeed, seedCode } from "../src/games/engine/kit.js";
+import { generateWordSearch, normalizeWord, seededShuffle, todaySeed, seedCode, scoreWordle } from "../src/games/engine/kit.js";
 
 test("word search placement is seeded and deterministic", () => {
   const a = generateWordSearch({ words: ["MOTHERBOARD", "PROCESSOR", "MEMORY"], size: 10, seed: 4821 });
@@ -27,4 +27,9 @@ test("seeded shuffle and daily seed are deterministic", () => {
   assert.deepEqual(seededShuffle(items, 99), seededShuffle(items, 99));
   assert.equal(todaySeed(new Date(2026, 10, 22)), todaySeed(new Date(2026, 10, 22)));
   assert.match(seedCode(4821), /^TP-\d{4}$/);
+});
+
+test("wordle duplicate letters are scored once per occurrence", () => {
+  assert.deepEqual(scoreWordle("AABB", "ABBA"), ["correct", "present", "correct", "present"]);
+  assert.deepEqual(scoreWordle("AAAA", "ABBA"), ["correct", "absent", "absent", "correct"]);
 });

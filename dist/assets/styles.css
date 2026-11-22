@@ -3726,6 +3726,93 @@ input:not([type]) {
   }
 }
 
+.wordle-clue {
+  max-width: 520px;
+  margin: 0.8rem auto;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.wordle-board {
+  --word-length: 5;
+  display: grid;
+  gap: 0.35rem;
+  justify-content: center;
+  margin: 0.8rem auto;
+}
+
+.wordle-row {
+  display: grid;
+  grid-template-columns: repeat(var(--word-length), minmax(42px, 52px));
+  gap: 0.35rem;
+}
+
+.wordle-cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line);
+  border-radius: 0.55rem;
+  background: var(--surface);
+  font: 900 clamp(1rem, 5vw, 1.35rem)/1 var(--font-ui);
+  text-transform: uppercase;
+}
+
+.wordle-cell.is-correct,
+.wordle-key.is-correct {
+  border-color: var(--success);
+  background: var(--success);
+  color: #fff;
+}
+
+.wordle-cell.is-present,
+.wordle-key.is-present {
+  border-color: #d97706;
+  background: #d97706;
+  color: #fff;
+}
+
+.wordle-cell.is-absent,
+.wordle-key.is-absent {
+  border-color: var(--line);
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.wordle-keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(24px, 1fr));
+  gap: 0.28rem;
+  max-width: 620px;
+  margin: 0.8rem auto 0;
+}
+
+.wordle-key {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 900;
+  padding: 0.25rem;
+}
+
+.wordle-key-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 480px) {
+  .wordle-row {
+    grid-template-columns: repeat(var(--word-length), minmax(38px, 46px));
+  }
+  .wordle-keyboard {
+    grid-template-columns: repeat(7, minmax(26px, 1fr));
+  }
+  .wordle-key-wide {
+    grid-column: span 2;
+  }
+}
+
 /* src/styles/exam.css */
 /* ==========================================================================
    Exam hub, quiz runner, and item review.

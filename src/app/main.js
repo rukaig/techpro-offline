@@ -16,6 +16,7 @@ import { whichComputerPage, mountWhichComputer } from "../games/which-computer.j
 import { softwareMissionPage, mountSoftwareMission } from "../games/software-mission.js";
 import { wordChainPage, mountWordChain } from "../games/word-chain.js";
 import { wordHuntPage, mountWordHunt } from "../games/word-hunt.js";
+import { techWordlePage, mountTechWordle } from "../games/tech-wordle.js";
 import { PRETEST, POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
 
@@ -106,6 +107,13 @@ route("/play/:activity", ({ params }) => {
       title: "Word Hunt · TechPro",
       html: wordHuntPage(),
       mount: mountWordHunt
+    };
+  }
+  if (params.activity === "tech-wordle") {
+    return {
+      title: "Tech Wordle · TechPro",
+      html: techWordlePage(),
+      mount: mountTechWordle
     };
   }
   if (!activity) {

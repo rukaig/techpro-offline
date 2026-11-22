@@ -99,3 +99,22 @@ export function generateWordSearch({ words, size = 12, seed = 4821 }) {
   }
   return { grid, placed };
 }
+
+export function scoreWordle(guess, answer) {
+  const g = normalizeWord(guess);
+  const a = normalizeWord(answer);
+  const result = Array(g.length).fill("absent");
+  const remaining = {};
+  for (let i = 0; i < a.length; i += 1) {
+    if (g[i] === a[i]) result[i] = "correct";
+    else remaining[a[i]] = (remaining[a[i]] || 0) + 1;
+  }
+  for (let i = 0; i < g.length; i += 1) {
+    if (result[i] === "correct") continue;
+    if (remaining[g[i]] > 0) {
+      result[i] = "present";
+      remaining[g[i]] -= 1;
+    }
+  }
+  return result;
+}

@@ -18,6 +18,21 @@ export const ACTIVITIES = [
     lesson: "computer-system"
   },
   {
+    id: "tech-wordle",
+    title: "Tech Wordle",
+    tagline: "Solve the module term",
+    description: "Guess the daily hardware or software term in six tries using module clues.",
+    route: "/play/tech-wordle",
+    icon: "grid",
+    kind: "word",
+    genre: "Word",
+    minutes: 3,
+    goal: "identify",
+    xp: 50,
+    color: "blue",
+    lesson: "review"
+  },
+  {
     id: "word-hunt",
     title: "Word Hunt",
     tagline: "Search the module vocabulary",
