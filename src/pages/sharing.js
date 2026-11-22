@@ -34,7 +34,7 @@ export function sharingPage() {
         <ol class="stack-sm mt-3" style="padding-left:1.2rem;line-height:1.6">
           <li>Open the folder in your file manager.</li>
           <li>Double-click <code>index.html</code>.</li>
-          <li>It opens immediately in your web browser. Everything works, including all 14 games, library, and exams!</li>
+          <li>It opens immediately in your web browser. Everything works, including every activity in both modules, the library, and all four exams!</li>
         </ol>
       </section>
 

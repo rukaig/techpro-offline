@@ -276,3 +276,7 @@
   .foot-grid { grid-template-columns: 1fr; }
   .foot-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+@media (max-width: 360px) {
+  .brand-sub { display: none; }
+}

@@ -57,3 +57,57 @@ id: basic-troubleshooting
 lesson: disassembly
 
 Start with safe, observable checks: confirm the computer is connected to a working outlet, check external cable connections, and note any error messages or indicator lights. Shut down and disconnect power before inspecting internal parts. Change one thing at a time and record what you observe. Do not guess at electrical repairs or continue if you notice heat, smoke, liquid, damaged wiring, or another hazard; disconnect power if safe and get qualified assistance.
+
+## BIOS and UEFI firmware
+id: bios-firmware
+lesson: bios-startup
+
+BIOS (Basic Input/Output System) and UEFI (Unified Extensible Firmware Interface) are firmware stored on the motherboard. They begin when the computer is turned on, initialise essential hardware, run the Power-On Self-Test, and search for a device containing startup files. Traditional BIOS is common in older computers and usually has a text-based, keyboard-driven setup utility. UEFI is common in modern computers and may offer a graphical interface, mouse support, security settings, hardware monitoring, and diagnostics. Many people still call the modern setup utility “BIOS”.
+
+## Power-On Self-Test and the startup path
+id: post-startup
+lesson: bios-startup
+
+Power-On Self-Test (POST) checks whether essential components such as the processor, memory, keyboard, graphics hardware, and storage devices are present and ready. A successful POST continues to the boot-device search. A failed POST may show an error message, beep code, diagnostic light, or stop the startup. The startup path is: power on, firmware initialises hardware, POST checks hardware, the firmware searches devices for startup files, and the operating system loads.
+
+## Accessing the setup utility safely
+id: setup-access
+lesson: bios-setup
+
+The BIOS/UEFI setup utility is opened by pressing a manufacturer-designated key shortly after power on. Common keys are Delete, Esc, F1, F2, F10, and F12. Watch the startup screen for the prompt; if the operating system loads, restart and press the key earlier. Navigate only the menus needed for the task, change only required settings, and save or discard changes correctly before leaving. Manufacturer instructions matter because keys and menu layouts vary by model.
+
+## System information and hardware detection
+id: hardware-detection
+lesson: bios-setup
+
+The System Information or Main menu can show the processor model, installed memory, storage devices, motherboard model, firmware version, and system date and time. Before installing an operating system, verify that the processor, RAM, internal drive, keyboard, mouse, and bootable USB installer are detected. An undetected part is not automatically defective: it may be loose, incompatible, disabled in firmware, or set incorrectly. Shut down and disconnect power before physically inspecting internal hardware.
+
+## System date and time
+id: date-time
+lesson: bios-setup
+
+Firmware maintains the basic date and time that the operating system uses at startup. Incorrect values can affect file timestamps, software installation, security certificates, scheduled tasks, and system updates. Enter the correct date and time and save before exiting. If the clock repeatedly becomes wrong after the computer is disconnected from power, inspect the motherboard CMOS battery.
+
+## Boot devices and boot order
+id: boot-order
+lesson: bios-boot
+
+A boot device is a device containing files needed to start the computer or begin operating system installation: an internal HDD or SSD, USB flash drive, optical disc, or network device. The device must be connected and detected. Boot order, also called boot priority, is the sequence the firmware checks. For daily use the internal drive with the operating system is usually first. For USB installation place the bootable USB first, then the internal drive, then optical or network devices. Restore the internal drive to first place after installation. A temporary boot menu can choose a device for one session.
+
+## Saving, discarding, and restoring defaults
+id: exit-options
+lesson: bios-boot
+
+Save Changes and Exit stores new firmware settings before leaving. Discard Changes and Exit closes the setup utility without applying changes made in that session. Load Setup Defaults restores recommended values but may also change previously configured options, so review before saving. Changes often do not take effect until the correct exit option is selected.
+
+## Safe BIOS/UEFI configuration
+id: bios-safety
+lesson: bios-safety
+
+Before changing firmware settings, identify the required configuration, record or photograph the original value, verify hardware compatibility, change only the necessary option, review the change, save correctly, and observe the restart. If the computer does not start properly, return to setup and restore the previous setting or load recommended defaults. Do not experiment with unfamiliar advanced, security, voltage, or processor settings; consult the manufacturer's guidance.
+
+## Hardware problems versus configuration problems
+id: hardware-vs-config
+lesson: bios-safety
+
+A hardware problem involves a physical part or connection: no lights or fans, a processor fan that does not spin, RAM that is not seated, a drive missing because a power or data cable is loose, or a weak CMOS battery. A configuration problem involves a setting: wrong boot priority, changes that were discarded before saving, or a UEFI/legacy boot mode that does not match the installation. Check simple connections and visible clues before replacing parts, and distinguish the two so the first action is safe and relevant.

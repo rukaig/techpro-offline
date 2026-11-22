@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "TechPro — Assemble Computer Hardware",
+  "name": "TechPro — COC 1 Modules 1 & 2",
   "short_name": "TechPro",
-  "description": "An interactive CSS NC II learning space: module lessons, a build-a-PC simulator, safety drills, quizzes, and a friendly chip companion.",
+  "description": "An offline CSS NC II learning space: assembly and BIOS/UEFI lessons, interactive drills, an exam for each module, and a friendly chip companion.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -21,8 +21,9 @@
   ],
   "shortcuts": [
     { "name": "PC Lab", "short_name": "PC Lab", "url": "./#/play/pc-lab", "description": "Build a desktop computer step by step." },
-    { "name": "Library", "short_name": "Library", "url": "./#/library", "description": "Read the module lessons." },
-    { "name": "Final Exam", "short_name": "Exam", "url": "./#/exam/final", "description": "Take the 15-item assessment." },
-    { "name": "Leaderboard", "short_name": "Ranks", "url": "./#/leaderboard", "description": "See the class rankings." }
+    { "name": "BIOS Setup Lab", "short_name": "BIOS Lab", "url": "./#/play/bios-setup-lab", "description": "Configure a simulated setup utility." },
+    { "name": "Library", "short_name": "Library", "url": "./#/library", "description": "Read the Module 1 and Module 2 lessons." },
+    { "name": "Exams", "short_name": "Exams", "url": "./#/exam", "description": "Choose a pre-test or post-test for either module." },
+    { "name": "Leaderboard", "short_name": "Ranks", "url": "./#/leaderboard", "description": "See the local device rankings." }
   ]
 }

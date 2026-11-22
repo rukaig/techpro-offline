@@ -27,6 +27,9 @@ test("every catalogue activity has a real route handler", () => {
   handled.add("disassembly");
   handled.add("pretest");
   handled.add("final");
+  // Module 2 exams use dedicated /exam/:bank routes.
+  handled.add("bios-pre");
+  handled.add("bios-final");
 
   const missing = ACTIVITIES.filter((activity) => !handled.has(activity.id));
   assert.deepEqual(missing.map((activity) => activity.id), [], `Unrouted activities: ${missing.map((a) => a.title).join(", ")}`);
@@ -55,4 +58,13 @@ test("assistant stays offline and accepts lesson context", () => {
 test("PC Lab is a self-contained simulation with no dead 3D controls", () => {
   assert.doesNotMatch(pcLabSource, /BUNDLE_URL|right-drag|3D bench|check the connection|three\.js/i);
   assert.match(pcLabSource, /pc-lab-workbench/);
+});
+
+test("both module exam banks are routed and stay hash-safe", () => {
+  assert.match(mainSource, /"bios-pretest": M2_PRETEST/);
+  assert.match(mainSource, /"bios-final": M2_POSTTEST/);
+  const module2Games = read("src/games/module2-activities.js");
+  assert.doesNotMatch(module2Games, /\bfetch\s*\(/);
+  assert.doesNotMatch(module2Games, /https?:\/\//);
+  assert.match(module2Games, /back:\s*"#\/play"/);
 });

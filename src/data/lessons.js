@@ -703,8 +703,295 @@ export const LESSONS = [
         `
       }
     ]
+  },
+  {
+    id: "bios-startup",
+    number: 10,
+    moduleId: "module2",
+    title: "BIOS, UEFI and the Startup Path",
+    kicker: "Module 2 · Lesson 1",
+    summary: "How motherboard firmware wakes the machine, checks hardware, and hands over to the operating system.",
+    minutes: 8,
+    goal: "explain",
+    objectives: [
+      "Explain what BIOS and UEFI do before the operating system loads",
+      "Describe POST and the devices it checks",
+      "Sequence the startup process from power on to operating system"
+    ],
+    keyTerms: ["bios", "uefi", "firmware", "post", "beep-code", "diagnostic-light"],
+    sections: [
+      {
+        id: "firmware-first",
+        title: "Firmware starts before the operating system",
+        html: `
+          <p>When you press the power button, the operating system does not appear at once. The processor first runs ${term("firmware")} stored on the motherboard. The two common kinds are ${term("bios")} and ${term("uefi")}. They initialise the processor, memory, keyboard, graphics, and storage devices, then look for the files needed to start the computer.</p>
+          <p>A technician can open the setup utility to inspect detected hardware, set the date and time, and change the boot order. Because these settings affect startup, make changes carefully and only when the task requires them.</p>
+          <div class="callout callout-tip"><span class="icon-slot" data-icon="lightbulb"></span><div><strong>Remember the path</strong>Power on → BIOS/UEFI initialises hardware → POST checks hardware → firmware searches for a boot device → operating system loads.</div></div>
+        `
+      },
+      {
+        id: "bios-vs-uefi",
+        title: "BIOS and UEFI are not identical",
+        html: `
+          <p>${term("bios")} stands for Basic Input/Output System. It is common in older systems, usually has a text-based setup screen, and is normally navigated with the keyboard. ${term("uefi")}, the Unified Extensible Firmware Interface, is common in modern systems. It may offer a graphical screen, mouse support, security settings, hardware monitoring, and diagnostics.</p>
+          <div class="table-wrap"><table class="data-table">
+            <caption class="sr-only">Comparison of BIOS and UEFI interfaces</caption>
+            <thead><tr><th scope="col">Traditional BIOS</th><th scope="col">UEFI</th></tr></thead>
+            <tbody>
+              <tr><td>Older computer systems</td><td>Modern computer systems</td></tr>
+              <tr><td>Usually text-based</td><td>May be graphical</td></tr>
+              <tr><td>Keyboard navigation</td><td>Keyboard and mouse may both work</td></tr>
+              <tr><td>Basic startup configuration</td><td>Advanced boot and security options</td></tr>
+              <tr><td>Commonly uses legacy boot</td><td>Supports modern UEFI boot</td></tr>
+            </tbody>
+          </table></div>
+          <p>Even on a modern machine, people often say “BIOS” when they mean the firmware setup utility. Identify the actual interface before following a procedure.</p>
+        `
+      },
+      {
+        id: "post",
+        title: "POST reports what it finds",
+        html: `
+          <p>${term("post")}, the Power-On Self-Test, checks whether essential hardware is present and ready: the processor, memory, keyboard, graphics hardware, storage devices, and other connected devices. A successful POST continues to the boot-device search.</p>
+          <p>If POST finds a problem, the computer may show an error message, produce a ${term("beep-code")}, light a ${term("diagnostic-light")}, or stop the startup. These signals are clues. They do not always mean a part is defective; a loose connection or incorrect setting can produce the same symptom.</p>
+          ${extra("Why the distinction matters", `
+            <p>“The computer will not boot” is not a diagnosis. POST tells you whether the machine reached the hardware check, and the setup utility tells you which devices were detected. Those two observations separate a physical fault from a configuration mistake.</p>
+          `)}
+        `
+      }
+    ]
+  },
+  {
+    id: "bios-setup",
+    number: 11,
+    moduleId: "module2",
+    title: "Inside the Setup Utility",
+    kicker: "Module 2 · Lesson 2",
+    summary: "Access keys, common menus, hardware detection, and the date/time settings technicians must verify.",
+    minutes: 9,
+    goal: "identify",
+    objectives: [
+      "Identify common setup keys and menus",
+      "Verify detected processor, memory, storage, and USB devices",
+      "Explain why correct date and time matter"
+    ],
+    keyTerms: ["setup-utility", "system-information", "boot-menu", "security-menu", "cmos-battery", "date-time"],
+    sections: [
+      {
+        id: "access",
+        title: "Getting in safely",
+        html: `
+          <p>The ${term("setup-utility")} is opened by pressing a designated key just after power on. Common keys are Delete, Esc, F1, F2, F10, and F12. Watch the startup screen for the prompt because keys and menu layouts vary by manufacturer.</p>
+          <ol class="lesson-list">
+            <li>Turn on or restart the computer.</li>
+            <li>Observe the startup screen.</li>
+            <li>Press the designated setup key.</li>
+            <li>Wait for the utility to appear.</li>
+            <li>Navigate using the available controls.</li>
+            <li>Save or discard changes before exiting.</li>
+          </ol>
+          <p>If the operating system begins loading, restart and press the key earlier. Do not press random keys once you are inside; change only what the task requires.</p>
+        `
+      },
+      {
+        id: "menus",
+        title: "The menus you will actually use",
+        html: `
+          <p>${term("system-information")} shows the processor model, installed memory, storage devices, motherboard model, firmware version, and ${term("date-time")}. The Main menu usually repeats the basic information. Advanced holds processor, storage-controller, USB, and cooling options; change it only with a clear reason.</p>
+          <p>The ${term("boot-menu")} controls the device search order. ${term("security-menu")} holds firmware passwords and Secure Boot settings. The Exit menu applies or discards the session's changes.</p>
+          <div class="callout callout-warning"><span class="icon-slot" data-icon="alertTriangle"></span><div><strong>A forgotten password is a real problem</strong>Incorrect security settings may block entry to the utility or interfere with an operating system installation. Leave them alone unless the procedure requires them.</div></div>
+        `
+      },
+      {
+        id: "verify-hardware",
+        title: "Verify what the firmware can see",
+        html: `
+          <p>Before an operating system installation, confirm that the processor, RAM, internal drive, keyboard and mouse, and bootable USB installer appear. A missing device is not automatically broken: it may be loose, incompatible, disabled in firmware, or connected to the wrong port.</p>
+          <p>Wrong date and time can affect file timestamps, installs, security certificates, scheduled tasks, and updates. Enter the correct values and save. If the clock keeps resetting after power is removed, inspect the ${term("cmos-battery")}.</p>
+          <p>Before physically inspecting any internal part, shut down the computer and disconnect it from the power source.</p>
+        `
+      }
+    ]
+  },
+  {
+    id: "bios-boot",
+    number: 12,
+    moduleId: "module2",
+    title: "Boot Devices and Boot Order",
+    kicker: "Module 2 · Lesson 3",
+    summary: "Choose the right boot order for daily use and for installing an operating system from USB.",
+    minutes: 8,
+    goal: "explain",
+    objectives: [
+      "Name common boot devices",
+      "Set a boot order for USB installation",
+      "Compare Save, Discard, and Load Defaults"
+    ],
+    keyTerms: ["boot-device", "boot-order", "boot-menu", "legacy-boot", "save-changes", "discard-changes"],
+    sections: [
+      {
+        id: "devices",
+        title: "What counts as a boot device",
+        html: `
+          <p>A ${term("boot-device")} holds the files needed to start the computer or begin an operating system installation. Common examples are an internal HDD, an SSD, a USB flash drive, an optical disc, and a network device. The device must be connected, detected, and available in the boot options.</p>
+          <p>${term("boot-order")}, also called boot priority, is the sequence the firmware checks. For daily use, the internal drive containing the operating system is normally first. When installing from USB, the USB installer goes first so its startup files are found before the internal drive's files.</p>
+        `
+      },
+      {
+        id: "install-order",
+        title: "The installation order and the normal order",
+        html: `
+          <div class="table-wrap"><table class="data-table">
+            <caption class="sr-only">Boot order for USB installation and daily use</caption>
+            <thead><tr><th scope="col">Position</th><th scope="col">USB installation</th><th scope="col">Normal daily use</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1st</th><td>Bootable USB drive</td><td>Internal storage drive</td></tr>
+              <tr><th scope="row">2nd</th><td>Internal storage drive</td><td>Optical or network device</td></tr>
+              <tr><th scope="row">3rd</th><td>Optical or network device</td><td>Other available devices</td></tr>
+            </tbody>
+          </table></div>
+          <p>After the operating system is installed, return the internal storage drive to the first position. Some computers offer a temporary ${term("boot-menu")} that chooses one startup device without changing the saved order.</p>
+          <p>A USB installer may appear once as a UEFI device and once as ${term("legacy-boot")}. Select the mode that matches the intended installation, not the one that looks familiar.</p>
+        `
+      },
+      {
+        id: "exit-options",
+        title: "The exit option decides what sticks",
+        html: `
+          <p>${term("save-changes")} stores the new configuration before leaving. ${term("discard-changes")} closes the utility without applying changes made in this session. Load Setup Defaults restores recommended values, but it may also replace earlier choices, so review before saving.</p>
+          <div class="callout callout-tip"><span class="icon-slot" data-icon="lightbulb"></span><div><strong>Before you save</strong>Record the original values, confirm the detected hardware, review the new order, then save. Observe the restart so you can undo a bad change quickly.</div></div>
+        `
+      }
+    ]
+  },
+  {
+    id: "bios-safety",
+    number: 13,
+    moduleId: "module2",
+    title: "Safe Configuration and Troubleshooting",
+    kicker: "Module 2 · Lesson 4",
+    summary: "Record originals, change only what is needed, and tell hardware faults from configuration mistakes.",
+    minutes: 9,
+    goal: "safety",
+    objectives: [
+      "Follow the safe BIOS/UEFI change workflow",
+      "Classify a startup problem as hardware or configuration",
+      "Restore settings when a change causes a problem"
+    ],
+    keyTerms: ["hardware-vs-config", "load-defaults", "setup-utility", "cmos-battery", "bios", "firmware"],
+    sections: [
+      {
+        id: "change-workflow",
+        title: "A safe change, step by step",
+        html: `
+          <ol class="lesson-list">
+            <li>Identify the required configuration.</li>
+            <li>Record or photograph the original setting.</li>
+            <li>Verify that connected hardware is compatible.</li>
+            <li>Change only the necessary option.</li>
+            <li>Review the new configuration.</li>
+            <li>Save the change correctly.</li>
+            <li>Observe the computer during restart.</li>
+          </ol>
+          <p>If the computer no longer starts properly, return to the ${term("setup-utility")} and restore the previous setting or choose ${term("load-defaults")}. Do not test unfamiliar advanced, security, voltage, or processor options simply to see what happens.</p>
+        `
+      },
+      {
+        id: "two-kinds-of-problem",
+        title: "Hardware or configuration?",
+        html: `
+          <p>${term("hardware-vs-config")} is a useful first decision. No lights, no fan spin, a dead processor fan, improperly seated RAM, a drive missing because a cable is loose, or a weak ${term("cmos-battery")} points to a physical cause. Wrong boot priority, a discarded change, or the wrong UEFI/legacy mode points to configuration.</p>
+          <div class="table-wrap"><table class="data-table">
+            <caption class="sr-only">Clues for hardware and configuration problems</caption>
+            <thead><tr><th scope="col">Clue</th><th scope="col">Likely category</th><th scope="col">First safe check</th></tr></thead>
+            <tbody>
+              <tr><td>No lights and no fans</td><td>Hardware</td><td>Power cable, outlet, PSU and motherboard connections</td></tr>
+              <tr><td>USB detected but internal drive boots first</td><td>Configuration</td><td>Boot priority</td></tr>
+              <tr><td>Less RAM than installed</td><td>Hardware</td><td>Reseat and check module compatibility</td></tr>
+              <tr><td>Change was discarded before exit</td><td>Configuration</td><td>Re-enter setup and save the correct option</td></tr>
+            </tbody>
+          </table></div>
+          <p>Check simple visible clues first. Shut down and disconnect power before opening the case. If the evidence is not enough, stop and report what you observed instead of guessing.</p>
+        `
+      },
+      {
+        id: "carlo",
+        title: "Carlo's boot-order case",
+        html: `
+          <p>Carlo's computer completes POST and detects the processor, 8 GB RAM, internal drive, keyboard, mouse, and a bootable USB installer. It still shows “Operating System Not Found” because the internal drive is first in the boot order.</p>
+          <p>The safe plan is to record the original order, place USB → internal → network, review, select Save Changes and Exit, observe the restart, then return the internal drive to first place after installation. The USB is detected, so replacing hardware would be the wrong first move.</p>
+          ${extra("Ask for the missing clue", `
+            <p>When a USB installer is detected and first in the order but still will not boot, check whether the installer was correctly prepared as bootable media. One good observation should lead to the next check, not to a random setting change.</p>
+          `)}
+        `
+      }
+    ]
+  },
+  {
+    id: "bios-review",
+    number: 14,
+    moduleId: "module2",
+    title: "Module 2 Review",
+    kicker: "Module 2 · Review",
+    summary: "Bring the startup path, setup menus, boot order, and safety rules together before the exam.",
+    minutes: 7,
+    goal: "explain",
+    objectives: [
+      "Recall the role of every startup term",
+      "Choose the correct action for common setup scenarios",
+      "Explain the Carlo boot-order case study"
+    ],
+    keyTerms: ["bios", "post", "boot-order", "setup-utility", "save-changes", "uefi"],
+    sections: [
+      {
+        id: "recall",
+        title: "The whole startup path",
+        html: `
+          <p>Computer startup can be remembered as an equation: <strong>power on + BIOS/UEFI + POST + boot device = operating system startup</strong>. Firmware initialises hardware, POST checks it, the boot order decides which device is searched first, and the operating system loads from the files it finds.</p>
+          <div class="callout callout-success"><span class="icon-slot" data-icon="checkCircle"></span><div><strong>Six high-value facts</strong>POST checks hardware. System Information shows detected devices. Boot order is boot priority. USB first is for installation. Save applies changes. Discard abandons them.</div></div>
+        `
+      },
+      {
+        id: "scenario-drills",
+        title: "Common exam scenarios",
+        html: `
+          <ul class="lesson-list">
+            <li>USB detected but the internal drive boots first → check boot priority.</li>
+            <li>Only 4 GB of two 4 GB sticks is shown → check RAM seating first.</li>
+            <li>Drive missing from System Information → check power and data cables first.</li>
+            <li>Clock resets after power is removed → inspect the CMOS battery.</li>
+            <li>Unfamiliar advanced setting changed by accident → Discard Changes and Exit.</li>
+            <li>USB first but still not booting → verify the installer was prepared correctly.</li>
+          </ul>
+          <p>Each answer starts with an observation, not a guess. That habit is the technician skill the assessment is measuring.</p>
+        `
+      },
+      {
+        id: "ready",
+        title: "Ready for the assessment",
+        html: `
+          <p>Practise with <a href="/play/startup-sequence">Startup Relay</a>, <a href="/play/bios-setup-lab">BIOS Setup Lab</a>, and <a href="/play/boot-order-builder">Boot Order Builder</a>. Then use the module's own 15-item pre-test and post-test from the <a href="/exam">Assessment hub</a>.</p>
+          ${extra("A final safety reminder", `
+            <p>Perform a real BIOS/UEFI configuration only with teacher or facilitator guidance. Firmware settings directly affect startup and hardware operation.</p>
+          `)}
+        `
+      }
+    ]
   }
 ];
+
+LESSONS.forEach((lesson) => {
+  if (!lesson.moduleId) lesson.moduleId = "module1";
+});
+
+export const MODULES = [
+  { id: "module1", number: "Module 1", title: "Assemble Computer Hardware", short: "Assembly" },
+  { id: "module2", number: "Module 2", title: "BIOS/UEFI Configuration", short: "BIOS/UEFI" }
+];
+
+export function lessonsForModule(moduleId) {
+  return LESSONS.filter((lesson) => lesson.moduleId === moduleId);
+}
 
 export const lessonById = Object.fromEntries(LESSONS.map((lesson) => [lesson.id, lesson]));
 
@@ -713,10 +1000,13 @@ export function lessonIndex(id) {
 }
 
 export function neighbours(id) {
-  const index = lessonIndex(id);
+  const lesson = lessonById[id];
+  if (!lesson) return { previous: null, next: null };
+  const inModule = lessonsForModule(lesson.moduleId);
+  const index = inModule.findIndex((item) => item.id === id);
   return {
-    previous: index > 0 ? LESSONS[index - 1] : null,
-    next: index >= 0 && index < LESSONS.length - 1 ? LESSONS[index + 1] : null
+    previous: index > 0 ? inModule[index - 1] : null,
+    next: index >= 0 && index < inModule.length - 1 ? inModule[index + 1] : null
   };
 }
 

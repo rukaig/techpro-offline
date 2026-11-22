@@ -30,16 +30,20 @@ export function homePage() {
     .sort((a, b) => b.xp - a.xp)
     .slice(0, 4);
   const nextLesson = LESSONS.find((lesson) => !state.progress.lessons[lesson.id]?.readAt) || LESSONS[0];
+  const homeLessons = [
+    ...LESSONS.filter((lesson) => lesson.moduleId === "module1").slice(0, 3),
+    ...LESSONS.filter((lesson) => lesson.moduleId === "module2").slice(0, 3)
+  ];
   const nextActivity = ACTIVITIES.find((activity) => !state.progress.activities[activity.id]?.attempts) || ACTIVITIES.find((a) => a.id === "final");
   const flagship = ACTIVITIES.find((activity) => activity.id === "pc-lab");
-  const featured = ["sort-station", "anatomy", "spot-mistake", "flashcards"].map((id) => ACTIVITIES.find((a) => a.id === id));
+  const featured = ["bios-setup-lab", "anatomy", "sort-station", "startup-sequence"].map((id) => ACTIVITIES.find((a) => a.id === id));
   const libraryProgress = Math.round((overall.lessonsRead / overall.lessonsTotal) * 100);
   const activityProgress = Math.round((overall.activitiesDone / overall.activitiesTotal) * 100);
 
   return `<div class="home">
     <section class="hero-home page-shell">
       <div class="hero-copy">
-        <p class="eyebrow">CSS NC II · COC 1 · Assemble Computer Hardware</p>
+        <p class="eyebrow">CSS NC II · COC 1 · Modules 1 &amp; 2</p>
         <h1>Build the machine.<br><span class="hero-accent">Understand every part.</span></h1>
         <p class="lede">A learning space for the DepEd module, rebuilt as something you can actually touch. Read the lessons, sort the software, then build a desktop from an empty case to a clean first boot.</p>
         <div class="cluster hero-actions">
@@ -133,8 +137,8 @@ export function homePage() {
           <span class="half-art" aria-hidden="true">${cardArt("remember")}</span>
           <span class="half-copy">
             <span class="eyebrow">The Library</span>
-            <strong>Nine lessons, straight from the module</strong>
-            <span>Search, bookmark, tap a term for the glossary, and mark a lesson read.</span>
+            <strong>${LESSONS.length} lessons across two modules</strong>
+            <span>Assembly and BIOS/UEFI configuration. Search, bookmark, tap a term, and mark a lesson read.</span>
             <span class="half-cta">${icon("bookOpen", 18)} Open the Library ${icon("arrowRight", 17)}</span>
           </span>
         </a>
@@ -142,8 +146,8 @@ export function homePage() {
           <span class="half-art" aria-hidden="true">${cardArt("safety")}</span>
           <span class="half-copy">
             <span class="eyebrow">The Interactives</span>
-            <strong>Sixteen ways to practise</strong>
-            <span>Sort, sequence, spot mistakes, label the board, inspect a PC, and build one.</span>
+            <strong>${ACTIVITIES.length} ways to practise</strong>
+            <span>Build a PC, configure BIOS setup, sequence startup, sort terms, and take module exams.</span>
             <span class="half-cta">${icon("gamepad", 18)} Open the games ${icon("arrowRight", 17)}</span>
           </span>
         </a>
@@ -186,11 +190,11 @@ export function homePage() {
 
     <section class="page-shell section" aria-labelledby="lessonsHomeTitle">
       <div class="section-head">
-        <div><p class="eyebrow">From the module</p><h2 id="lessonsHomeTitle">Start where you are</h2></div>
-        <a class="btn btn-ghost" href="/library">All nine lessons ${icon("arrowRight", 17)}</a>
+        <div><p class="eyebrow">From both modules</p><h2 id="lessonsHomeTitle">Start where you are</h2></div>
+        <a class="btn btn-ghost" href="/library">All ${LESSONS.length} lessons ${icon("arrowRight", 17)}</a>
       </div>
       <div class="lesson-grid home-lessons">
-        ${LESSONS.slice(0, 6).map((lesson) => {
+        ${homeLessons.map((lesson) => {
           const read = Boolean(state.progress.lessons[lesson.id]?.readAt);
           return `<a class="lesson-card ${read ? "is-read" : ""}" href="/library/${lesson.id}">
             <span class="lesson-number">${String(lesson.number).padStart(2, "0")}</span>

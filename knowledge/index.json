@@ -80,6 +80,78 @@
     "source": "curated"
   },
   {
+    "id": "bios-firmware",
+    "title": "BIOS and UEFI firmware",
+    "lessonId": "bios-startup",
+    "route": "/library/bios-startup",
+    "text": "BIOS (Basic Input/Output System) and UEFI (Unified Extensible Firmware Interface) are firmware stored on the motherboard. They begin when the computer is turned on, initialise essential hardware, run the Power-On Self-Test, and search for a device containing startup files. Traditional BIOS is common in older computers and usually has a text-based, keyboard-driven setup utility. UEFI is common in modern computers and may offer a graphical interface, mouse support, security settings, hardware monitoring, and diagnostics. Many people still call the modern setup utility “BIOS”.",
+    "source": "curated"
+  },
+  {
+    "id": "post-startup",
+    "title": "Power-On Self-Test and the startup path",
+    "lessonId": "bios-startup",
+    "route": "/library/bios-startup",
+    "text": "Power-On Self-Test (POST) checks whether essential components such as the processor, memory, keyboard, graphics hardware, and storage devices are present and ready. A successful POST continues to the boot-device search. A failed POST may show an error message, beep code, diagnostic light, or stop the startup. The startup path is: power on, firmware initialises hardware, POST checks hardware, the firmware searches devices for startup files, and the operating system loads.",
+    "source": "curated"
+  },
+  {
+    "id": "setup-access",
+    "title": "Accessing the setup utility safely",
+    "lessonId": "bios-setup",
+    "route": "/library/bios-setup",
+    "text": "The BIOS/UEFI setup utility is opened by pressing a manufacturer-designated key shortly after power on. Common keys are Delete, Esc, F1, F2, F10, and F12. Watch the startup screen for the prompt; if the operating system loads, restart and press the key earlier. Navigate only the menus needed for the task, change only required settings, and save or discard changes correctly before leaving. Manufacturer instructions matter because keys and menu layouts vary by model.",
+    "source": "curated"
+  },
+  {
+    "id": "hardware-detection",
+    "title": "System information and hardware detection",
+    "lessonId": "bios-setup",
+    "route": "/library/bios-setup",
+    "text": "The System Information or Main menu can show the processor model, installed memory, storage devices, motherboard model, firmware version, and system date and time. Before installing an operating system, verify that the processor, RAM, internal drive, keyboard, mouse, and bootable USB installer are detected. An undetected part is not automatically defective: it may be loose, incompatible, disabled in firmware, or set incorrectly. Shut down and disconnect power before physically inspecting internal hardware.",
+    "source": "curated"
+  },
+  {
+    "id": "date-time",
+    "title": "System date and time",
+    "lessonId": "bios-setup",
+    "route": "/library/bios-setup",
+    "text": "Firmware maintains the basic date and time that the operating system uses at startup. Incorrect values can affect file timestamps, software installation, security certificates, scheduled tasks, and system updates. Enter the correct date and time and save before exiting. If the clock repeatedly becomes wrong after the computer is disconnected from power, inspect the motherboard CMOS battery.",
+    "source": "curated"
+  },
+  {
+    "id": "boot-order",
+    "title": "Boot devices and boot order",
+    "lessonId": "bios-boot",
+    "route": "/library/bios-boot",
+    "text": "A boot device is a device containing files needed to start the computer or begin operating system installation: an internal HDD or SSD, USB flash drive, optical disc, or network device. The device must be connected and detected. Boot order, also called boot priority, is the sequence the firmware checks. For daily use the internal drive with the operating system is usually first. For USB installation place the bootable USB first, then the internal drive, then optical or network devices. Restore the internal drive to first place after installation. A temporary boot menu can choose a device for one session.",
+    "source": "curated"
+  },
+  {
+    "id": "exit-options",
+    "title": "Saving, discarding, and restoring defaults",
+    "lessonId": "bios-boot",
+    "route": "/library/bios-boot",
+    "text": "Save Changes and Exit stores new firmware settings before leaving. Discard Changes and Exit closes the setup utility without applying changes made in that session. Load Setup Defaults restores recommended values but may also change previously configured options, so review before saving. Changes often do not take effect until the correct exit option is selected.",
+    "source": "curated"
+  },
+  {
+    "id": "bios-safety",
+    "title": "Safe BIOS/UEFI configuration",
+    "lessonId": "bios-safety",
+    "route": "/library/bios-safety",
+    "text": "Before changing firmware settings, identify the required configuration, record or photograph the original value, verify hardware compatibility, change only the necessary option, review the change, save correctly, and observe the restart. If the computer does not start properly, return to setup and restore the previous setting or load recommended defaults. Do not experiment with unfamiliar advanced, security, voltage, or processor settings; consult the manufacturer's guidance.",
+    "source": "curated"
+  },
+  {
+    "id": "hardware-vs-config",
+    "title": "Hardware problems versus configuration problems",
+    "lessonId": "bios-safety",
+    "route": "/library/bios-safety",
+    "text": "A hardware problem involves a physical part or connection: no lights or fans, a processor fan that does not spin, RAM that is not seated, a drive missing because a power or data cable is loose, or a weak CMOS battery. A configuration problem involves a setting: wrong boot priority, changes that were discarded before saving, or a UEFI/legacy boot mode that does not match the installation. Check simple connections and visible clues before replacing parts, and distinguish the two so the first action is safe and relevant.",
+    "source": "curated"
+  },
+  {
     "id": "module-001",
     "title": "Module source passage 1",
     "lessonId": "disassembly",
@@ -114,16 +186,16 @@
   {
     "id": "module-005",
     "title": "Module source passage 5",
-    "lessonId": "application-software",
-    "route": "/library/application-software",
+    "lessonId": "bios-startup",
+    "route": "/library/bios-startup",
     "text": "The Central Processing Unit, commonly called the CPU or processor, executes instructions and performs calculations. The CPU processes data and controls many of the computer’s operations.\n\nRandom-Access Memory, or RAM, temporarily stores data and instructions the processor is currently using. RAM clears when you turn off the computer.\n\nA storage device keeps files, programs, and the operating system even when the computer is turned off.\n\nThe Power Supply Unit, or PSU, converts electricity from the outlet into the electrical power required by the internal computer components.\n\nThe power supply must provide the appropriate connectors and sufficient power for the installed hardware.\n\nThe cooling system helps control the operating temperature of computer components. It may include heat sinks, case fans, and a processor fan.\n\nImproper cooling may cause overheating, system instability, or damage to computer components.\n\nAn expansion card adds or improves a computer function. Examples include graphics cards, sound cards, and network interface cards.\n\nSoftware consists of programs and instructions that direct the computer to perform tasks. Software is commonly divided into system software and application software.\n\nSystem software manages the computer’s hardware and basic operations. It connects computer hardware and the programs users run.\n\nExamples of system software include operating systems, device drivers, utility programs, and firmware.\n\nAn operating system manages the computer's major resources, including the processor, memory, storage devices, input devices, and output devices.\n\nThe operating system also provides an interface that lets users open files, run programs, manage folders, and change computer settings.",
     "source": "module"
   },
   {
     "id": "module-006",
     "title": "Module source passage 6",
-    "lessonId": "disassembly",
-    "route": "/library/disassembly",
+    "lessonId": "bios-safety",
+    "route": "/library/bios-safety",
     "text": "A device driver allows the operating system to communicate with a specific hardware device.\n\nFor example, a printer driver helps the operating system send the correct instructions to a printer. Without an appropriate driver, the device may not be recognized or may not function correctly.\n\nUtility software helps maintain, protect, configure, or improve the computer system.\n\nFirmware is software stored in a hardware device. It provides the basic instructions required to control or start the device.\n\nThe Basic Input/Output System, or BIOS, and the Unified Extensible Firmware Interface, or UEFI, are examples of firmware used during computer startup.\n\nApplication software helps users accomplish tasks. Software operates with the assistance of the operating system.\n\nSystem software and application software perform different but connected functions.\n\nManages hardware and basic computer operations | Helps the user perform a specific task\n\nIncludes operating systems and drivers | Includes word processors and web browsers\n\nFor example, when a learner creates a report, the word processor is the application software. The word processor uses the operating system to access the keyboard, monitor, memory, and storage device.\n\nComputer disassembly is the systematic removal of computer components from the system unit. It may be performed for cleaning, inspection, repair, replacement, upgrading, or troubleshooting.\n\nDisassembly should not be performed by removing components randomly. A technician must observe safety precautions, document connections, organize removed parts, and follow the correct sequence.\n\n- Wear an antistatic wrist strap or apply appropriate electrostatic discharge precautions.",
     "source": "module"
   },

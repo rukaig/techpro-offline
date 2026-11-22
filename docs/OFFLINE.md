@@ -1,6 +1,6 @@
 # TechPro Offline Architecture & Reference
 
-TechPro is a 100% offline educational web application designed for DepEd Computer Systems Servicing NC II (Assemble Computer Hardware). It requires zero network connectivity, no server, no user accounts, no CDN, and no external API keys.
+TechPro is a 100% offline educational web application designed for DepEd Computer Systems Servicing NC II, COC 1: Module 1 (Assemble Computer Hardware) and Module 2 (BIOS/UEFI Configuration). It requires zero network connectivity, no server, no user accounts, no CDN, and no external API keys.
 
 ---
 

@@ -23,14 +23,19 @@ const VIEWPORTS = [
 
 const ROUTES = [
   "/", "/library", "/play", "/plan", "/account", "/assistant", "/exam", "/exam/pretest", "/exam/final",
+  "/exam/bios-pretest", "/exam/bios-final",
   "/leaderboard", "/profile", "/teacher", "/about", "/install",
   "/library/computer-system", "/library/types-of-computers", "/library/external-hardware",
   "/library/internal-hardware", "/library/system-software", "/library/application-software",
   "/library/assembly", "/library/disassembly",
+  "/library/bios-startup", "/library/bios-setup", "/library/bios-boot",
+  "/library/bios-safety", "/library/bios-review",
   "/play/pc-lab", "/play/pc-lab?mode=disassembly",
   "/play/sort-station", "/play/order-rush", "/play/software-mission", "/play/spot-mistake",
   "/play/which-computer", "/play/anatomy", "/play/software-sorter", "/play/case-files",
-  "/play/flashcards", "/play/tech-checkup", "/play/word-chain", "/play/reflection"
+  "/play/flashcards", "/play/tech-checkup", "/play/word-chain", "/play/reflection",
+  "/play/startup-sequence", "/play/bios-setup-lab", "/play/boot-order-builder",
+  "/play/config-or-hardware", "/play/bios-flashcards", "/play/bios-case-files"
 ];
 
 async function unusedPort() {

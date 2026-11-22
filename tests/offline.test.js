@@ -22,6 +22,15 @@ const ENGAGEMENT_GAMES = [
   { id: "spot-mistake", route: "#/play/spot-mistake", trigger: "[data-practice]", clicks: 6 }
 ];
 
+const MODULE2_GAMES = [
+  { id: "startup-sequence", route: "#/play/startup-sequence" },
+  { id: "bios-setup-lab", route: "#/play/bios-setup-lab" },
+  { id: "boot-order-builder", route: "#/play/boot-order-builder" },
+  { id: "config-or-hardware", route: "#/play/config-or-hardware" },
+  { id: "bios-flashcards", route: "#/play/bios-flashcards" },
+  { id: "bios-case-files", route: "#/play/bios-case-files" }
+];
+
 const ROUTES = [
   "",
   "#/library",
@@ -33,6 +42,11 @@ const ROUTES = [
   "#/library/application-software",
   "#/library/assembly",
   "#/library/disassembly",
+  "#/library/bios-startup",
+  "#/library/bios-setup",
+  "#/library/bios-boot",
+  "#/library/bios-safety",
+  "#/library/bios-review",
   "#/play",
   "#/play/pc-lab",
   "#/play/pc-lab?mode=disassembly",
@@ -50,12 +64,21 @@ const ROUTES = [
   "#/play/tech-checkup",
   "#/play/word-chain",
   "#/play/reflection",
+  "#/play/startup-sequence",
+  "#/play/bios-setup-lab",
+  "#/play/boot-order-builder",
+  "#/play/config-or-hardware",
+  "#/play/bios-flashcards",
+  "#/play/bios-case-files",
   "#/exam",
   "#/exam/pretest",
   "#/exam/final",
+  "#/exam/bios-pretest",
+  "#/exam/bios-final",
   "#/leaderboard",
   "#/assistant",
   "#/assistant?lesson=internal-hardware",
+  "#/assistant?lesson=bios-startup",
   "#/plan",
   "#/account",
   "#/teacher",
@@ -153,9 +176,9 @@ test("Full Offline Playwright Suite: file:// and http://localhost", async (t) =>
                 assert.ok(!routeState.placeholder, `Route ${r} must be a real interactive, not a placeholder`);
               }
               if (r === "#/play") {
-                assert.equal(routeState.cards, 18, "Play hub must show all 18 catalogue activities");
+                assert.equal(routeState.cards, 26, "Play hub must show all 26 catalogue activities");
               }
-              if (r === "#/assistant?lesson=internal-hardware") {
+              if (r === "#/assistant?lesson=internal-hardware" || r === "#/assistant?lesson=bios-startup") {
                 assert.ok(routeState.lessonContext, "Lesson query must open the contextual assistant explainer");
               }
             }
@@ -200,6 +223,44 @@ test("Full Offline Playwright Suite: file:// and http://localhost", async (t) =>
               assert.ok(persisted, `${game.id} progress must be saved locally`);
               await gamePage.close();
             }
+
+            // 6. Module 2 cards must open real, playable interactives.
+            for (const game of MODULE2_GAMES) {
+              const gamePage = await context.newPage();
+              watchErrors(gamePage);
+              await gamePage.goto(`${mode.base}${game.route}`, { waitUntil: "domcontentloaded" });
+              await gamePage.waitForTimeout(150);
+              const ready = await gamePage.evaluate(() => ({
+                game: Boolean(document.querySelector(".study-game")),
+                controls: document.querySelectorAll("[data-choice], [data-startup], [data-card], [data-device], [data-move]").length,
+                placeholder: Boolean(document.querySelector(".activity-page"))
+              }));
+              assert.ok(ready.game, `${game.route} must render a real game panel`);
+              assert.ok(ready.controls > 0, `${game.route} must render touch/mouse controls`);
+              assert.ok(!ready.placeholder, `${game.route} must not be a placeholder`);
+              await gamePage.close();
+            }
+
+            const startupPage = await context.newPage();
+            watchErrors(startupPage);
+            await startupPage.goto(`${mode.base}#/play/startup-sequence`, { waitUntil: "domcontentloaded" });
+            for (const step of ["power", "firmware", "post", "search", "os"]) {
+              await startupPage.click(`[data-startup="${step}"]`);
+            }
+            await startupPage.waitForTimeout(200);
+            assert.match(await startupPage.evaluate(() => document.querySelector("[data-result]")?.innerText || ""), /startup path complete/i);
+            await startupPage.close();
+
+            const bootPage = await context.newPage();
+            watchErrors(bootPage);
+            await bootPage.goto(`${mode.base}#/play/boot-order-builder`, { waitUntil: "domcontentloaded" });
+            for (let i = 0; i < 4; i += 1) {
+              await bootPage.click("[data-choice='usb'], [data-choice='internal'], [data-choice='priority'], [data-choice='media']");
+              await bootPage.click("[data-next]");
+            }
+            await bootPage.waitForTimeout(200);
+            assert.match(await bootPage.evaluate(() => document.querySelector("[data-result]")?.innerText || ""), /drill complete/i);
+            await bootPage.close();
 
             // Assert zero non-local origin requests and zero console errors
             assert.equal(nonLocalBlocked, 0, `Zero external requests allowed. Blocked: ${nonLocalBlocked}`);

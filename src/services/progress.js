@@ -232,6 +232,8 @@ function checkBadges(draft) {
   if (draft.journal?.length) add("reflective");
   if ((activities["final"]?.bestPercent || 0) >= 80) add("assembly-ready");
   if (perfect("final")) add("perfect-exam");
+  if ((activities["bios-final"]?.bestPercent || 0) >= 80) add("bios-ready");
+  if (perfect("bios-final")) add("perfect-bios");
   if ((draft.progress.streak?.best || 0) >= 3) add("three-day");
   if ((draft.progress.streak?.count || 0) >= 7) add("week-streak");
   if (Object.values(draft.progress.goals || {}).every((value) => value >= 80)) add("goal-getter");
@@ -253,7 +255,7 @@ export function evaluateBadges() {
 
 export function goalMastery(goalId) {
   const state = get();
-  const activities = ACTIVITIES.filter((activity) => activity.goal === goalId && activity.id !== "final");
+  const activities = ACTIVITIES.filter((activity) => activity.goal === goalId && activity.kind !== "quiz");
   const bests = activities.map((activity) => state.progress.activities[activity.id]?.bestPercent || 0);
   const activityPart = bests.length ? bests.reduce((sum, value) => sum + value, 0) / bests.length : 0;
   const relevantLessons = LESSONS.filter((lesson) => lesson.goal === goalId);

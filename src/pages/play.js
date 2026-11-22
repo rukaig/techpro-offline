@@ -4,7 +4,7 @@
    here resolves to a real route, and the counts come from the same array.
    ========================================================================== */
 import { ACTIVITIES } from "../data/activities.js";
-import { GOALS } from "../data/lessons.js";
+import { GOALS, MODULES } from "../data/lessons.js";
 import { get } from "../services/store.js";
 import { activityBest } from "../app/game-kit.js";
 import { icon, stars } from "../app/icons.js";
@@ -15,27 +15,33 @@ import { showInstallCard } from "../app/chrome.js";
 const GROUPS = [
   {
     id: "start",
-    title: "Start here",
+    title: "Module 1 · Start here",
     note: "Baseline, vocabulary, and the big build.",
     ids: ["pretest", "tech-wordle", "word-hunt", "pc-lab", "disassembly"]
   },
   {
     id: "drills",
-    title: "Quick drills",
+    title: "Module 1 · Quick drills",
     note: "Five to eight minutes each. Perfect for a warm-up.",
     ids: ["sort-station", "order-rush", "software-mission", "spot-mistake", "which-computer"]
   },
   {
     id: "explore",
-    title: "Explore & inspect",
+    title: "Module 1 · Explore & inspect",
     note: "Look closely at parts, software, and a real workstation.",
     ids: ["anatomy", "software-sorter", "tech-checkup", "case-files"]
   },
   {
     id: "review",
-    title: "Review & reflect",
-    note: "Bring it together, then prove it.",
+    title: "Module 1 · Review & reflect",
+    note: "Bring the build together, then prove it.",
     ids: ["flashcards", "word-chain", "reflection", "final"]
+  },
+  {
+    id: "bios",
+    title: "Module 2 · BIOS/UEFI",
+    note: "Firmware, setup, boot order, and a real case study.",
+    ids: ["bios-pre", "startup-sequence", "bios-setup-lab", "boot-order-builder", "config-or-hardware", "bios-flashcards", "bios-case-files", "bios-final"]
   }
 ];
 
@@ -82,7 +88,7 @@ export function playPage() {
       <div>
         <p class="eyebrow">The Interactives</p>
         <h1>${total} ways to make it stick.</h1>
-        <p class="lede">Every activity maps back to a module section. Short drills for a spare five minutes, the PC Lab for a full build, and a final exam when you are ready. Everything runs on this device.</p>
+        <p class="lede">Every activity maps back to a section in Module 1 or Module 2. Short drills for a spare five minutes, a full PC build, a simulated BIOS setup utility, and an exam for each module. Everything runs on this device.</p>
       </div>
       <div class="play-head-art" aria-hidden="true">${companionArt("happy", { size: 118 })}</div>
     </header>
@@ -108,10 +114,15 @@ export function playPage() {
       </div>
     </section>
 
-    <div class="play-filters" role="group" aria-label="Filter activities">
-      <button class="chip is-active" type="button" data-filter="all">All ${total}</button>
-      ${Object.entries(GOALS).map(([id, goal]) => `<button class="chip" type="button" data-filter="${id}">${esc(goal.short)}</button>`).join("")}
+    <div class="play-filters" role="group" aria-label="Filter activities by module">
+      <button class="chip is-active" type="button" data-play-module="all">Both modules</button>
+      ${MODULES.map((module) => `<button class="chip" type="button" data-play-module="${module.id}">${esc(module.number)} · ${esc(module.short)}</button>`).join("")}
       <span class="play-filter-count tiny faint" data-filter-count>${listed.length} shown</span>
+    </div>
+
+    <div class="play-filters" role="group" aria-label="Filter activities by skill">
+      <button class="chip is-active" type="button" data-filter="all">All skills</button>
+      ${Object.entries(GOALS).map(([id, goal]) => `<button class="chip" type="button" data-filter="${id}">${esc(goal.short)}</button>`).join("")}
     </div>
 
     ${GROUPS.map((group) => `<section class="play-group section-tight" data-group aria-labelledby="group-${group.id}">
@@ -128,8 +139,13 @@ export function playPage() {
 
     <section class="section play-extras">
       <div class="play-extra card card-pad">
-        <div><p class="eyebrow">Assessment</p><h2>The two module tests</h2><p>The pre-test sets a baseline. The post-test is the same 15-item assessment with explanations, a timer, and your best score kept.</p></div>
-        <div class="cluster"><a class="btn btn-primary" href="/exam/pretest">Pre-test</a><a class="btn btn-soft" href="/exam/final">Final Exam</a></div>
+        <div><p class="eyebrow">Assessment</p><h2>Four tests, two modules</h2><p>Each module has a 15-item pre-test and post-test with explanations. Post-tests are timed and keep your best score.</p></div>
+        <div class="cluster">
+          <a class="btn btn-primary" href="/exam/pretest">Module 1 pre-test</a>
+          <a class="btn btn-soft" href="/exam/final">Module 1 post-test</a>
+          <a class="btn btn-primary" href="/exam/bios-pretest">Module 2 pre-test</a>
+          <a class="btn btn-soft" href="/exam/bios-final">Module 2 post-test</a>
+        </div>
       </div>
       <div class="play-extra card card-pad">
         <div><p class="eyebrow">Class</p><h2>Leaderboard & teacher view</h2><p>See where your XP lands, open player cards, or check class progress and export a CSV.</p></div>
@@ -150,7 +166,7 @@ function activityCard(activity) {
     : best.percent
       ? `<span class="tag tag-success">${best.percent}%</span>`
       : `<span class="tag">${activity.minutes} min</span>`;
-  return `<a class="activity-card ${activity.flagship ? "is-flagship" : ""}" href="${activity.route}" data-activity-card data-route="${activity.route}" data-goal="${activity.goal}">
+  return `<a class="activity-card ${activity.flagship ? "is-flagship" : ""}" href="${activity.route}" data-activity-card data-route="${activity.route}" data-goal="${activity.goal}" data-module="${activity.moduleId}">
     <span class="activity-card-top">
       <span class="activity-icon color-${activity.color}">${icon(activity.icon, 24)}</span>
       ${badge}
@@ -174,20 +190,37 @@ export function mountPlay(root) {
   const cards = Array.from(root.querySelectorAll("[data-activity-card]"));
   const groups = Array.from(root.querySelectorAll("[data-group]"));
   const count = root.querySelector("[data-filter-count]");
+  let goal = "all";
+  let moduleId = "all";
+
+  function apply() {
+    let shown = 0;
+    cards.forEach((card) => {
+      const matchesGoal = goal === "all" || card.dataset.goal === goal;
+      const matchesModule = moduleId === "all" || card.dataset.module === moduleId;
+      const visible = matchesGoal && matchesModule;
+      card.hidden = !visible;
+      if (visible) shown += 1;
+    });
+    groups.forEach((group) => {
+      group.hidden = !group.querySelector("[data-activity-card]:not([hidden])");
+    });
+    if (count) count.textContent = `${shown} shown`;
+  }
+
   root.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
-      const filter = button.dataset.filter;
+      goal = button.dataset.filter;
       root.querySelectorAll("[data-filter]").forEach((el) => el.classList.toggle("is-active", el === button));
-      let shown = 0;
-      cards.forEach((card) => {
-        const visible = filter === "all" || card.dataset.goal === filter;
-        card.hidden = !visible;
-        if (visible) shown += 1;
-      });
-      groups.forEach((group) => {
-        group.hidden = !group.querySelector("[data-activity-card]:not([hidden])");
-      });
-      if (count) count.textContent = `${shown} shown`;
+      apply();
+    });
+  });
+
+  root.querySelectorAll("[data-play-module]").forEach((button) => {
+    button.addEventListener("click", () => {
+      moduleId = button.dataset.playModule;
+      root.querySelectorAll("[data-play-module]").forEach((el) => el.classList.toggle("is-active", el === button));
+      apply();
     });
   });
 }

@@ -1,7 +1,8 @@
 /* ==========================================================================
    Exam overview and the module's pre-test / post-test engine.
    ========================================================================== */
-import { PRETEST, POSTTEST, gradeQuiz, shuffleItems } from "../data/quiz.js";
+import { PRETEST, POSTTEST, M2_PRETEST, M2_POSTTEST, gradeQuiz, shuffleItems } from "../data/quiz.js";
+import { MODULES } from "../data/lessons.js";
 import { get } from "../services/store.js";
 import { activityBest } from "../app/game-kit.js";
 import { finishGame, bindResultPanel, activityHero } from "../app/game-kit.js";
@@ -12,45 +13,43 @@ import { Timer } from "../app/time.js";
 import { setFeedback, clearFeedback } from "../app/game-kit.js";
 
 export function examOverviewPage() {
-  const pre = get().progress.activities.pretest;
-  const post = get().progress.activities.final;
   return `<div class="exam-hub page-shell">
     <header class="page-head">
       <div>
         <p class="eyebrow">Assessment</p>
-        <h1>Two tests. Same fifteen items.</h1>
-        <p class="lede">The module's pre-test tells you where you started. The post-test tells you what changed. Both are practice-friendly: you can retake them, and your best score is the one kept.</p>
+        <h1>Four tests. Two modules.</h1>
+        <p class="lede">Each module has its own 15-item pre-test and post-test. Choose a module, check where you started, then prove what changed. Every test is retakeable and keeps your best score on this device.</p>
       </div>
       <div class="exam-seal" aria-hidden="true">${icon("award", 54)}<span>COC 1</span></div>
     </header>
 
-    <div class="exam-grid">
-      <article class="exam-card card">
-        <div class="exam-card-head"><span class="badge badge-accent">Baseline</span>${icon("exam", 30)}</div>
-        <h2>Pre-Test</h2>
-        <p>Fifteen items, no timer. Take it before reading to see what you already know. Your score is a starting point, not a grade.</p>
-        <ul class="tick-list">
-          <li>${icon("check", 16)} 15 multiple-choice items</li>
-          <li>${icon("check", 16)} No time limit</li>
-          <li>${icon("check", 16)} Explanations after submitting</li>
-        </ul>
-        <div class="exam-best">${pre ? `<strong>${pre.bestPercent}%</strong><span>Best · ${pre.attempts} attempt${pre.attempts === 1 ? "" : "s"}</span>` : `<strong>Not taken</strong><span>About 10 minutes</span>`}</div>
-        <a class="btn btn-primary btn-block" href="/exam/pretest">${pre ? "Retake pre-test" : "Start pre-test"} ${icon("arrowRight", 18)}</a>
-      </article>
-
-      <article class="exam-card card exam-final">
-        <div class="exam-card-head"><span class="badge">Post-test</span>${icon("graduation", 32)}</div>
-        <h2>Final Exam</h2>
-        <p>The module's 15-item post-test, shuffled, with a 20-minute timer. Score 80% to earn the <strong>Assembly Ready</strong> badge.</p>
-        <ul class="tick-list">
-          <li>${icon("check", 16)} 15 items · 20 minutes</li>
-          <li>${icon("check", 16)} 80% earns the badge</li>
-          <li>${icon("check", 16)} Best score kept</li>
-        </ul>
-        <div class="exam-best">${post ? `<strong>${post.bestPercent}%</strong><span>Best · ${post.attempts} attempt${post.attempts === 1 ? "" : "s"}</span>` : `<strong>Not taken</strong><span>Take it when you are ready</span>`}</div>
-        <a class="btn btn-accent btn-block" href="/exam/final">${post ? "Retake final exam" : "Start final exam"} ${icon("arrowRight", 18)}</a>
-      </article>
+    <div class="play-filters" role="group" aria-label="Filter assessments by module">
+      <button class="chip is-active" type="button" data-exam-module="all">All tests</button>
+      ${MODULES.map((module) => `<button class="chip" type="button" data-exam-module="${module.id}">${esc(module.number)} · ${esc(module.short)}</button>`).join("")}
+      <span class="play-filter-count tiny faint" data-exam-count>4 shown</span>
     </div>
+
+    <section data-exam-panel="module1">
+      <div class="section-head tight">
+        <div><p class="eyebrow">Module 1</p><h2>Assemble Computer Hardware</h2></div>
+        <span class="tiny faint">2 tests</span>
+      </div>
+      <div class="exam-grid">
+        ${examCard(PRETEST, "module1", "Baseline")}
+        ${examCard(POSTTEST, "module1", "Post-test", "Assembly Ready")}
+      </div>
+    </section>
+
+    <section class="section" data-exam-panel="module2">
+      <div class="section-head tight">
+        <div><p class="eyebrow">Module 2</p><h2>BIOS/UEFI Configuration</h2></div>
+        <span class="tiny faint">2 tests</span>
+      </div>
+      <div class="exam-grid">
+        ${examCard(M2_PRETEST, "module2", "Baseline")}
+        ${examCard(M2_POSTTEST, "module2", "Post-test", "BIOS Ready")}
+      </div>
+    </section>
 
     <section class="section exam-rules card card-pad">
       <p class="eyebrow">Before you start</p>
@@ -59,46 +58,91 @@ export function examOverviewPage() {
         <div><span class="rule-number">01</span><strong>One item at a time</strong><p>Move back and forward freely. The question map shows what is answered.</p></div>
         <div><span class="rule-number">02</span><strong>No hard fail</strong><p>Every item gets an explanation after you submit. A low score opens the review, not a locked door.</p></div>
         <div><span class="rule-number">03</span><strong>Best score kept</strong><p>Retakes do not lower your recorded best. XP is awarded only for improvement.</p></div>
-        <div><span class="rule-number">04</span><strong>Teacher view</strong><p>Your local record can be exported. Signing in adds cloud sync and a leaderboard entry.</p></div>
+        <div><span class="rule-number">04</span><strong>Offline by design</strong><p>Questions, timers, and results all run in this browser. Progress stays on this device.</p></div>
       </div>
-      <div class="callout callout-tip mt-4">${icon("lightbulb", 20)}<div><strong>Read the explanations</strong>They are written from the module's answer key, not from a generic bank. That is where the score turns into understanding.</div></div>
+      <div class="callout callout-tip mt-4">${icon("lightbulb", 20)}<div><strong>Read the explanations</strong>They are written from each module's answer key, not from a generic bank. That is where a score turns into understanding.</div></div>
     </section>
 
     <section class="section">
       <div class="split">
-        <div class="card card-pad"><p class="eyebrow">Warm-up</p><h3>Not ready for fifteen?</h3><p>Try the Word Bank Chain or a flashcard deck first. They cover the same vocabulary in smaller pieces.</p><div class="cluster mt-3"><a class="btn btn-ghost" href="/play/flashcards">Flashcards</a><a class="btn btn-ghost" href="/play/word-chain">Word Bank Chain</a></div></div>
-        <div class="card card-pad"><p class="eyebrow">Proof of practice</p><h3>Want the build badge?</h3><p>Complete a guided PC Lab build. The final exam is easier when the ten steps already make sense in your hands.</p><div class="cluster mt-3"><a class="btn btn-primary" href="/play/pc-lab">${icon("wrench", 17)} Open PC Lab</a></div></div>
+        <div class="card card-pad"><p class="eyebrow">Module 1 warm-up</p><h3>Not ready for fifteen?</h3><p>Try the Word Bank Chain or a flashcard deck first. They cover the assembly vocabulary in smaller pieces.</p><div class="cluster mt-3"><a class="btn btn-ghost" href="/play/flashcards">Flashcards</a><a class="btn btn-ghost" href="/play/word-chain">Word Bank Chain</a></div></div>
+        <div class="card card-pad"><p class="eyebrow">Module 2 warm-up</p><h3>BIOS getting fuzzy?</h3><p>Flip the firmware terms or arrange the startup path before taking the BIOS/UEFI tests.</p><div class="cluster mt-3"><a class="btn btn-ghost" href="/play/bios-flashcards">BIOS Flashcards</a><a class="btn btn-ghost" href="/play/startup-sequence">Startup Relay</a></div></div>
       </div>
     </section>
   </div>`;
 }
 
+function examCard(bank, moduleId, badge, badgeName = "Ready") {
+  const record = get().progress.activities[bank.activityId];
+  const isPre = bank.kind === "pretest";
+  const minutes = Math.round((bank.timeLimit || 600) / 60);
+  return `<article class="exam-card card ${isPre ? "" : "exam-final"}">
+    <div class="exam-card-head"><span class="badge ${isPre ? "badge-accent" : ""}">${esc(badge)}</span>${icon(bank.icon || (isPre ? "exam" : "graduation"), 30)}</div>
+    <h2>${esc(bank.title)}</h2>
+    <p>${esc(bank.description)}</p>
+    <ul class="tick-list">
+      <li>${icon("check", 16)} 15 multiple-choice items</li>
+      <li>${icon("check", 16)} ${bank.timeLimit ? `${minutes} minute limit` : "No time limit"}</li>
+      <li>${icon("check", 16)} Explanations after submitting</li>
+      ${isPre ? "" : `<li>${icon("check", 16)} 80% earns ${esc(badgeName)}</li>`}
+    </ul>
+    <div class="exam-best">${record ? `<strong>${record.bestPercent}%</strong><span>Best · ${record.attempts} attempt${record.attempts === 1 ? "" : "s"}</span>` : `<strong>Not taken</strong><span>About ${minutes} minutes</span>`}</div>
+    <a class="btn ${isPre ? "btn-primary" : "btn-accent"} btn-block" href="/exam/${bank.id}">${record ? "Retake" : "Start"} ${isPre ? "pre-test" : "post-test"} ${icon("arrowRight", 18)}</a>
+  </article>`;
+}
+
+export function mountExam(root) {
+  root.querySelectorAll("a[href^='/exam/'], a[href^='#/exam/']").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href === "/exam" || href === "#/exam") return;
+    link.setAttribute("data-keep", "true");
+  });
+
+  const panels = Array.from(root.querySelectorAll("[data-exam-panel]"));
+  const count = root.querySelector("[data-exam-count]");
+  root.querySelectorAll("[data-exam-module]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const selected = button.dataset.examModule;
+      root.querySelectorAll("[data-exam-module]").forEach((el) => el.classList.toggle("is-active", el === button));
+      let shown = 0;
+      panels.forEach((panel) => {
+        const visible = selected === "all" || panel.dataset.examPanel === selected;
+        panel.hidden = !visible;
+        if (visible) shown += panel.querySelectorAll(".exam-card").length;
+      });
+      if (count) count.textContent = `${shown} shown`;
+    });
+  });
+}
+
 export function quizPage({ bank }) {
-  const activity = bank.id === "pretest" ? "pretest" : "final";
-  const data = bank.id === "pretest" ? PRETEST : POSTTEST;
+  const data = bank;
+  const activity = data.activityId || data.id;
+  const isPre = data.kind === "pretest";
   const activityData = {
     id: activity,
     title: data.title,
     tagline: data.subtitle,
     description: data.description,
     minutes: Math.round((data.timeLimit || 600) / 60),
-    xp: activity === "final" ? 150 : 40,
-    icon: activity === "final" ? "graduation" : "exam",
-    goal: "explain",
+    xp: data.xp || (isPre ? 40 : 150),
+    icon: data.icon || (isPre ? "exam" : "graduation"),
+    goal: isPre ? "identify" : "explain",
     taglineAlt: data.subtitle
   };
   const best = activityBest(activity);
+  const limit = data.timeLimit ? `${Math.round(data.timeLimit / 60)}:00 limit` : "No timer";
 
   return {
     title: data.title,
     html: `<div class="exam-page page-shell">
       ${activityHero(activityData, {
-        eyebrow: activity === "final" ? "Post-test" : "Pre-test",
+        eyebrow: isPre ? "Pre-test" : "Post-test",
         intro: data.description,
-        meta: data.timeLimit ? `<span class="pill pill-warning">${icon("timer", 15)} 20:00 limit</span>` : `<span class="pill pill-soft">${icon("clock", 15)} No timer</span>`
+        meta: data.timeLimit ? `<span class="pill pill-warning">${icon("timer", 15)} ${limit}</span>` : `<span class="pill pill-soft">${icon("clock", 15)} No timer</span>`
       })}
       <div data-quiz-stage>
-        ${examIntro(data, best, activity)}
+        ${examIntro(data, best, isPre)}
       </div>
     </div>`,
     mount(root) {
@@ -107,12 +151,13 @@ export function quizPage({ bank }) {
   };
 }
 
-function examIntro(data, best, activityId) {
+function examIntro(data, best, isPre) {
+  const minutes = Math.round((data.timeLimit || 600) / 60);
   return `<section class="exam-intro card">
     <div class="exam-intro-copy">
       <p class="eyebrow">${data.items.length} items</p>
-      <h2>${activityId === "pretest" ? "See what you already know" : "Show what changed"}</h2>
-      <p>${activityId === "pretest" ? "Answer honestly. Guessing is fine here — the pre-test exists to make the learning visible, not to judge you." : "The items are shuffled. You have twenty minutes. You can move between questions before submitting."}</p>
+      <h2>${isPre ? "See what you already know" : "Show what changed"}</h2>
+      <p>${isPre ? "Answer honestly. Guessing is fine here — the pre-test exists to make the learning visible, not to judge you." : `The items are shuffled. You have ${minutes} minutes. You can move between questions before submitting.`}</p>
       <ul class="exam-instructions">
         <li>${icon("checkCircle", 17)} Choose one answer per item.</li>
         <li>${icon("checkCircle", 17)} Use the question map to jump around.</li>
@@ -176,7 +221,7 @@ function mountQuiz(root, data, activityData) {
       <div class="quiz-top">
         <div class="quiz-top-left">
           <span class="pill">Question ${index + 1} of ${items.length}</span>
-          ${data.timeLimit ? `<span class="timer-pill" data-exam-timer>${icon("timer", 16)}<span>20:00</span></span>` : `<span class="pill pill-soft">${icon("clock", 15)} Untimed</span>`}
+          ${data.timeLimit ? `<span class="timer-pill" data-exam-timer>${icon("timer", 16)}<span>${Math.round(data.timeLimit / 60)}:00</span></span>` : `<span class="pill pill-soft">${icon("clock", 15)} Untimed</span>`}
         </div>
         <div class="quiz-top-right">
           <span class="tiny faint">${Object.keys(answers).length} answered</span>
@@ -297,7 +342,7 @@ function mountQuiz(root, data, activityData) {
       detail,
       timeSeconds,
       heading: grade.percent >= 80 ? "Assessment passed" : "Assessment recorded",
-      intro: activityData.id === "pretest" ? "This is your baseline. Read the explanations, then start the Library." : "Your best score is kept. Review anything that surprised you."
+      intro: data.kind === "pretest" ? "This is your baseline. Read the explanations, then open the Library." : "Your best score is kept. Review anything that surprised you."
     });
     stage.innerHTML = resultHtml;
     bindResultPanel(stage, start);

@@ -1,4 +1,4 @@
-const CACHE_NAME = "techpro-v2-offline";
+const CACHE_NAME = "techpro-v3-offline";
 const PRECACHE_URLS = [
   "./",
   "./index.html",

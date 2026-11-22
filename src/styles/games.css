@@ -1242,6 +1242,54 @@
 .journal-prompt { margin: 0; font-weight: 700; }
 .journal-input { min-height: 108px; }
 
+/* Module 2 · BIOS setup lab --------------------------------------------- */
+.bios-lab .setup-screen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+}
+.bios-lab .setup-screen span:last-child { color: var(--accent-strong); }
+.setup-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--space-3);
+}
+.setup-form label { display: grid; gap: var(--space-2); min-width: 0; font-weight: 700; }
+.setup-form .input { width: 100%; min-width: 0; }
+.boot-lanes { display: grid; gap: var(--space-2); }
+.boot-lane {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.boot-lane strong { flex: 1 1 auto; min-width: 0; }
+.boot-position {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+.boot-lane .cluster { flex: 0 0 auto; gap: var(--space-2); }
+
 /* Spacing sanity check on small screens ---------------------------------- */
 @media (max-width: 760px) {
   .game-head-grid { grid-template-columns: 1fr; gap: var(--space-4); }

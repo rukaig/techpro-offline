@@ -10,6 +10,12 @@ const MAX_CHUNK_LENGTH = 1800;
 
 function routeFor(text) {
   const topic = text.toLowerCase();
+  if (/bios|uefi|post|setup utility|boot order|boot device|firmware|cmos/.test(topic)) {
+    if (/date and time|system information|hardware detection|setup key/.test(topic)) return "bios-setup";
+    if (/boot order|boot device|save changes|discard changes|setup defaults/.test(topic)) return "bios-boot";
+    if (/safety|unfamiliar|record the original|hardware problem|configuration problem/.test(topic)) return "bios-safety";
+    return "bios-startup";
+  }
   if (/disassembl|electrostatic|wrist strap|safety|cable|screw/.test(topic)) return "disassembly";
   if (/application software|word processor|spreadsheet|presentation software|image-edit/.test(topic)) return "application-software";
   if (/system software|operating system|device driver|utility software/.test(topic)) return "system-software";

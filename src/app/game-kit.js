@@ -173,7 +173,8 @@ export function finishGame({
   }
   announce(`${activity.title} complete. ${percent} percent. ${starCount} of 3 stars.`);
 
-  const next = nextActivity(activity.id);
+  const next = nextActivity(activity);
+  const examRoute = activity.moduleId === "module2" ? "/exam/bios-final" : "/exam/final";
   const newBadges = result.newBadges || [];
   return `<section class="result-panel" aria-labelledby="resultTitle" data-result>
     <div class="result-burst" aria-hidden="true">${starIcons(starCount)}</div>
@@ -198,7 +199,7 @@ export function finishGame({
     <div class="result-actions">
       <button class="btn btn-primary" type="button" data-retry>${icon("refresh", 18)} Try again</button>
       <a class="btn btn-ghost" href="/play">${icon("gamepad", 18)} All interactives</a>
-      ${next ? `<a class="btn btn-soft" href="${next.route}">Next: ${esc(next.title)} ${icon("arrowRight", 17)}</a>` : `<a class="btn btn-soft" href="/exam/final">Final exam ${icon("arrowRight", 17)}</a>`}
+      ${next ? `<a class="btn btn-soft" href="${next.route}">Next: ${esc(next.title)} ${icon("arrowRight", 17)}</a>` : `<a class="btn btn-soft" href="${examRoute}">Module exam ${icon("arrowRight", 17)}</a>`}
     </div>
     <p class="tiny faint result-level">Level ${result.level.level} · ${esc(result.level.title)} · ${get().progress.xp.toLocaleString("en-PH")} XP total</p>
   </section>`;
@@ -211,10 +212,10 @@ export function bindResultPanel(root, retry) {
   });
 }
 
-function nextActivity(id) {
-  const index = ACTIVITIES.findIndex((item) => item.id === id);
+function nextActivity(activity) {
+  const index = ACTIVITIES.findIndex((item) => item.id === activity.id);
   if (index < 0) return null;
-  return ACTIVITIES[index + 1] || null;
+  return ACTIVITIES.slice(index + 1).find((item) => item.moduleId === activity.moduleId) || null;
 }
 
 export function activityLink(activity) {

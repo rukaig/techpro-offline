@@ -242,9 +242,9 @@ export function emptyState({ iconName = "search", title, message, action = "" })
 /* ---------- Reading helpers --------------------------------------------- */
 export function setPageTitle(title) {
   const includesBrand = title?.startsWith("TechPro ·") || title?.endsWith("· TechPro");
-  document.title = title ? (includesBrand ? title : `${title} · TechPro`) : "TechPro · Assemble Computer Hardware";
+  document.title = title ? (includesBrand ? title : `${title} · TechPro`) : "TechPro · COC 1 Modules 1 & 2";
   const meta = document.querySelector('meta[name="description"]');
-  if (meta && title) meta.setAttribute("content", `${title} — TechPro CSS NC II, Assemble Computer Hardware.`);
+  if (meta && title) meta.setAttribute("content", `${title} — TechPro CSS NC II, Modules 1 and 2: assembly and BIOS/UEFI configuration.`);
 }
 
 export function scrollToTop() {

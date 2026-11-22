@@ -1,6 +1,6 @@
 # AGENTS.md — TechPro Working Rules (100% Offline)
 
-TechPro is an offline-first learning application for DepEd CSS NC II, COC 1, Module 1: Assemble Computer Hardware.
+TechPro is an offline-first learning application for DepEd CSS NC II, COC 1, Modules 1 and 2: Assemble Computer Hardware and BIOS/UEFI Configuration.
 It runs completely standalone without internet, servers, accounts, or external APIs.
 
 ---

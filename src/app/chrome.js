@@ -79,7 +79,7 @@ export function mountChrome() {
             <span class="brand-mark">${brandMark(38)}</span>
             <span class="brand-type">
               <span class="brand-name">TechPro</span>
-              <span class="brand-sub">CSS NC II · COC 1</span>
+              <span class="brand-sub">CSS NC II · COC 1 · M1–M2</span>
             </span>
           </a>
           <nav class="desktop-nav" aria-label="Primary">
@@ -111,10 +111,10 @@ export function mountChrome() {
           <div class="foot-brand">
             <a class="brand" href="/" aria-label="TechPro home">
               <span class="brand-mark">${brandMark(34)}</span>
-              <span class="brand-type"><span class="brand-name">TechPro</span><span class="brand-sub">Assemble Computer Hardware</span></span>
+              <span class="brand-type"><span class="brand-name">TechPro</span><span class="brand-sub">COC 1 · Modules 1 &amp; 2</span></span>
             </a>
-            <p>A learning space for the DepEd Computer Systems Servicing NC II module. Read the module, then practise on the bench.</p>
-            <p class="foot-credit">Module by Yvan Marco A. Reyes · Schools Division Office of Cavite · First Edition, 2026</p>
+            <p>A learning space for the DepEd Computer Systems Servicing NC II modules. Read the lessons, then practise on the bench.</p>
+            <p class="foot-credit">Modules by Yvan Marco A. Reyes · Schools Division Office of Cavite · First Edition, 2026</p>
           </div>
           <nav class="foot-col" aria-label="Learn">
             <h3>Learn</h3>
@@ -122,7 +122,9 @@ export function mountChrome() {
             <a href="/play">Interactives</a>
             <a href="/assistant">TechPro assistant</a>
             <a href="/play/pc-lab">PC Lab</a>
-            <a href="/exam/final">Final Exam</a>
+            <a href="/play/bios-setup-lab">BIOS Setup Lab</a>
+            <a href="/exam/final">Module 1 post-test</a>
+            <a href="/exam/bios-final">Module 2 post-test</a>
           </nav>
           <nav class="foot-col" aria-label="Progress">
             <h3>Progress</h3>

@@ -15,7 +15,9 @@ const themes = process.env.AUDIT_THEMES
   ? process.env.AUDIT_THEMES.split(",").map((value) => value.trim()).filter(Boolean)
   : ["editorial", "neon", "contrast"];
 const modes = ["light", "dark"];
-const routeSeeds = ["/", "/library", "/play", "/exam", "/exam/pretest", "/exam/final", "/play/pc-lab",
+const routeSeeds = ["/", "/library", "/play", "/exam", "/exam/pretest", "/exam/final",
+  "/exam/bios-pretest", "/exam/bios-final", "/play/pc-lab", "/play/bios-setup-lab",
+  "/library/bios-startup", "/library/bios-review",
   "/plan", "/account", "/assistant", "/leaderboard", "/profile", "/teacher", "/about", "/install"];
 const fast = process.env.AUDIT_FAST === "1";
 const matrix = fast

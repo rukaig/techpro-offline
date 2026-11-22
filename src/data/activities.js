@@ -257,8 +257,132 @@ export const ACTIVITIES = [
     xp: 150,
     color: "red",
     lesson: "review"
+  },
+  {
+    id: "startup-sequence",
+    title: "Startup Relay",
+    tagline: "Put the boot path in order",
+    description: "Tap the startup steps in the order the module gives: power on, firmware, POST, boot device, operating system.",
+    route: "/play/startup-sequence",
+    icon: "zap",
+    kind: "order",
+    minutes: 5,
+    goal: "explain",
+    xp: 60,
+    color: "blue",
+    lesson: "bios-startup",
+    moduleId: "module2"
+  },
+  {
+    id: "bios-setup-lab",
+    title: "BIOS Setup Lab",
+    tagline: "Configure a safe first boot",
+    description: "Enter a simulated setup utility, verify hardware, set date and time, arrange the boot order, and choose the exit option.",
+    route: "/play/bios-setup-lab",
+    icon: "settings",
+    kind: "lab",
+    minutes: 12,
+    goal: "safety",
+    xp: 140,
+    color: "amber",
+    lesson: "bios-setup",
+    moduleId: "module2"
+  },
+  {
+    id: "boot-order-builder",
+    title: "Boot Order Builder",
+    tagline: "Choose the right priority",
+    description: "Decide the correct device priority for USB installation, daily use, and the clues that point to a configuration problem.",
+    route: "/play/boot-order-builder",
+    icon: "list",
+    kind: "scenario",
+    minutes: 7,
+    goal: "explain",
+    xp: 80,
+    color: "mint",
+    lesson: "bios-boot",
+    moduleId: "module2"
+  },
+  {
+    id: "config-or-hardware",
+    title: "Hardware or Setting?",
+    tagline: "Read the clue, choose the cause",
+    description: "Classify ten startup symptoms as a physical hardware fault or a BIOS/UEFI configuration mistake, then read the clue.",
+    route: "/play/config-or-hardware",
+    icon: "shield",
+    kind: "scenario",
+    minutes: 8,
+    goal: "safety",
+    xp: 90,
+    color: "red",
+    lesson: "bios-safety",
+    moduleId: "module2"
+  },
+  {
+    id: "bios-flashcards",
+    title: "BIOS Flashcards",
+    tagline: "Flip the firmware terms",
+    description: "Flip twelve BIOS/UEFI terms and finish a five-question recall check on POST, setup menus, and exit options.",
+    route: "/play/bios-flashcards",
+    icon: "bookOpen",
+    kind: "cards",
+    minutes: 7,
+    goal: "identify",
+    xp: 70,
+    color: "paper",
+    lesson: "bios-review",
+    moduleId: "module2"
+  },
+  {
+    id: "bios-case-files",
+    title: "Carlo's Boot Case",
+    tagline: "Diagnose before changing settings",
+    description: "Follow the module's case study from detected hardware to boot order, save option, restart, and restoration.",
+    route: "/play/bios-case-files",
+    icon: "file",
+    kind: "case",
+    minutes: 9,
+    goal: "explain",
+    xp: 100,
+    color: "blue",
+    lesson: "bios-safety",
+    moduleId: "module2"
+  },
+  {
+    id: "bios-pre",
+    title: "BIOS/UEFI Pre-Test",
+    tagline: "Fifteen baseline items",
+    description: "Check what you already know about firmware, POST, setup settings, and boot order before starting Module 2.",
+    route: "/exam/bios-pretest",
+    icon: "exam",
+    kind: "quiz",
+    minutes: 10,
+    goal: "identify",
+    xp: 40,
+    color: "blue",
+    lesson: "bios-startup",
+    moduleId: "module2"
+  },
+  {
+    id: "bios-final",
+    title: "BIOS/UEFI Post-Test",
+    tagline: "Fifteen items, 20 minutes",
+    description: "The Module 2 post-test with explanations, a timer, and a best-score record. 80% earns BIOS Ready.",
+    route: "/exam/bios-final",
+    icon: "graduation",
+    kind: "quiz",
+    minutes: 20,
+    goal: "explain",
+    xp: 150,
+    color: "mint",
+    lesson: "bios-review",
+    moduleId: "module2"
   }
 ];
+
+ACTIVITIES.forEach((activity) => {
+  if (!activity.moduleId) activity.moduleId = "module1";
+});
 
 export const ACTIVITY_BY_ID = Object.fromEntries(ACTIVITIES.map((activity) => [activity.id, activity]));
 

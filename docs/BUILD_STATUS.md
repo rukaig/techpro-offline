@@ -5,12 +5,14 @@ Status: **Offline conversion and interactive rebuild complete** (Branch `offline
 
 ## Interactive coverage
 
-All 18 catalogue activities in `src/data/activities.js` now resolve to a real, playable interactive. The Play hub groups and counts come from that same catalogue, so no card can link to a placeholder or back to itself.
+All 26 catalogue activities in `src/data/activities.js` now resolve to a real, playable interactive across two modules. The Play hub groups, module filters, and counts come from that same catalogue, so no card can link to a placeholder or back to itself.
 
-- Existing drills: Pre-test, Post-test, Sort Station, Order Rush, Software Mission, Spot the Mistake, Which Computer?, Software Sorter, Word Chain, Word Hunt, and Tech Wordle.
-- New module activities (`src/games/module-activities.js`): PC Anatomy Explorer, Tech Check-Up, Case Files, Flashcards + Quick Recap, and Reflection Journal.
+- Module 1 drills: Pre-test, Post-test, Sort Station, Order Rush, Software Mission, Spot the Mistake, Which Computer?, Software Sorter, Word Chain, Word Hunt, Tech Wordle, PC Anatomy Explorer, Tech Check-Up, Case Files, Flashcards + Quick Recap, Reflection Journal, and PC Lab.
+- Module 2 activities (`src/games/module2-activities.js`): Startup Relay, BIOS Setup Lab, Boot Order Builder, Hardware or Setting?, BIOS Flashcards, and Carlo's Boot Case.
+- Module 2 exams: `bios-pretest` and `bios-final` use their own 15-item banks, answer keys, XP, and badges.
 - PC Lab (`src/games/pc-lab-workbench.js`): a self-contained 2D workbench with a 10-step guided build and a real 10-step disassembly drill. The old dead 3D/camera/quality controls are gone; feedback explains every correct and incorrect action.
-- Shared game shell styling (`.game-head`, `.best-card`, `.game-bar`, result panel, and `.study-*`) now lives in `games.css` instead of being scoped to one game, so every interactive has the same spacing, back bar, and result layout.
+- Shared game shell styling (`.game-head`, `.best-card`, `.game-bar`, result panel, `.study-*`, and `.setup-*`) now lives in `games.css`, so every interactive has the same spacing, back bar, and result layout.
+- Navigation: Library, Play, and Exams have module selectors; lesson Previous/Next stays inside its module; result-panel next steps and exam links stay module-aware; hash navigation no longer mounts a view twice.
 
 ---
 

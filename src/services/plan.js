@@ -12,7 +12,11 @@ const TASKS = [
   { id: "assembly", title: "Build a Computer in PC Lab", type: "play", minutes: 35, href: "/play/pc-lab", why: "The guided build connects the module steps to real hardware.", auto: { activityId: "pc-lab" } },
   { id: "case-files", title: "Solve the Case Files", type: "play", minutes: 20, href: "/play/case-files", why: "Troubleshooting practice turns symptoms into safe checks.", auto: { activityId: "case-files" } },
   { id: "tech-checkup", title: "Complete Tech Check-Up", type: "review", minutes: 15, href: "/play/tech-checkup", why: "Check how well you can explain your technician profile.", auto: { activityId: "tech-checkup" } },
-  { id: "final", title: "Take the Final Exam", type: "test", minutes: 30, href: "/exam/final", why: "Use the final assessment to check your readiness.", auto: { activityId: "final" } }
+  { id: "final", title: "Take the Module 1 Final Exam", type: "test", minutes: 30, href: "/exam/final", why: "Use the post-test to check your assembly readiness.", auto: { activityId: "final" } },
+  { id: "bios-read", title: "Read BIOS/UEFI Configuration", type: "read", minutes: 35, href: "/library/bios-startup", why: "Firmware, POST, setup menus, boot order, and safety all start here.", auto: { lessonIds: ["bios-startup", "bios-setup", "bios-boot", "bios-safety", "bios-review"] } },
+  { id: "bios-setup-lab", title: "Configure BIOS Setup Lab", type: "play", minutes: 20, href: "/play/bios-setup-lab", why: "Practise verification, date and time, boot priority, and safe exit choices.", auto: { activityId: "bios-setup-lab" } },
+  { id: "bios-drills", title: "Sequence Startup and Boot Order", type: "play", minutes: 15, href: "/play/startup-sequence", why: "Connect the startup path to the device priority used for installation.", auto: { activityId: "startup-sequence" } },
+  { id: "bios-final", title: "Take the BIOS/UEFI Post-Test", type: "test", minutes: 25, href: "/exam/bios-final", why: "Check what you retained from the second module.", auto: { activityId: "bios-final" } }
 ];
 
 const DAY_MS = 24 * 60 * 60 * 1000;

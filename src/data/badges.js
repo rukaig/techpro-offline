@@ -4,7 +4,7 @@
 
 export const BADGES = [
   { id: "first-step", name: "First Step", icon: "sparkle", description: "Open your first lesson in the Library.", hint: "Read any lesson." },
-  { id: "bookworm", name: "Bookworm", icon: "bookOpen", description: "Mark all nine lessons as read.", hint: "Finish the whole library." },
+  { id: "bookworm", name: "Bookworm", icon: "bookOpen", description: "Mark all fourteen lessons across both modules as read.", hint: "Finish the whole library." },
   { id: "sorter", name: "Bin Boss", icon: "layers", description: "Finish Sort Station with at least 80% accuracy.", hint: "Classify the workstation items." },
   { id: "sequence", name: "Sequence Keeper", icon: "list", description: "Complete Order Rush with a perfect order.", hint: "Fix the six preparation steps." },
   { id: "toolsmith", name: "Toolsmith", icon: "puzzle", description: "Answer all six Software Mission situations correctly.", hint: "Pick the right tool every time." },
@@ -18,8 +18,10 @@ export const BADGES = [
   { id: "inspector", name: "Inspector", icon: "shield", description: "Complete a Tech Check-Up inspection.", hint: "Record a computer's components and recommendation." },
   { id: "wordchain", name: "Chain Reaction", icon: "zap", description: "Complete the ten-term Word Bank Chain.", hint: "Use each term once." },
   { id: "reflective", name: "Reflective", icon: "edit", description: "Write and save a reflection entry.", hint: "Answer at least one reflection prompt." },
-  { id: "assembly-ready", name: "Assembly Ready", icon: "graduation", description: "Score 80% or higher on the Final Exam.", hint: "Review, then take the post-test." },
-  { id: "perfect-exam", name: "Perfect Post-Test", icon: "starFill", description: "Score 100% on the Final Exam.", hint: "Every item correct." },
+  { id: "assembly-ready", name: "Assembly Ready", icon: "graduation", description: "Score 80% or higher on the Module 1 Final Exam.", hint: "Review, then take the post-test." },
+  { id: "perfect-exam", name: "Perfect Post-Test", icon: "starFill", description: "Score 100% on the Module 1 Final Exam.", hint: "Every item correct." },
+  { id: "bios-ready", name: "BIOS Ready", icon: "settings", description: "Score 80% or higher on the Module 2 BIOS/UEFI Post-Test.", hint: "Learn the startup path, then take the post-test." },
+  { id: "perfect-bios", name: "Firmware Perfect", icon: "starFill", description: "Score 100% on the Module 2 BIOS/UEFI Post-Test.", hint: "Every firmware item correct." },
   { id: "three-day", name: "Warm Bench", icon: "flame", description: "Practise on three different days.", hint: "A short streak counts." },
   { id: "week-streak", name: "Week of Wires", icon: "calendar", description: "Keep a seven-day learning streak.", hint: "One activity a day." },
   { id: "goal-getter", name: "Goal Getter", icon: "target", description: "Reach 80% mastery in all four learning goals.", hint: "Read and practise across every goal." },

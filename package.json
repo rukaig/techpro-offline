@@ -2,7 +2,7 @@
   "name": "techpro-coc1",
   "version": "1.0.0",
   "private": true,
-  "description": "TechPro CSS NC II — COC 1 interactive 100% offline learning app for Assemble Computer Hardware",
+  "description": "TechPro CSS NC II — COC 1 offline learning app for Modules 1 and 2: Assemble Computer Hardware and BIOS/UEFI Configuration",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

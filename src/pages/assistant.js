@@ -77,6 +77,38 @@ const COMMON_QUESTIONS = [
     lessonId: "disassembly",
     lessonTitle: "Safe Disassembly",
     route: "/library/disassembly"
+  },
+  {
+    keywords: ["bios", "uefi", "firmware", "startup"],
+    question: "What are BIOS and UEFI and what do they do?",
+    answer: "BIOS and UEFI are firmware stored on the motherboard. They run before the operating system, initialise essential hardware, run POST, and search for a boot device. Traditional BIOS is usually text-based; UEFI is the modern interface and may support a graphical setup screen, mouse input, security settings, and diagnostics.",
+    lessonId: "bios-startup",
+    lessonTitle: "BIOS, UEFI and the Startup Path",
+    route: "/library/bios-startup"
+  },
+  {
+    keywords: ["post", "beep", "diagnostic", "hardware check"],
+    question: "What does POST check during startup?",
+    answer: "POST (Power-On Self-Test) checks essential hardware such as the processor, memory, keyboard, graphics, and storage devices. A failed check may appear as an error message, beep code, diagnostic light, or a stopped startup. These are clues, not an automatic diagnosis.",
+    lessonId: "bios-startup",
+    lessonTitle: "BIOS, UEFI and the Startup Path",
+    route: "/library/bios-startup"
+  },
+  {
+    keywords: ["setup", "delete", "f2", "enter", "access"],
+    question: "How do I enter the BIOS/UEFI setup utility?",
+    answer: "Watch the startup screen for the setup-key prompt and press the manufacturer-designated key shortly after power on. Common keys are Delete, Esc, F1, F2, F10, and F12. If the operating system loads, restart and press earlier. Change only the settings the task requires.",
+    lessonId: "bios-setup",
+    lessonTitle: "Inside the Setup Utility",
+    route: "/library/bios-setup"
+  },
+  {
+    keywords: ["boot", "boot order", "priority", "usb", "installation"],
+    question: "How should I set boot order for USB installation?",
+    answer: "For an operating system installation from USB, set the bootable USB drive first, the internal storage drive second, and optical or network devices next. Save Changes and Exit to apply the order. After installation, return the internal drive to first place for daily startup.",
+    lessonId: "bios-boot",
+    lessonTitle: "Boot Devices and Boot Order",
+    route: "/library/bios-boot"
   }
 ];
 
@@ -113,7 +145,12 @@ const PHRASE_SYNONYMS = [
   ["operating system", "os"],
   ["video card", "gpu"],
   ["graphics card", "gpu"],
-  ["circuit board", "board"]
+  ["circuit board", "board"],
+  ["basic input output system", "bios"],
+  ["unified extensible firmware interface", "uefi"],
+  ["power on self test", "post"],
+  ["boot priority", "boot order"],
+  ["setup utility", "bios setup"]
 ];
 
 const WORD_SYNONYMS = {
@@ -125,7 +162,9 @@ const WORD_SYNONYMS = {
   motherboard: "board", board: "board",
   os: "os",
   gpu: "gpu", graphics: "gpu", video: "gpu",
-  heatsink: "cooling", cooler: "cooling", fan: "cooling", cooling: "cooling"
+  heatsink: "cooling", cooler: "cooling", fan: "cooling", cooling: "cooling",
+  bios: "bios", uefi: "uefi", firmware: "bios", post: "post",
+  boot: "boot", priority: "boot", cmos: "cmos", setup: "bios"
 };
 
 const PROTECTED_STEMS = new Set(["ram", "cpu", "os", "psu", "esd", "gpu", "bios", "uefi", "post"]);

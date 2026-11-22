@@ -4,14 +4,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { LESSONS } from "../src/data/lessons.js";
+import { LESSONS, MODULES, lessonsForModule } from "../src/data/lessons.js";
 import { ACTIVITIES } from "../src/data/activities.js";
 import { GLOSSARY } from "../src/data/glossary.js";
-import { PRETEST, POSTTEST } from "../src/data/quiz.js";
+import { PRETEST, POSTTEST, M2_PRETEST, M2_POSTTEST, LESSON_CHECKS } from "../src/data/quiz.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const moduleMd = fs.readFileSync(path.join(root, "content/module.md"), "utf8");
+const module2Md = fs.readFileSync(path.join(root, "content/module2.md"), "utf8");
 
 test("module markdown contains expected core topics and lessons", () => {
   assert.ok(moduleMd.includes("Computer Systems Servicing"));
@@ -31,12 +32,14 @@ test("all lessons map to verified module content", () => {
   }
 });
 
-test("all 14 interactive activities are defined and have valid metadata", () => {
-  assert.ok(ACTIVITIES.length >= 14, `Expected at least 14 activities, got ${ACTIVITIES.length}`);
+test("all 26 catalogue activities are defined and have valid metadata", () => {
+  assert.equal(ACTIVITIES.length, 26, `Expected 26 activities, got ${ACTIVITIES.length}`);
   const requiredIds = [
-    "pretest", "pc-lab", "disassembly", "sort-station", "order-rush",
+    "pretest", "tech-wordle", "word-hunt", "pc-lab", "disassembly", "sort-station", "order-rush",
     "software-mission", "spot-mistake", "which-computer", "anatomy",
-    "software-sorter", "case-files", "flashcards", "tech-checkup", "word-chain", "reflection"
+    "software-sorter", "case-files", "flashcards", "tech-checkup", "word-chain", "reflection", "final",
+    "bios-pre", "startup-sequence", "bios-setup-lab", "boot-order-builder",
+    "config-or-hardware", "bios-flashcards", "bios-case-files", "bios-final"
   ];
   for (const id of requiredIds) {
     const act = ACTIVITIES.find((a) => a.id === id);
@@ -72,5 +75,52 @@ test("glossary terms are present in content", () => {
     assert.ok(g.term);
     assert.ok(g.definition);
     assert.ok(g.lesson);
+  }
+});
+
+test("Module 2 source and lessons cover the BIOS/UEFI competencies", () => {
+  assert.deepEqual(MODULES.map((module) => module.id), ["module1", "module2"]);
+  const topics = [
+    "BIOS/UEFI Configuration",
+    "functions of BIOS and UEFI",
+    "Access and navigate the setup utility safely",
+    "Verify detected hardware",
+    "Configure system date, time, and boot order",
+    "Save or discard changes correctly",
+    "POST",
+    "Carlo"
+  ];
+  for (const topic of topics) {
+    assert.ok(module2Md.includes(topic), `Module 2 source must mention ${topic}`);
+  }
+
+  const module2Lessons = lessonsForModule("module2");
+  assert.equal(module2Lessons.length, 5);
+  assert.deepEqual(module2Lessons.map((lesson) => lesson.id), [
+    "bios-startup", "bios-setup", "bios-boot", "bios-safety", "bios-review"
+  ]);
+  for (const lesson of module2Lessons) {
+    assert.equal(lesson.moduleId, "module2");
+    assert.ok(LESSON_CHECKS[lesson.id]?.length >= 2, `${lesson.id} must have a quick check`);
+  }
+});
+
+test("Module 2 has its own 15-item exams matching the document answer keys", () => {
+  assert.equal(M2_PRETEST.items.length, 15);
+  assert.equal(M2_POSTTEST.items.length, 15);
+  assert.equal(M2_PRETEST.activityId, "bios-pre");
+  assert.equal(M2_POSTTEST.activityId, "bios-final");
+  const letters = (bank) => bank.items.map((item) => "ABCD"[item.answer]).join("");
+  assert.equal(letters(M2_PRETEST), "ABCBAAACACADABC");
+  assert.equal(letters(M2_POSTTEST), "CADBACBADAAABAC");
+});
+
+test("Module 2 glossary terms point to Module 2 lessons", () => {
+  const ids = ["bios", "uefi", "firmware", "post", "setup-utility", "boot-order", "boot-device", "cmos-battery", "save-changes", "discard-changes"];
+  for (const id of ids) {
+    const entry = GLOSSARY.find((item) => item.id === id);
+    assert.ok(entry, `Glossary must include ${id}`);
+    assert.equal(entry.moduleId || lessonsForModule("module2").some((lesson) => lesson.id === entry.lesson), true);
+    assert.ok(entry.lesson.startsWith("bios-"), `${id} should link to a Module 2 lesson`);
   }
 });

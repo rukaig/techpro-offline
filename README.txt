@@ -1,6 +1,6 @@
 ========================================================================
-TechPro: Assemble Computer Hardware (100% Offline Educational App)
-DepEd CSS NC II · COC 1 · Module 1
+TechPro: COC 1 Modules 1 & 2 (100% Offline Educational App)
+DepEd CSS NC II · Assemble Computer Hardware + BIOS/UEFI Configuration
 ========================================================================
 
 HOW TO RUN TECHPRO:
@@ -10,7 +10,7 @@ OPTION 1: Instant Run (Double-Click index.html)
 - Simply open this folder and double-click "index.html".
 - It runs directly in your browser using file:// protocol.
 - Zero server, zero internet, zero installation needed.
-- All 14 interactive games, PC Lab, disassembly, lessons, and exams work!
+- All 26 catalogue activities, both module libraries, both exam pairs, PC Lab, BIOS Setup Lab, and the offline assistant work!
 
 OPTION 2: Local Server (npm start)
 - If Node.js is installed on your machine:

@@ -5,7 +5,7 @@ import { homePage, mountHome } from "../pages/home.js";
 import { libraryPage, lessonPage, mountLibrary } from "../pages/library.js";
 import { playPage, mountPlay } from "../pages/play.js";
 import { pcLabPage, mountPcLab } from "../pages/pc-lab.js";
-import { examOverviewPage, quizPage } from "../pages/exam.js";
+import { examOverviewPage, quizPage, mountExam } from "../pages/exam.js";
 import { planPage, mountPlan } from "../pages/plan.js";
 import { accountPage, mountAccount } from "../pages/account.js";
 import { assistantPage, mountAssistant } from "../pages/assistant.js";
@@ -28,8 +28,23 @@ import {
   flashcardsPage, mountFlashcards,
   reflectionPage, mountReflection
 } from "../games/module-activities.js";
-import { PRETEST, POSTTEST } from "../data/quiz.js";
+import {
+  startupSequencePage, mountStartupSequence,
+  biosSetupLabPage, mountBiosSetupLab,
+  bootOrderBuilderPage, mountBootOrderBuilder,
+  configOrHardwarePage, mountConfigOrHardware,
+  biosFlashcardsPage, mountBiosFlashcards,
+  biosCaseFilesPage, mountBiosCaseFiles
+} from "../games/module2-activities.js";
+import { PRETEST, POSTTEST, M2_PRETEST, M2_POSTTEST } from "../data/quiz.js";
 import { ACTIVITY_BY_ID } from "../data/activities.js";
+
+const EXAM_BANKS = {
+  pretest: PRETEST,
+  final: POSTTEST,
+  "bios-pretest": M2_PRETEST,
+  "bios-final": M2_POSTTEST
+};
 
 function pageShell({ title, body, mount = null }) {
   return {
@@ -40,7 +55,7 @@ function pageShell({ title, body, mount = null }) {
 }
 
 route("/", () => ({
-  title: "TechPro · Assemble Computer Hardware",
+  title: "TechPro · COC 1 Modules 1 & 2",
   html: homePage(),
   mount: mountHome
 }));
@@ -163,6 +178,24 @@ route("/play/:activity", ({ params }) => {
   if (params.activity === "reflection") {
     return { title: "Reflection Journal · TechPro", html: reflectionPage(), mount: mountReflection };
   }
+  if (params.activity === "startup-sequence") {
+    return { title: "Startup Relay · TechPro", html: startupSequencePage(), mount: mountStartupSequence };
+  }
+  if (params.activity === "bios-setup-lab") {
+    return { title: "BIOS Setup Lab · TechPro", html: biosSetupLabPage(), mount: mountBiosSetupLab };
+  }
+  if (params.activity === "boot-order-builder") {
+    return { title: "Boot Order Builder · TechPro", html: bootOrderBuilderPage(), mount: mountBootOrderBuilder };
+  }
+  if (params.activity === "config-or-hardware") {
+    return { title: "Hardware or Setting? · TechPro", html: configOrHardwarePage(), mount: mountConfigOrHardware };
+  }
+  if (params.activity === "bios-flashcards") {
+    return { title: "BIOS Flashcards · TechPro", html: biosFlashcardsPage(), mount: mountBiosFlashcards };
+  }
+  if (params.activity === "bios-case-files") {
+    return { title: "Carlo's Boot Case · TechPro", html: biosCaseFilesPage(), mount: mountBiosCaseFiles };
+  }
   if (!activity) {
     return pageShell({
       title: "Activity not found",
@@ -199,24 +232,18 @@ route("/play/:activity", ({ params }) => {
 route("/exam", () => ({
   title: "Assessment · TechPro",
   html: examOverviewPage(),
-  mount: (root) => {
-    root.querySelectorAll("a[href^='/exam/'], a[href^='#/exam/']").forEach((link) => {
-      const href = link.getAttribute("href");
-      if (href === "/exam" || href === "#/exam") return;
-      link.setAttribute("data-keep", "true");
-    });
-  }
+  mount: mountExam
 }));
 
 route("/exam/:bank", ({ params }) => {
-  const bank = params.bank === "pretest" ? PRETEST : params.bank === "final" ? POSTTEST : null;
+  const bank = EXAM_BANKS[params.bank];
   if (bank) return quizPage({ bank });
   return pageShell({
     title: "Assessment not found",
     body: `
       <p class="eyebrow">404</p>
       <h1>That exam is not available</h1>
-      <p class="lede">Choose the pre-test or final exam from the assessment hub.</p>
+      <p class="lede">Choose a pre-test or post-test from the assessment hub.</p>
       <div class="cluster mt-4"><a class="btn btn-primary" href="#/exam">Back to assessment</a></div>
     `
   });
@@ -245,10 +272,12 @@ route("/about", () => pageShell({
   body: `
     <div class="profile-shell">
       <h1>About &amp; references</h1>
-      <p class="lede">TechPro follows the DepEd SDO Cavite module for Computer Systems Servicing NC II: Assemble Computer Hardware.</p>
+      <p class="lede">TechPro follows two DepEd SDO Cavite modules for Computer Systems Servicing NC II, COC 1: Assemble Computer Hardware and BIOS/UEFI Configuration.</p>
       <div class="profile-grid">
-        <article class="card card-pad"><h2>Credit</h2><p>Module: Yvan Marco A. Reyes</p><p>Schools Division Office of Cavite</p><p>Technical Vocational Livelihood · CSS NC II · COC 1</p></article>
-        <article class="card card-pad"><h2>Offline First</h2><p>TechPro is a 100% offline educational app. All lessons, 14 interactive activities, simulation games, and exams run locally with zero network calls and no server required.</p></article>
+        <article class="card card-pad" id="credits"><h2>Credit</h2><p>Module author: Yvan Marco A. Reyes</p><p>Schools Division Office of Cavite</p><p>Technical Vocational Livelihood · CSS NC II · COC 1 · Modules 1 and 2</p></article>
+        <article class="card card-pad"><h2>Offline First</h2><p>TechPro is a 100% offline educational app. All lessons, interactives, simulation games, and exams run locally with zero network calls and no server required.</p></article>
+        <article class="card card-pad" id="privacy"><h2>Privacy</h2><p>Progress, notes, profiles, and settings stay on this device. Nothing is uploaded, and no account is required.</p></article>
+        <article class="card card-pad" id="accessibility"><h2>Accessibility</h2><p>Every screen works with keyboard or touch, respects reduced motion, and supports light, dark, and high-contrast themes.</p></article>
       </div>
     </div>
   `

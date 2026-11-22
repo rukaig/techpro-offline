@@ -7,6 +7,7 @@ const requiredFiles = [
   'index.html',
   'server.js',
   'content/module.md',
+  'content/module2.md',
   'src/app/bootstrap.js',
   'src/app/main.js',
   'src/styles/base.css',
@@ -65,8 +66,20 @@ if (unresolvedImports.length) {
   process.exit(1);
 }
 
-const moduleText = fs.readFileSync(path.join(root, 'content/module.md'), 'utf8');
-const requiredTerms = ['Computer System', 'Desktop computer', 'Power Supply Unit', 'Motherboard'];
+const moduleText = [
+  fs.readFileSync(path.join(root, 'content/module.md'), 'utf8'),
+  fs.readFileSync(path.join(root, 'content/module2.md'), 'utf8')
+].join('\n');
+const requiredTerms = [
+  'Computer System',
+  'Desktop computer',
+  'Power Supply Unit',
+  'Motherboard',
+  'BIOS/UEFI Configuration',
+  'Boot order',
+  'POST',
+  'Carlo'
+];
 const missingTerms = requiredTerms.filter((term) => !moduleText.includes(term));
 if (missingTerms.length) {
   console.error('Module content missing expected terms:');

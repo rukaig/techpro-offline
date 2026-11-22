@@ -1,7 +1,7 @@
 /* ==========================================================================
    Library index and lesson reader.
    ========================================================================== */
-import { LESSONS, GOALS, lessonById, neighbours, searchLessons } from "../data/lessons.js";
+import { LESSONS, GOALS, MODULES, lessonById, neighbours, searchLessons } from "../data/lessons.js";
 import { LESSON_CHECKS } from "../data/quiz.js";
 import { GLOSSARY, GLOSSARY_BY_ID, glossaryForLesson, searchGlossary } from "../data/glossary.js";
 import { ACTIVITIES } from "../data/activities.js";
@@ -28,8 +28,8 @@ export function libraryPage() {
     <header class="page-head">
       <div>
         <p class="eyebrow">The Library</p>
-        <h1>The module, made readable.</h1>
-        <p class="lede">Nine lessons from the DepEd COC 1 module. Every figure, safety note, and procedure is here. Anything TechPro added is clearly marked <span class="tag tag-extra">Extra</span>.</p>
+        <h1>The modules, made readable.</h1>
+        <p class="lede">Fourteen lessons from two DepEd COC 1 modules: Assemble Computer Hardware and BIOS/UEFI Configuration. Every figure, safety note, and procedure is here. Anything TechPro added is clearly marked <span class="tag tag-extra">Extra</span>.</p>
       </div>
       <div class="lib-progress-card">
         <span class="library-ring" style="--ring:${Math.round((read / LESSONS.length) * 100)}"><strong>${read}<small>/${LESSONS.length}</small></strong><span>read</span></span>
@@ -44,6 +44,10 @@ export function libraryPage() {
         <input id="lessonSearch" type="search" placeholder="Search lessons, terms, or procedures…" autocomplete="off" data-lesson-search>
         <kbd class="kbd">/</kbd>
       </label>
+      <div class="filter-chips" role="group" aria-label="Filter by module">
+        <button class="chip is-active" type="button" data-library-module="all">Both modules</button>
+        ${MODULES.map((module) => `<button class="chip" type="button" data-library-module="${module.id}">${esc(module.number)} · ${esc(module.short)}</button>`).join("")}
+      </div>
       <div class="filter-chips" role="group" aria-label="Filter by learning goal">
         <button class="chip is-active" type="button" data-goal="all">All lessons</button>
         ${Object.entries(GOALS).map(([id, goal]) => `<button class="chip" type="button" data-goal="${id}">${esc(goal.short)}</button>`).join("")}
@@ -85,8 +89,8 @@ export function libraryPage() {
 
     <section class="section">
       <div class="library-cta card card-pad">
-        <div><p class="eyebrow">Finished reading?</p><h2>Put the module on the bench.</h2><p>The interactives use the same terms, the same order, and the same safety rules. Start with a sort, then build the PC.</p></div>
-        <div class="cluster"><a class="btn btn-primary" href="/play/sort-station">${icon("layers", 18)} Sort Station</a><a class="btn btn-ghost" href="/play/pc-lab">${icon("wrench", 18)} PC Lab</a></div>
+        <div><p class="eyebrow">Finished reading?</p><h2>Put both modules on the bench.</h2><p>The interactives use the same terms, order, and safety rules as the lessons. Build a PC in Module 1, then configure a simulated BIOS in Module 2.</p></div>
+        <div class="cluster"><a class="btn btn-primary" href="/play/pc-lab">${icon("wrench", 18)} PC Lab</a><a class="btn btn-ghost" href="/play/bios-setup-lab">${icon("settings", 18)} BIOS Setup Lab</a></div>
       </div>
     </section>
   </div>`;
@@ -97,7 +101,7 @@ function lessonCard(lesson) {
   const read = Boolean(state.progress.lessons[lesson.id]?.readAt);
   const saved = state.bookmarks.includes(lesson.id);
   const checks = LESSON_CHECKS[lesson.id]?.length || 0;
-  return `<article class="lesson-row ${read ? "is-read" : ""}" data-lesson-card data-goal="${lesson.goal}" data-id="${lesson.id}" data-search="${esc(`${lesson.title} ${lesson.summary} ${lesson.kicker} ${lesson.keyTerms.join(" ")}`)}">
+  return `<article class="lesson-row ${read ? "is-read" : ""}" data-lesson-card data-goal="${lesson.goal}" data-module="${lesson.moduleId}" data-id="${lesson.id}" data-search="${esc(`${lesson.title} ${lesson.summary} ${lesson.kicker} ${lesson.keyTerms.join(" ")}`)}">
     <a class="lesson-row-main" href="/library/${lesson.id}">
       <span class="lesson-index">${String(lesson.number).padStart(2, "0")}</span>
       <span class="lesson-row-copy">
@@ -121,16 +125,18 @@ export function mountLibrary(root) {
   const cards = Array.from(root.querySelectorAll("[data-lesson-card]"));
   const empty = root.querySelector("[data-lesson-empty]");
   let goal = "all";
+  let moduleId = "all";
 
   function apply() {
     const query = (search?.value || "").trim().toLowerCase();
     let shown = 0;
     cards.forEach((card) => {
+      const matchesModule = moduleId === "all" || card.dataset.module === moduleId;
       const matchesGoal = goal === "all"
         || card.dataset.goal === goal
         || (goal === "bookmarks" && get().bookmarks.includes(card.dataset.id));
       const matchesQuery = !query || card.dataset.search.toLowerCase().includes(query);
-      const visible = matchesGoal && matchesQuery;
+      const visible = matchesModule && matchesGoal && matchesQuery;
       card.hidden = !visible;
       if (visible) shown += 1;
     });
@@ -139,10 +145,17 @@ export function mountLibrary(root) {
   }
 
   search?.addEventListener("input", apply);
-  root.querySelectorAll("[data-goal]").forEach((button) => {
+  root.querySelectorAll("button[data-goal]").forEach((button) => {
     button.addEventListener("click", () => {
       goal = button.dataset.goal;
-      root.querySelectorAll("[data-goal]").forEach((el) => el.classList.toggle("is-active", el === button));
+      root.querySelectorAll("button[data-goal]").forEach((el) => el.classList.toggle("is-active", el === button));
+      apply();
+    });
+  });
+  root.querySelectorAll("[data-library-module]").forEach((button) => {
+    button.addEventListener("click", () => {
+      moduleId = button.dataset.libraryModule;
+      root.querySelectorAll("[data-library-module]").forEach((el) => el.classList.toggle("is-active", el === button));
       apply();
     });
   });
@@ -207,7 +220,7 @@ export function lessonPage({ params }) {
   if (!lesson) {
     return {
       title: "Lesson not found",
-      html: `<div class="page-shell section"><p class="eyebrow">404</p><h1>That lesson is not on the shelf</h1><p class="lede">The Library has nine lessons. This is not one of them.</p><div class="cluster mt-4"><a class="btn btn-primary" href="/library">Open the Library</a></div></div>`
+      html: `<div class="page-shell section"><p class="eyebrow">404</p><h1>That lesson is not on the shelf</h1><p class="lede">The Library has fourteen lessons across two modules. This is not one of them.</p><div class="cluster mt-4"><a class="btn btn-primary" href="/library">Open the Library</a></div></div>`
     };
   }
   const read = isLessonRead(lesson.id);
@@ -218,6 +231,8 @@ export function lessonPage({ params }) {
   const related = ACTIVITIES.filter((activity) => activity.lesson === lesson.id).slice(0, 3);
   const glossary = glossaryForLesson(lesson.id).slice(0, 8);
   const note = getNote(lesson.id);
+  const finishExam = lesson.moduleId === "module2" ? "bios-final" : "final";
+  const finishLabel = lesson.moduleId === "module2" ? "BIOS Post-Test" : "Final Exam";
 
   return {
     title: lesson.title,
@@ -307,7 +322,7 @@ export function lessonPage({ params }) {
           <footer class="reader-foot">
             <div class="next-lesson-nav">
               ${previous ? `<a class="next-lesson is-prev" href="/library/${previous.id}"><span>${icon("arrowLeft", 18)} Previous</span><strong>${esc(previous.title)}</strong></a>` : `<span></span>`}
-              ${next ? `<a class="next-lesson" href="/library/${next.id}"><span>Next ${icon("arrowRight", 18)}</span><strong>${esc(next.title)}</strong></a>` : `<a class="next-lesson" href="/exam/final"><span>Finish ${icon("arrowRight", 18)}</span><strong>Take the Final Exam</strong></a>`}
+              ${next ? `<a class="next-lesson" href="/library/${next.id}"><span>Next ${icon("arrowRight", 18)}</span><strong>${esc(next.title)}</strong></a>` : `<a class="next-lesson" href="/exam/${finishExam}"><span>Finish ${icon("arrowRight", 18)}</span><strong>Take the ${esc(finishLabel)}</strong></a>`}
             </div>
             <div class="reader-foot-row">
               <button class="btn ${read ? "btn-ghost" : "btn-soft"}" type="button" data-mark-read>${icon(read ? "checkCircle" : "check", 18)} ${read ? "Read" : "Mark read"}</button>

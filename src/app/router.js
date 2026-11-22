@@ -9,6 +9,7 @@ import { setPageTitle } from "./ui.js";
 const routes = [];
 let notFound = null;
 let activeCleanup = null;
+let lastRenderedHash = null;
 let current = { path: "/", params: {}, query: new URLSearchParams() };
 let started = false;
 
@@ -125,6 +126,9 @@ export function reload() {
 async function renderCurrent() {
   const main = document.getElementById("main");
   if (!main) return;
+  // Set this synchronously so the hashchange fired by navigate() is ignored
+  // without dropping a genuine back/forward or manually typed route.
+  lastRenderedHash = window.location.hash || "";
   if (typeof activeCleanup === "function") {
     try { activeCleanup(); } catch (error) { console.warn("Route cleanup failed", error); }
     activeCleanup = null;
@@ -244,8 +248,10 @@ export function start() {
     navigate(href);
   });
 
-  window.addEventListener("hashchange", () => renderCurrent());
-  window.addEventListener("popstate", () => renderCurrent());
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash === lastRenderedHash) return;
+    renderCurrent();
+  });
 
   // If accessed over http without hash, redirect to hash
   if (window.location.protocol.startsWith("http")) {
