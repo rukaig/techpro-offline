@@ -1,0 +1,1446 @@
+# TechPro Online Dependency Inventory
+
+Generated automatically on 2026-11-22T07:53:27.281Z
+
+## firebase (301 occurrences)
+
+- `.env.example:12`: `# Server-side Firebase Admin credentials. Use either:`
+- `.env.example:13`: `# 1. FIREBASE_SERVICE_ACCOUNT_JSON with the full service-account JSON value, or`
+- `.env.example:15`: `FIREBASE_PROJECT_ID=eapihs-campusverse`
+- `.env.example:16`: `FIREBASE_SERVICE_ACCOUNT_JSON=`
+- `.firebase/logs/vsce-debug.log:1`: `[debug] [2026-10-31T15:08:52.903Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:2`: `[debug] [2026-10-31T15:08:54.298Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:3`: `[debug] [2026-10-31T15:08:54.300Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:8`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:9`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10`: `[debug] [2026-10-31T15:08:54.330Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:11`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:16`: `[debug] [2026-10-31T15:08:54.835Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:22`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:23`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:24`: `[debug] [2026-10-31T15:08:54.938Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:25`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:27`: `[debug] [2026-10-31T15:08:54.939Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:28`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:29`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:30`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:375`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:377`: `[debug] [2026-10-31T15:35:21.715Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:378`: `[debug] [2026-10-31T15:35:23.221Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:379`: `[debug] [2026-10-31T15:35:23.223Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:383`: `[debug] [2026-10-31T15:35:23.231Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:384`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:386`: `[debug] [2026-10-31T15:35:23.235Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:387`: `[debug] [2026-10-31T15:35:23.265Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:388`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:393`: `[debug] [2026-10-31T15:35:23.987Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:399`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:400`: `[debug] [2026-10-31T15:35:24.564Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:401`: `[debug] [2026-10-31T15:35:24.565Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:417`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:419`: `[debug] [2026-10-31T15:36:53.250Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:420`: `[debug] [2026-10-31T15:36:54.812Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:421`: `[debug] [2026-10-31T15:36:54.813Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:425`: `[debug] [2026-10-31T15:36:54.818Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:426`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:428`: `[debug] [2026-10-31T15:36:54.821Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:429`: `[debug] [2026-10-31T15:36:54.844Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:430`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:435`: `[debug] [2026-10-31T15:36:55.275Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:441`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:442`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:443`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:2212`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:2214`: `[debug] [2026-11-01T04:58:49.434Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:2215`: `[debug] [2026-11-01T04:58:56.275Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:2216`: `[debug] [2026-11-01T04:58:56.278Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:2221`: `[debug] [2026-11-01T04:58:56.294Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:2222`: `[debug] [2026-11-01T04:58:56.295Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2223`: `[debug] [2026-11-01T04:58:56.331Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:2224`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:2229`: `[debug] [2026-11-01T04:58:57.194Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:2235`: `[debug] [2026-11-01T04:58:57.284Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:2236`: `[debug] [2026-11-01T04:58:57.285Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2237`: `[debug] [2026-11-01T04:58:57.296Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:2238`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:2240`: `[debug] [2026-11-01T04:58:57.299Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:2241`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:2242`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:2243`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:5855`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:5857`: `[debug] [2026-11-01T13:00:21.147Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:5858`: `[debug] [2026-11-01T13:00:24.023Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:5859`: `[debug] [2026-11-01T13:00:24.024Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:5864`: `[debug] [2026-11-01T13:00:24.030Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:5865`: `[debug] [2026-11-01T13:00:24.031Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5866`: `[debug] [2026-11-01T13:00:24.046Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:5867`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:5872`: `[debug] [2026-11-01T13:00:24.731Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:5878`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:5879`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:5880`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5881`: `[debug] [2026-11-01T13:00:26.426Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:5882`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:5884`: `[debug] [2026-11-01T13:00:26.429Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:5885`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:5886`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:10724`: `[debug] [2026-11-02T04:14:11.026Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:10725`: `[debug] [2026-11-02T04:14:16.033Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:10726`: `[debug] [2026-11-02T04:14:16.037Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:10731`: `[debug] [2026-11-02T04:14:16.056Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:10732`: `[debug] [2026-11-02T04:14:16.058Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10733`: `[debug] [2026-11-02T04:14:16.101Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:10734`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:10739`: `[debug] [2026-11-02T04:14:17.462Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:10745`: `[debug] [2026-11-02T04:14:17.956Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:10746`: `[debug] [2026-11-02T04:14:17.957Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10747`: `[debug] [2026-11-02T04:14:17.965Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:10748`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:10750`: `[debug] [2026-11-02T04:14:17.970Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:10751`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:10752`: `[debug] [2026-11-02T04:14:18.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:10753`: `[debug] [2026-11-02T04:14:18.874Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:11428`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:11430`: `[debug] [2026-11-03T02:07:43.445Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:11431`: `[debug] [2026-11-03T02:07:46.724Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:11432`: `[debug] [2026-11-03T02:07:46.725Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:11437`: `[debug] [2026-11-03T02:07:46.735Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:11438`: `[debug] [2026-11-03T02:07:46.736Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11439`: `[debug] [2026-11-03T02:07:46.762Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:11440`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:11445`: `[debug] [2026-11-03T02:07:47.418Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:11451`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:11452`: `[debug] [2026-11-03T02:07:48.050Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:11453`: `[debug] [2026-11-03T02:07:48.051Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11454`: `[debug] [2026-11-03T02:07:48.056Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:11455`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:11457`: `[debug] [2026-11-03T02:07:48.058Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:11458`: `[debug] [2026-11-03T02:07:48.828Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:11459`: `[debug] [2026-11-03T02:07:48.831Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12221`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:12223`: `[debug] [2026-11-03T06:17:30.427Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:12224`: `[debug] [2026-11-03T06:17:33.354Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:12225`: `[debug] [2026-11-03T06:17:33.356Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12230`: `[debug] [2026-11-03T06:17:33.367Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12231`: `[debug] [2026-11-03T06:17:33.368Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12232`: `[debug] [2026-11-03T06:17:33.384Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:12233`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:12238`: `[debug] [2026-11-03T06:17:34.188Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:12244`: `[debug] [2026-11-03T06:17:34.255Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12245`: `[debug] [2026-11-03T06:17:34.256Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12246`: `[debug] [2026-11-03T06:17:34.262Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:12247`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:12249`: `[debug] [2026-11-03T06:17:34.264Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12250`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:12251`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12252`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12391`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.firebase/logs/vsce-debug.log:12393`: `[debug] [2026-11-03T07:48:57.198Z] [Firebase Plugin] Activating Firebase extension.`
+- `.firebase/logs/vsce-debug.log:12394`: `[debug] [2026-11-03T07:48:59.095Z] [Firebase Plugin] requireAuthWrapper`
+- `.firebase/logs/vsce-debug.log:12395`: `[debug] [2026-11-03T07:48:59.097Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12400`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12401`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12402`: `[debug] [2026-11-03T07:48:59.125Z] [Firebase Plugin] VSCode notification server listening on port 40001`
+- `.firebase/logs/vsce-debug.log:12403`: `[info] [Firebase Plugin] Starting SQL Connect toolkit (version 3.4.16) on port 50001`
+- `.firebase/logs/vsce-debug.log:12408`: `[debug] [2026-11-03T07:48:59.761Z] Starting SQL Connect Emulator with command {"binary":"/home/rukayl/.cache/firebase/emulators/dataconnect-emulator-3`
+- `.firebase/logs/vsce-debug.log:12414`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12415`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12416`: `[debug] [2026-11-03T07:49:00.038Z] [Firebase Plugin] User found:  kylealdous9@gmail.com`
+- `.firebase/logs/vsce-debug.log:12417`: `[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects`
+- `.firebase/logs/vsce-debug.log:12419`: `[debug] [2026-11-03T07:49:00.041Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12420`: `[error] [Firebase Plugin] error:  {}`
+- `.firebase/logs/vsce-debug.log:12421`: `[debug] [2026-11-03T07:49:00.975Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12422`: `[debug] [2026-11-03T07:49:00.976Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12518`: `[info] [Firebase Plugin] Stopping SQL Connect toolkit`
+- `.gitignore:5`: `.firebase/`
+- `AGENTS.md:4`: `It is a local-first static client (`index.html`, `src/`) served by `server.js` with optional Firebase and Gemini features.`
+- `README.md:30`: `Open `/plan` from the home page or footer to create a dated study schedule. Tasks, manual completion, focus sessions, and review tasks are saved local`
+- `README.md:32`: `When a learner signs in at `/account`, the plan syncs to their private Firestore document at `techpro_users/{uid}/plan/current`. Signing up uses Fireb`
+- `README.md:36`: `Open `/assistant` and sign in to ask questions grounded in the curated TechPro module knowledge. Responses stream from the server and link to relevant`
+- `README.md:44`: `Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, cho`
+- `README.md:48`: `The server reads `PORT`; Render supplies this automatically. See `.env.example` for server configuration. Firebase web configuration lives in `firebas`
+- `README.md:54`: `For Firebase Hosting, install the Firebase CLI, authenticate, then deploy the configured hosting and Firestore resources:`
+- `README.md:57`: `firebase deploy --only hosting,firestore:rules,firestore:indexes`
+- `docs/MASTER_PROMPT.md:18`: `**Already built (do not rebuild or break):** Library, Exam, Ranks, Ask assistant (partial, see Phase 0), 9-theme system, companions, study plan, auth,`
+- `docs/MASTER_PROMPT.md:68`: ``git status`, `git log --oneline -30`, tree of `src/`, `scripts/`, `assets/`, `content/` (skip `node_modules`). Read `package.json`, `server.js`, `fir`
+- `docs/MASTER_PROMPT.md:115`: `- Requires a valid **Firebase ID token** (`Authorization: Bearer ...`), verified server-side with the method already used in this project (add `fireba`
+- `docs/MASTER_PROMPT.md:119`: `- Save conversation history per user in Firestore with a Clear button; update `firestore.rules` so users read and write only their own history. Store `
+- `docs/MASTER_PROMPT.md:227`: `- [ ] Saves stars, best score or time, and XP to Firestore; the hub card updates; the study plan task auto-completes.`
+- `docs/MASTER_PROMPT.md:244`: `- [ ] Gemini assistant: key server-side only, health endpoint, SSE streaming, rate limiting, grounded answers, plain-text replies verified through a r`
+- `docs/PROGRESS_AUDIT.md:39`: `| `/play/pc-lab` | real game | yes / yes | 0 | 3D bench, safety -> CPU -> RAM -> case -> power | three.js + own bundle | local + Firestore sync | yes `
+- `docs/PROGRESS_AUDIT.md:40`: `| `/play/pc-lab?mode=disassembly` | real game | yes / yes | 0 | reverse drill on the same scene | three.js | local + Firestore sync | yes / yes | not `
+- `docs/PROGRESS_AUDIT.md:56`: `| `/plan` | page | yes / yes | 0 | study plan, export, reminders | no | local + Firestore | yes / yes | n/a | 0px gap under header |`
+- `docs/PROGRESS_AUDIT.md:57`: `| `/account` | page | yes / yes | 0 | sign in/up, profile | no | Firestore | yes / yes | n/a | 0px gap under header |`
+- `docs/PROGRESS_AUDIT.md:58`: `| `/assistant` | partial feature | yes / yes | 0 | SSE chat, history, feedback | server Gemini proxy | Firestore (server-side) | yes / yes | n/a | key`
+- `docs/PROGRESS_AUDIT.md:109`: `- `dotenv` loads `.env` at the top of `server.js`; Render env vars keep working. `.env` is in `.gitignore`; `.env.example` has `GEMINI_API_KEY`, `GEMI`
+- `docs/PROGRESS_AUDIT.md:111`: `- `POST /api/assistant` requires a Firebase ID token (`firebase-admin`), validates with `sanitizePrompt` and `isValidConversationId`, trims history to`
+- `docs/PROGRESS_AUDIT.md:112`: `- `GET/DELETE /api/assistant/history` and `POST /api/assistant/feedback` exist. Firestore rules deny all client access to `techpro_assistant`; the ser`
+- `firebase-config.js:2`: `* Public Firebase web-app config.`
+- `firebase-config.js:3`: `* Client credentials are public by design; Firestore rules protect the data.`
+- `firebase-config.js:7`: `window.__TECHPRO_FIREBASE__ = {`
+- `firebase-config.js:9`: `authDomain: "eapihs-campusverse.firebaseapp.com",`
+- `firebase-config.js:11`: `storageBucket: "eapihs-campusverse.firebasestorage.app",`
+- `firebase.json:2`: `"firestore": {`
+- `firebase.json:3`: `"rules": "firestore.rules",`
+- `firebase.json:4`: `"indexes": "firestore.indexes.json"`
+- `firebase.json:8`: `"ignore": ["firebase.json", "**/.*", "**/node_modules/**", "content/**"],`
+- `firestore.rules:2`: `service cloud.firestore {`
+- `index.html:30`: `<script src="/firebase-config.js"></script>`
+- `index.html:34`: `"firebase/app": "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js",`
+- `index.html:35`: `"firebase/auth": "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js",`
+- `index.html:36`: `"firebase/firestore": "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js"`
+- `package-lock.json:16`: `"firebase-admin": "^13.10.0",`
+- `package-lock.json:449`: `"node_modules/@firebase/app-check-interop-types": {`
+- `package-lock.json:451`: `"resolved": "https://registry.npmjs.org/@firebase/app-check-interop-types/-/app-check-interop-types-0.3.5.tgz",`
+- `package-lock.json:455`: `"node_modules/@firebase/app-types": {`
+- `package-lock.json:457`: `"resolved": "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.9.6.tgz",`
+- `package-lock.json:461`: `"@firebase/logger": "0.5.2"`
+- `package-lock.json:464`: `"node_modules/@firebase/auth-interop-types": {`
+- `package-lock.json:466`: `"resolved": "https://registry.npmjs.org/@firebase/auth-interop-types/-/auth-interop-types-0.2.6.tgz",`
+- `package-lock.json:470`: `"node_modules/@firebase/component": {`
+- `package-lock.json:472`: `"resolved": "https://registry.npmjs.org/@firebase/component/-/component-0.7.5.tgz",`
+- `package-lock.json:476`: `"@firebase/util": "1.15.3",`
+- `package-lock.json:483`: `"node_modules/@firebase/database": {`
+- `package-lock.json:485`: `"resolved": "https://registry.npmjs.org/@firebase/database/-/database-1.1.5.tgz",`
+- `package-lock.json:489`: `"@firebase/app-check-interop-types": "0.3.5",`
+- `package-lock.json:490`: `"@firebase/auth-interop-types": "0.2.6",`
+- `package-lock.json:491`: `"@firebase/component": "0.7.5",`
+- `package-lock.json:492`: `"@firebase/logger": "0.5.2",`
+- `package-lock.json:493`: `"@firebase/util": "1.15.3",`
+- `package-lock.json:501`: `"node_modules/@firebase/database-compat": {`
+- `package-lock.json:503`: `"resolved": "https://registry.npmjs.org/@firebase/database-compat/-/database-compat-2.1.7.tgz",`
+- `package-lock.json:507`: `"@firebase/component": "0.7.5",`
+- `package-lock.json:508`: `"@firebase/database": "1.1.5",`
+- `package-lock.json:509`: `"@firebase/database-types": "1.0.22",`
+- `package-lock.json:510`: `"@firebase/logger": "0.5.2",`
+- `package-lock.json:511`: `"@firebase/util": "1.15.3",`
+- `package-lock.json:518`: `"@firebase/app": "0.x",`
+- `package-lock.json:519`: `"@firebase/app-compat": "0.x"`
+- `package-lock.json:522`: `"@firebase/app": {`
+- `package-lock.json:525`: `"@firebase/app-compat": {`
+- `package-lock.json:530`: `"node_modules/@firebase/database-types": {`
+- `package-lock.json:532`: `"resolved": "https://registry.npmjs.org/@firebase/database-types/-/database-types-1.0.22.tgz",`
+- `package-lock.json:536`: `"@firebase/app-types": "0.9.6",`
+- `package-lock.json:537`: `"@firebase/util": "1.15.3"`
+- `package-lock.json:540`: `"node_modules/@firebase/logger": {`
+- `package-lock.json:542`: `"resolved": "https://registry.npmjs.org/@firebase/logger/-/logger-0.5.2.tgz",`
+- `package-lock.json:552`: `"node_modules/@firebase/util": {`
+- `package-lock.json:554`: `"resolved": "https://registry.npmjs.org/@firebase/util/-/util-1.15.3.tgz",`
+- `package-lock.json:565`: `"node_modules/@google-cloud/firestore": {`
+- `package-lock.json:567`: `"resolved": "https://registry.npmjs.org/@google-cloud/firestore/-/firestore-7.11.6.tgz",`
+- `package-lock.json:1915`: `"node_modules/firebase-admin": {`
+- `package-lock.json:1917`: `"resolved": "https://registry.npmjs.org/firebase-admin/-/firebase-admin-13.10.0.tgz",`
+- `package-lock.json:1922`: `"@firebase/database-compat": "^2.0.0",`
+- `package-lock.json:1923`: `"@firebase/database-types": "^1.0.6",`
+- `package-lock.json:1934`: `"@google-cloud/firestore": "^7.11.0",`
+- `package.json:31`: `"firebase-admin": "^13.10.0",`
+- `server.js:53`: `const { applicationDefault, cert, getApps, initializeApp } = require("firebase-admin/app");`
+- `server.js:54`: `const { getAuth } = require("firebase-admin/auth");`
+- `server.js:55`: `const { getFirestore, FieldValue } = require("firebase-admin/firestore");`
+- `server.js:56`: `const projectId = process.env.FIREBASE_PROJECT_ID || process.env.GCLOUD_PROJECT;`
+- `server.js:58`: `if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {`
+- `server.js:61`: `serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);`
+- `server.js:63`: `throw new Error("FIREBASE_SERVICE_ACCOUNT_JSON must contain valid JSON.", { cause: error });`
+- `server.js:69`: `const firebaseApp = getApps().find((item) => item.name === "techpro-server")`
+- `server.js:72`: `auth: getAuth(firebaseApp),`
+- `server.js:73`: `db: getFirestore(firebaseApp),`
+- `server.js:79`: `function requireFirebaseUser(req, res, next) {`
+- `server.js:89`: `req.firebaseUser = decoded;`
+- `server.js:93`: `console.error("Firebase Admin credentials are unavailable or invalid.", error);`
+- `server.js:94`: `res.status(503).json({ error: "Firebase Admin credentials are not configured correctly on this server." });`
+- `server.js:97`: `console.warn("Firebase ID token verification failed.", error.code || error.message);`
+- `server.js:101`: `console.error("Firebase Admin could not initialize.", error);`
+- `server.js:107`: `const userResult = userAssistantLimiter.consume(`${req.firebaseUser.uid}:${req.ip}`);`
+- `server.js:135`: `app.get("/api/assistant/history", requireFirebaseUser, async (req, res) => {`
+- `server.js:139`: `const snapshot = await conversationRef(req.firebaseUser.uid, conversationId).get();`
+- `server.js:150`: `app.delete("/api/assistant/history", requireFirebaseUser, async (req, res) => {`
+- `server.js:154`: `await conversationRef(req.firebaseUser.uid, conversationId).delete();`
+- `server.js:162`: `app.post("/api/assistant/feedback", requireFirebaseUser, async (req, res) => {`
+- `server.js:170`: `const ref = conversationRef(req.firebaseUser.uid, conversationId);`
+- `server.js:187`: `app.post("/api/assistant", requireFirebaseUser, assistantRateLimit, async (req, res) => {`
+- `server.js:202`: `const ref = conversationRef(req.firebaseUser.uid, conversationId);`
+- `src/pages/account.js:4`: `} from "../services/firebase.js";`
+- `src/pages/account.js:35`: `<p>Your study plan syncs privately to your account when Firestore is enabled for this project.</p>`
+- `src/pages/assistant.js:1`: `import { observeAuth } from "../services/firebase.js";`
+- `src/services/firebase.js:8`: `function firebaseModules() {`
+- `src/services/firebase.js:11`: `import("firebase/app"),`
+- `src/services/firebase.js:12`: `import("firebase/auth"),`
+- `src/services/firebase.js:13`: `import("firebase/firestore")`
+- `src/services/firebase.js:14`: `]).then(([appSdk, authSdk, firestoreSdk]) => ({ appSdk, authSdk, firestoreSdk }))`
+- `src/services/firebase.js:17`: `throw new Error("Firebase could not load. Check your internet connection and try again.", { cause: error });`
+- `src/services/firebase.js:23`: `async function firebaseApp() {`
+- `src/services/firebase.js:25`: `const { appSdk } = await firebaseModules();`
+- `src/services/firebase.js:26`: `const config = window.__TECHPRO_FIREBASE__;`
+- `src/services/firebase.js:27`: `if (!config?.apiKey || !config?.projectId) throw new Error("Firebase is not configured for this site.");`
+- `src/services/firebase.js:34`: `const [{ authSdk }, clientApp] = await Promise.all([firebaseModules(), firebaseApp()]);`
+- `src/services/firebase.js:35`: `auth = authSdk.getAuth(clientApp);`
+- `src/services/firebase.js:40`: `export async function firestoreClient() {`
+- `src/services/firebase.js:42`: `const [{ firestoreSdk }, clientApp] = await Promise.all([firebaseModules(), firebaseApp()]);`
+- `src/services/firebase.js:43`: `db = firestoreSdk.getFirestore(clientApp);`
+- `src/services/firebase.js:52`: `export function getAuthError() {`
+- `src/services/firebase.js:59`: `Promise.all([firebaseModules(), authClient()]).then(([{ authSdk }, clientAuth]) => {`
+- `src/services/firebase.js:61`: `unsubscribe = authSdk.onAuthStateChanged(clientAuth, (user) => {`
+- `src/services/firebase.js:81`: `const [{ authSdk }, clientAuth] = await Promise.all([firebaseModules(), authClient()]);`
+- `src/services/firebase.js:89`: `const [{ authSdk }, clientAuth] = await Promise.all([firebaseModules(), authClient()]);`
+- `src/services/firebase.js:96`: `const [{ authSdk }, clientAuth] = await Promise.all([firebaseModules(), authClient()]);`
+- `src/services/firebase.js:109`: `"auth/operation-not-allowed": "Email and password sign-in is not enabled for this Firebase project.",`
+- `src/services/game-progress.js:11`: `import { firestoreClient, observeAuth } from "./firebase.js";`
+- `src/services/game-progress.js:128`: `/* Firestore mirror                                                           */`
+- `src/services/game-progress.js:133`: `import("firebase/firestore"),`
+- `src/services/game-progress.js:134`: `firestoreClient()`
+- `src/services/game-progress.js:170`: `import("firebase/firestore"),`
+- `src/services/game-progress.js:178`: `console.error("Could not sync PC Lab progress to Firestore.", error);`
+- `src/services/game-progress.js:191`: `import("firebase/firestore"),`
+- `src/services/game-progress.js:203`: `}, (error) => console.error("Could not receive Firestore PC Lab updates.", error));`
+- `src/services/game-progress.js:205`: `console.error("Could not load PC Lab progress from Firestore.", error);`
+- `src/services/game-progress.js:218`: `console.error("Firebase authentication could not initialize for game sync.", error);`
+- `src/services/leaderboard.js:2`: `Leaderboard data. Local + demo by default; Firestore when signed in.`
+- `src/services/plan-sync.js:2`: `import { firestoreClient, observeAuth } from "./firebase.js";`
+- `src/services/plan-sync.js:11`: `import("firebase/firestore"),`
+- `src/services/plan-sync.js:12`: `firestoreClient()`
+- `src/services/plan-sync.js:45`: `import("firebase/firestore"),`
+- `src/services/plan-sync.js:50`: `console.error("Could not sync the study plan to Firestore.", error);`
+- `src/services/plan-sync.js:64`: `import("firebase/firestore"),`
+- `src/services/plan-sync.js:87`: `}, (error) => console.error("Could not receive Firestore study-plan updates.", error));`
+- `src/services/plan-sync.js:89`: `console.error("Could not load the Firestore study plan.", error);`
+- `src/services/plan-sync.js:103`: `console.error("Firebase authentication could not initialize for plan sync.", error);`
+- `src/services/store.js:3`: `Everything works without an account. Firestore sync mirrors this document`
+
+## gemini (82 occurrences)
+
+- `.env.example:1`: `# Gemini is optional; the assistant shows an unavailable notice until configured.`
+- `.env.example:2`: `GEMINI_API_KEY=`
+- `.env.example:3`: `GEMINI_MODEL=gemini-3.5-flash-lite`
+- `AGENTS.md:4`: `It is a local-first static client (`index.html`, `src/`) served by `server.js` with optional Firebase and Gemini features.`
+- `AGENTS.md:19`: `- The Gemini key is read only on the server from `process.env.GEMINI_API_KEY`.`
+- `README.md:36`: `Open `/assistant` and sign in to ask questions grounded in the curated TechPro module knowledge. Responses stream from the server and link to relevant`
+- `README.md:44`: `Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, cho`
+- `docs/BUILD_STATUS.md:24`: `## Phase 0 — Gemini assistant (commit `2fddd12`) — done`
+- `docs/BUILD_STATUS.md:26`: `- `GET /api/assistant/health` returns `{ configured, model }`; the model id is`
+- `docs/BUILD_STATUS.md:28`: `- Default model `gemini-3.5-flash-lite`, overridable with `GEMINI_MODEL`.`
+- `docs/BUILD_STATUS.md:36`: `- **Blocked:** no `.env` / `GEMINI_API_KEY` in this workspace, so the live`
+- `docs/BUILD_STATUS.md:116`: `node scripts/assistant-smoke.mjs --live    # 5 real Gemini questions (needs key)`
+- `docs/MASTER_PROMPT.md:7`: `3. Put your Gemini key in `~/moduless/.env` yourself as `GEMINI_API_KEY=your_key_here`. Never paste it into the chat.`
+- `docs/MASTER_PROMPT.md:54`: `| **Step 1** | Create `AGENTS.md`; finish the audit the last AI skipped; reproduce the PC Lab bug; fix the audit script; check Gemini status | no |`
+- `docs/MASTER_PROMPT.md:56`: `| **Phase 0** | Gemini assistant configuration | no |`
+- `docs/MASTER_PROMPT.md:93`: `### 3.5 Gemini status (read-only)`
+- `docs/MASTER_PROMPT.md:94`: `Inspect `server/assistant-utils.js`, `/api/assistant` in `server.js`, `tests/assistant.test.js`, the Ask page, and the knowledge build scripts. Add a `
+- `docs/MASTER_PROMPT.md:98`: `Give a **6-line summary**: counts (Done / Partial / Placeholder / Missing), top 3 findings, the confirmed PC Lab cause, and Gemini status. Then **stop`
+- `docs/MASTER_PROMPT.md:100`: `## 5. PHASE 0: Gemini assistant configuration`
+- `docs/MASTER_PROMPT.md:105`: `- The key is read **only on the server** from `process.env.GEMINI_API_KEY`. It must never appear in client bundles, HTML, logs, errors, or git.`
+- `docs/MASTER_PROMPT.md:106`: `- Add or update `.env.example` with placeholders: `GEMINI_API_KEY=`, `GEMINI_MODEL=`, plus any rate-limit or origin settings. Confirm `.env` is in `.g`
+- `docs/MASTER_PROMPT.md:108`: `- If the key is missing, the server still starts normally; `/api/assistant` returns a friendly "assistant is resting" response (HTTP 503, safe message`
+- `docs/MASTER_PROMPT.md:109`: `- Add `GET /api/assistant/health` returning `{ configured: true|false, model: "<name>" }` **without** exposing the key.`
+- `docs/MASTER_PROMPT.md:112`: `Before wiring, **check the official Google Gemini API documentation** (use web access if available) for the **current model identifiers and recommende`
+- `docs/MASTER_PROMPT.md:114`: `### 5.3 Endpoint behavior (`POST /api/assistant`)`
+- `docs/MASTER_PROMPT.md:135`: `Unit tests for the sanitizer (including split-chunk cases), retrieval, prompt validation, rate limiting, and the missing-key path. With the key presen`
+- `docs/MASTER_PROMPT.md:244`: `- [ ] Gemini assistant: key server-side only, health endpoint, SSE streaming, rate limiting, grounded answers, plain-text replies verified through a r`
+- `docs/PROGRESS_AUDIT.md:58`: `| `/assistant` | partial feature | yes / yes | 0 | SSE chat, history, feedback | server Gemini proxy | Firestore (server-side) | yes / yes | n/a | key`
+- `docs/PROGRESS_AUDIT.md:105`: `## 6. Gemini assistant status (read-only inspection)`
+- `docs/PROGRESS_AUDIT.md:109`: `- `dotenv` loads `.env` at the top of `server.js`; Render env vars keep working. `.env` is in `.gitignore`; `.env.example` has `GEMINI_API_KEY`, `GEMI`
+- `docs/PROGRESS_AUDIT.md:110`: `- The key is read only in `server.js` (`process.env.GEMINI_API_KEY`) and never sent to the client (`grep` over `src/`, `assets/`, HTML finds no key or`
+- `docs/PROGRESS_AUDIT.md:111`: `- `POST /api/assistant` requires a Firebase ID token (`firebase-admin`), validates with `sanitizePrompt` and `isValidConversationId`, trims history to`
+- `docs/PROGRESS_AUDIT.md:112`: `- `GET/DELETE /api/assistant/history` and `POST /api/assistant/feedback` exist. Firestore rules deny all client access to `techpro_assistant`; the ser`
+- `docs/PROGRESS_AUDIT.md:118`: `- No `GET /api/assistant/health` (`{ configured, model }`).`
+- `docs/PROGRESS_AUDIT.md:124`: `- Model id `gemini-3.8-flash` is a claim in `README.md`/`.env.example`; it has not been verified against the current Google model catalog in this sess`
+- `docs/PROGRESS_AUDIT.md:130`: `- Real Gemini generation (no key in `.env`).`
+- `package-lock.json:13`: `"dotenv": "^18.0.9",`
+- `package-lock.json:998`: `"resolved": "https://registry.npmjs.org/@opentelemetry/api/-/api-1.10.0.tgz",`
+- `package-lock.json:1533`: `"node_modules/dotenv": {`
+- `package-lock.json:1535`: `"resolved": "https://registry.npmjs.org/dotenv/-/dotenv-18.0.9.tgz",`
+- `package-lock.json:1539`: `"dotenv": "dist/index.cjs"`
+- `package-lock.json:1545`: `"url": "https://dotenvx.com"`
+- `package.json:28`: `"dotenv": "^18.0.9",`
+- `scripts/assistant-smoke.mjs:2`: `// Runs the five Phase 0 assistant questions. Uses the real Gemini API when`
+- `scripts/assistant-smoke.mjs:3`: `// GEMINI_API_KEY is configured; otherwise exercises the exact request,`
+- `scripts/assistant-smoke.mjs:5`: `import "dotenv/config";`
+- `scripts/assistant-smoke.mjs:22`: `const MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash-lite";`
+- `scripts/assistant-smoke.mjs:23`: `const live = process.argv.includes("--live") || Boolean(process.env.GEMINI_API_KEY);`
+- `scripts/assistant-smoke.mjs:49`: `const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });`
+- `scripts/assistant-smoke.mjs:71`: `console.log(live ? `LIVE Gemini run (${MODEL})` : "MOCKED Gemini run (no GEMINI_API_KEY in the server environment)");`
+- `scripts/route-check.mjs:52`: `const response = await fetch(`${url}/api/health`);`
+- `scripts/ui-audit.mjs:45`: `const response = await fetch(`${url}/api/health`);`
+- `scripts/ui-audit.mjs:68`: `if (url.origin !== origin || url.pathname.startsWith("/api/") || /\.[a-z0-9]{2,6}$/i.test(url.pathname)) return null;`
+- `server.js:1`: `require("dotenv").config();`
+- `server.js:19`: `const DEFAULT_ASSISTANT_MODEL = "gemini-3.5-flash-lite";`
+- `server.js:20`: `const ASSISTANT_MODEL = (process.env.GEMINI_MODEL || DEFAULT_ASSISTANT_MODEL).trim();`
+- `server.js:42`: `app.get("/api/health", (req, res) => {`
+- `server.js:46`: `app.get("/api/assistant/health", (req, res) => {`
+- `server.js:48`: `res.json({ configured: Boolean(process.env.GEMINI_API_KEY), model: ASSISTANT_MODEL });`
+- `server.js:135`: `app.get("/api/assistant/history", requireFirebaseUser, async (req, res) => {`
+- `server.js:150`: `app.delete("/api/assistant/history", requireFirebaseUser, async (req, res) => {`
+- `server.js:162`: `app.post("/api/assistant/feedback", requireFirebaseUser, async (req, res) => {`
+- `server.js:187`: `app.post("/api/assistant", requireFirebaseUser, assistantRateLimit, async (req, res) => {`
+- `server.js:197`: `if (!process.env.GEMINI_API_KEY) {`
+- `server.js:261`: `const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });`
+- `server.js:303`: `console.error("Gemini assistant request failed.", error);`
+- `server.js:323`: `app.get("/api/qr", async (req, res) => {`
+- `server.js:362`: `if (req.path.startsWith("/api/")) return next();`
+- `src/app/router.js:165`: `if (url.pathname.startsWith("/api/")) return;`
+- `src/pages/assistant.js:182`: `const response = await apiRequest(`/api/assistant/history?conversation=${encodeURIComponent(state.conversationId)}`);`
+- `src/pages/assistant.js:194`: `await apiRequest("/api/assistant/feedback", {`
+- `src/pages/assistant.js:209`: `await apiRequest(`/api/assistant/history?conversation=${encodeURIComponent(oldId)}`, { method: "DELETE" });`
+- `src/pages/assistant.js:251`: `const response = await apiRequest("/api/assistant", {`
+- `tests/server-assistant.test.js:14`: `GEMINI_API_KEY: "",`
+- `tests/server-assistant.test.js:15`: `GEMINI_MODEL: "gemini-test-model"`
+- `tests/server-assistant.test.js:35`: `test("server starts without a Gemini key and keeps the assistant safe", async (t) => {`
+- `tests/server-assistant.test.js:42`: `const health = await fetch(`${base}/api/health`);`
+- `tests/server-assistant.test.js:46`: `const assistantHealth = await fetch(`${base}/api/assistant/health`);`
+- `tests/server-assistant.test.js:48`: `assert.deepEqual(await assistantHealth.json(), { configured: false, model: "gemini-test-model" });`
+- `tests/server-assistant.test.js:50`: `const anonymous = await fetch(`${base}/api/assistant`, {`
+- `tests/server-assistant.test.js:56`: `assert.ok(!(await anonymous.text()).includes("GEMINI"));`
+- `tests/server-assistant.test.js:58`: `const history = await fetch(`${base}/api/assistant/history?conversation=conversation_123`);`
+
+## networkApis (8 occurrences)
+
+- `scripts/route-check.mjs:52`: `const response = await fetch(`${url}/api/health`);`
+- `scripts/ui-audit.mjs:45`: `const response = await fetch(`${url}/api/health`);`
+- `src/pages/assistant.js:169`: `const response = await fetch(url, {`
+- `tests/server-assistant.test.js:42`: `const health = await fetch(`${base}/api/health`);`
+- `tests/server-assistant.test.js:46`: `const assistantHealth = await fetch(`${base}/api/assistant/health`);`
+- `tests/server-assistant.test.js:50`: `const anonymous = await fetch(`${base}/api/assistant`, {`
+- `tests/server-assistant.test.js:58`: `const history = await fetch(`${base}/api/assistant/history?conversation=conversation_123`);`
+- `tests/server-assistant.test.js:61`: `const page = await fetch(`${base}/play/pc-lab`);`
+
+## urls (446 occurrences)
+
+- `.firebase/logs/vsce-debug.log:3`: `[debug] [2026-10-31T15:08:54.300Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:8`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:9`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:22`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:23`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:27`: `[debug] [2026-10-31T15:08:54.939Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:29`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:30`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:379`: `[debug] [2026-10-31T15:35:23.223Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:386`: `[debug] [2026-10-31T15:35:23.235Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:400`: `[debug] [2026-10-31T15:35:24.564Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:401`: `[debug] [2026-10-31T15:35:24.565Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:421`: `[debug] [2026-10-31T15:36:54.813Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:428`: `[debug] [2026-10-31T15:36:54.821Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:442`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:443`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:2216`: `[debug] [2026-11-01T04:58:56.278Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:2221`: `[debug] [2026-11-01T04:58:56.294Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:2222`: `[debug] [2026-11-01T04:58:56.295Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2235`: `[debug] [2026-11-01T04:58:57.284Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:2236`: `[debug] [2026-11-01T04:58:57.285Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2240`: `[debug] [2026-11-01T04:58:57.299Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:2242`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:2243`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:5859`: `[debug] [2026-11-01T13:00:24.024Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:5864`: `[debug] [2026-11-01T13:00:24.030Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:5865`: `[debug] [2026-11-01T13:00:24.031Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5879`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:5880`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5884`: `[debug] [2026-11-01T13:00:26.429Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:5885`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:5886`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:10726`: `[debug] [2026-11-02T04:14:16.037Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:10731`: `[debug] [2026-11-02T04:14:16.056Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:10732`: `[debug] [2026-11-02T04:14:16.058Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10745`: `[debug] [2026-11-02T04:14:17.956Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:10746`: `[debug] [2026-11-02T04:14:17.957Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10750`: `[debug] [2026-11-02T04:14:17.970Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:10752`: `[debug] [2026-11-02T04:14:18.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:10753`: `[debug] [2026-11-02T04:14:18.874Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:11432`: `[debug] [2026-11-03T02:07:46.725Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:11437`: `[debug] [2026-11-03T02:07:46.735Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:11438`: `[debug] [2026-11-03T02:07:46.736Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11452`: `[debug] [2026-11-03T02:07:48.050Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:11453`: `[debug] [2026-11-03T02:07:48.051Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11457`: `[debug] [2026-11-03T02:07:48.058Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:11458`: `[debug] [2026-11-03T02:07:48.828Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:11459`: `[debug] [2026-11-03T02:07:48.831Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12225`: `[debug] [2026-11-03T06:17:33.356Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12230`: `[debug] [2026-11-03T06:17:33.367Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12231`: `[debug] [2026-11-03T06:17:33.368Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12244`: `[debug] [2026-11-03T06:17:34.255Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12245`: `[debug] [2026-11-03T06:17:34.256Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12249`: `[debug] [2026-11-03T06:17:34.264Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12251`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12252`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12395`: `[debug] [2026-11-03T07:48:59.097Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12400`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12401`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12414`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12415`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12419`: `[debug] [2026-11-03T07:49:00.041Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12421`: `[debug] [2026-11-03T07:49:00.975Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12422`: `[debug] [2026-11-03T07:49:00.976Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.pclab-flow.mjs:3`: `const BASE = process.env.URL || "http://localhost:3000/play/pc-lab?debug=1";`
+- `.pclab-smoke.mjs:3`: `const url = process.env.URL || "http://localhost:3000/play/pc-lab";`
+- `README.md:14`: `Open [http://localhost:3000](http://localhost:3000). Do not open `index.html` from the file manager; the page needs to be served over HTTP. Set `PORT``
+- `README.md:44`: `Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, cho`
+- `assets/techpro-mark.svg:1`: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="TechPro chip mascot">`
+- `content/module.md:1299`: `American Public University. (2025, April 14). Basic components of a computer: How they function for users. https://www.apu.apus.edu/area-of-study/info`
+- `content/module.md:1301`: `Beens.org. (n.d.). Computer hardware safety rules. https://www.beens.org/computer-hardware-safety-rules/`
+- `content/module.md:1303`: `American Public University. (2025, April 14). Basic components of a computer: How they function for users. https://www.apu.apus.edu/area-of-study/info`
+- `content/module.md:1305`: `GeeksforGeeks. (2026, April 28). Computer hardware. https://www.geeksforgeeks.org/computer-science-fundamentals/computer-hardware/`
+- `content/module.md:1309`: `https://www.open.edu/openlearncreate/mod/book/view.php?id=181144&chapterid=24657`
+- `content/module.md:1311`: `Microsoft. (2026). Microsoft Copilot [Generative artificial intelligence tool]. https://copilot.microsoft.com/`
+- `index.html:34`: `"firebase/app": "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js",`
+- `index.html:35`: `"firebase/auth": "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js",`
+- `index.html:36`: `"firebase/firestore": "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js"`
+- `index.html:60`: `<p style="margin:0">Then visit <strong>http://localhost:3000/</strong> in your browser.</p>`
+- `package-lock.json:29`: `"resolved": "https://registry.npmjs.org/@esbuild/aix-ppc64/-/aix-ppc64-0.28.2.tgz",`
+- `package-lock.json:45`: `"resolved": "https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.28.2.tgz",`
+- `package-lock.json:61`: `"resolved": "https://registry.npmjs.org/@esbuild/android-arm64/-/android-arm64-0.28.2.tgz",`
+- `package-lock.json:77`: `"resolved": "https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.28.2.tgz",`
+- `package-lock.json:93`: `"resolved": "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.28.2.tgz",`
+- `package-lock.json:109`: `"resolved": "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.28.2.tgz",`
+- `package-lock.json:125`: `"resolved": "https://registry.npmjs.org/@esbuild/freebsd-arm64/-/freebsd-arm64-0.28.2.tgz",`
+- `package-lock.json:141`: `"resolved": "https://registry.npmjs.org/@esbuild/freebsd-x64/-/freebsd-x64-0.28.2.tgz",`
+- `package-lock.json:157`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-arm/-/linux-arm-0.28.2.tgz",`
+- `package-lock.json:173`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-arm64/-/linux-arm64-0.28.2.tgz",`
+- `package-lock.json:189`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-ia32/-/linux-ia32-0.28.2.tgz",`
+- `package-lock.json:205`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-loong64/-/linux-loong64-0.28.2.tgz",`
+- `package-lock.json:221`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-mips64el/-/linux-mips64el-0.28.2.tgz",`
+- `package-lock.json:237`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.28.2.tgz",`
+- `package-lock.json:253`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-riscv64/-/linux-riscv64-0.28.2.tgz",`
+- `package-lock.json:269`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-s390x/-/linux-s390x-0.28.2.tgz",`
+- `package-lock.json:285`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.2.tgz",`
+- `package-lock.json:301`: `"resolved": "https://registry.npmjs.org/@esbuild/netbsd-arm64/-/netbsd-arm64-0.28.2.tgz",`
+- `package-lock.json:317`: `"resolved": "https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.28.2.tgz",`
+- `package-lock.json:333`: `"resolved": "https://registry.npmjs.org/@esbuild/openbsd-arm64/-/openbsd-arm64-0.28.2.tgz",`
+- `package-lock.json:349`: `"resolved": "https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.28.2.tgz",`
+- `package-lock.json:365`: `"resolved": "https://registry.npmjs.org/@esbuild/openharmony-arm64/-/openharmony-arm64-0.28.2.tgz",`
+- `package-lock.json:381`: `"resolved": "https://registry.npmjs.org/@esbuild/sunos-x64/-/sunos-x64-0.28.2.tgz",`
+- `package-lock.json:397`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-arm64/-/win32-arm64-0.28.2.tgz",`
+- `package-lock.json:413`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-ia32/-/win32-ia32-0.28.2.tgz",`
+- `package-lock.json:429`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.28.2.tgz",`
+- `package-lock.json:445`: `"resolved": "https://registry.npmjs.org/@fastify/busboy/-/busboy-3.2.4.tgz",`
+- `package-lock.json:451`: `"resolved": "https://registry.npmjs.org/@firebase/app-check-interop-types/-/app-check-interop-types-0.3.5.tgz",`
+- `package-lock.json:457`: `"resolved": "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.9.6.tgz",`
+- `package-lock.json:466`: `"resolved": "https://registry.npmjs.org/@firebase/auth-interop-types/-/auth-interop-types-0.2.6.tgz",`
+- `package-lock.json:472`: `"resolved": "https://registry.npmjs.org/@firebase/component/-/component-0.7.5.tgz",`
+- `package-lock.json:485`: `"resolved": "https://registry.npmjs.org/@firebase/database/-/database-1.1.5.tgz",`
+- `package-lock.json:503`: `"resolved": "https://registry.npmjs.org/@firebase/database-compat/-/database-compat-2.1.7.tgz",`
+- `package-lock.json:532`: `"resolved": "https://registry.npmjs.org/@firebase/database-types/-/database-types-1.0.22.tgz",`
+- `package-lock.json:542`: `"resolved": "https://registry.npmjs.org/@firebase/logger/-/logger-0.5.2.tgz",`
+- `package-lock.json:554`: `"resolved": "https://registry.npmjs.org/@firebase/util/-/util-1.15.3.tgz",`
+- `package-lock.json:567`: `"resolved": "https://registry.npmjs.org/@google-cloud/firestore/-/firestore-7.11.6.tgz",`
+- `package-lock.json:584`: `"resolved": "https://registry.npmjs.org/@google-cloud/paginator/-/paginator-5.0.2.tgz",`
+- `package-lock.json:598`: `"resolved": "https://registry.npmjs.org/@google-cloud/projectify/-/projectify-4.0.0.tgz",`
+- `package-lock.json:608`: `"resolved": "https://registry.npmjs.org/@google-cloud/promisify/-/promisify-4.0.0.tgz",`
+- `package-lock.json:618`: `"resolved": "https://registry.npmjs.org/@google-cloud/storage/-/storage-7.22.0.tgz",`
+- `package-lock.json:644`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:661`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-6.1.1.tgz",`
+- `package-lock.json:676`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-9.15.1.tgz",`
+- `package-lock.json:694`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-0.0.2.tgz",`
+- `package-lock.json:704`: `"resolved": "https://registry.npmjs.org/mime/-/mime-3.0.0.tgz",`
+- `package-lock.json:717`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:738`: `"resolved": "https://registry.npmjs.org/p-limit/-/p-limit-3.1.0.tgz",`
+- `package-lock.json:749`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:754`: `"resolved": "https://registry.npmjs.org/@google/genai/-/genai-2.32.0.tgz",`
+- `package-lock.json:778`: `"resolved": "https://registry.npmjs.org/@grpc/grpc-js/-/grpc-js-1.14.7.tgz",`
+- `package-lock.json:792`: `"resolved": "https://registry.npmjs.org/@grpc/proto-loader/-/proto-loader-0.8.1.tgz",`
+- `package-lock.json:811`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz",`
+- `package-lock.json:826`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",`
+- `package-lock.json:839`: `"url": "https://github.com/chalk/wrap-ansi?sponsor=1"`
+- `package-lock.json:844`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz",`
+- `package-lock.json:854`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-17.7.3.tgz",`
+- `package-lock.json:873`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz",`
+- `package-lock.json:883`: `"resolved": "https://registry.npmjs.org/@grpc/proto-loader/-/proto-loader-0.7.15.tgz",`
+- `package-lock.json:902`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz",`
+- `package-lock.json:917`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",`
+- `package-lock.json:930`: `"url": "https://github.com/chalk/wrap-ansi?sponsor=1"`
+- `package-lock.json:935`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz",`
+- `package-lock.json:945`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-17.7.3.tgz",`
+- `package-lock.json:964`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz",`
+- `package-lock.json:974`: `"resolved": "https://registry.npmjs.org/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz",`
+- `package-lock.json:980`: `"url": "https://opencollective.com/js-sdsl"`
+- `package-lock.json:985`: `"resolved": "https://registry.npmjs.org/@nodable/entities/-/entities-3.1.0.tgz",`
+- `package-lock.json:990`: `"url": "https://github.com/sponsors/nodable"`
+- `package-lock.json:998`: `"resolved": "https://registry.npmjs.org/@opentelemetry/api/-/api-1.10.0.tgz",`
+- `package-lock.json:1008`: `"resolved": "https://registry.npmjs.org/@protobufjs/aspromise/-/aspromise-1.1.2.tgz",`
+- `package-lock.json:1014`: `"resolved": "https://registry.npmjs.org/@protobufjs/base64/-/base64-1.1.2.tgz",`
+- `package-lock.json:1020`: `"resolved": "https://registry.npmjs.org/@protobufjs/codegen/-/codegen-2.0.5.tgz",`
+- `package-lock.json:1026`: `"resolved": "https://registry.npmjs.org/@protobufjs/eventemitter/-/eventemitter-1.1.1.tgz",`
+- `package-lock.json:1032`: `"resolved": "https://registry.npmjs.org/@protobufjs/fetch/-/fetch-1.1.1.tgz",`
+- `package-lock.json:1041`: `"resolved": "https://registry.npmjs.org/@protobufjs/float/-/float-1.0.2.tgz",`
+- `package-lock.json:1047`: `"resolved": "https://registry.npmjs.org/@protobufjs/path/-/path-1.1.2.tgz",`
+- `package-lock.json:1053`: `"resolved": "https://registry.npmjs.org/@protobufjs/pool/-/pool-1.1.0.tgz",`
+- `package-lock.json:1059`: `"resolved": "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.2.tgz",`
+- `package-lock.json:1065`: `"resolved": "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.1.tgz",`
+- `package-lock.json:1075`: `"resolved": "https://registry.npmjs.org/@types/caseless/-/caseless-0.12.5.tgz",`
+- `package-lock.json:1082`: `"resolved": "https://registry.npmjs.org/@types/jsonwebtoken/-/jsonwebtoken-9.0.10.tgz",`
+- `package-lock.json:1092`: `"resolved": "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz",`
+- `package-lock.json:1099`: `"resolved": "https://registry.npmjs.org/@types/ms/-/ms-2.1.0.tgz",`
+- `package-lock.json:1105`: `"resolved": "https://registry.npmjs.org/@types/node/-/node-26.6.6.tgz",`
+- `package-lock.json:1114`: `"resolved": "https://registry.npmjs.org/@types/request/-/request-2.48.13.tgz",`
+- `package-lock.json:1127`: `"resolved": "https://registry.npmjs.org/@types/retry/-/retry-0.12.0.tgz",`
+- `package-lock.json:1133`: `"resolved": "https://registry.npmjs.org/@types/tough-cookie/-/tough-cookie-4.0.5.tgz",`
+- `package-lock.json:1140`: `"resolved": "https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz",`
+- `package-lock.json:1153`: `"resolved": "https://registry.npmjs.org/accepts/-/accepts-1.3.8.tgz",`
+- `package-lock.json:1166`: `"resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz",`
+- `package-lock.json:1175`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-7.1.4.tgz",`
+- `package-lock.json:1184`: `"resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",`
+- `package-lock.json:1193`: `"resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",`
+- `package-lock.json:1203`: `"url": "https://github.com/chalk/ansi-styles?sponsor=1"`
+- `package-lock.json:1208`: `"resolved": "https://registry.npmjs.org/anynum/-/anynum-1.0.1.tgz",`
+- `package-lock.json:1213`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1221`: `"resolved": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz",`
+- `package-lock.json:1227`: `"resolved": "https://registry.npmjs.org/arrify/-/arrify-2.0.1.tgz",`
+- `package-lock.json:1237`: `"resolved": "https://registry.npmjs.org/async-retry/-/async-retry-1.3.3.tgz",`
+- `package-lock.json:1247`: `"resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",`
+- `package-lock.json:1254`: `"resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",`
+- `package-lock.json:1259`: `"url": "https://github.com/sponsors/feross"`
+- `package-lock.json:1263`: `"url": "https://www.patreon.com/feross"`
+- `package-lock.json:1267`: `"url": "https://feross.org/support"`
+- `package-lock.json:1274`: `"resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.3.1.tgz",`
+- `package-lock.json:1283`: `"resolved": "https://registry.npmjs.org/body-parser/-/body-parser-1.20.9.tgz",`
+- `package-lock.json:1307`: `"resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",`
+- `package-lock.json:1313`: `"resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",`
+- `package-lock.json:1322`: `"resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",`
+- `package-lock.json:1335`: `"resolved": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",`
+- `package-lock.json:1346`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:1351`: `"resolved": "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz",`
+- `package-lock.json:1360`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-6.0.0.tgz",`
+- `package-lock.json:1371`: `"resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",`
+- `package-lock.json:1383`: `"resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",`
+- `package-lock.json:1389`: `"resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz",`
+- `package-lock.json:1402`: `"resolved": "https://registry.npmjs.org/compressible/-/compressible-2.0.18.tgz",`
+- `package-lock.json:1414`: `"resolved": "https://registry.npmjs.org/compression/-/compression-1.8.2.tgz",`
+- `package-lock.json:1432`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1437`: `"resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-0.5.4.tgz",`
+- `package-lock.json:1449`: `"resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz",`
+- `package-lock.json:1458`: `"resolved": "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz",`
+- `package-lock.json:1467`: `"resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.7.tgz",`
+- `package-lock.json:1473`: `"resolved": "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz",`
+- `package-lock.json:1482`: `"resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",`
+- `package-lock.json:1491`: `"resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz",`
+- `package-lock.json:1500`: `"resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",`
+- `package-lock.json:1510`: `"resolved": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz",`
+- `package-lock.json:1519`: `"resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",`
+- `package-lock.json:1529`: `"resolved": "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.3.tgz",`
+- `package-lock.json:1535`: `"resolved": "https://registry.npmjs.org/dotenv/-/dotenv-18.0.9.tgz",`
+- `package-lock.json:1545`: `"url": "https://dotenvx.com"`
+- `package-lock.json:1550`: `"resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",`
+- `package-lock.json:1564`: `"resolved": "https://registry.npmjs.org/duplexify/-/duplexify-4.1.3.tgz",`
+- `package-lock.json:1577`: `"resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",`
+- `package-lock.json:1586`: `"resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",`
+- `package-lock.json:1592`: `"resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",`
+- `package-lock.json:1598`: `"resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.1.tgz",`
+- `package-lock.json:1606`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1611`: `"resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.5.tgz",`
+- `package-lock.json:1621`: `"resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",`
+- `package-lock.json:1630`: `"resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",`
+- `package-lock.json:1639`: `"resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.2.tgz",`
+- `package-lock.json:1651`: `"resolved": "https://registry.npmjs.org/es-set-tostringtag/-/es-set-tostringtag-2.1.0.tgz",`
+- `package-lock.json:1667`: `"resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.28.2.tgz",`
+- `package-lock.json:1708`: `"resolved": "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz",`
+- `package-lock.json:1718`: `"resolved": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz",`
+- `package-lock.json:1724`: `"resolved": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz",`
+- `package-lock.json:1733`: `"resolved": "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz",`
+- `package-lock.json:1743`: `"resolved": "https://registry.npmjs.org/express/-/express-4.22.3.tgz",`
+- `package-lock.json:1784`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1789`: `"resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",`
+- `package-lock.json:1795`: `"resolved": "https://registry.npmjs.org/farmhash-modern/-/farmhash-modern-1.1.0.tgz",`
+- `package-lock.json:1804`: `"resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",`
+- `package-lock.json:1810`: `"resolved": "https://registry.npmjs.org/fast-xml-builder/-/fast-xml-builder-1.3.1.tgz",`
+- `package-lock.json:1815`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1827`: `"resolved": "https://registry.npmjs.org/fast-xml-parser/-/fast-xml-parser-5.11.2.tgz",`
+- `package-lock.json:1832`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1851`: `"resolved": "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.11.4.tgz",`
+- `package-lock.json:1863`: `"resolved": "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz",`
+- `package-lock.json:1868`: `"url": "https://github.com/sponsors/jimmywarting"`
+- `package-lock.json:1872`: `"url": "https://paypal.me/jimmywarting"`
+- `package-lock.json:1886`: `"resolved": "https://registry.npmjs.org/finalhandler/-/finalhandler-1.3.2.tgz",`
+- `package-lock.json:1904`: `"resolved": "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz",`
+- `package-lock.json:1917`: `"resolved": "https://registry.npmjs.org/firebase-admin/-/firebase-admin-13.10.0.tgz",`
+- `package-lock.json:1940`: `"resolved": "https://registry.npmjs.org/form-data/-/form-data-2.5.6.tgz",`
+- `package-lock.json:1958`: `"resolved": "https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz",`
+- `package-lock.json:1970`: `"resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",`
+- `package-lock.json:1979`: `"resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz",`
+- `package-lock.json:1988`: `"resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",`
+- `package-lock.json:1992`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:1997`: `"resolved": "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz",`
+- `package-lock.json:2004`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-7.3.1.tgz",`
+- `package-lock.json:2018`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-8.1.2.tgz",`
+- `package-lock.json:2032`: `"resolved": "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz",`
+- `package-lock.json:2041`: `"resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",`
+- `package-lock.json:2060`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2065`: `"resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",`
+- `package-lock.json:2078`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-10.9.1.tgz",`
+- `package-lock.json:2095`: `"resolved": "https://registry.npmjs.org/google-gax/-/google-gax-4.6.1.tgz",`
+- `package-lock.json:2119`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:2136`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-6.1.1.tgz",`
+- `package-lock.json:2151`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-9.15.1.tgz",`
+- `package-lock.json:2169`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-0.0.2.tgz",`
+- `package-lock.json:2179`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:2200`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-1.1.3.tgz",`
+- `package-lock.json:2209`: `"resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",`
+- `package-lock.json:2216`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2221`: `"resolved": "https://registry.npmjs.org/gtoken/-/gtoken-7.1.0.tgz",`
+- `package-lock.json:2235`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:2252`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:2273`: `"resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",`
+- `package-lock.json:2280`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2285`: `"resolved": "https://registry.npmjs.org/has-tostringtag/-/has-tostringtag-1.0.2.tgz",`
+- `package-lock.json:2296`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2301`: `"resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.4.tgz",`
+- `package-lock.json:2313`: `"resolved": "https://registry.npmjs.org/html-entities/-/html-entities-2.6.0.tgz",`
+- `package-lock.json:2318`: `"url": "https://github.com/sponsors/mdevils"`
+- `package-lock.json:2322`: `"url": "https://patreon.com/mdevils"`
+- `package-lock.json:2330`: `"resolved": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.1.tgz",`
+- `package-lock.json:2345`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:2350`: `"resolved": "https://registry.npmjs.org/http-parser-js/-/http-parser-js-0.5.10.tgz",`
+- `package-lock.json:2356`: `"resolved": "https://registry.npmjs.org/http-proxy-agent/-/http-proxy-agent-5.0.0.tgz",`
+- `package-lock.json:2371`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz",`
+- `package-lock.json:2384`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2402`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2409`: `"resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz",`
+- `package-lock.json:2422`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2439`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2445`: `"resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",`
+- `package-lock.json:2457`: `"resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",`
+- `package-lock.json:2463`: `"resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",`
+- `package-lock.json:2472`: `"resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",`
+- `package-lock.json:2481`: `"resolved": "https://registry.npmjs.org/is-stream/-/is-stream-2.0.1.tgz",`
+- `package-lock.json:2489`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2494`: `"resolved": "https://registry.npmjs.org/is-unsafe/-/is-unsafe-2.0.2.tgz",`
+- `package-lock.json:2499`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:2507`: `"resolved": "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz",`
+- `package-lock.json:2511`: `"url": "https://github.com/sponsors/panva"`
+- `package-lock.json:2516`: `"resolved": "https://registry.npmjs.org/json-bigint/-/json-bigint-1.0.0.tgz",`
+- `package-lock.json:2525`: `"resolved": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz",`
+- `package-lock.json:2547`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2553`: `"resolved": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",`
+- `package-lock.json:2564`: `"resolved": "https://registry.npmjs.org/jwks-rsa/-/jwks-rsa-3.2.2.tgz",`
+- `package-lock.json:2580`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2597`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2603`: `"resolved": "https://registry.npmjs.org/jws/-/jws-4.0.1.tgz",`
+- `package-lock.json:2613`: `"resolved": "https://registry.npmjs.org/limiter/-/limiter-1.1.5.tgz",`
+- `package-lock.json:2618`: `"resolved": "https://registry.npmjs.org/locate-path/-/locate-path-5.0.0.tgz",`
+- `package-lock.json:2630`: `"resolved": "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz",`
+- `package-lock.json:2637`: `"resolved": "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz",`
+- `package-lock.json:2643`: `"resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz",`
+- `package-lock.json:2649`: `"resolved": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz",`
+- `package-lock.json:2655`: `"resolved": "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz",`
+- `package-lock.json:2661`: `"resolved": "https://registry.npmjs.org/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz",`
+- `package-lock.json:2667`: `"resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz",`
+- `package-lock.json:2673`: `"resolved": "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz",`
+- `package-lock.json:2679`: `"resolved": "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz",`
+- `package-lock.json:2685`: `"resolved": "https://registry.npmjs.org/long/-/long-5.3.2.tgz",`
+- `package-lock.json:2691`: `"resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz",`
+- `package-lock.json:2703`: `"resolved": "https://registry.npmjs.org/lru-memoizer/-/lru-memoizer-2.3.0.tgz",`
+- `package-lock.json:2713`: `"resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",`
+- `package-lock.json:2722`: `"resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",`
+- `package-lock.json:2731`: `"resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.3.tgz",`
+- `package-lock.json:2735`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2740`: `"resolved": "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz",`
+- `package-lock.json:2749`: `"resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz",`
+- `package-lock.json:2761`: `"resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz",`
+- `package-lock.json:2770`: `"resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",`
+- `package-lock.json:2782`: `"resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",`
+- `package-lock.json:2791`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",`
+- `package-lock.json:2797`: `"resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.4.tgz",`
+- `package-lock.json:2806`: `"resolved": "https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz",`
+- `package-lock.json:2812`: `"url": "https://github.com/sponsors/jimmywarting"`
+- `package-lock.json:2816`: `"url": "https://paypal.me/jimmywarting"`
+- `package-lock.json:2826`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz",`
+- `package-lock.json:2839`: `"url": "https://opencollective.com/node-fetch"`
+- `package-lock.json:2844`: `"resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",`
+- `package-lock.json:2854`: `"resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",`
+- `package-lock.json:2861`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2866`: `"resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.2.tgz",`
+- `package-lock.json:2877`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:2882`: `"resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.1.0.tgz",`
+- `package-lock.json:2891`: `"resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",`
+- `package-lock.json:2901`: `"resolved": "https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz",`
+- `package-lock.json:2911`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2916`: `"resolved": "https://registry.npmjs.org/p-locate/-/p-locate-4.1.0.tgz",`
+- `package-lock.json:2928`: `"resolved": "https://registry.npmjs.org/p-retry/-/p-retry-4.6.2.tgz",`
+- `package-lock.json:2941`: `"resolved": "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz",`
+- `package-lock.json:2950`: `"resolved": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz",`
+- `package-lock.json:2959`: `"resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz",`
+- `package-lock.json:2968`: `"resolved": "https://registry.npmjs.org/path-expression-matcher/-/path-expression-matcher-1.6.2.tgz",`
+- `package-lock.json:2973`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:2984`: `"resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.13.tgz",`
+- `package-lock.json:2990`: `"resolved": "https://registry.npmjs.org/playwright/-/playwright-1.64.1.tgz",`
+- `package-lock.json:3006`: `"resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.64.1.tgz",`
+- `package-lock.json:3019`: `"resolved": "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz",`
+- `package-lock.json:3028`: `"resolved": "https://registry.npmjs.org/proto3-json-serializer/-/proto3-json-serializer-2.0.2.tgz",`
+- `package-lock.json:3041`: `"resolved": "https://registry.npmjs.org/protobufjs/-/protobufjs-7.6.6.tgz",`
+- `package-lock.json:3064`: `"resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.8.tgz",`
+- `package-lock.json:3076`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:3081`: `"resolved": "https://registry.npmjs.org/qrcode/-/qrcode-1.5.4.tgz",`
+- `package-lock.json:3098`: `"resolved": "https://registry.npmjs.org/qs/-/qs-6.16.2.tgz",`
+- `package-lock.json:3109`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3114`: `"resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz",`
+- `package-lock.json:3123`: `"resolved": "https://registry.npmjs.org/raw-body/-/raw-body-2.5.3.tgz",`
+- `package-lock.json:3138`: `"resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-3.6.2.tgz",`
+- `package-lock.json:3153`: `"resolved": "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz",`
+- `package-lock.json:3162`: `"resolved": "https://registry.npmjs.org/require-main-filename/-/require-main-filename-2.0.0.tgz",`
+- `package-lock.json:3168`: `"resolved": "https://registry.npmjs.org/retry/-/retry-0.13.1.tgz",`
+- `package-lock.json:3177`: `"resolved": "https://registry.npmjs.org/retry-request/-/retry-request-7.0.2.tgz",`
+- `package-lock.json:3192`: `"resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",`
+- `package-lock.json:3197`: `"url": "https://github.com/sponsors/feross"`
+- `package-lock.json:3201`: `"url": "https://www.patreon.com/feross"`
+- `package-lock.json:3205`: `"url": "https://feross.org/support"`
+- `package-lock.json:3212`: `"resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",`
+- `package-lock.json:3218`: `"resolved": "https://registry.npmjs.org/semver/-/semver-7.8.5.tgz",`
+- `package-lock.json:3230`: `"resolved": "https://registry.npmjs.org/send/-/send-0.19.2.tgz",`
+- `package-lock.json:3254`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:3260`: `"resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.16.3.tgz",`
+- `package-lock.json:3275`: `"resolved": "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz",`
+- `package-lock.json:3281`: `"resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz",`
+- `package-lock.json:3287`: `"resolved": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.1.tgz",`
+- `package-lock.json:3301`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3306`: `"resolved": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",`
+- `package-lock.json:3317`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3322`: `"resolved": "https://registry.npmjs.org/side-channel-map/-/side-channel-map-1.0.1.tgz",`
+- `package-lock.json:3335`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3340`: `"resolved": "https://registry.npmjs.org/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz",`
+- `package-lock.json:3354`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3359`: `"resolved": "https://registry.npmjs.org/statuses/-/statuses-2.0.2.tgz",`
+- `package-lock.json:3368`: `"resolved": "https://registry.npmjs.org/stream-events/-/stream-events-1.0.5.tgz",`
+- `package-lock.json:3378`: `"resolved": "https://registry.npmjs.org/stream-shift/-/stream-shift-1.0.3.tgz",`
+- `package-lock.json:3385`: `"resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.3.0.tgz",`
+- `package-lock.json:3395`: `"resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",`
+- `package-lock.json:3409`: `"resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",`
+- `package-lock.json:3421`: `"resolved": "https://registry.npmjs.org/strnum/-/strnum-2.5.1.tgz",`
+- `package-lock.json:3426`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:3437`: `"resolved": "https://registry.npmjs.org/stubs/-/stubs-3.0.0.tgz",`
+- `package-lock.json:3444`: `"resolved": "https://registry.npmjs.org/teeny-request/-/teeny-request-9.0.0.tgz",`
+- `package-lock.json:3461`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz",`
+- `package-lock.json:3474`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:3492`: `"resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-5.0.1.tgz",`
+- `package-lock.json:3506`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:3513`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:3534`: `"resolved": "https://registry.npmjs.org/three/-/three-0.187.0.tgz",`
+- `package-lock.json:3540`: `"resolved": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz",`
+- `package-lock.json:3549`: `"resolved": "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz",`
+- `package-lock.json:3556`: `"resolved": "https://registry.npmjs.org/tslib/-/tslib-2.9.1.tgz",`
+- `package-lock.json:3562`: `"resolved": "https://registry.npmjs.org/type-is/-/type-is-1.6.18.tgz",`
+- `package-lock.json:3575`: `"resolved": "https://registry.npmjs.org/undici-types/-/undici-types-8.9.0.tgz",`
+- `package-lock.json:3581`: `"resolved": "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz",`
+- `package-lock.json:3590`: `"resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",`
+- `package-lock.json:3597`: `"resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz",`
+- `package-lock.json:3606`: `"resolved": "https://registry.npmjs.org/uuid/-/uuid-11.1.1.tgz",`
+- `package-lock.json:3609`: `"https://github.com/sponsors/broofa",`
+- `package-lock.json:3610`: `"https://github.com/sponsors/ctavan"`
+- `package-lock.json:3620`: `"resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz",`
+- `package-lock.json:3629`: `"resolved": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz",`
+- `package-lock.json:3638`: `"resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz",`
+- `package-lock.json:3645`: `"resolved": "https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.7.5.tgz",`
+- `package-lock.json:3659`: `"resolved": "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.4.tgz",`
+- `package-lock.json:3668`: `"resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz",`
+- `package-lock.json:3679`: `"resolved": "https://registry.npmjs.org/which-module/-/which-module-2.0.1.tgz",`
+- `package-lock.json:3685`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz",`
+- `package-lock.json:3699`: `"resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",`
+- `package-lock.json:3706`: `"resolved": "https://registry.npmjs.org/ws/-/ws-8.22.1.tgz",`
+- `package-lock.json:3727`: `"resolved": "https://registry.npmjs.org/xml-naming/-/xml-naming-0.3.0.tgz",`
+- `package-lock.json:3732`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:3743`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-4.0.3.tgz",`
+- `package-lock.json:3749`: `"resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",`
+- `package-lock.json:3755`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-15.4.1.tgz",`
+- `package-lock.json:3777`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz",`
+- `package-lock.json:3790`: `"resolved": "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz",`
+- `package-lock.json:3798`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `scripts/route-check.mjs:86`: `const baseUrl = base || `http://127.0.0.1:${port}`;`
+- `scripts/ui-audit.mjs:392`: `const baseUrl = `http://127.0.0.1:${port}`;`
+- `server.js:372`: `console.log(`TechPro COC 1 running at http://localhost:${port}`);`
+- `tests/assistant.test.js:34`: `The system has 8 GB RAM. Visit https://example.com/a?size=8GB.`
+- `tests/assistant.test.js:39`: `"The system has 8 GB RAM. Visit https://example.com/a?size=8GB.",`
+- `tests/assistant.test.js:45`: `const response = "Don't force the RAM.\n```js\nconst memory_size = 8 * 1024;\nconsole.log('8 GB');\n```\nRead https://example.com/part_(a).";`
+- `tests/assistant.test.js:50`: `"Read https://example.com/part_(a)."`
+- `tests/assistant.test.js:73`: `"Read https://example.com/parts_manual for the labeled diagram."`
+- `tests/assistant.test.js:96`: `const input = "**Bold** and _italic_ and `code` and [link](https://example.com/a_(b)) then ~~gone~~.";`
+- `tests/pc-lab-regression.mjs:23`: `const baseUrl = args.find((value) => !value.startsWith("--")) || process.env.PC_LAB_URL || "http://localhost:3000";`
+- `tests/server-assistant.test.js:40`: `const base = `http://127.0.0.1:${port}`;`
+
+## serverAndHosting (0 occurrences)
+
+
+## esModulesAndRouting (131 occurrences)
+
+- `scripts/ui-audit.mjs:385`: `history.pushState({ audit: true }, "", `${url.pathname}${url.search}${url.hash}`);`
+- `src/app/audio.js:6`: `import { get } from "../services/store.js";`
+- `src/app/chrome.js:4`: `import { icon } from "./icons.js";`
+- `src/app/chrome.js:5`: `import { brandMark, companionArt } from "./art.js";`
+- `src/app/chrome.js:6`: `import { get, subscribe, update } from "../services/store.js";`
+- `src/app/chrome.js:7`: `import { levelForXp } from "../data/badges.js";`
+- `src/app/chrome.js:10`: `} from "../services/settings.js";`
+- `src/app/chrome.js:11`: `import { companionName, setCompanionName, setCompanionSkin, isCompanionSkinUnlocked, say, onSay } from "../services/companion.js";`
+- `src/app/chrome.js:12`: `import { COMPANION_SKINS } from "../data/companion-lines.js";`
+- `src/app/chrome.js:13`: `import { toast, modal, esc, confirmDialog } from "./ui.js";`
+- `src/app/chrome.js:14`: `import { navigate } from "./router.js";`
+- `src/app/chrome.js:15`: `import { resetAll, exportState, importState } from "../services/store.js";`
+- `src/app/chrome.js:16`: `import { downloadFile } from "./ui.js";`
+- `src/app/game-kit.js:4`: `import { ACTIVITIES, ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/app/game-kit.js:5`: `import { BADGE_BY_ID, levelForXp } from "../data/badges.js";`
+- `src/app/game-kit.js:6`: `import { get } from "../services/store.js";`
+- `src/app/game-kit.js:7`: `import { recordActivity } from "../services/progress.js";`
+- `src/app/game-kit.js:8`: `import { cheer, oops, say } from "../services/companion.js";`
+- `src/app/game-kit.js:9`: `import { icon, stars as starIcons } from "./icons.js";`
+- `src/app/game-kit.js:10`: `import { sound } from "./audio.js";`
+- `src/app/game-kit.js:11`: `import { confetti } from "./confetti.js";`
+- `src/app/game-kit.js:12`: `import { esc, formatDuration, announce } from "./ui.js";`
+- `src/app/main.js:1`: `import { mountChrome } from "./chrome.js";`
+- `src/app/main.js:2`: `import { route, start, setNotFound } from "./router.js";`
+- `src/app/main.js:3`: `import { homePage, mountHome } from "../pages/home.js";`
+- `src/app/main.js:4`: `import { libraryPage, lessonPage, mountLibrary } from "../pages/library.js";`
+- `src/app/main.js:5`: `import { playPage, mountPlay } from "../pages/play.js";`
+- `src/app/main.js:6`: `import { pcLabPage, mountPcLab } from "../pages/pc-lab.js";`
+- `src/app/main.js:7`: `import { examOverviewPage, quizPage } from "../pages/exam.js";`
+- `src/app/main.js:8`: `import { planPage, mountPlan } from "../pages/plan.js";`
+- `src/app/main.js:9`: `import { accountPage, mountAccount } from "../pages/account.js";`
+- `src/app/main.js:10`: `import { assistantPage, mountAssistant } from "../pages/assistant.js";`
+- `src/app/main.js:11`: `import { startPlanSync } from "../services/plan-sync.js";`
+- `src/app/main.js:12`: `import { startGameSync } from "../services/game-progress.js";`
+- `src/app/main.js:13`: `import { PRETEST, POSTTEST } from "../data/quiz.js";`
+- `src/app/main.js:14`: `import { ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/app/router.js:57`: `if (replace) window.history.replaceState({ techpro: true }, "", target);`
+- `src/app/router.js:58`: `else window.history.pushState({ techpro: true }, "", target);`
+- `src/app/time.js:4`: `import { formatDuration } from "./ui.js";`
+- `src/app/ui.js:4`: `import { icon } from "./icons.js";`
+- `src/games/pc-lab/index.js:7`: `import { readTheme, observeTheme, applyCssThemeVars, THEME_IDS } from "../engine/theme.js";`
+- `src/games/pc-lab/index.js:8`: `import { GameAudio, vibrate } from "../engine/audio.js";`
+- `src/games/pc-lab/index.js:9`: `import { Bench2D } from "./fallback2d.js";`
+- `src/games/pc-lab/index.js:10`: `import { PART_BY_ID } from "../../data/parts.js";`
+- `src/games/pc-lab/scene.js:8`: `} from "./models.js";`
+- `src/games/pc-lab/scene.js:9`: `import { Tweens, ease } from "../engine/tween.js";`
+- `src/games/pc-lab/scene.js:10`: `import { FpsGuard, resolveQuality } from "../engine/quality.js";`
+- `src/pages/account.js:1`: `import { get, update } from "../services/store.js";`
+- `src/pages/account.js:4`: `} from "../services/firebase.js";`
+- `src/pages/account.js:5`: `import { esc } from "../app/ui.js";`
+- `src/pages/assistant.js:1`: `import { observeAuth } from "../services/firebase.js";`
+- `src/pages/assistant.js:2`: `import { get } from "../services/store.js";`
+- `src/pages/assistant.js:3`: `import { companionArt } from "../app/art.js";`
+- `src/pages/assistant.js:4`: `import { companionName } from "../services/companion.js";`
+- `src/pages/assistant.js:5`: `import { LESSONS } from "../data/lessons.js";`
+- `src/pages/assistant.js:6`: `import { esc } from "../app/ui.js";`
+- `src/pages/exam.js:4`: `import { PRETEST, POSTTEST, gradeQuiz, shuffleItems } from "../data/quiz.js";`
+- `src/pages/exam.js:5`: `import { get } from "../services/store.js";`
+- `src/pages/exam.js:6`: `import { activityBest } from "../app/game-kit.js";`
+- `src/pages/exam.js:7`: `import { finishGame, bindResultPanel, activityHero } from "../app/game-kit.js";`
+- `src/pages/exam.js:8`: `import { icon, stars } from "../app/icons.js";`
+- `src/pages/exam.js:9`: `import { esc, confirmDialog, announce, formatDate } from "../app/ui.js";`
+- `src/pages/exam.js:10`: `import { sound } from "../app/audio.js";`
+- `src/pages/exam.js:11`: `import { Timer } from "../app/time.js";`
+- `src/pages/exam.js:12`: `import { setFeedback, clearFeedback } from "../app/game-kit.js";`
+- `src/pages/home.js:4`: `import { LESSONS, GOALS } from "../data/lessons.js";`
+- `src/pages/home.js:5`: `import { ACTIVITIES } from "../data/activities.js";`
+- `src/pages/home.js:6`: `import { dailyChallenge } from "../data/leaderboard-seed.js";`
+- `src/pages/home.js:7`: `import { get, update } from "../services/store.js";`
+- `src/pages/home.js:10`: `} from "../services/progress.js";`
+- `src/pages/home.js:11`: `import { companionName, say } from "../services/companion.js";`
+- `src/pages/home.js:12`: `import { icon, stars as starIcons } from "../app/icons.js";`
+- `src/pages/home.js:13`: `import { cardArt, companionArt, brandMark } from "../app/art.js";`
+- `src/pages/home.js:14`: `import { esc, toast, announce } from "../app/ui.js";`
+- `src/pages/home.js:15`: `import { showInstallCard } from "../app/chrome.js";`
+- `src/pages/home.js:16`: `import { sound } from "../app/audio.js";`
+- `src/pages/home.js:17`: `import { confetti } from "../app/confetti.js";`
+- `src/pages/home.js:18`: `import { activityBest } from "../app/game-kit.js";`
+- `src/pages/home.js:19`: `import { DEMO_PLAYERS } from "../data/leaderboard-seed.js";`
+- `src/pages/library.js:4`: `import { LESSONS, GOALS, lessonById, neighbours, searchLessons } from "../data/lessons.js";`
+- `src/pages/library.js:5`: `import { LESSON_CHECKS } from "../data/quiz.js";`
+- `src/pages/library.js:6`: `import { GLOSSARY, GLOSSARY_BY_ID, glossaryForLesson, searchGlossary } from "../data/glossary.js";`
+- `src/pages/library.js:7`: `import { ACTIVITIES } from "../data/activities.js";`
+- `src/pages/library.js:8`: `import { get } from "../services/store.js";`
+- `src/pages/library.js:12`: `} from "../services/progress.js";`
+- `src/pages/library.js:13`: `import { icon, stars } from "../app/icons.js";`
+- `src/pages/library.js:14`: `import { cardArt } from "../app/art.js";`
+- `src/pages/library.js:15`: `import { esc, modal, toast, announce } from "../app/ui.js";`
+- `src/pages/library.js:16`: `import { sound } from "../app/audio.js";`
+- `src/pages/library.js:17`: `import { confetti } from "../app/confetti.js";`
+- `src/pages/library.js:18`: `import { say } from "../services/companion.js";`
+- `src/pages/pc-lab.js:5`: `import { ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/pages/pc-lab.js:6`: `import { companionArt } from "../app/art.js";`
+- `src/pages/pc-lab.js:7`: `import { activityHero } from "../app/game-kit.js";`
+- `src/pages/pc-lab.js:8`: `import { icon } from "../app/icons.js";`
+- `src/pages/pc-lab.js:9`: `import { get, set } from "../services/store.js";`
+- `src/pages/pc-lab.js:10`: `import { applySettings, setTheme } from "../services/settings.js";`
+- `src/pages/pc-lab.js:11`: `import { companionName, say } from "../services/companion.js";`
+- `src/pages/pc-lab.js:16`: `} from "../services/game-progress.js";`
+- `src/pages/plan.js:4`: `import { get, subscribe, update } from "../services/store.js";`
+- `src/pages/plan.js:8`: `} from "../services/plan.js";`
+- `src/pages/plan.js:9`: `import { companionName, say } from "../services/companion.js";`
+- `src/pages/plan.js:10`: `import { icon } from "../app/icons.js";`
+- `src/pages/plan.js:11`: `import { confirmDialog, downloadFile, esc, toast } from "../app/ui.js";`
+- `src/pages/play.js:4`: `import { ACTIVITIES } from "../data/activities.js";`
+- `src/pages/play.js:5`: `import { GOALS } from "../data/lessons.js";`
+- `src/pages/play.js:6`: `import { get } from "../services/store.js";`
+- `src/pages/play.js:7`: `import { activityBest } from "../app/game-kit.js";`
+- `src/pages/play.js:8`: `import { icon, stars } from "../app/icons.js";`
+- `src/pages/play.js:9`: `import { cardArt, companionArt } from "../app/art.js";`
+- `src/pages/play.js:10`: `import { esc } from "../app/ui.js";`
+- `src/pages/play.js:11`: `import { showInstallCard } from "../app/chrome.js";`
+- `src/services/companion.js:4`: `import { get, update } from "./store.js";`
+- `src/services/companion.js:5`: `import { DEFAULT_COMPANION, COMPANION_SKINS, pickLine, LINES } from "../data/companion-lines.js";`
+- `src/services/game-progress.js:8`: `import { get, update, subscribe } from "./store.js";`
+- `src/services/game-progress.js:9`: `import { recordActivity } from "./progress.js";`
+- `src/services/game-progress.js:10`: `import { ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/services/game-progress.js:11`: `import { firestoreClient, observeAuth } from "./firebase.js";`
+- `src/services/leaderboard.js:4`: `import { DEMO_PLAYERS } from "../data/leaderboard-seed.js";`
+- `src/services/leaderboard.js:5`: `import { get } from "./store.js";`
+- `src/services/plan-sync.js:1`: `import { get, subscribe, update } from "./store.js";`
+- `src/services/plan-sync.js:2`: `import { firestoreClient, observeAuth } from "./firebase.js";`
+- `src/services/plan.js:4`: `import { get, update, subscribe } from "./store.js";`
+- `src/services/plan.js:5`: `import { ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/services/progress.js:4`: `import { get, update, subscribe } from "./store.js";`
+- `src/services/progress.js:5`: `import { levelForXp, BADGES } from "../data/badges.js";`
+- `src/services/progress.js:6`: `import { ACTIVITIES, ACTIVITY_BY_ID } from "../data/activities.js";`
+- `src/services/progress.js:7`: `import { LESSONS } from "../data/lessons.js";`
+- `src/services/progress.js:8`: `import { dailyChallenge } from "../data/leaderboard-seed.js";`
+- `src/services/settings.js:4`: `import { get, update } from "./store.js";`
+- `src/services/settings.js:5`: `import { COMPANION_BY_THEME, COMPANION_SKINS } from "../data/companion-lines.js";`
+
+## externalContentLinks (446 occurrences)
+
+- `.firebase/logs/vsce-debug.log:3`: `[debug] [2026-10-31T15:08:54.300Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:8`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:9`: `[debug] [2026-10-31T15:08:54.308Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:22`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:23`: `[debug] [2026-10-31T15:08:54.927Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:27`: `[debug] [2026-10-31T15:08:54.939Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:29`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:30`: `[debug] [2026-10-31T15:08:55.614Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:379`: `[debug] [2026-10-31T15:35:23.223Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:386`: `[debug] [2026-10-31T15:35:23.235Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:400`: `[debug] [2026-10-31T15:35:24.564Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:401`: `[debug] [2026-10-31T15:35:24.565Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:421`: `[debug] [2026-10-31T15:36:54.813Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:428`: `[debug] [2026-10-31T15:36:54.821Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:442`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:443`: `[debug] [2026-10-31T15:36:55.928Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:2216`: `[debug] [2026-11-01T04:58:56.278Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:2221`: `[debug] [2026-11-01T04:58:56.294Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:2222`: `[debug] [2026-11-01T04:58:56.295Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2235`: `[debug] [2026-11-01T04:58:57.284Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:2236`: `[debug] [2026-11-01T04:58:57.285Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:2240`: `[debug] [2026-11-01T04:58:57.299Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:2242`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:2243`: `[debug] [2026-11-01T04:58:58.063Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:5859`: `[debug] [2026-11-01T13:00:24.024Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:5864`: `[debug] [2026-11-01T13:00:24.030Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:5865`: `[debug] [2026-11-01T13:00:24.031Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5879`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:5880`: `[debug] [2026-11-01T13:00:26.418Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:5884`: `[debug] [2026-11-01T13:00:26.429Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:5885`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:5886`: `[debug] [2026-11-01T13:00:27.178Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:10726`: `[debug] [2026-11-02T04:14:16.037Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:10731`: `[debug] [2026-11-02T04:14:16.056Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:10732`: `[debug] [2026-11-02T04:14:16.058Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10745`: `[debug] [2026-11-02T04:14:17.956Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:10746`: `[debug] [2026-11-02T04:14:17.957Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:10750`: `[debug] [2026-11-02T04:14:17.970Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:10752`: `[debug] [2026-11-02T04:14:18.873Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:10753`: `[debug] [2026-11-02T04:14:18.874Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:11432`: `[debug] [2026-11-03T02:07:46.725Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:11437`: `[debug] [2026-11-03T02:07:46.735Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:11438`: `[debug] [2026-11-03T02:07:46.736Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11452`: `[debug] [2026-11-03T02:07:48.050Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:11453`: `[debug] [2026-11-03T02:07:48.051Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:11457`: `[debug] [2026-11-03T02:07:48.058Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:11458`: `[debug] [2026-11-03T02:07:48.828Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:11459`: `[debug] [2026-11-03T02:07:48.831Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12225`: `[debug] [2026-11-03T06:17:33.356Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12230`: `[debug] [2026-11-03T06:17:33.367Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12231`: `[debug] [2026-11-03T06:17:33.368Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12244`: `[debug] [2026-11-03T06:17:34.255Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12245`: `[debug] [2026-11-03T06:17:34.256Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12249`: `[debug] [2026-11-03T06:17:34.264Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12251`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12252`: `[debug] [2026-11-03T06:17:35.603Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.firebase/logs/vsce-debug.log:12395`: `[debug] [2026-11-03T07:48:59.097Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","http`
+- `.firebase/logs/vsce-debug.log:12400`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]`
+- `.firebase/logs/vsce-debug.log:12401`: `[debug] [2026-11-03T07:48:59.105Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12414`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200`
+- `.firebase/logs/vsce-debug.log:12415`: `[debug] [2026-11-03T07:49:00.032Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]`
+- `.firebase/logs/vsce-debug.log:12419`: `[debug] [2026-11-03T07:49:00.041Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000`
+- `.firebase/logs/vsce-debug.log:12421`: `[debug] [2026-11-03T07:49:00.975Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200`
+- `.firebase/logs/vsce-debug.log:12422`: `[debug] [2026-11-03T07:49:00.976Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]`
+- `.pclab-flow.mjs:3`: `const BASE = process.env.URL || "http://localhost:3000/play/pc-lab?debug=1";`
+- `.pclab-smoke.mjs:3`: `const url = process.env.URL || "http://localhost:3000/play/pc-lab";`
+- `README.md:14`: `Open [http://localhost:3000](http://localhost:3000). Do not open `index.html` from the file manager; the page needs to be served over HTTP. Set `PORT``
+- `README.md:44`: `Gemini is optional. Without a `GEMINI_API_KEY`, the assistant shows an explicit unavailable message. The default model is `gemini-3.5-flash-lite`, cho`
+- `assets/techpro-mark.svg:1`: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="TechPro chip mascot">`
+- `content/module.md:1299`: `American Public University. (2025, April 14). Basic components of a computer: How they function for users. https://www.apu.apus.edu/area-of-study/info`
+- `content/module.md:1301`: `Beens.org. (n.d.). Computer hardware safety rules. https://www.beens.org/computer-hardware-safety-rules/`
+- `content/module.md:1303`: `American Public University. (2025, April 14). Basic components of a computer: How they function for users. https://www.apu.apus.edu/area-of-study/info`
+- `content/module.md:1305`: `GeeksforGeeks. (2026, April 28). Computer hardware. https://www.geeksforgeeks.org/computer-science-fundamentals/computer-hardware/`
+- `content/module.md:1309`: `https://www.open.edu/openlearncreate/mod/book/view.php?id=181144&chapterid=24657`
+- `content/module.md:1311`: `Microsoft. (2026). Microsoft Copilot [Generative artificial intelligence tool]. https://copilot.microsoft.com/`
+- `index.html:34`: `"firebase/app": "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js",`
+- `index.html:35`: `"firebase/auth": "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js",`
+- `index.html:36`: `"firebase/firestore": "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js"`
+- `index.html:60`: `<p style="margin:0">Then visit <strong>http://localhost:3000/</strong> in your browser.</p>`
+- `package-lock.json:29`: `"resolved": "https://registry.npmjs.org/@esbuild/aix-ppc64/-/aix-ppc64-0.28.2.tgz",`
+- `package-lock.json:45`: `"resolved": "https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.28.2.tgz",`
+- `package-lock.json:61`: `"resolved": "https://registry.npmjs.org/@esbuild/android-arm64/-/android-arm64-0.28.2.tgz",`
+- `package-lock.json:77`: `"resolved": "https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.28.2.tgz",`
+- `package-lock.json:93`: `"resolved": "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.28.2.tgz",`
+- `package-lock.json:109`: `"resolved": "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.28.2.tgz",`
+- `package-lock.json:125`: `"resolved": "https://registry.npmjs.org/@esbuild/freebsd-arm64/-/freebsd-arm64-0.28.2.tgz",`
+- `package-lock.json:141`: `"resolved": "https://registry.npmjs.org/@esbuild/freebsd-x64/-/freebsd-x64-0.28.2.tgz",`
+- `package-lock.json:157`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-arm/-/linux-arm-0.28.2.tgz",`
+- `package-lock.json:173`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-arm64/-/linux-arm64-0.28.2.tgz",`
+- `package-lock.json:189`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-ia32/-/linux-ia32-0.28.2.tgz",`
+- `package-lock.json:205`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-loong64/-/linux-loong64-0.28.2.tgz",`
+- `package-lock.json:221`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-mips64el/-/linux-mips64el-0.28.2.tgz",`
+- `package-lock.json:237`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.28.2.tgz",`
+- `package-lock.json:253`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-riscv64/-/linux-riscv64-0.28.2.tgz",`
+- `package-lock.json:269`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-s390x/-/linux-s390x-0.28.2.tgz",`
+- `package-lock.json:285`: `"resolved": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.2.tgz",`
+- `package-lock.json:301`: `"resolved": "https://registry.npmjs.org/@esbuild/netbsd-arm64/-/netbsd-arm64-0.28.2.tgz",`
+- `package-lock.json:317`: `"resolved": "https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.28.2.tgz",`
+- `package-lock.json:333`: `"resolved": "https://registry.npmjs.org/@esbuild/openbsd-arm64/-/openbsd-arm64-0.28.2.tgz",`
+- `package-lock.json:349`: `"resolved": "https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.28.2.tgz",`
+- `package-lock.json:365`: `"resolved": "https://registry.npmjs.org/@esbuild/openharmony-arm64/-/openharmony-arm64-0.28.2.tgz",`
+- `package-lock.json:381`: `"resolved": "https://registry.npmjs.org/@esbuild/sunos-x64/-/sunos-x64-0.28.2.tgz",`
+- `package-lock.json:397`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-arm64/-/win32-arm64-0.28.2.tgz",`
+- `package-lock.json:413`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-ia32/-/win32-ia32-0.28.2.tgz",`
+- `package-lock.json:429`: `"resolved": "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.28.2.tgz",`
+- `package-lock.json:445`: `"resolved": "https://registry.npmjs.org/@fastify/busboy/-/busboy-3.2.4.tgz",`
+- `package-lock.json:451`: `"resolved": "https://registry.npmjs.org/@firebase/app-check-interop-types/-/app-check-interop-types-0.3.5.tgz",`
+- `package-lock.json:457`: `"resolved": "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.9.6.tgz",`
+- `package-lock.json:466`: `"resolved": "https://registry.npmjs.org/@firebase/auth-interop-types/-/auth-interop-types-0.2.6.tgz",`
+- `package-lock.json:472`: `"resolved": "https://registry.npmjs.org/@firebase/component/-/component-0.7.5.tgz",`
+- `package-lock.json:485`: `"resolved": "https://registry.npmjs.org/@firebase/database/-/database-1.1.5.tgz",`
+- `package-lock.json:503`: `"resolved": "https://registry.npmjs.org/@firebase/database-compat/-/database-compat-2.1.7.tgz",`
+- `package-lock.json:532`: `"resolved": "https://registry.npmjs.org/@firebase/database-types/-/database-types-1.0.22.tgz",`
+- `package-lock.json:542`: `"resolved": "https://registry.npmjs.org/@firebase/logger/-/logger-0.5.2.tgz",`
+- `package-lock.json:554`: `"resolved": "https://registry.npmjs.org/@firebase/util/-/util-1.15.3.tgz",`
+- `package-lock.json:567`: `"resolved": "https://registry.npmjs.org/@google-cloud/firestore/-/firestore-7.11.6.tgz",`
+- `package-lock.json:584`: `"resolved": "https://registry.npmjs.org/@google-cloud/paginator/-/paginator-5.0.2.tgz",`
+- `package-lock.json:598`: `"resolved": "https://registry.npmjs.org/@google-cloud/projectify/-/projectify-4.0.0.tgz",`
+- `package-lock.json:608`: `"resolved": "https://registry.npmjs.org/@google-cloud/promisify/-/promisify-4.0.0.tgz",`
+- `package-lock.json:618`: `"resolved": "https://registry.npmjs.org/@google-cloud/storage/-/storage-7.22.0.tgz",`
+- `package-lock.json:644`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:661`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-6.1.1.tgz",`
+- `package-lock.json:676`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-9.15.1.tgz",`
+- `package-lock.json:694`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-0.0.2.tgz",`
+- `package-lock.json:704`: `"resolved": "https://registry.npmjs.org/mime/-/mime-3.0.0.tgz",`
+- `package-lock.json:717`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:738`: `"resolved": "https://registry.npmjs.org/p-limit/-/p-limit-3.1.0.tgz",`
+- `package-lock.json:749`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:754`: `"resolved": "https://registry.npmjs.org/@google/genai/-/genai-2.32.0.tgz",`
+- `package-lock.json:778`: `"resolved": "https://registry.npmjs.org/@grpc/grpc-js/-/grpc-js-1.14.7.tgz",`
+- `package-lock.json:792`: `"resolved": "https://registry.npmjs.org/@grpc/proto-loader/-/proto-loader-0.8.1.tgz",`
+- `package-lock.json:811`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz",`
+- `package-lock.json:826`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",`
+- `package-lock.json:839`: `"url": "https://github.com/chalk/wrap-ansi?sponsor=1"`
+- `package-lock.json:844`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz",`
+- `package-lock.json:854`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-17.7.3.tgz",`
+- `package-lock.json:873`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz",`
+- `package-lock.json:883`: `"resolved": "https://registry.npmjs.org/@grpc/proto-loader/-/proto-loader-0.7.15.tgz",`
+- `package-lock.json:902`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz",`
+- `package-lock.json:917`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",`
+- `package-lock.json:930`: `"url": "https://github.com/chalk/wrap-ansi?sponsor=1"`
+- `package-lock.json:935`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz",`
+- `package-lock.json:945`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-17.7.3.tgz",`
+- `package-lock.json:964`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz",`
+- `package-lock.json:974`: `"resolved": "https://registry.npmjs.org/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz",`
+- `package-lock.json:980`: `"url": "https://opencollective.com/js-sdsl"`
+- `package-lock.json:985`: `"resolved": "https://registry.npmjs.org/@nodable/entities/-/entities-3.1.0.tgz",`
+- `package-lock.json:990`: `"url": "https://github.com/sponsors/nodable"`
+- `package-lock.json:998`: `"resolved": "https://registry.npmjs.org/@opentelemetry/api/-/api-1.10.0.tgz",`
+- `package-lock.json:1008`: `"resolved": "https://registry.npmjs.org/@protobufjs/aspromise/-/aspromise-1.1.2.tgz",`
+- `package-lock.json:1014`: `"resolved": "https://registry.npmjs.org/@protobufjs/base64/-/base64-1.1.2.tgz",`
+- `package-lock.json:1020`: `"resolved": "https://registry.npmjs.org/@protobufjs/codegen/-/codegen-2.0.5.tgz",`
+- `package-lock.json:1026`: `"resolved": "https://registry.npmjs.org/@protobufjs/eventemitter/-/eventemitter-1.1.1.tgz",`
+- `package-lock.json:1032`: `"resolved": "https://registry.npmjs.org/@protobufjs/fetch/-/fetch-1.1.1.tgz",`
+- `package-lock.json:1041`: `"resolved": "https://registry.npmjs.org/@protobufjs/float/-/float-1.0.2.tgz",`
+- `package-lock.json:1047`: `"resolved": "https://registry.npmjs.org/@protobufjs/path/-/path-1.1.2.tgz",`
+- `package-lock.json:1053`: `"resolved": "https://registry.npmjs.org/@protobufjs/pool/-/pool-1.1.0.tgz",`
+- `package-lock.json:1059`: `"resolved": "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.2.tgz",`
+- `package-lock.json:1065`: `"resolved": "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.1.tgz",`
+- `package-lock.json:1075`: `"resolved": "https://registry.npmjs.org/@types/caseless/-/caseless-0.12.5.tgz",`
+- `package-lock.json:1082`: `"resolved": "https://registry.npmjs.org/@types/jsonwebtoken/-/jsonwebtoken-9.0.10.tgz",`
+- `package-lock.json:1092`: `"resolved": "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz",`
+- `package-lock.json:1099`: `"resolved": "https://registry.npmjs.org/@types/ms/-/ms-2.1.0.tgz",`
+- `package-lock.json:1105`: `"resolved": "https://registry.npmjs.org/@types/node/-/node-26.6.6.tgz",`
+- `package-lock.json:1114`: `"resolved": "https://registry.npmjs.org/@types/request/-/request-2.48.13.tgz",`
+- `package-lock.json:1127`: `"resolved": "https://registry.npmjs.org/@types/retry/-/retry-0.12.0.tgz",`
+- `package-lock.json:1133`: `"resolved": "https://registry.npmjs.org/@types/tough-cookie/-/tough-cookie-4.0.5.tgz",`
+- `package-lock.json:1140`: `"resolved": "https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz",`
+- `package-lock.json:1153`: `"resolved": "https://registry.npmjs.org/accepts/-/accepts-1.3.8.tgz",`
+- `package-lock.json:1166`: `"resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz",`
+- `package-lock.json:1175`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-7.1.4.tgz",`
+- `package-lock.json:1184`: `"resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",`
+- `package-lock.json:1193`: `"resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",`
+- `package-lock.json:1203`: `"url": "https://github.com/chalk/ansi-styles?sponsor=1"`
+- `package-lock.json:1208`: `"resolved": "https://registry.npmjs.org/anynum/-/anynum-1.0.1.tgz",`
+- `package-lock.json:1213`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1221`: `"resolved": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz",`
+- `package-lock.json:1227`: `"resolved": "https://registry.npmjs.org/arrify/-/arrify-2.0.1.tgz",`
+- `package-lock.json:1237`: `"resolved": "https://registry.npmjs.org/async-retry/-/async-retry-1.3.3.tgz",`
+- `package-lock.json:1247`: `"resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",`
+- `package-lock.json:1254`: `"resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",`
+- `package-lock.json:1259`: `"url": "https://github.com/sponsors/feross"`
+- `package-lock.json:1263`: `"url": "https://www.patreon.com/feross"`
+- `package-lock.json:1267`: `"url": "https://feross.org/support"`
+- `package-lock.json:1274`: `"resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.3.1.tgz",`
+- `package-lock.json:1283`: `"resolved": "https://registry.npmjs.org/body-parser/-/body-parser-1.20.9.tgz",`
+- `package-lock.json:1307`: `"resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",`
+- `package-lock.json:1313`: `"resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",`
+- `package-lock.json:1322`: `"resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",`
+- `package-lock.json:1335`: `"resolved": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",`
+- `package-lock.json:1346`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:1351`: `"resolved": "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz",`
+- `package-lock.json:1360`: `"resolved": "https://registry.npmjs.org/cliui/-/cliui-6.0.0.tgz",`
+- `package-lock.json:1371`: `"resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",`
+- `package-lock.json:1383`: `"resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",`
+- `package-lock.json:1389`: `"resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz",`
+- `package-lock.json:1402`: `"resolved": "https://registry.npmjs.org/compressible/-/compressible-2.0.18.tgz",`
+- `package-lock.json:1414`: `"resolved": "https://registry.npmjs.org/compression/-/compression-1.8.2.tgz",`
+- `package-lock.json:1432`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1437`: `"resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-0.5.4.tgz",`
+- `package-lock.json:1449`: `"resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz",`
+- `package-lock.json:1458`: `"resolved": "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz",`
+- `package-lock.json:1467`: `"resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.7.tgz",`
+- `package-lock.json:1473`: `"resolved": "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz",`
+- `package-lock.json:1482`: `"resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",`
+- `package-lock.json:1491`: `"resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.2.0.tgz",`
+- `package-lock.json:1500`: `"resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",`
+- `package-lock.json:1510`: `"resolved": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz",`
+- `package-lock.json:1519`: `"resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",`
+- `package-lock.json:1529`: `"resolved": "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.3.tgz",`
+- `package-lock.json:1535`: `"resolved": "https://registry.npmjs.org/dotenv/-/dotenv-18.0.9.tgz",`
+- `package-lock.json:1545`: `"url": "https://dotenvx.com"`
+- `package-lock.json:1550`: `"resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",`
+- `package-lock.json:1564`: `"resolved": "https://registry.npmjs.org/duplexify/-/duplexify-4.1.3.tgz",`
+- `package-lock.json:1577`: `"resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",`
+- `package-lock.json:1586`: `"resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",`
+- `package-lock.json:1592`: `"resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",`
+- `package-lock.json:1598`: `"resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.1.tgz",`
+- `package-lock.json:1606`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1611`: `"resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.5.tgz",`
+- `package-lock.json:1621`: `"resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",`
+- `package-lock.json:1630`: `"resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",`
+- `package-lock.json:1639`: `"resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.2.tgz",`
+- `package-lock.json:1651`: `"resolved": "https://registry.npmjs.org/es-set-tostringtag/-/es-set-tostringtag-2.1.0.tgz",`
+- `package-lock.json:1667`: `"resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.28.2.tgz",`
+- `package-lock.json:1708`: `"resolved": "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz",`
+- `package-lock.json:1718`: `"resolved": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz",`
+- `package-lock.json:1724`: `"resolved": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz",`
+- `package-lock.json:1733`: `"resolved": "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz",`
+- `package-lock.json:1743`: `"resolved": "https://registry.npmjs.org/express/-/express-4.22.3.tgz",`
+- `package-lock.json:1784`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:1789`: `"resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",`
+- `package-lock.json:1795`: `"resolved": "https://registry.npmjs.org/farmhash-modern/-/farmhash-modern-1.1.0.tgz",`
+- `package-lock.json:1804`: `"resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",`
+- `package-lock.json:1810`: `"resolved": "https://registry.npmjs.org/fast-xml-builder/-/fast-xml-builder-1.3.1.tgz",`
+- `package-lock.json:1815`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1827`: `"resolved": "https://registry.npmjs.org/fast-xml-parser/-/fast-xml-parser-5.11.2.tgz",`
+- `package-lock.json:1832`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:1851`: `"resolved": "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.11.4.tgz",`
+- `package-lock.json:1863`: `"resolved": "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz",`
+- `package-lock.json:1868`: `"url": "https://github.com/sponsors/jimmywarting"`
+- `package-lock.json:1872`: `"url": "https://paypal.me/jimmywarting"`
+- `package-lock.json:1886`: `"resolved": "https://registry.npmjs.org/finalhandler/-/finalhandler-1.3.2.tgz",`
+- `package-lock.json:1904`: `"resolved": "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz",`
+- `package-lock.json:1917`: `"resolved": "https://registry.npmjs.org/firebase-admin/-/firebase-admin-13.10.0.tgz",`
+- `package-lock.json:1940`: `"resolved": "https://registry.npmjs.org/form-data/-/form-data-2.5.6.tgz",`
+- `package-lock.json:1958`: `"resolved": "https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz",`
+- `package-lock.json:1970`: `"resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",`
+- `package-lock.json:1979`: `"resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz",`
+- `package-lock.json:1988`: `"resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",`
+- `package-lock.json:1992`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:1997`: `"resolved": "https://registry.npmjs.org/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz",`
+- `package-lock.json:2004`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-7.3.1.tgz",`
+- `package-lock.json:2018`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-8.1.2.tgz",`
+- `package-lock.json:2032`: `"resolved": "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz",`
+- `package-lock.json:2041`: `"resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",`
+- `package-lock.json:2060`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2065`: `"resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",`
+- `package-lock.json:2078`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-10.9.1.tgz",`
+- `package-lock.json:2095`: `"resolved": "https://registry.npmjs.org/google-gax/-/google-gax-4.6.1.tgz",`
+- `package-lock.json:2119`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:2136`: `"resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-6.1.1.tgz",`
+- `package-lock.json:2151`: `"resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-9.15.1.tgz",`
+- `package-lock.json:2169`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-0.0.2.tgz",`
+- `package-lock.json:2179`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:2200`: `"resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-1.1.3.tgz",`
+- `package-lock.json:2209`: `"resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",`
+- `package-lock.json:2216`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2221`: `"resolved": "https://registry.npmjs.org/gtoken/-/gtoken-7.1.0.tgz",`
+- `package-lock.json:2235`: `"resolved": "https://registry.npmjs.org/gaxios/-/gaxios-6.7.1.tgz",`
+- `package-lock.json:2252`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:2273`: `"resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",`
+- `package-lock.json:2280`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2285`: `"resolved": "https://registry.npmjs.org/has-tostringtag/-/has-tostringtag-1.0.2.tgz",`
+- `package-lock.json:2296`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2301`: `"resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.4.tgz",`
+- `package-lock.json:2313`: `"resolved": "https://registry.npmjs.org/html-entities/-/html-entities-2.6.0.tgz",`
+- `package-lock.json:2318`: `"url": "https://github.com/sponsors/mdevils"`
+- `package-lock.json:2322`: `"url": "https://patreon.com/mdevils"`
+- `package-lock.json:2330`: `"resolved": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.1.tgz",`
+- `package-lock.json:2345`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:2350`: `"resolved": "https://registry.npmjs.org/http-parser-js/-/http-parser-js-0.5.10.tgz",`
+- `package-lock.json:2356`: `"resolved": "https://registry.npmjs.org/http-proxy-agent/-/http-proxy-agent-5.0.0.tgz",`
+- `package-lock.json:2371`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz",`
+- `package-lock.json:2384`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2402`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2409`: `"resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz",`
+- `package-lock.json:2422`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2439`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2445`: `"resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",`
+- `package-lock.json:2457`: `"resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",`
+- `package-lock.json:2463`: `"resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",`
+- `package-lock.json:2472`: `"resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",`
+- `package-lock.json:2481`: `"resolved": "https://registry.npmjs.org/is-stream/-/is-stream-2.0.1.tgz",`
+- `package-lock.json:2489`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2494`: `"resolved": "https://registry.npmjs.org/is-unsafe/-/is-unsafe-2.0.2.tgz",`
+- `package-lock.json:2499`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:2507`: `"resolved": "https://registry.npmjs.org/jose/-/jose-4.15.9.tgz",`
+- `package-lock.json:2511`: `"url": "https://github.com/sponsors/panva"`
+- `package-lock.json:2516`: `"resolved": "https://registry.npmjs.org/json-bigint/-/json-bigint-1.0.0.tgz",`
+- `package-lock.json:2525`: `"resolved": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz",`
+- `package-lock.json:2547`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2553`: `"resolved": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",`
+- `package-lock.json:2564`: `"resolved": "https://registry.npmjs.org/jwks-rsa/-/jwks-rsa-3.2.2.tgz",`
+- `package-lock.json:2580`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:2597`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:2603`: `"resolved": "https://registry.npmjs.org/jws/-/jws-4.0.1.tgz",`
+- `package-lock.json:2613`: `"resolved": "https://registry.npmjs.org/limiter/-/limiter-1.1.5.tgz",`
+- `package-lock.json:2618`: `"resolved": "https://registry.npmjs.org/locate-path/-/locate-path-5.0.0.tgz",`
+- `package-lock.json:2630`: `"resolved": "https://registry.npmjs.org/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz",`
+- `package-lock.json:2637`: `"resolved": "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz",`
+- `package-lock.json:2643`: `"resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz",`
+- `package-lock.json:2649`: `"resolved": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz",`
+- `package-lock.json:2655`: `"resolved": "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz",`
+- `package-lock.json:2661`: `"resolved": "https://registry.npmjs.org/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz",`
+- `package-lock.json:2667`: `"resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz",`
+- `package-lock.json:2673`: `"resolved": "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz",`
+- `package-lock.json:2679`: `"resolved": "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz",`
+- `package-lock.json:2685`: `"resolved": "https://registry.npmjs.org/long/-/long-5.3.2.tgz",`
+- `package-lock.json:2691`: `"resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz",`
+- `package-lock.json:2703`: `"resolved": "https://registry.npmjs.org/lru-memoizer/-/lru-memoizer-2.3.0.tgz",`
+- `package-lock.json:2713`: `"resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",`
+- `package-lock.json:2722`: `"resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",`
+- `package-lock.json:2731`: `"resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-1.0.3.tgz",`
+- `package-lock.json:2735`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2740`: `"resolved": "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz",`
+- `package-lock.json:2749`: `"resolved": "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz",`
+- `package-lock.json:2761`: `"resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz",`
+- `package-lock.json:2770`: `"resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",`
+- `package-lock.json:2782`: `"resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",`
+- `package-lock.json:2791`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",`
+- `package-lock.json:2797`: `"resolved": "https://registry.npmjs.org/negotiator/-/negotiator-0.6.4.tgz",`
+- `package-lock.json:2806`: `"resolved": "https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz",`
+- `package-lock.json:2812`: `"url": "https://github.com/sponsors/jimmywarting"`
+- `package-lock.json:2816`: `"url": "https://paypal.me/jimmywarting"`
+- `package-lock.json:2826`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz",`
+- `package-lock.json:2839`: `"url": "https://opencollective.com/node-fetch"`
+- `package-lock.json:2844`: `"resolved": "https://registry.npmjs.org/object-hash/-/object-hash-3.0.0.tgz",`
+- `package-lock.json:2854`: `"resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",`
+- `package-lock.json:2861`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:2866`: `"resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.2.tgz",`
+- `package-lock.json:2877`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:2882`: `"resolved": "https://registry.npmjs.org/on-headers/-/on-headers-1.1.0.tgz",`
+- `package-lock.json:2891`: `"resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",`
+- `package-lock.json:2901`: `"resolved": "https://registry.npmjs.org/p-limit/-/p-limit-2.3.0.tgz",`
+- `package-lock.json:2911`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `package-lock.json:2916`: `"resolved": "https://registry.npmjs.org/p-locate/-/p-locate-4.1.0.tgz",`
+- `package-lock.json:2928`: `"resolved": "https://registry.npmjs.org/p-retry/-/p-retry-4.6.2.tgz",`
+- `package-lock.json:2941`: `"resolved": "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz",`
+- `package-lock.json:2950`: `"resolved": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz",`
+- `package-lock.json:2959`: `"resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz",`
+- `package-lock.json:2968`: `"resolved": "https://registry.npmjs.org/path-expression-matcher/-/path-expression-matcher-1.6.2.tgz",`
+- `package-lock.json:2973`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:2984`: `"resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.13.tgz",`
+- `package-lock.json:2990`: `"resolved": "https://registry.npmjs.org/playwright/-/playwright-1.64.1.tgz",`
+- `package-lock.json:3006`: `"resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.64.1.tgz",`
+- `package-lock.json:3019`: `"resolved": "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz",`
+- `package-lock.json:3028`: `"resolved": "https://registry.npmjs.org/proto3-json-serializer/-/proto3-json-serializer-2.0.2.tgz",`
+- `package-lock.json:3041`: `"resolved": "https://registry.npmjs.org/protobufjs/-/protobufjs-7.6.6.tgz",`
+- `package-lock.json:3064`: `"resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.8.tgz",`
+- `package-lock.json:3076`: `"url": "https://opencollective.com/express"`
+- `package-lock.json:3081`: `"resolved": "https://registry.npmjs.org/qrcode/-/qrcode-1.5.4.tgz",`
+- `package-lock.json:3098`: `"resolved": "https://registry.npmjs.org/qs/-/qs-6.16.2.tgz",`
+- `package-lock.json:3109`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3114`: `"resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz",`
+- `package-lock.json:3123`: `"resolved": "https://registry.npmjs.org/raw-body/-/raw-body-2.5.3.tgz",`
+- `package-lock.json:3138`: `"resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-3.6.2.tgz",`
+- `package-lock.json:3153`: `"resolved": "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz",`
+- `package-lock.json:3162`: `"resolved": "https://registry.npmjs.org/require-main-filename/-/require-main-filename-2.0.0.tgz",`
+- `package-lock.json:3168`: `"resolved": "https://registry.npmjs.org/retry/-/retry-0.13.1.tgz",`
+- `package-lock.json:3177`: `"resolved": "https://registry.npmjs.org/retry-request/-/retry-request-7.0.2.tgz",`
+- `package-lock.json:3192`: `"resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",`
+- `package-lock.json:3197`: `"url": "https://github.com/sponsors/feross"`
+- `package-lock.json:3201`: `"url": "https://www.patreon.com/feross"`
+- `package-lock.json:3205`: `"url": "https://feross.org/support"`
+- `package-lock.json:3212`: `"resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",`
+- `package-lock.json:3218`: `"resolved": "https://registry.npmjs.org/semver/-/semver-7.8.5.tgz",`
+- `package-lock.json:3230`: `"resolved": "https://registry.npmjs.org/send/-/send-0.19.2.tgz",`
+- `package-lock.json:3254`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:3260`: `"resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.16.3.tgz",`
+- `package-lock.json:3275`: `"resolved": "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz",`
+- `package-lock.json:3281`: `"resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz",`
+- `package-lock.json:3287`: `"resolved": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.1.tgz",`
+- `package-lock.json:3301`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3306`: `"resolved": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",`
+- `package-lock.json:3317`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3322`: `"resolved": "https://registry.npmjs.org/side-channel-map/-/side-channel-map-1.0.1.tgz",`
+- `package-lock.json:3335`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3340`: `"resolved": "https://registry.npmjs.org/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz",`
+- `package-lock.json:3354`: `"url": "https://github.com/sponsors/ljharb"`
+- `package-lock.json:3359`: `"resolved": "https://registry.npmjs.org/statuses/-/statuses-2.0.2.tgz",`
+- `package-lock.json:3368`: `"resolved": "https://registry.npmjs.org/stream-events/-/stream-events-1.0.5.tgz",`
+- `package-lock.json:3378`: `"resolved": "https://registry.npmjs.org/stream-shift/-/stream-shift-1.0.3.tgz",`
+- `package-lock.json:3385`: `"resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.3.0.tgz",`
+- `package-lock.json:3395`: `"resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",`
+- `package-lock.json:3409`: `"resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",`
+- `package-lock.json:3421`: `"resolved": "https://registry.npmjs.org/strnum/-/strnum-2.5.1.tgz",`
+- `package-lock.json:3426`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:3437`: `"resolved": "https://registry.npmjs.org/stubs/-/stubs-3.0.0.tgz",`
+- `package-lock.json:3444`: `"resolved": "https://registry.npmjs.org/teeny-request/-/teeny-request-9.0.0.tgz",`
+- `package-lock.json:3461`: `"resolved": "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz",`
+- `package-lock.json:3474`: `"resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",`
+- `package-lock.json:3492`: `"resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-5.0.1.tgz",`
+- `package-lock.json:3506`: `"resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",`
+- `package-lock.json:3513`: `"resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz",`
+- `package-lock.json:3534`: `"resolved": "https://registry.npmjs.org/three/-/three-0.187.0.tgz",`
+- `package-lock.json:3540`: `"resolved": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz",`
+- `package-lock.json:3549`: `"resolved": "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz",`
+- `package-lock.json:3556`: `"resolved": "https://registry.npmjs.org/tslib/-/tslib-2.9.1.tgz",`
+- `package-lock.json:3562`: `"resolved": "https://registry.npmjs.org/type-is/-/type-is-1.6.18.tgz",`
+- `package-lock.json:3575`: `"resolved": "https://registry.npmjs.org/undici-types/-/undici-types-8.9.0.tgz",`
+- `package-lock.json:3581`: `"resolved": "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz",`
+- `package-lock.json:3590`: `"resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",`
+- `package-lock.json:3597`: `"resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.1.tgz",`
+- `package-lock.json:3606`: `"resolved": "https://registry.npmjs.org/uuid/-/uuid-11.1.1.tgz",`
+- `package-lock.json:3609`: `"https://github.com/sponsors/broofa",`
+- `package-lock.json:3610`: `"https://github.com/sponsors/ctavan"`
+- `package-lock.json:3620`: `"resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz",`
+- `package-lock.json:3629`: `"resolved": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz",`
+- `package-lock.json:3638`: `"resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz",`
+- `package-lock.json:3645`: `"resolved": "https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.7.5.tgz",`
+- `package-lock.json:3659`: `"resolved": "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.4.tgz",`
+- `package-lock.json:3668`: `"resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz",`
+- `package-lock.json:3679`: `"resolved": "https://registry.npmjs.org/which-module/-/which-module-2.0.1.tgz",`
+- `package-lock.json:3685`: `"resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz",`
+- `package-lock.json:3699`: `"resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",`
+- `package-lock.json:3706`: `"resolved": "https://registry.npmjs.org/ws/-/ws-8.22.1.tgz",`
+- `package-lock.json:3727`: `"resolved": "https://registry.npmjs.org/xml-naming/-/xml-naming-0.3.0.tgz",`
+- `package-lock.json:3732`: `"url": "https://github.com/sponsors/NaturalIntelligence"`
+- `package-lock.json:3743`: `"resolved": "https://registry.npmjs.org/y18n/-/y18n-4.0.3.tgz",`
+- `package-lock.json:3749`: `"resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",`
+- `package-lock.json:3755`: `"resolved": "https://registry.npmjs.org/yargs/-/yargs-15.4.1.tgz",`
+- `package-lock.json:3777`: `"resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-18.1.3.tgz",`
+- `package-lock.json:3790`: `"resolved": "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz",`
+- `package-lock.json:3798`: `"url": "https://github.com/sponsors/sindresorhus"`
+- `scripts/route-check.mjs:86`: `const baseUrl = base || `http://127.0.0.1:${port}`;`
+- `scripts/ui-audit.mjs:392`: `const baseUrl = `http://127.0.0.1:${port}`;`
+- `server.js:372`: `console.log(`TechPro COC 1 running at http://localhost:${port}`);`
+- `tests/assistant.test.js:34`: `The system has 8 GB RAM. Visit https://example.com/a?size=8GB.`
+- `tests/assistant.test.js:39`: `"The system has 8 GB RAM. Visit https://example.com/a?size=8GB.",`
+- `tests/assistant.test.js:45`: `const response = "Don't force the RAM.\n```js\nconst memory_size = 8 * 1024;\nconsole.log('8 GB');\n```\nRead https://example.com/part_(a).";`
+- `tests/assistant.test.js:50`: `"Read https://example.com/part_(a)."`
+- `tests/assistant.test.js:73`: `"Read https://example.com/parts_manual for the labeled diagram."`
+- `tests/assistant.test.js:96`: `const input = "**Bold** and _italic_ and `code` and [link](https://example.com/a_(b)) then ~~gone~~.";`
+- `tests/pc-lab-regression.mjs:23`: `const baseUrl = args.find((value) => !value.startsWith("--")) || process.env.PC_LAB_URL || "http://localhost:3000";`
+- `tests/server-assistant.test.js:40`: `const base = `http://127.0.0.1:${port}`;`
+
+## hostingFiles (4 occurrences)
+
+- `firebase.json:1`: `Hosting or server file: firebase.json`
+- `firestore.indexes.json:1`: `Hosting or server file: firestore.indexes.json`
+- `firestore.rules:1`: `Hosting or server file: firestore.rules`
+- `server.js:1`: `Hosting or server file: server.js`
+
