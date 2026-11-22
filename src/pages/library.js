@@ -319,7 +319,7 @@ export function lessonPage({ params }) {
 
       ${related.length ? `<section class="section related-section" aria-labelledby="relatedTitle">
         <div class="section-head"><div><p class="eyebrow">Practise this lesson</p><h2 id="relatedTitle">Take it to the bench</h2></div></div>
-        <div class="related-grid">${related.map((activity) => `<a class="related-card" href="${activity.route}"><span class="mini-icon color-${activity.color}">${icon(activity.icon, 22)}</span><span><strong>${esc(activity.title)}</strong><small>${esc(activity.tagline)}</small></span>${icon("arrowRight", 18)}</a>`).join("")}</div>
+        <div class="related-grid">${related.map((activity) => `<a class="related-card" href="${activity.route}"><span class="mini-icon color-${activity.color}">${icon(activity.icon, 22)}</span><span class="stack-copy"><strong>${esc(activity.title)}</strong><small>${esc(activity.tagline)}</small></span>${icon("arrowRight", 18)}</a>`).join("")}</div>
       </section>` : ""}
     </div>`,
     mount(rootEl) {

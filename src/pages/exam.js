@@ -26,7 +26,7 @@ export function examOverviewPage() {
 
     <div class="exam-grid">
       <article class="exam-card card">
-        <div class="exam-card-head"><span class="exam-tag">Baseline</span>${icon("exam", 30)}</div>
+        <div class="exam-card-head"><span class="badge badge-accent">Baseline</span>${icon("exam", 30)}</div>
         <h2>Pre-Test</h2>
         <p>Fifteen items, no timer. Take it before reading to see what you already know. Your score is a starting point, not a grade.</p>
         <ul class="tick-list">
@@ -39,7 +39,7 @@ export function examOverviewPage() {
       </article>
 
       <article class="exam-card card exam-final">
-        <div class="exam-card-head"><span class="exam-tag">Post-test</span>${icon("graduation", 32)}</div>
+        <div class="exam-card-head"><span class="badge">Post-test</span>${icon("graduation", 32)}</div>
         <h2>Final Exam</h2>
         <p>The module's 15-item post-test, shuffled, with a 20-minute timer. Score 80% to earn the <strong>Assembly Ready</strong> badge.</p>
         <ul class="tick-list">

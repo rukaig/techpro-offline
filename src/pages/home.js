@@ -57,7 +57,7 @@ export function homePage() {
         <div class="hero-art-frame">${cardArt("build")}</div>
         <div class="hero-stamp">
           <span class="hero-stamp-mark">${brandMark(30)}</span>
-          <span><strong>TechPro</strong><small>First Edition · 2026</small></span>
+          <span class="stack-copy"><strong>TechPro</strong><small>First Edition · 2026</small></span>
         </div>
         <div class="hero-chip float-a">${icon("motherboard", 20)} <span>10-step build</span></div>
         <div class="hero-chip float-b">${icon("shield", 20)} <span>Safety first</span></div>
@@ -179,7 +179,7 @@ export function homePage() {
       <div class="activity-strip">
         ${featured.map((activity) => `<a class="mini-activity" href="${activity.route}">
           <span class="mini-icon color-${activity.color}">${icon(activity.icon, 22)}</span>
-          <span><strong>${esc(activity.title)}</strong><small>${esc(activity.tagline)}</small></span>
+          <span class="stack-copy"><strong>${esc(activity.title)}</strong><small>${esc(activity.tagline)}</small></span>
         </a>`).join("")}
       </div>
     </section>

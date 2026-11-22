@@ -81,3 +81,44 @@ So on a phone the bench starts below the fold and its targets are below the scre
 2. Never treat a tap on a non-draggable part as a blocked drag on pointerdown; resolve the pick to an action on pointerup so tap-tap works for every part.
 3. Constrain the phone bench to the viewport (or provide a fitted camera) so every target is reachable without scrolling.
 4. Add the explicit state machine, watchdog, reset/undo/"show me", and the 30-run loop from the master prompt; keep the regression script as the gate.
+
+---
+
+# Phase C resolution (2026-11-03)
+
+Status: **fixed and verified**. `node tests/pc-lab-regression.mjs` plays L0 safety, L2 CPU and L4 RAM end to end with tap, tap-tap, drag, Rotate and press & hold at 375x667 touch and 1280x800 mouse.
+
+## What changed
+
+`src/games/pc-lab/fallback2d.js` is now the only renderer: a 2D top-down flat-lay bench (`Bench2D`, still exported as `Fallback2D`). `scene.js`, `engine/particles.js` and `supportsWebGL` are no longer imported by the game, so the raycast path that caused cause A cannot run at all. Every part is a real DOM element (`[data-part]`) with a hit area of at least 48 CSS px, and one `BenchInput` controller owns every pointer:
+
+- tap once to act on a part
+- tap the part, then tap its target (tap-tap), or drag the part onto it
+- pointer capture, window-level `pointerup`, a 4s watchdog, and cancel on blur / `visibilitychange` / `orientationchange`
+- `Enter` / `Space` on a focused part runs the same tap path
+- `?debug=1` outlines every hit area and prints level, step, selection, last action and pointer state
+
+## Causes found and fixed in this pass (beyond A and B)
+
+1. **`[data-level]` collision.** `Bench2D` set `data-level="safety"` on its root while the game shell also uses `[data-level]` for level tabs. `src/app/chrome.js` `refreshProgress()` writes the player's XP level into **every** `[data-level]` element, so the bench container was repeatedly replaced with the text `1` and the bench disappeared. Renamed to `data-bench-level`; never reuse `data-level` inside a component.
+2. **Objective card covered the bench.** At >1040px the step card was an overlay pinned to the bottom-left of the stage, and its Hint / Why / Voice buttons sit on `pointer-events: auto`. Tapping the plug at 1280x800 hit `div.pclab-controls`. The card is now in normal flow: the right column on desktop, below the stage at ≤1040px. `pointer-events` no longer blocks anything.
+3. **Sticky bottom navigation covered the last bench row on phones.** At 375x667 the plug sat under `a.nav-link.bottom-link`. The bench now reserves the navigation height (`.bench2d` bottom padding) and the phone stage is 560px tall, which is exactly what the 6-row bench needs; measured: after framing, all 13 visible parts are inside the viewport, uncovered, and ≥44px.
+4. **Tap-tap moved parts on the wrong step.** `DROP_TARGET` made the CPU a "move" part on every CPU step, so tapping the seated CPU re-armed a move instead of applying thermal paste. Move semantics now apply only when the current step actually needs a move (`drop` / `remove-screws`); every other tap fires the step action directly.
+5. **Drop resolution read `data-part`, not `data-drop`.** The RAM slot is `data-part="clips" data-drop="ram-slot"`, so releasing the RAM on it never matched. Drops now resolve `data-drop` first, and a drag makes the dragged element `pointer-events: none` so `elementFromPoint` reaches the target underneath.
+6. **Overlay click-through.** On touch, the tap that completes the last step synthesised a click on the level-complete button that appeared under the finger, skipping a level. Overlay actions are ignored for 350 ms after the overlay opens.
+7. **Alignment had no starting offset.** The 2D bench reset the CPU and RAM to 0°, so the "align the triangle/notch" steps were already solved. CPU starts at 90° and RAM at 180° on their levels, and seated parts now render on the board (`.bench2d-chip`, `.bench2d-stick`).
+
+## Test harness facts worth keeping
+
+- `html { scroll-behavior: smooth }`: a test must scroll with `behavior: "instant"`, or it measures mid-animation.
+- `.pclab-frame` is `overflow: hidden`, so `scrollIntoView` can scroll the frame instead of the page. The regression resets `frame.scrollTop` and scrolls the window by absolute position.
+- `.pclab-overlay` hides with the `hidden` attribute but keeps its inner HTML; `querySelector('[data-overlay-action]')` finds stale buttons. Check `overlay.hidden` before treating an action as live.
+
+## Gate
+
+```sh
+node tests/pc-lab-regression.mjs            # 3 levels x 2 devices
+node tests/pc-lab-regression.mjs --runs=30  # input stability loop
+```
+
+Both must exit 0 before the PC Lab counts as done.

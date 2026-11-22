@@ -234,7 +234,8 @@ async function inspect(page, metadata) {
         guard += 1;
       }
       if (!surface || surface === leaf.element) continue;
-      if (surface.closest(".sr-only, .pclab-game, canvas")) continue;
+      if (leaf.element.closest(".sr-only")) continue;
+      if (surface.closest(".sr-only, .pclab-game, .pclab-frame, canvas")) continue;
       const bounds = surface.getBoundingClientRect();
       const distance = Math.min(
         leaf.rect.left - bounds.left,
@@ -320,10 +321,12 @@ async function inspect(page, metadata) {
       if (!visible(control) || control.closest(".sr-only")) continue;
       const rect = control.getBoundingClientRect();
       if (rect.width < 8 || rect.height < 8) continue;
+      if (Number.parseFloat(styleOf(control).opacity) < 0.05) continue;
       const label = (control.innerText || control.getAttribute("aria-label") || control.name || control.tagName).trim().slice(0, 60);
       if (rect.height < 40) smallControls.push({ selector: selectorFor(control), height: Math.round(rect.height), label });
       const isNative = ["BUTTON", "SELECT", "INPUT", "TEXTAREA"].includes(control.tagName);
-      if (isNative && !control.className && !control.getAttribute("role")) rawControls.push({ selector: selectorFor(control), label });
+      const wrapped = control.closest(".search-field, .field, .input-group");
+      if (isNative && !control.className && !control.getAttribute("role") && !wrapped) rawControls.push({ selector: selectorFor(control), label });
     }
 
     // Content crowded under a sticky or fixed header.

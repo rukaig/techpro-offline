@@ -109,3 +109,53 @@
     display: grid;
   }
 }
+
+
+/* ---------- Activity tile used by result screens (Phase B) -------------- */
+.activity-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.activity-copy strong {
+  font-size: var(--text-base);
+  line-height: 1.25;
+}
+
+.activity-copy small {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.35;
+}
+
+.activity-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 64px;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.activity-tile:hover {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.activity-arrow {
+  margin-left: auto;
+  color: var(--text-muted);
+  display: inline-flex;
+}
+
+.play-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}

@@ -6,10 +6,7 @@
 
 import { readTheme, observeTheme, applyCssThemeVars, THEME_IDS } from "../engine/theme.js";
 import { GameAudio, vibrate } from "../engine/audio.js";
-import { Particles } from "../engine/particles.js";
-import { supportsWebGL } from "../engine/quality.js";
-import { PcScene } from "./scene.js";
-import { Fallback2D } from "./fallback2d.js";
+import { Bench2D } from "./fallback2d.js";
 import { PART_BY_ID } from "../../data/parts.js";
 
 const MAX_MISTAKES = 30;
@@ -642,6 +639,7 @@ export class PcLabGame {
       const preset = event.target.closest("[data-preset]");
       if (preset) { this.view?.focus?.(preset.dataset.preset); return; }
       const overlayButton = event.target.closest("[data-overlay-action]");
+      if (overlayButton && performance.now() - (this.overlayShownAt || 0) < 350) return;
       if (overlayButton) { this.onOverlayAction(overlayButton.dataset.overlayAction); return; }
     };
     this.root.addEventListener("click", this.onClick);
@@ -726,40 +724,25 @@ export class PcLabGame {
       onLeverDragIncomplete: () => this.toast("Keep dragging the lever until it reaches its raised or locked position.", "info", 2400)
     };
 
-    this.useWebGL = supportsWebGL();
-    if (this.useWebGL) {
-      this.scene = new PcScene({
-        container: this.canvasHost,
-        theme: this.theme,
-        settings: this.settings,
-        audio: this.audio,
-        callbacks,
-        onQuality: (quality) => this.onQuality(quality)
-      });
-      this.particles = new Particles(this.scene.scene, {
-        scale: this.scene.quality.particles,
-        palette: this.theme.palette
-      });
-      this.scene.particles = this.particles;
-      this.view = this.scene;
-    } else {
-      this.view = new Fallback2D({
-        container: this.canvasHost,
-        theme: this.theme,
-        settings: this.settings,
-        audio: this.audio,
-        callbacks
-      });
-      this.qualityEl.hidden = false;
-      this.qualityEl.textContent = "2D compatibility bench";
-    }
+    this.view = new Bench2D({
+      container: this.canvasHost,
+      theme: this.theme,
+      settings: this.settings,
+      audio: this.audio,
+      callbacks: {
+        ...callbacks,
+        debugStep: () => this.currentStep()?.id || null,
+        currentStep: () => this.currentStep()
+      }
+    });
+    this.qualityEl.hidden = false;
+    this.qualityEl.textContent = "2D flat-lay bench";
   }
 
   observeTheme() {
     this.stopTheme = observeTheme((theme) => {
       this.theme = theme;
       this.audio.setTheme(theme.id);
-      this.particles?.setPalette(theme.palette);
       this.view?.setTheme?.(theme);
       applyCssThemeVars(this.root);
     });
@@ -1562,6 +1545,7 @@ export class PcLabGame {
   /* ------------------------------------------------------------------ overlay */
 
   showOverlay(html) {
+    this.overlayShownAt = performance.now();
     this.overlay.innerHTML = html;
     this.overlay.hidden = false;
     this.overlayOpen = true;

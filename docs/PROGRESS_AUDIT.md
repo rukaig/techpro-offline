@@ -131,3 +131,53 @@ Gaps versus Phase 0 (not fixed yet):
 - PC Lab drag interactions after the safety level, and disassembly mode, because the safety level is blocked at step 2.
 - Pinch-zoom, 80–200% browser zoom, devicePixelRatio 2/3, keyboard-only play — deferred to the Phase C test plan.
 - Lighthouse, offline caching, Render deployment — Phase E.
+
+---
+
+# Phase B + C findings (2026-11-03)
+
+## Phase B — what each audit failure actually was
+
+The audit reports below were fixed at the cause, not by widening a threshold.
+
+| Report | Real cause | Fix |
+| --- | --- | --- |
+| `.exam-*` text within 8px of its container | Exam hub/cards/best-score/results were styled inline in `src/pages/exam.js` with `padding: 0`, so copy sat flush against the card edge | Moved to `src/styles/exam.css` (496 lines, linked from `index.html`) with a shared card padding step |
+| `.activity-copy` and `.rank-name` flush or joined | Single-line flex rows with `gap` below 2.5px and no padding around the name/copy pair | Split into stacked blocks with the spacing tokens; joined-inline gap is now >= 2.5px |
+| Content sliding under `header.site-head` | Page anchors used the raw offset, not the sticky header height | Scroll padding/offset uses the header token; no content starts under the header now |
+| `smallControls` | Exam tabs, quiz/review actions, library filters and the XP chip were 32–38px | Every interactive control is >= 44px (`btn-sm` 44, `btn-lg` 52, `btn-round` 44, `.xp-chip` 52) |
+| `textPadding` false positives | sr-only leaves and the PC Lab frame have no layout box of their own | `scripts/ui-audit.mjs` skips `.sr-only` leaves and `.pclab-frame` surfaces; transparent (opacity < 0.05) controls are not reported |
+| `rawControls` false positives | Native inputs inside `.search-field` / `.field` / `.input-group` are styled by their wrapper | Wrapper is accepted as the control's styling |
+
+## Phase C — why the PC Lab bug was not where the old report said
+
+The old report blamed a three.js raycast against invisible screw outlines. That
+path is gone: the renderer is the 2D DOM bench, so the raycast cannot run. The
+failures that remained after the rewrite were seven separate, confirmed causes
+(`docs/PCLAB_BUGFIX.md`): the `[data-level]` attribute collision with
+`refreshProgress()`, the objective card covering the bench, the sticky bottom
+navigation covering the last bench row, move semantics firing on the wrong
+step, drop resolution reading `data-part` instead of `data-drop`, overlay
+click-through on touch, and the CPU/RAM starting already aligned.
+
+## Verification commands that matter
+
+```sh
+node tests/pc-lab-regression.mjs            # tap, tap-tap, drag, rotate, hold
+node tests/pc-lab-regression.mjs --runs=30  # 30 passes per device
+npm test                                    # 13/13
+npm run check                               # content check
+npm run audit                               # UI audit, must exit 0
+```
+
+Harness facts that cost time and are worth keeping:
+
+- `html { scroll-behavior: smooth }` — tests must pass `behavior: "instant"`.
+- `.pclab-frame` is `overflow: hidden`; `scrollIntoView` can scroll the frame
+  instead of the page. Reset `frame.scrollTop` and scroll the window by
+  absolute position.
+- `.pclab-overlay` hides with the `hidden` attribute but keeps its children,
+  so `querySelector('[data-overlay-action]')` finds stale buttons. Check
+  `overlay.hidden` first.
+- A tap that completes the final step and lands where a new button appears will
+  press that button on touch. The overlay ignores actions for 350ms.

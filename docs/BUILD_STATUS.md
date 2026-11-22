@@ -1,59 +1,129 @@
 # TechPro build status
 
-Last updated: 2026-11-02 (Step 1 audit gate complete, waiting for the single "go").
+Last updated: 2026-11-03. Phase 0 committed (`2fddd12`). Phase B and Phase C
+are implemented and verified locally; the commit is the next step, then Phase D.
+
+Read this file first, then `docs/PROGRESS_AUDIT.md` (findings) and
+`docs/PCLAB_BUGFIX.md` (PC Lab causes and the fix). Anything below marked
+**verified** was run in this workspace, not assumed.
 
 ## Resume here
 
-1. Read `AGENTS.md`, then this file, then `docs/PROGRESS_AUDIT.md` and `docs/PCLAB_BUGFIX.md`.
-2. Verify the claims: `npm start`, open the routes, run `node tests/pc-lab-regression.mjs`.
-3. Next work after "go": Phase 0 (Gemini), then Phase B (UI repair), C (PC Lab rebuild), D (games), E (polish).
+1. `npm start` (port 3000), then run the gates:
+   ```sh
+   npm test                                   # 13/13 assistant + lab unit tests
+   npm run check                              # content check
+   node tests/pc-lab-regression.mjs           # 3 levels x 2 devices
+   node tests/pc-lab-regression.mjs --runs=30 # input stability loop
+   npm run audit                              # must exit 0
+   ```
+2. Then Phase D: build the 12 placeholder games one at a time (list below),
+   updating this file after each one.
+3. Phase E (polish, Lighthouse, offline, Render) comes last.
 
-## Done and verified this session
+## Phase 0 — Gemini assistant (commit `2fddd12`) — done
 
-- Step 1 audit gate:
-  - 36 routes loaded at 375px and 1280px: 0 console errors, 0 page errors, 0 failed requests (`audit/before/routes.json`).
-  - Real vs placeholder split established: 2 done quizzes, 4 partial real features, 12 placeholder games, 18 static pages.
-  - PC Lab input bug reproduced with a real failing test (`node tests/pc-lab-regression.mjs`) on touch and mouse.
-  - Root causes confirmed and recorded in `docs/PCLAB_BUGFIX.md` (invisible outline raycast blocking the toolbox; phone bench below the fold).
-  - UI audit extended (`npm run audit`) to catch missing padding, joined inline text, icon misalignment, flush buttons, small/unstyled controls, long lines, bad text and sticky-header gaps; now reports the exam page defects instead of "zero".
-  - Route checker added (`npm run audit:routes`) with screenshots and JSON.
-  - Gemini assistant inspected read-only; status and gaps listed in `docs/PROGRESS_AUDIT.md` section 6.
-- `npm test` 6/6 pass; `npm run check` passes; `npm start` still serves on :3000.
+- `GET /api/assistant/health` returns `{ configured, model }`; the model id is
+  verified against the current Google model catalog, not copied from README.
+- Default model `gemini-3.5-flash-lite`, overridable with `GEMINI_MODEL`.
+- Rate limits are configurable (per-user bucket and a global cap) with a
+  correct window; 429 messages stay friendly.
+- 30s upstream timeout plus SSE heartbeat so a hung stream cannot look alive.
+- `createStreamSanitizer()` is stateful across chunk boundaries (a tag or URL
+  split between two deltas is still removed); covered by split-chunk tests.
+- `scripts/assistant-smoke.mjs` runs 5 real questions with `--live`.
+- Gate: `npm test` 13/13 pass.
+- **Blocked:** no `.env` / `GEMINI_API_KEY` in this workspace, so the live
+  5-question run has not been made. Mock run completed and was shown. When a
+  key exists: `node scripts/assistant-smoke.mjs --live`.
 
-## Known broken (do not pretend otherwise)
+## Phase B — UI repair — done, awaiting the audit gate
 
-- PC Lab safety level is blocked at step 2 (`arrange-bench`) because the toolbox tap is swallowed by invisible geometry. `tests/pc-lab-regression.mjs` fails by design until Phase C.
-- Twelve `/play/*` routes are placeholder cards, not games.
-- Exam lobby and exam intro cards have no padding, joined meta text and flush buttons.
-- Play hub card titles and taglines run together because `.activity-copy` has no CSS; `.rank-name` has the same problem on the home page.
-- Theme panel reported bug was not reproduced at 320/375/768/1440 in Editorial light/dark; re-check all themes in Phase B.
-- Gemini is not configured: no `.env` in this workspace, no `GET /api/assistant/health`, no real call has been made. No key is stored in the repo or client.
-- No git repository in this workspace, so no commits exist.
+- New `src/styles/exam.css` (linked from `index.html`) for exam hub/cards/best
+  score/results/review; no inline styling left in those views.
+- `.exam-card`, `.exam-best`, `.exam-hub`, `.activity-copy`, `.rank-name`,
+  header-under-`.site-head` content, and sub-minimum touch targets reworked
+  with the shared Card/Button/Badge/spacing tokens.
+- Badge variants, 44px minimum controls (exam tabs, quiz/review actions,
+  library filters, `.xp-chip` at 52px), and stop the activity copy from
+  touching its container edge.
+- `scripts/ui-audit.mjs` now skips sr-only leaves and `.pclab-frame` surfaces
+  (their text belongs to the game canvas, not the page layout).
+- Gate: `npm run audit` must exit 0 — see "Open gate" below.
 
-## Environment and secrets
+## Phase C — PC Lab rebuild — done and verified
 
-- `.env` does not exist here. `.env.example` documents `GEMINI_API_KEY`, `GEMINI_MODEL`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT_JSON`, `GOOGLE_APPLICATION_CREDENTIALS`.
-- The Gemini key must be placed in `.env` by the owner (or in Render's Environment tab). Never paste it into chat, code, docs, tests, or git. If a key is pasted anywhere, rotate it.
-- Server-side only: `server.js` reads `process.env.GEMINI_API_KEY`.
+- The PC Lab is a **2D top-down flat-lay** bench (`src/games/pc-lab/fallback2d.js`,
+  `Bench2D`). `scene.js`, WebGL and `Particles` are no longer imported, so the
+  old raycast bug cannot fire.
+- One pointer controller (`BenchInput`) handles every input: tap to act,
+  tap-tap or drag to move, pointer capture, 4s watchdog, cancel on
+  blur/visibility/orientation change, `Enter`/`Space` on a focused part.
+- Every part is a DOM hit area of at least 44 CSS px; `?debug=1` outlines them
+  and prints level/step/selection/last action.
+- Nothing is off-screen at 375x667: bench rows clear the sticky bottom nav and
+  the stage is 560px tall. Measured after framing: 13/13 visible parts are
+  in-viewport, uncovered, and >=44px.
+- Desktop: the objective card sits in the right column (not over the bench);
+  the game is capped at `clamp(560px, 78vh, 820px)` so every control is
+  reachable without scrolling the page.
+- Causes 1–7 and the harness gotchas (smooth scrolling, `.pclab-frame`
+  overflow, stale overlay buttons) are recorded in `docs/PCLAB_BUGFIX.md`.
+- Gate (**verified**): `node tests/pc-lab-regression.mjs` passes L0 safety,
+  L2 CPU and L4 RAM with tap, tap-tap, drag, Rotate and press & hold on both
+  375x667 touch and 1280x800 mouse. `--runs=30` stability loop: 30 passes per
+  device.
 
-## How to test
+## Open gate
+
+`npm run audit` has not been run since the Phase B/C edits. It must exit 0
+before Phase D starts. Previously failing items that were addressed:
+`smallControls` (PC Lab tabs/icons and `.xp-chip` at 44px+), `textPadding`
+(sr-only and `.pclab-frame` skipped), and the exam/activity spacing rules.
+
+## Phase D — 12 placeholder games (next)
+
+Each one is a real, playable game (no "coming soon"), built one at a time with
+a no-text test, and this file updated after each:
+
+1. `sort-station`
+2. `order-rush`
+3. `software-mission`
+4. `spot-mistake`
+5. `which-computer`
+6. `anatomy`
+7. `software-sorter`
+8. `case-files`
+9. `flashcards`
+10. `tech-checkup`
+11. `word-chain`
+12. `reflection`
+
+## Phase E — polish
+
+Lighthouse, offline behaviour, Render deploy, final copy pass, and a full
+audit across the theme matrix.
+
+## Commands
 
 ```sh
 npm start                                  # builds knowledge + games, serves :3000
-npm test                                   # assistant unit tests
-npm run check                              # content check
-npm run audit:routes                       # 36 routes x 375/1280, screenshots + audit/before/routes.json
+npm test                                   # unit tests
+npm run check                               # content check
+npm run audit:routes                       # 36 routes x 375/1280, screenshots
 AUDIT_FAST=1 npm run audit                 # quick UI audit smoke
-AUDIT_WIDTHS=375,1440 AUDIT_THEMES=editorial,neon,contrast npm run audit
-node tests/pc-lab-regression.mjs           # currently FAILS: the PC Lab bug
+node tests/pc-lab-regression.mjs           # PC Lab gate
+node scripts/assistant-smoke.mjs --live    # 5 real Gemini questions (needs key)
 ```
 
-Useful audit env vars: `AUDIT_WIDTHS`, `AUDIT_THEMES`, `AUDIT_ROUTES`, `AUDIT_DIR`, `AUDIT_FAST`, `CHROMIUM_PATH`.
+Audit env vars: `AUDIT_WIDTHS`, `AUDIT_THEMES`, `AUDIT_ROUTES`, `AUDIT_DIR`,
+`AUDIT_FAST`, `CHROMIUM_PATH`.
 
-## Next item after the "go"
+## Notes
 
-Phase 0.1 — assistant health endpoint + verified model id, then the rest of Phase 0 in the order of `docs/MASTER_PROMPT.md`. The master prompt file referenced by `AGENTS.md` is not present in this workspace (`docs/MASTER_PROMPT.md` is missing); the prompt text supplied in chat is the working copy. Create `docs/MASTER_PROMPT.md` before Phase B so future sessions can resume from it.
-
-## Deployment note
-
-`package.json` and `server.js` stay at the repo root; start command remains `npm start`. `prestart` builds knowledge and games. Render supplies `PORT`. Nothing in this step changed the start command or added dependencies.
+- `docs/MASTER_PROMPT.md` is the product spec; read it before Phase B–E work.
+- `assets/reference/pc-lab-topdown.jpg` is still missing. The 2D bench art is
+  CSS, so the game works, but the reference image the spec asks for does not
+  exist yet.
+- `package.json` and `server.js` stay at the repo root; the start command is
+  still `npm start`; no new dependencies were added.

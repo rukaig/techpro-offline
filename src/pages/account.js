@@ -63,9 +63,9 @@ export function mountAccount(root) {
       </div>
       ${unavailableMessage}
       <form class="account-form" data-auth-form>
-        ${mode === "register" ? `<label>Display name <span class="text-muted">(optional)</span><input name="displayName" type="text" maxlength="60" autocomplete="name"></label>` : ""}
-        <label>Email address<input name="email" type="email" maxlength="254" autocomplete="email" required></label>
-        <label>Password<input name="password" type="password" minlength="6" maxlength="128" autocomplete="${mode === "signin" ? "current-password" : "new-password"}" required></label>
+        ${mode === "register" ? `<label>Display name <span class="text-muted">(optional)</span><input class="input" name="displayName" type="text" maxlength="60" autocomplete="name"></label>` : ""}
+        <label>Email address<input class="input" name="email" type="email" maxlength="254" autocomplete="email" required></label>
+        <label>Password<input class="input" name="password" type="password" minlength="6" maxlength="128" autocomplete="${mode === "signin" ? "current-password" : "new-password"}" required></label>
         <button class="btn btn-primary" type="submit" ${authUnavailable ? "disabled" : ""}>${mode === "signin" ? "Sign in" : "Create account"}</button>
       </form>
       <p class="account-message${authMessageIsError ? " is-error" : ""}" data-account-message role="status">${esc(authMessage)}</p>
