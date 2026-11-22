@@ -20,9 +20,9 @@
     { "src": "./assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "PC Lab", "short_name": "PC Lab", "url": "/play/pc-lab", "description": "Build a desktop computer step by step." },
-    { "name": "Library", "short_name": "Library", "url": "/library", "description": "Read the module lessons." },
-    { "name": "Final Exam", "short_name": "Exam", "url": "/exam/final", "description": "Take the 15-item assessment." },
-    { "name": "Leaderboard", "short_name": "Ranks", "url": "/leaderboard", "description": "See the class rankings." }
+    { "name": "PC Lab", "short_name": "PC Lab", "url": "./#/play/pc-lab", "description": "Build a desktop computer step by step." },
+    { "name": "Library", "short_name": "Library", "url": "./#/library", "description": "Read the module lessons." },
+    { "name": "Final Exam", "short_name": "Exam", "url": "./#/exam/final", "description": "Take the 15-item assessment." },
+    { "name": "Leaderboard", "short_name": "Ranks", "url": "./#/leaderboard", "description": "See the class rankings." }
   ]
 }

@@ -40,7 +40,12 @@
     </div>
   </div>
   <script>
-    if (location.protocol === "file:") {
+    // GitHub Pages project sites publish this developer entry at /<repo>/,
+    // where the absolute /src/... bootstrap path would point at the wrong site.
+    // The published site must use the self-contained dist/ bundle instead.
+    if (location.hostname.endsWith(".github.io") && !/\/dist\//.test(location.pathname)) {
+      location.replace("./dist/#/");
+    } else if (location.protocol === "file:") {
       document.getElementById("app").innerHTML = `
         <main role="alert" style="max-width:42rem;margin:10vh auto;padding:2rem;font:16px/1.6 system-ui,sans-serif;color:#241d17;background:#fffdf8;border:1px solid #d8cebe;border-radius:12px">
           <p style="margin:0 0 .5rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8a1a14">TechPro needs a local server</p>
